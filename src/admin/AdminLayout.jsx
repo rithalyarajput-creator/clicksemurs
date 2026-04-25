@@ -25,9 +25,9 @@ export default function AdminLayout({ children }) {
     <div style={{ display: 'flex', minHeight: '100vh', background: '#0A0A0A', fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Sidebar */}
       <aside style={{ width: 220, background: '#111111', borderRight: '1px solid #2E2E2E', display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, left: 0, height: '100vh' }}>
-        <div style={{ padding: '24px 20px', borderBottom: '1px solid #2E2E2E' }}>
-          <div style={{ color: '#fff', fontWeight: 900, fontSize: 16, letterSpacing: '0.15em', textTransform: 'uppercase' }}>CLICK⚡SEMURS</div>
-          <div style={{ color: '#555', fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', marginTop: 4 }}>Admin Panel</div>
+        <div style={{ padding: '20px 20px', borderBottom: '1px solid #2E2E2E' }}>
+          <img src="/logo.png" alt="Clicksemurs" style={{ height: 36, width: 'auto' }} />
+          <div style={{ color: '#555', fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', marginTop: 6 }}>Admin Panel</div>
         </div>
         <nav style={{ flex: 1, padding: '16px 0' }}>
           {navItems.map(({ path, label, icon: Icon }) => {

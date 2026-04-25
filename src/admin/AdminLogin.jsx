@@ -23,7 +23,7 @@ export default function AdminLogin() {
     <div style={{ background: '#0A0A0A', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter, system-ui, sans-serif' }}>
       <div style={{ background: '#1E1E1E', border: '1px solid #2E2E2E', padding: 48, width: '100%', maxWidth: 420 }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <h1 style={{ color: '#fff', fontSize: 22, fontWeight: 900, letterSpacing: '0.15em', textTransform: 'uppercase' }}>CLICK⚡SEMURS</h1>
+          <img src="/logo.png" alt="Clicksemurs" style={{ height: 48, width: 'auto', margin: '0 auto 8px' }} />
           <p style={{ color: '#777', fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', marginTop: 4 }}>Admin Panel</p>
         </div>
         <div style={{ background: '#111', border: '1px solid #2E2E2E', color: '#aaa', fontSize: 11, textAlign: 'center', padding: 6, marginBottom: 24 }}>Secure Admin Access</div>
