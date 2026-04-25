@@ -107,13 +107,6 @@ export default function Navbar() {
 
 function LogoWhite() {
   return (
-    <div className="flex flex-col leading-none">
-      <span className="text-white font-black text-xl tracking-[0.15em] uppercase">
-        CLICK<span className="text-white">⚡</span>SEMURS
-      </span>
-      <span className="text-[#777777] text-[9px] tracking-[0.3em] uppercase font-medium">
-        360° Digital Marketing
-      </span>
-    </div>
+    <img src="/logo.png" alt="Clicksemurs" className="h-10 w-auto" />
   )
 }
