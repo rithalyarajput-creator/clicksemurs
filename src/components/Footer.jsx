@@ -39,12 +39,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <div className="text-white font-black text-2xl tracking-[0.15em] uppercase">
-                CLICK⚡SEMURS
-              </div>
-              <div className="text-[#777777] text-[10px] tracking-[0.3em] uppercase font-medium mt-1">
-                360° Digital Marketing Agency
-              </div>
+              <img src="/logo.png" alt="Clicksemurs" className="h-10 w-auto" />
             </div>
             <p className="text-[#777777] text-sm leading-relaxed mb-6">
               We don't just run campaigns — we build digital ecosystems. From strategy to execution, we deliver measurable growth.
