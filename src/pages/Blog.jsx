@@ -74,7 +74,7 @@ export default function Blog() {
                   className="group block"
                 >
                   {/* Image — full width, rounded top corners */}
-                  <div className="rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-300" style={{ height: 240 }}>
+                  <div className="rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-300" style={{ height: 180 }}>
                     <img
                       src={img}
                       alt={blog.title}
