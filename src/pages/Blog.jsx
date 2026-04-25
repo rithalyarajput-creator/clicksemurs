@@ -71,41 +71,42 @@ export default function Blog() {
                 <Link
                   key={blog.id || blog.slug}
                   to={`/blog/${blog.slug}`}
-                  className="group block rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-white"
+                  className="group block"
                 >
-                  {/* Image + Overlay container */}
-                  <div className="relative" style={{ height: 280 }}>
-                    {/* Background image */}
+                  {/* Image — full width, rounded top corners */}
+                  <div className="rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-shadow duration-300" style={{ height: 240 }}>
                     <img
                       src={img}
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-
-                    {/* Logo top-left */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <img src="/logo.png" alt="Clicksemurs" style={{ height: 26, width: 'auto', filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.6))' }} />
-                    </div>
-
-                    {/* Orange info box — bottom of image, overlapping */}
-                    <div className="absolute bottom-0 left-0 right-0 z-10 mx-3 mb-0 rounded-t-xl overflow-hidden"
-                      style={{ background: 'linear-gradient(135deg, #F4A100 0%, #e8920a 100%)' }}>
-                      <div className="px-4 pt-3 pb-4">
-                        <h3 className="text-[#111111] font-black text-sm leading-snug mb-2 line-clamp-2">
-                          {blog.title}
-                        </h3>
-                        <div className="flex items-center justify-between">
-                          <span className="text-[#111111] text-xs font-medium opacity-70">{date}</span>
-                          <span className="text-[#111111] text-xs font-black flex items-center gap-1">
-                            Read More →
-                          </span>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  {/* Small bottom strip for rounded card base */}
-                  <div style={{ background: 'linear-gradient(135deg, #F4A100 0%, #e8920a 100%)', height: 6 }} />
+                  {/* Detail box — left aligned, right side shorter, overlaps image by ~20px */}
+                  <div
+                    className="relative z-10 rounded-xl shadow-xl"
+                    style={{
+                      background: '#111111',
+                      marginTop: -24,
+                      marginLeft: 0,
+                      marginRight: 32,
+                      padding: '16px 20px',
+                    }}
+                  >
+                    {/* Category */}
+                    <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+                      {blog.category}
+                    </span>
+                    {/* Title */}
+                    <h3 className="text-white font-black text-sm leading-snug mt-1 mb-3 line-clamp-2 group-hover:text-[#F4A100] transition-colors duration-200">
+                      {blog.title}
+                    </h3>
+                    {/* Date + Read More */}
+                    <div className="flex items-center justify-between">
+                      <span style={{ color: '#777', fontSize: 11 }}>{date}</span>
+                      <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700 }}>Read More →</span>
+                    </div>
+                  </div>
                 </Link>
               )
             })}
