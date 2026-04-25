@@ -1,13 +1,14 @@
 import { useParams, Link } from 'react-router-dom'
-import { FaArrowLeft, FaCalendar, FaTag, FaArrowRight } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { FaArrowLeft, FaCalendar, FaTag } from 'react-icons/fa'
+import { supabase } from '../admin/supabase'
 
 const staticPosts = {
   'seo-tips-2024': {
     title: '10 SEO Tips That Will Dominate Google in 2024',
     category: 'SEO',
-    date: '2024-11-15',
-    content: `
-Search engine optimization continues to evolve at a rapid pace. In 2024, the businesses that will dominate search results are those that adapt quickly to Google's evolving algorithm and user behavior shifts.
+    created_at: '2024-11-15',
+    content: `Search engine optimization continues to evolve at a rapid pace. In 2024, the businesses that will dominate search results are those that adapt quickly to Google's evolving algorithm and user behavior shifts.
 
 ## 1. Prioritize Core Web Vitals
 
@@ -15,7 +16,7 @@ Google's Core Web Vitals — Largest Contentful Paint (LCP), First Input Delay (
 
 ## 2. Focus on Search Intent Above All Else
 
-Understanding why someone is searching — not just what they're searching for — is the single most important SEO skill. Match your content format (blog, landing page, product page) to the dominant intent behind each keyword.
+Understanding why someone is searching — not just what they're searching for — is the single most important SEO skill. Match your content format to the dominant intent behind each keyword.
 
 ## 3. Build Topical Authority
 
@@ -47,77 +48,218 @@ Ensure your website has a clean URL structure, proper canonicalization, an XML s
 
 ## 10. Track and Iterate with Data
 
-SEO without measurement is guesswork. Set up Google Search Console, Google Analytics 4, and a rank tracking tool. Review performance monthly and adjust your strategy based on real data.
-
----
-
-*Want to implement these strategies for your business? Get a free SEO audit from the Clicksemurs team today.*
-    `,
+SEO without measurement is guesswork. Set up Google Search Console, Google Analytics 4, and a rank tracking tool. Review performance monthly and adjust your strategy based on real data.`,
   },
+  'meta-ads-guide': {
+    title: 'The Complete Guide to Meta Ads for E-Commerce in 2024',
+    category: 'Paid Ads',
+    created_at: '2024-11-08',
+    content: `Meta Ads remain one of the most powerful tools for e-commerce businesses. Here is how to structure your campaigns for maximum ROAS.
+
+## Understanding Campaign Structure
+
+Organize by awareness, consideration, and conversion objectives. Each stage requires different creative and targeting approaches.
+
+## Audience Strategy
+
+Build custom audiences from your customer list, then create lookalikes. Layer interests and behaviors for prospecting campaigns.
+
+## Creative Testing
+
+Test 3-5 creative variants per ad set. Let data decide the winner. Never kill an ad set before 7 days and 1000 impressions.
+
+## Retargeting
+
+Target website visitors, add-to-cart abandoners, and past purchasers separately. Each segment needs different messaging.
+
+## Scaling
+
+Once you find a winning combination, scale budgets by 20% every 3 days. Avoid drastic budget changes that reset the learning phase.`,
+  },
+}
+
+const allStaticBlogs = [
+  { id:1, slug:'seo-tips-2024', title:'10 SEO Tips That Will Dominate Google in 2024', category:'SEO', created_at:'2024-11-15', thumbnail:'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&q=80' },
+  { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for E-Commerce in 2024', category:'Paid Ads', created_at:'2024-11-08', thumbnail:'https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&q=80' },
+  { id:3, slug:'social-media-trends', title:'Social Media Trends Every Brand Must Know in 2024', category:'Social Media', created_at:'2024-10-30', thumbnail:'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&q=80' },
+  { id:4, slug:'website-conversion', title:"Why Your Website Isn't Converting (And How to Fix It)", category:'Website', created_at:'2024-10-22', thumbnail:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80' },
+]
+
+function LeadForm() {
+  const [form, setForm] = useState({ name: '', phone: '', email: '' })
+  const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    await supabase.from('leads').insert([{
+      name: form.name, email: form.email, phone: form.phone,
+      service: 'Blog Lead', message: 'Lead from blog post sidebar form'
+    }])
+    setLoading(false)
+    setSent(true)
+  }
+
+  const inp = {
+    display: 'block', width: '100%', background: '#fff', border: '1px solid #e5e5e5',
+    color: '#111', padding: '10px 14px', fontSize: 13, outline: 'none',
+    boxSizing: 'border-box', marginBottom: 10, borderRadius: 4
+  }
+
+  return (
+    <div style={{ background: '#111111', borderRadius: 8, padding: 24, boxShadow: '0 4px 24px rgba(0,0,0,0.15)' }}>
+      {/* Header */}
+      <div style={{ background: '#F4A100', borderRadius: '6px 6px 0 0', margin: '-24px -24px 20px', padding: '14px 20px' }}>
+        <div style={{ color: '#111', fontWeight: 900, fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apply for Instant Consultation</div>
+        <div style={{ color: '#111', fontSize: 11, opacity: 0.7, marginTop: 2 }}>Get faster. No paperwork needed.</div>
+      </div>
+
+      {sent ? (
+        <div style={{ textAlign: 'center', padding: '20px 0' }}>
+          <div style={{ color: '#4ade80', fontSize: 32, marginBottom: 8 }}>✓</div>
+          <div style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>We'll contact you soon!</div>
+          <div style={{ color: '#777', fontSize: 12, marginTop: 4 }}>Our team will reach out within 24 hours.</div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input style={inp} placeholder="Full Name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
+          <input style={inp} placeholder="Mobile Number" value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} required />
+          <input style={{ ...inp, marginBottom: 16 }} placeholder="Email Address" type="email" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
+          <button type="submit" disabled={loading} style={{
+            display: 'block', width: '100%', background: '#F4A100', color: '#111',
+            padding: '12px', fontWeight: 900, fontSize: 13, border: 'none',
+            borderRadius: 4, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em'
+          }}>
+            {loading ? 'Sending...' : 'Get Free Report →'}
+          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 14 }}>
+            {['Instant Approval', 'No Collateral', '100% Digital'].map(t => (
+              <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #F4A100', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100' }} />
+                </div>
+                <span style={{ color: '#aaa', fontSize: 12 }}>{t}</span>
+              </div>
+            ))}
+          </div>
+        </form>
+      )}
+    </div>
+  )
+}
+
+function renderContent(content) {
+  if (!content) return null
+  return content.split('\n').map((line, i) => {
+    if (line.startsWith('## ')) return <h2 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 32, marginBottom: 12 }}>{line.slice(3)}</h2>
+    if (line.startsWith('# ')) return <h1 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 26, marginTop: 32, marginBottom: 12 }}>{line.slice(2)}</h1>
+    if (line.startsWith('---')) return <hr key={i} style={{ margin: '24px 0', borderColor: '#e5e5e5' }} />
+    if (line.trim() === '') return <div key={i} style={{ height: 8 }} />
+    return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.8, marginBottom: 12 }}>{line}</p>
+  })
 }
 
 export default function BlogPost() {
   const { slug } = useParams()
-  const post = staticPosts[slug]
+  const [post, setPost] = useState(staticPosts[slug] || null)
+  const [similarBlogs, setSimilarBlogs] = useState([])
+  const [loading, setLoading] = useState(!staticPosts[slug])
 
-  if (!post) {
-    return (
-      <div className="min-h-screen bg-[#111111] flex items-center justify-center pt-16">
-        <div className="text-center">
-          <h1 className="text-white text-4xl font-black mb-4">Post Not Found</h1>
-          <Link to="/blog" className="btn-primary">Back to Blog</Link>
-        </div>
+  useEffect(() => {
+    // Load from Supabase
+    supabase.from('blogs').select('*').eq('slug', slug).single()
+      .then(({ data }) => { if (data) setPost(data); setLoading(false) })
+      .catch(() => setLoading(false))
+
+    // Load similar blogs
+    supabase.from('blogs').select('*').eq('is_published', true).neq('slug', slug).limit(3)
+      .then(({ data }) => {
+        if (data && data.length) setSimilarBlogs(data)
+        else setSimilarBlogs(allStaticBlogs.filter(b => b.slug !== slug).slice(0, 3))
+      })
+      .catch(() => setSimilarBlogs(allStaticBlogs.filter(b => b.slug !== slug).slice(0, 3)))
+  }, [slug])
+
+  if (loading) return <div style={{ minHeight: '100vh', background: '#F4F4F4', paddingTop: 100, textAlign: 'center', color: '#777' }}>Loading...</div>
+
+  if (!post) return (
+    <div style={{ minHeight: '100vh', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 64 }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ color: '#fff', fontSize: 36, fontWeight: 900, marginBottom: 16 }}>Post Not Found</h1>
+        <Link to="/blog" className="btn-primary">Back to Blog</Link>
       </div>
-    )
-  }
+    </div>
+  )
+
+  const date = new Date(post.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div>
+    <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
       {/* Hero */}
-      <section className="bg-[#0A0A0A] pt-32 pb-20 border-b border-[#2E2E2E]">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-[#777777] text-sm hover:text-white transition-colors mb-8">
-            <FaArrowLeft size={12} /> Back to Blog
+      <div style={{ background: '#0A0A0A', paddingTop: 96, paddingBottom: 40, borderBottom: '1px solid #2E2E2E' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#777', fontSize: 13, textDecoration: 'none', marginBottom: 20 }}>
+            <FaArrowLeft size={11} /> Back to Blog
           </Link>
-          <div className="flex items-center gap-4 mb-6">
-            <span className="flex items-center gap-1 text-[#777777] text-xs">
-              <FaTag size={10} /> {post.category}
-            </span>
-            <span className="flex items-center gap-1 text-[#777777] text-xs">
-              <FaCalendar size={10} /> {new Date(post.date).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'})}
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>
+            <span style={{ background: '#F4A100', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{post.category}</span>
+            <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white leading-tight">{post.title}</h1>
+          <h1 style={{ color: '#fff', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 700 }}>{post.title}</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 16 }}>
+            <img src="/logo.png" alt="Clicksemurs" style={{ height: 24, width: 'auto' }} />
+            <span style={{ color: '#777', fontSize: 12 }}>Clicksemurs Team</span>
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* Content */}
-      <section className="bg-[#F4F4F4] py-16">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="bg-white border border-gray-200 p-10">
-            <div
-              className="prose prose-lg max-w-none text-[#4A4A4A]"
-              style={{ lineHeight: '1.8' }}
-            >
-              {post.content.split('\n').map((line, i) => {
-                if (line.startsWith('## ')) return <h2 key={i} className="text-[#111111] font-black text-xl mt-8 mb-3">{line.slice(3)}</h2>
-                if (line.startsWith('---')) return <hr key={i} className="my-8 border-gray-200" />
-                if (line.trim() === '') return <br key={i} />
-                return <p key={i} className="mb-4 text-[#4A4A4A] leading-relaxed">{line}</p>
-              })}
+      {/* Main Content */}
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '40px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32, alignItems: 'start' }}>
+
+          {/* Left — Blog Content */}
+          <div>
+            <div style={{ background: '#fff', borderRadius: 8, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+              {renderContent(post.content)}
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="bg-[#111111] p-10 mt-8 text-center">
-            <h3 className="text-white font-black text-2xl mb-3">Ready to Grow Your Business?</h3>
-            <p className="text-[#AAAAAA] text-sm mb-6">Get a free digital marketing audit from our experts.</p>
-            <Link to="/contact" className="btn-primary">
-              Get Free Audit <FaArrowRight size={12} />
-            </Link>
+          {/* Right — Sticky Lead Form */}
+          <div style={{ position: 'sticky', top: 88 }}>
+            <LeadForm />
           </div>
         </div>
-      </section>
+
+        {/* Similar Blogs */}
+        {similarBlogs.length > 0 && (
+          <div style={{ marginTop: 60 }}>
+            <h2 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 24 }}>Similar Articles</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+              {similarBlogs.map((blog, i) => {
+                const imgs = ['https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&q=80','https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&q=80','https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80']
+                const img = blog.thumbnail || imgs[i % imgs.length]
+                const bdate = new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+                return (
+                  <Link key={blog.id || blog.slug} to={`/blog/${blog.slug}`} style={{ textDecoration: 'none' }} className="group block">
+                    <div style={{ borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.1)', height: 160 }}>
+                      <img src={img} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <div style={{ background: '#111', borderRadius: 12, marginTop: -20, marginRight: 24, padding: '14px 16px', boxShadow: '0 4px 16px rgba(0,0,0,0.2)', position: 'relative', zIndex: 1 }}>
+                      <div style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 }}>{blog.category}</div>
+                      <div style={{ color: '#fff', fontWeight: 700, fontSize: 13, lineHeight: 1.4, marginBottom: 8, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{blog.title}</div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ color: '#777', fontSize: 11 }}>{bdate}</span>
+                        <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700 }}>Read More →</span>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
