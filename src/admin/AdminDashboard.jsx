@@ -24,6 +24,21 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({ totalLeads: 0, unreadLeads: 0, totalBlogs: 0, publishedBlogs: 0, totalTestimonials: 0, totalPortfolio: 0 })
   const [recentLeads, setRecentLeads] = useState([])
   const [loading, setLoading] = useState(true)
+  const [fixMsg, setFixMsg] = useState('')
+
+  const fixContactData = async () => {
+    const correctData = [
+      { key: 'email', value: 'clicksemurs@gmail.com' },
+      { key: 'phone', value: '+91 96503 03312 / +91 92175 94664' },
+      { key: 'whatsapp', value: '919650303312' },
+      { key: 'address', value: '' },
+      { key: 'copyright_text', value: '© 2025 Clicksemurs. All Rights Reserved.' },
+      { key: 'tagline', value: 'Grow. Dominate. Lead.' },
+    ]
+    const { error } = await supabase.from('site_settings').upsert(correctData, { onConflict: 'key' })
+    setFixMsg(error ? 'Error: ' + error.message : 'Contact data fixed! Refresh the website to see changes.')
+    setTimeout(() => setFixMsg(''), 5000)
+  }
 
   useEffect(() => {
     async function load() {
@@ -53,7 +68,19 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 style={{ color: '#0f172a', fontSize: 24, fontWeight: 800, marginBottom: 6 }}>Dashboard</h1>
-      <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>Welcome back! Here's what's happening.</p>
+      <p style={{ color: '#64748b', fontSize: 14, marginBottom: 16 }}>Welcome back! Here's what's happening.</p>
+
+      {/* One-time fix banner */}
+      <div style={{ background: '#fffbeb', border: '1px solid #fcd34d', borderRadius: 10, padding: '12px 18px', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span style={{ color: '#92400e', fontSize: 13, fontWeight: 600 }}>Footer/Contact showing wrong data? Click to fix it in the database.</span>
+        </div>
+        <button onClick={fixContactData} style={{ background: '#d97706', color: '#fff', border: 'none', borderRadius: 6, padding: '7px 16px', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+          Fix Contact Data Now
+        </button>
+      </div>
+      {fixMsg && <div style={{ background: fixMsg.startsWith('Error') ? '#fef2f2' : '#f0fdf4', border: `1px solid ${fixMsg.startsWith('Error') ? '#fca5a5' : '#86efac'}`, color: fixMsg.startsWith('Error') ? '#dc2626' : '#16a34a', padding: '10px 16px', borderRadius: 8, marginBottom: 16, fontSize: 13 }}>{fixMsg}</div>}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
         <StatCard value={stats.totalLeads} label="Total Leads" badge={`${stats.unreadLeads} unread`} badgeColor="red" iconKey="leads" />

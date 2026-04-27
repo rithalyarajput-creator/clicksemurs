@@ -170,16 +170,18 @@ export default function Contact() {
               <h3 style={{ fontSize: 16, fontWeight: 800, color: '#0f172a', marginBottom: 18 }}>Get in Touch</h3>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
 
-                {/* Address */}
+                {/* Address - only show if set */}
+                {info.address && info.address.trim() !== '' && info.address !== 'India' && (
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <div style={{ width: 32, height: 32, borderRadius: 8, background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   </div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', marginBottom: 3 }}>Our Address</div>
-                    <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{info.address || 'India'}</div>
+                    <div style={{ fontSize: 12, color: '#64748b', lineHeight: 1.5 }}>{info.address}</div>
                   </div>
                 </div>
+                )}
 
                 {/* Phone */}
                 <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -188,7 +190,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', marginBottom: 3 }}>Customer Support</div>
-                    <a href={`tel:${info.phone}`} style={{ fontSize: 12, color: '#64748b', textDecoration: 'none', display: 'block' }}>{info.phone}</a>
+                    {info.phone.split('/').map((num, i) => (
+                      <a key={i} href={`tel:${num.trim().replace(/\s/g, '')}`} style={{ fontSize: 12, color: '#64748b', textDecoration: 'none', display: 'block' }}>{num.trim()}</a>
+                    ))}
                     {info.support_hours && <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{info.support_hours}</div>}
                   </div>
                 </div>

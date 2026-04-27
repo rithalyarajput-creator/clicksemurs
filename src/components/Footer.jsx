@@ -47,7 +47,7 @@ export default function Footer() {
     supabase.from('site_settings').select('*').then(({ data: rows }) => {
       if (!rows) return
       const obj = { ...DEFAULTS }
-      rows.forEach(r => { if (r.value) obj[r.key] = r.value })
+      rows.forEach(r => { if (r.value && r.value.trim() !== '') obj[r.key] = r.value })
       setS(obj)
     })
   }, [])
@@ -137,16 +137,14 @@ export default function Footer() {
                   <a href={`mailto:${s.email}`} className="text-white hover:text-gray-300 transition-colors">{s.email}</a>
                 </div>
               )}
-              {s.phone && (
+              {s.phone && s.phone !== '+91 XXXXX XXXXX' && s.phone.trim() !== '' && (
                 <div>
                   <div className="text-[#777777] text-xs uppercase tracking-widest mb-1">Phone</div>
-                  <a href={`tel:${s.phone.replace(/\s/g, '')}`} className="text-white hover:text-gray-300 transition-colors">{s.phone}</a>
-                </div>
-              )}
-              {s.address && (
-                <div>
-                  <div className="text-[#777777] text-xs uppercase tracking-widest mb-1">Address</div>
-                  <p className="text-white">{s.address}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    {s.phone.split('/').map((num, i) => (
+                      <a key={i} href={`tel:${num.trim().replace(/\s/g, '')}`} className="text-white hover:text-gray-300 transition-colors">{num.trim()}</a>
+                    ))}
+                  </div>
                 </div>
               )}
               <div className="pt-1">
