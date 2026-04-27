@@ -228,29 +228,29 @@ export default function BlogPost() {
   const [similarBlogs, setSimilarBlogs] = useState([])
 
   useEffect(() => {
-    const found = staticPosts.find(p => p.slug === slug)
-    if (found) setPost(found)
+    const staticMatch = staticPosts.find(p => p.slug === slug)
 
+    // Always show static post immediately if known
+    if (staticMatch) {
+      setPost(staticMatch)
+      setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
+      return
+    }
+
+    // Only fetch from Supabase for admin-created blogs not in static list
     supabase.from('blogs').select('*').eq('slug', slug).single()
       .then(({ data }) => {
         if (data) {
-          // Always prefer static content for known slugs — Supabase gives title/category/thumbnail updates
-          const staticMatch = staticPosts.find(p => p.slug === slug)
-          const content = (data.content && data.content.trim()) ? data.content : (staticMatch ? staticMatch.content : null)
-          const thumbnail = data.thumbnail || (staticMatch && staticMatch.thumbnail) || '/blog1.png'
-          setPost({ ...data, content, thumbnail })
+          const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
+          setPost({ ...data, thumbnail: data.thumbnail || imgs[0] })
         }
       })
       .catch(() => {})
 
-    const others = staticPosts.filter(p => p.slug !== slug)
-    setSimilarBlogs(others)
     supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at').eq('is_published', true).neq('slug', slug).limit(3)
       .then(({ data }) => {
         if (data && data.length) {
-          const staticMap = {}
-          staticPosts.forEach(p => { staticMap[p.slug] = p })
-          setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || (staticMap[b.slug] && staticMap[b.slug].thumbnail) || similarImgs[i % similarImgs.length] })))
+          setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || similarImgs[i % similarImgs.length] })))
         }
       })
       .catch(() => {})

@@ -25,19 +25,20 @@ export default function Blog() {
   const [active, setActive] = useState('All')
 
   useEffect(() => {
-    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at, is_published')
+    // Fetch only non-static blogs from Supabase and append them
+    const staticSlugs = staticBlogs.map(b => b.slug)
+    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at')
       .eq('is_published', true).order('created_at', { ascending: false })
       .then(({ data }) => {
         if (data && data.length) {
           const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
-          // Merge Supabase data with static thumbnails — static wins for known slugs
-          const staticMap = {}
-          staticBlogs.forEach(b => { staticMap[b.slug] = b })
-          const merged = data.map((b, i) => {
-            const st = staticMap[b.slug]
-            return { ...b, thumbnail: b.thumbnail || (st && st.thumbnail) || imgs[i % imgs.length] }
-          })
-          setBlogs(merged)
+          // Only add blogs from Supabase that are NOT already in staticBlogs
+          const extraBlogs = data
+            .filter(b => !staticSlugs.includes(b.slug))
+            .map((b, i) => ({ ...b, thumbnail: b.thumbnail || imgs[i % imgs.length] }))
+          if (extraBlogs.length > 0) {
+            setBlogs([...staticBlogs, ...extraBlogs])
+          }
         }
       })
       .catch(() => {})
