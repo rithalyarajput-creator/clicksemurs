@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { supabase } from './supabase'
 
-const CATEGORIES = ['SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing', 'Strategy', 'Analytics', 'Finance']
+const FALLBACK_CATEGORIES = ['SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing', 'Strategy', 'Analytics', 'Finance']
 
 const blank = {
   title: '', slug: '', category: 'SEO', thumbnail: '', author: '',
@@ -96,6 +96,7 @@ function RichEditor({ value, onChange }) {
 export default function AdminBlogs({ startNew = false }) {
   const [blogs, setBlogs] = useState([])
   const [authors, setAuthors] = useState([])
+  const [categories, setCategories] = useState(FALLBACK_CATEGORIES)
   const [view, setView] = useState(startNew ? 'new' : 'list')
   const [form, setForm] = useState(blank)
   const [editId, setEditId] = useState(null)
@@ -117,7 +118,12 @@ export default function AdminBlogs({ startNew = false }) {
     setAuthors(data || [])
   }
 
-  useEffect(() => { load(); loadAuthors() }, [])
+  const loadCategories = async () => {
+    const { data } = await supabase.from('categories').select('name').order('name')
+    if (data && data.length > 0) setCategories(data.map(c => c.name))
+  }
+
+  useEffect(() => { load(); loadAuthors(); loadCategories() }, [])
 
   const flash = (m, t = 'success') => { setMsg(m); setMsgType(t); setTimeout(() => setMsg(''), 3500) }
 
@@ -320,7 +326,7 @@ export default function AdminBlogs({ startNew = false }) {
               </select>
               <label style={{ ...lbl, fontSize: 12 }}>Category</label>
               <select style={{ ...inp, marginBottom: 14 }} value={form.category} onChange={e => f('category', e.target.value)}>
-                {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+                {categories.map(c => <option key={c}>{c}</option>)}
               </select>
               <label style={{ ...lbl, fontSize: 12 }}>Author</label>
               <select style={{ ...inp, marginBottom: 16 }} value={form.author} onChange={e => f('author', e.target.value)}>
@@ -417,7 +423,7 @@ export default function AdminBlogs({ startNew = false }) {
           <select style={{ border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px 14px', fontSize: 13, outline: 'none', background: '#fff', color: '#374151' }}
             value={filterCat} onChange={e => setFilterCat(e.target.value)}>
             <option value="All">All Categories</option>
-            {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+            {categories.map(c => <option key={c}>{c}</option>)}
           </select>
         </div>
 
