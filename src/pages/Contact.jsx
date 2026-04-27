@@ -64,7 +64,7 @@ export default function Contact() {
   }
 
   return (
-    <div style={{ background: '#f1f5f9', minHeight: '100vh', paddingTop: 40, paddingBottom: 60 }}>
+    <div style={{ background: '#f1f5f9', minHeight: '100vh', paddingBottom: 60 }}>
       <style>{`
         @media (max-width: 768px) {
           .contact-grid { grid-template-columns: 1fr !important; }
@@ -72,15 +72,19 @@ export default function Contact() {
           .contact-form-pad { padding: 24px 20px !important; }
         }
       `}</style>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
 
-        {/* Page Header */}
-        <div style={{ marginBottom: 28, paddingTop: 80 }}>
-          <p style={{ color: '#F4A100', fontSize: 12, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6 }}>Contact Us</p>
-          <h1 style={{ fontSize: 'clamp(24px,5vw,40px)', fontWeight: 900, color: '#0f172a', lineHeight: 1.2, marginBottom: 8 }}>Get in Touch with Our Team</h1>
-          <p style={{ color: '#64748b', fontSize: 'clamp(13px,3vw,15px)' }}>Ready to grow your brand? Let's talk. Get your free digital marketing audit today.</p>
+      {/* Dark hero header */}
+      <div style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 100%)', padding: 'clamp(90px,12vw,130px) 0 clamp(36px,5vw,56px)', marginBottom: 0, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(244,161,0,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative' }}>
+          <p style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 10 }}>Contact Us</p>
+          <h1 style={{ fontSize: 'clamp(24px,5vw,42px)', fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: 10 }}>Get in Touch with Our Team</h1>
+          <p style={{ color: '#94a3b8', fontSize: 'clamp(13px,2.5vw,16px)', maxWidth: 500 }}>Ready to grow your brand? Let's talk. Get your free digital marketing audit today.</p>
         </div>
+      </div>
 
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 16px 0' }}>
         <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 20, alignItems: 'start' }}>
 
           {/* LEFT - Form */}

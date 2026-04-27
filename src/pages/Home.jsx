@@ -275,6 +275,89 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Orbit / Integrations ── */}
+      <section style={{ background: '#0a0a0a', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.2)', borderRadius: 100, padding: '4px 14px', marginBottom: 16 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
+            <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Platforms We Work With</span>
+          </div>
+          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#fff', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
+            One Agency. <span style={{ color: '#F4A100' }}>Every Platform.</span>
+          </h2>
+          <p style={{ color: '#555', fontSize: 14, textAlign: 'center', marginBottom: 56, maxWidth: 400 }}>We connect your brand across all major digital platforms — seamlessly.</p>
+
+          {/* Orbit animation */}
+          <div style={{ position: 'relative', width: 420, height: 420, maxWidth: '90vw' }}>
+            <style>{`
+              @keyframes orbit1 { from { transform: rotate(0deg) translateX(140px) rotate(0deg); } to { transform: rotate(360deg) translateX(140px) rotate(-360deg); } }
+              @keyframes orbit2 { from { transform: rotate(45deg) translateX(140px) rotate(-45deg); } to { transform: rotate(405deg) translateX(140px) rotate(-405deg); } }
+              @keyframes orbit3 { from { transform: rotate(90deg) translateX(195px) rotate(-90deg); } to { transform: rotate(450deg) translateX(195px) rotate(-450deg); } }
+              @keyframes orbit4 { from { transform: rotate(180deg) translateX(195px) rotate(-180deg); } to { transform: rotate(540deg) translateX(195px) rotate(-540deg); } }
+              @keyframes orbit5 { from { transform: rotate(270deg) translateX(195px) rotate(-270deg); } to { transform: rotate(630deg) translateX(195px) rotate(-630deg); } }
+              @keyframes orbit6 { from { transform: rotate(135deg) translateX(195px) rotate(-135deg); } to { transform: rotate(495deg) translateX(195px) rotate(-495deg); } }
+              @keyframes orbit7 { from { transform: rotate(315deg) translateX(140px) rotate(-315deg); } to { transform: rotate(675deg) translateX(140px) rotate(-675deg); } }
+              @keyframes orbit8 { from { transform: rotate(225deg) translateX(140px) rotate(-225deg); } to { transform: rotate(585deg) translateX(140px) rotate(-585deg); } }
+              @keyframes pulseCenter { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.3),0 0 40px rgba(244,161,0,0.1)} 50%{box-shadow:0 0 0 20px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.2)} }
+            `}</style>
+
+            {/* Orbit rings */}
+            <div style={{ position: 'absolute', inset: '0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ position: 'absolute', width: 280, height: 280, borderRadius: '50%', border: '1px dashed rgba(244,161,0,0.15)' }} />
+              <div style={{ position: 'absolute', width: 390, height: 390, borderRadius: '50%', border: '1px dashed rgba(255,255,255,0.06)' }} />
+              <div style={{ position: 'absolute', width: 160, height: 160, borderRadius: '50%', border: '1px solid rgba(244,161,0,0.1)' }} />
+            </div>
+
+            {/* Center */}
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 110, height: 110, borderRadius: '50%', background: 'linear-gradient(135deg, #1a1a1a, #111)', border: '1px solid rgba(244,161,0,0.3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, animation: 'pulseCenter 3s ease-in-out infinite', zIndex: 10 }}>
+              <span style={{ fontSize: 24 }}>🚀</span>
+              <span style={{ color: '#F4A100', fontSize: 9, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.2 }}>Digital<br/>Marketing</span>
+            </div>
+
+            {/* Inner orbit icons — 4 icons */}
+            {[
+              { icon: '📘', label: 'Facebook', color: '#1877F2', anim: 'orbit1', dur: '8s' },
+              { icon: '📸', label: 'Instagram', color: '#E1306C', anim: 'orbit2', dur: '8s' },
+              { icon: '💼', label: 'LinkedIn', color: '#0A66C2', anim: 'orbit7', dur: '8s' },
+              { icon: '▶️', label: 'YouTube', color: '#FF0000', anim: 'orbit8', dur: '8s' },
+            ].map(({ icon, label, color, anim, dur }) => (
+              <div key={label} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0 }}>
+                <div style={{ animation: `${anim} ${dur} linear infinite`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 48, height: 48, borderRadius: '50%', background: `${color}22`, border: `1.5px solid ${color}55`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', boxShadow: `0 4px 16px ${color}33`, cursor: 'default' }}>
+                    <span style={{ fontSize: 20 }}>{icon}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Outer orbit icons — 4 icons */}
+            {[
+              { icon: '🔍', label: 'Google Ads', color: '#F4A100', anim: 'orbit3', dur: '12s' },
+              { icon: '🌐', label: 'WordPress', color: '#21759b', anim: 'orbit4', dur: '12s' },
+              { icon: '🛒', label: 'Shopify', color: '#96bf48', anim: 'orbit5', dur: '12s' },
+              { icon: '✉️', label: 'Email', color: '#a855f7', anim: 'orbit6', dur: '12s' },
+            ].map(({ icon, label, color, anim, dur }) => (
+              <div key={label} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0 }}>
+                <div style={{ animation: `${anim} ${dur} linear infinite`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
+                  <div style={{ width: 52, height: 52, borderRadius: '50%', background: `${color}18`, border: `1.5px solid ${color}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', boxShadow: `0 4px 20px ${color}30` }}>
+                    <span style={{ fontSize: 22 }}>{icon}</span>
+                  </div>
+                  <span style={{ color: '#555', fontSize: 9, fontWeight: 600, whiteSpace: 'nowrap', marginTop: 2 }}>{label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Platform tags below */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 48 }}>
+            {['Instagram','Facebook','LinkedIn','YouTube','Google Ads','WordPress','Shopify','Email Marketing','SEO','Analytics'].map(p => (
+              <span key={p} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 100, padding: '6px 16px', color: '#666', fontSize: 12, fontWeight: 600 }}>{p}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Work Preview ── */}
       <section style={{ background: '#fff', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
