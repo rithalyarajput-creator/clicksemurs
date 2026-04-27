@@ -232,13 +232,27 @@ export default function BlogPost() {
     if (found) setPost(found)
 
     supabase.from('blogs').select('*').eq('slug', slug).single()
-      .then(({ data }) => { if (data && data.content) setPost({ ...data, thumbnail: data.thumbnail || found?.thumbnail || '/blog1.png' }) })
+      .then(({ data }) => {
+        if (data) {
+          // Always prefer static content for known slugs — Supabase gives title/category/thumbnail updates
+          const staticMatch = staticPosts.find(p => p.slug === slug)
+          const content = (data.content && data.content.trim()) ? data.content : (staticMatch ? staticMatch.content : null)
+          const thumbnail = data.thumbnail || (staticMatch && staticMatch.thumbnail) || '/blog1.png'
+          setPost({ ...data, content, thumbnail })
+        }
+      })
       .catch(() => {})
 
     const others = staticPosts.filter(p => p.slug !== slug)
     setSimilarBlogs(others)
-    supabase.from('blogs').select('*').eq('is_published', true).neq('slug', slug).limit(3)
-      .then(({ data }) => { if (data && data.length) setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || similarImgs[i % similarImgs.length] }))) })
+    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at').eq('is_published', true).neq('slug', slug).limit(3)
+      .then(({ data }) => {
+        if (data && data.length) {
+          const staticMap = {}
+          staticPosts.forEach(p => { staticMap[p.slug] = p })
+          setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || (staticMap[b.slug] && staticMap[b.slug].thumbnail) || similarImgs[i % similarImgs.length] })))
+        }
+      })
       .catch(() => {})
   }, [slug])
 
