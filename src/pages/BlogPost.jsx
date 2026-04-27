@@ -178,7 +178,7 @@ function renderContent(content) {
   })
 }
 
-const similarImgs = ['/blog1.png', '/blog2.png', '/blog1.png']
+const similarImgs = ['/blog1.png', '/blog2.png', '/blog3.png']
 
 export default function BlogPost() {
   const { slug } = useParams()

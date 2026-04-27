@@ -75,8 +75,13 @@ export default function AdminBlogs() {
             <select style={{ ...inp }} value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
               {CATEGORIES.map(c => <option key={c}>{c}</option>)}
             </select>
-            <label style={lbl}>Thumbnail URL</label>
-            <input style={inp} value={form.thumbnail} onChange={e => setForm(f => ({ ...f, thumbnail: e.target.value }))} placeholder="https://..." />
+            <label style={lbl}>Blog Image</label>
+            <select style={{ ...inp }} value={form.thumbnail} onChange={e => setForm(f => ({ ...f, thumbnail: e.target.value }))}>
+              <option value="/blog1.png">Blog Image 1</option>
+              <option value="/blog2.png">Blog Image 2</option>
+              <option value="/blog3.png">Blog Image 3</option>
+            </select>
+            {form.thumbnail && <img src={form.thumbnail} alt="preview" style={{ width: '100%', height: 80, objectFit: 'cover', borderRadius: 6, marginBottom: 14 }} />}
             <label style={lbl}>Content</label>
             <textarea style={{ ...inp, height: 180, resize: 'vertical' }} value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))} />
             <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', marginBottom: 16 }}>
