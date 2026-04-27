@@ -30,6 +30,7 @@ const nav = [
       { label: 'CMS Pages', path: '/admin/cms-pages' },
       { label: 'FAQs', path: '/admin/faqs' },
       { label: 'Testimonials', path: '/admin/testimonials' },
+      { label: 'About Page', path: '/admin/about' },
     ]
   },
   {

@@ -36,6 +36,7 @@ import AdminCMSPages from './admin/AdminCMSPages'
 import AdminMediaLibrary from './admin/AdminMediaLibrary'
 import AdminAuthors from './admin/AdminAuthors'
 import AdminCategories from './admin/AdminCategories'
+import AdminAbout from './admin/AdminAbout'
 
 function PublicLayout({ children }) {
   return (
@@ -77,6 +78,7 @@ export default function App() {
         <Route path="/admin/media" element={<AdminGuard><AdminMediaLibrary /></AdminGuard>} />
         <Route path="/admin/authors" element={<AdminGuard><AdminAuthors /></AdminGuard>} />
         <Route path="/admin/categories" element={<AdminGuard><AdminCategories /></AdminGuard>} />
+        <Route path="/admin/about" element={<AdminGuard><AdminAbout /></AdminGuard>} />
 
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
