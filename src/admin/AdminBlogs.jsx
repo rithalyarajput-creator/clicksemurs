@@ -122,7 +122,9 @@ export default function AdminBlogs({ startNew = false }) {
 
   const handleSubmit = async (publish) => {
     if (!form.title || !form.slug) return flash('Title and slug are required.', 'error')
-    const payload = {
+
+    // Base payload -- only columns guaranteed to exist
+    const base = {
       title: form.title,
       slug: form.slug,
       category: form.category,
@@ -132,19 +134,30 @@ export default function AdminBlogs({ startNew = false }) {
       meta_description: form.meta_description,
       focus_keyword: form.focus_keyword,
       tags: form.tags,
-      author: form.author || 'Clicksemurs Team',
-      faqs: form.faqs.length > 0 ? form.faqs : null,
       is_published: publish,
     }
-    if (editId) {
-      const { error } = await supabase.from('blogs').update(payload).eq('id', editId)
-      if (error) return flash('Save failed: ' + error.message, 'error')
-      flash(publish ? 'Blog published!' : 'Saved as draft!')
-    } else {
-      const { error } = await supabase.from('blogs').insert([payload])
-      if (error) return flash('Create failed: ' + error.message, 'error')
-      flash(publish ? 'Blog published!' : 'Saved as draft!')
+
+    // Try saving with extra columns first; fallback to base if schema error
+    const withExtras = {
+      ...base,
+      author: form.author || 'Clicksemurs Team',
+      faqs: form.faqs.length > 0 ? form.faqs : null,
     }
+
+    const save = async (payload) => {
+      if (editId) return supabase.from('blogs').update(payload).eq('id', editId)
+      return supabase.from('blogs').insert([payload])
+    }
+
+    let { error } = await save(withExtras)
+    if (error && (error.message.includes('author') || error.message.includes('faqs'))) {
+      // Columns not yet added -- save without them
+      const res = await save(base)
+      error = res.error
+    }
+    if (error) return flash('Save failed: ' + error.message, 'error')
+
+    flash(publish ? 'Blog published!' : 'Saved as draft!')
     setForm(blank); setEditId(null); setView('list'); load()
   }
 
