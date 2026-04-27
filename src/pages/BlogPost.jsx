@@ -232,17 +232,35 @@ function renderContent(content) {
   })
 }
 
-function renderFaqs(faqs) {
+function FaqAccordion({ faqs }) {
+  const [open, setOpen] = useState(null)
   if (!faqs || !faqs.length) return null
   return (
     <div style={{ marginTop: 48 }}>
-      <h3 style={{ color: '#111', fontWeight: 900, fontSize: 20, marginBottom: 20, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}>Frequently Asked Questions</h3>
-      {faqs.map((faq, i) => (
-        <div key={i} style={{ borderBottom: '1px solid #eee', paddingBottom: 16, marginBottom: 16 }}>
-          <div style={{ color: '#111', fontWeight: 700, fontSize: 15, marginBottom: 6 }}>{faq.q}</div>
-          <div style={{ color: '#555', fontSize: 14, lineHeight: 1.7 }}>{faq.a}</div>
-        </div>
-      ))}
+      <div style={{ textAlign: 'center', marginBottom: 28 }}>
+        <h3 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 6 }}>Frequently Asked Questions</h3>
+        <p style={{ color: '#888', fontSize: 13 }}>Everything you need to know -- answered clearly.</p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {faqs.map((faq, i) => (
+          <div key={i} style={{ border: '1px solid #e5e5e5', borderRadius: 10, overflow: 'hidden', background: '#fafafa' }}>
+            <button
+              onClick={() => setOpen(open === i ? null : i)}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+            >
+              <span style={{ color: '#111', fontWeight: 700, fontSize: 14, lineHeight: 1.4, flex: 1, marginRight: 12 }}>{faq.q}</span>
+              <span style={{ width: 28, height: 28, borderRadius: '50%', background: open === i ? '#F4A100' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: open === i ? '#111' : '#888', flexShrink: 0, fontWeight: 700, transition: 'all 0.2s' }}>
+                {open === i ? '−' : '+'}
+              </span>
+            </button>
+            {open === i && (
+              <div style={{ padding: '0 20px 18px', color: '#555', fontSize: 14, lineHeight: 1.75, borderTop: '1px solid #eee' }}>
+                <div style={{ paddingTop: 14 }}>{faq.a}</div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -337,7 +355,7 @@ export default function BlogPost() {
             <div style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
               <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', maxHeight: 420, objectFit: 'cover', borderRadius: 8, display: 'block', marginBottom: 32 }} />
               {renderContent(post.content)}
-              {renderFaqs(post.faqs)}
+              <FaqAccordion faqs={post.faqs} />
             </div>
           </div>
           <div style={{ position: 'sticky', top: 80 }}>
