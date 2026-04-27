@@ -4,7 +4,7 @@ import { supabase } from './supabase'
 const CATEGORIES = ['SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing', 'Strategy', 'Analytics', 'Finance']
 
 const blank = {
-  title: '', slug: '', category: 'SEO', thumbnail: '', author: 'Clicksemurs Team',
+  title: '', slug: '', category: 'SEO', thumbnail: '', author: '',
   content: '', meta_title: '', meta_description: '', focus_keyword: '',
   tags: '', faqs: [], is_published: false
 }
@@ -324,7 +324,7 @@ export default function AdminBlogs({ startNew = false }) {
               </select>
               <label style={{ ...lbl, fontSize: 12 }}>Author</label>
               <select style={{ ...inp, marginBottom: 16 }} value={form.author} onChange={e => f('author', e.target.value)}>
-                <option value="Clicksemurs Team">Clicksemurs Team</option>
+                <option value="">— Select Author —</option>
                 {authors.map(a => (
                   <option key={a.id} value={a.name}>{a.name}</option>
                 ))}

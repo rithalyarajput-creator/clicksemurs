@@ -271,6 +271,7 @@ export default function BlogPost() {
   const { slug } = useParams()
   const [post, setPost] = useState(null)
   const [similarBlogs, setSimilarBlogs] = useState([])
+  const [authorData, setAuthorData] = useState(null)
 
   useEffect(() => {
     const staticMatch = staticPosts.find(p => p.slug === slug)
@@ -317,6 +318,14 @@ export default function BlogPost() {
       })
   }, [slug])
 
+  // Fetch author avatar when post is loaded
+  useEffect(() => {
+    if (!post?.author) return
+    supabase.from('authors').select('name, avatar, bio').eq('name', post.author).single()
+      .then(({ data }) => { if (data) setAuthorData(data) })
+      .catch(() => {})
+  }, [post?.author])
+
   if (!post) return (
     <div style={{ minHeight: '100vh', background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 64 }}>
       <div style={{ color: '#777', fontSize: 16 }}>Loading...</div>
@@ -338,12 +347,17 @@ export default function BlogPost() {
           </div>
           <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 24 }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#F4A100', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', fontWeight: 900, fontSize: 13 }}>
-              {(post.author || 'Clicksemurs Team').charAt(0).toUpperCase()}
-            </div>
+            {authorData?.avatar ? (
+              <img src={authorData.avatar} alt={authorData.name}
+                style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid #F4A100' }} />
+            ) : (
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#F4A100', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
+                {(post.author || 'C').charAt(0).toUpperCase()}
+              </div>
+            )}
             <div>
               <div style={{ color: '#111', fontSize: 13, fontWeight: 700 }}>{post.author || 'Clicksemurs Team'}</div>
-              <div style={{ color: '#999', fontSize: 11 }}>Author</div>
+              <div style={{ color: '#999', fontSize: 11 }}>{authorData?.bio ? authorData.bio.slice(0, 40) + (authorData.bio.length > 40 ? '...' : '') : 'Author'}</div>
             </div>
           </div>
         </div>
