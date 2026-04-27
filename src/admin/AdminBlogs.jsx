@@ -95,7 +95,8 @@ function RichEditor({ value, onChange }) {
 
 export default function AdminBlogs({ startNew = false }) {
   const [blogs, setBlogs] = useState([])
-  const [view, setView] = useState(startNew ? 'new' : 'list') // 'list' | 'new' | 'edit'
+  const [authors, setAuthors] = useState([])
+  const [view, setView] = useState(startNew ? 'new' : 'list')
   const [form, setForm] = useState(blank)
   const [editId, setEditId] = useState(null)
   const [msg, setMsg] = useState('')
@@ -111,7 +112,12 @@ export default function AdminBlogs({ startNew = false }) {
     setLoading(false)
   }
 
-  useEffect(() => { load() }, [])
+  const loadAuthors = async () => {
+    const { data } = await supabase.from('authors').select('id, name').order('name')
+    setAuthors(data || [])
+  }
+
+  useEffect(() => { load(); loadAuthors() }, [])
 
   const flash = (m, t = 'success') => { setMsg(m); setMsgType(t); setTimeout(() => setMsg(''), 3500) }
 
@@ -239,10 +245,6 @@ export default function AdminBlogs({ startNew = false }) {
               <input style={{ ...inp, marginBottom: 14, fontSize: 16, fontWeight: 600 }} value={form.title}
                 onChange={e => { f('title', e.target.value); if (!editId) f('slug', autoSlug(e.target.value)) }}
                 placeholder="Enter blog title..." />
-              <label style={lbl}>Author Name</label>
-              <input style={{ ...inp, marginBottom: 14 }} value={form.author}
-                onChange={e => f('author', e.target.value)}
-                placeholder="e.g. Rahul Sharma" />
               <label style={lbl}>URL Slug</label>
               <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #e2e8f0', borderRadius: 8, overflow: 'hidden', marginBottom: 0 }}>
                 <span style={{ background: '#f1f5f9', padding: '10px 12px', fontSize: 13, color: '#64748b', borderRight: '1px solid #e2e8f0', whiteSpace: 'nowrap' }}>/blog/</span>
@@ -317,8 +319,15 @@ export default function AdminBlogs({ startNew = false }) {
                 <option>Published</option>
               </select>
               <label style={{ ...lbl, fontSize: 12 }}>Category</label>
-              <select style={{ ...inp, marginBottom: 16 }} value={form.category} onChange={e => f('category', e.target.value)}>
+              <select style={{ ...inp, marginBottom: 14 }} value={form.category} onChange={e => f('category', e.target.value)}>
                 {CATEGORIES.map(c => <option key={c}>{c}</option>)}
+              </select>
+              <label style={{ ...lbl, fontSize: 12 }}>Author</label>
+              <select style={{ ...inp, marginBottom: 16 }} value={form.author} onChange={e => f('author', e.target.value)}>
+                <option value="Clicksemurs Team">Clicksemurs Team</option>
+                {authors.map(a => (
+                  <option key={a.id} value={a.name}>{a.name}</option>
+                ))}
               </select>
               <button type="button" onClick={() => handleSubmit(true)}
                 style={{ display: 'block', width: '100%', background: '#0f172a', color: '#fff', border: 'none', borderRadius: 8, padding: '11px', fontWeight: 700, fontSize: 13, cursor: 'pointer', marginBottom: 8 }}>
