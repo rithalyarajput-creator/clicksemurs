@@ -97,6 +97,8 @@ export default function AdminBlogs({ startNew = false }) {
   const [blogs, setBlogs] = useState([])
   const [authors, setAuthors] = useState([])
   const [categories, setCategories] = useState(FALLBACK_CATEGORIES)
+  const [mediaImages, setMediaImages] = useState([])
+  const [showMediaPicker, setShowMediaPicker] = useState(false)
   const [view, setView] = useState(startNew ? 'new' : 'list')
   const [form, setForm] = useState(blank)
   const [editId, setEditId] = useState(null)
@@ -123,7 +125,12 @@ export default function AdminBlogs({ startNew = false }) {
     if (data && data.length > 0) setCategories(data.map(c => c.name))
   }
 
-  useEffect(() => { load(); loadAuthors(); loadCategories() }, [])
+  const loadMedia = async () => {
+    const { data } = await supabase.from('media').select('*').order('created_at', { ascending: false })
+    setMediaImages(data || [])
+  }
+
+  useEffect(() => { load(); loadAuthors(); loadCategories(); loadMedia() }, [])
 
   const flash = (m, t = 'success') => { setMsg(m); setMsgType(t); setTimeout(() => setMsg(''), 3500) }
 
@@ -348,20 +355,46 @@ export default function AdminBlogs({ startNew = false }) {
             {/* Featured Image */}
             <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 20 }}>
               <div style={{ fontWeight: 700, fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 14 }}>FEATURED IMAGE</div>
-              <label style={{ ...lbl, fontSize: 12 }}>Choose Image</label>
-              <select style={{ ...inp, marginBottom: 12 }} value={form.thumbnail} onChange={e => f('thumbnail', e.target.value)}>
-                <option value="">— Select Image —</option>
-                <option value="/blog1.png">Blog Image 1</option>
-                <option value="/blog2.png">Blog Image 2</option>
-                <option value="/blog3.png">Blog Image 3</option>
-              </select>
+              {/* Preview */}
               {form.thumbnail ? (
-                <img src={form.thumbnail} alt="preview" style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 8, border: '1px solid #e2e8f0' }} />
+                <div style={{ position: 'relative', marginBottom: 10 }}>
+                  <img src={form.thumbnail} alt="preview" style={{ width: '100%', height: 130, objectFit: 'cover', borderRadius: 8, border: '1px solid #e2e8f0', display: 'block' }} />
+                  <button type="button" onClick={() => f('thumbnail', '')} style={{ position: 'absolute', top: 6, right: 6, background: '#ef4444', color: '#fff', border: 'none', borderRadius: '50%', width: 22, height: 22, cursor: 'pointer', fontSize: 12, fontWeight: 700 }}>×</button>
+                </div>
               ) : (
-                <div style={{ width: '100%', height: 120, background: '#f1f5f9', borderRadius: 8, border: '2px dashed #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: 12 }}>
-                  <div style={{ fontSize: 24, marginBottom: 4 }}>🖼️</div>
-                  <div>Set Featured Image</div>
-                  <div style={{ fontSize: 10 }}>1200 × 630px recommended</div>
+                <div style={{ width: '100%', height: 90, background: '#f8fafc', borderRadius: 8, border: '2px dashed #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: 12, marginBottom: 10 }}>
+                  No image selected
+                </div>
+              )}
+              <button type="button" onClick={() => { loadMedia(); setShowMediaPicker(true) }}
+                style={{ width: '100%', background: '#f1f5f9', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>
+                🖼️ Pick from Media Library
+              </button>
+              {/* Media Picker Modal */}
+              {showMediaPicker && (
+                <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ background: '#fff', borderRadius: 16, padding: 24, width: 680, maxHeight: '80vh', overflow: 'auto' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                      <div style={{ fontWeight: 700, fontSize: 16, color: '#0f172a' }}>Media Library</div>
+                      <button type="button" onClick={() => setShowMediaPicker(false)} style={{ background: '#f1f5f9', border: 'none', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>✕ Close</button>
+                    </div>
+                    {mediaImages.length === 0 ? (
+                      <div style={{ textAlign: 'center', padding: 40, color: '#94a3b8' }}>
+                        No images in library yet.<br />
+                        <span style={{ fontSize: 12 }}>Go to Media Library to upload images first.</span>
+                      </div>
+                    ) : (
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+                        {mediaImages.map(m => (
+                          <div key={m.id} onClick={() => { f('thumbnail', m.url); setShowMediaPicker(false) }}
+                            style={{ cursor: 'pointer', borderRadius: 8, overflow: 'hidden', border: form.thumbnail === m.url ? '3px solid #F4A100' : '2px solid #e2e8f0' }}>
+                            <img src={m.url} alt={m.alt_text} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
+                            <div style={{ padding: '5px 8px', fontSize: 10, color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.alt_text || 'No alt'}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
