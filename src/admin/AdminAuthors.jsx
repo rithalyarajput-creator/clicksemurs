@@ -80,7 +80,7 @@ export default function AdminAuthors() {
               </div>
               {/* Stats */}
               <div style={{ background: '#f8fafc', borderRadius: 8, padding: '10px 14px', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 18 }}>📝</span>
+                <span style={{ color: '#6366f1', display: 'flex' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
                 <div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#0f172a', lineHeight: 1 }}>{postCounts[a.name] || 0}</div>
                   <div style={{ fontSize: 11, color: '#94a3b8' }}>Published Posts</div>
@@ -88,8 +88,12 @@ export default function AdminAuthors() {
               </div>
               <div style={{ display: 'flex', gap: 6 }}>
                 <button onClick={() => { setForm({ name: a.name, bio: a.bio || '', avatar: a.avatar || '' }); setEditId(a.id) }}
-                  style={{ flex: 1, background: '#eff6ff', border: 'none', borderRadius: 6, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#2563eb', fontWeight: 600 }}>✏️ Edit</button>
-                <button onClick={() => del(a.id)} style={{ flex: 1, background: '#fef2f2', border: 'none', borderRadius: 6, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#dc2626', fontWeight: 600 }}>🗑 Delete</button>
+                  style={{ flex: 1, background: '#eff6ff', border: 'none', borderRadius: 6, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#2563eb', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Edit
+                </button>
+                <button onClick={() => del(a.id)} style={{ flex: 1, background: '#fef2f2', border: 'none', borderRadius: 6, padding: '6px 10px', fontSize: 12, cursor: 'pointer', color: '#dc2626', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg> Delete
+                </button>
               </div>
             </div>
           ))}

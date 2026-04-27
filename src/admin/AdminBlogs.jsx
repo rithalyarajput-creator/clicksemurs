@@ -368,7 +368,7 @@ export default function AdminBlogs({ startNew = false }) {
               )}
               <button type="button" onClick={() => { loadMedia(); setShowMediaPicker(true) }}
                 style={{ width: '100%', background: '#f1f5f9', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>
-                🖼️ Pick from Media Library
+                Pick from Media Library
               </button>
               {/* Media Picker Modal */}
               {showMediaPicker && (
@@ -425,13 +425,13 @@ export default function AdminBlogs({ startNew = false }) {
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24 }}>
           {[
-            { label: 'Total Posts', value: blogs.length, icon: '📄', color: '#e0e7ff', iconColor: '#6366f1' },
-            { label: 'Published', value: published, icon: '👁', color: '#dcfce7', iconColor: '#16a34a' },
-            { label: 'Draft', value: drafts, icon: '✏️', color: '#fef9c3', iconColor: '#ca8a04' },
-            { label: 'Pages', value: pages, icon: '⊞', color: '#dbeafe', iconColor: '#2563eb' },
+            { label: 'Total Posts', value: blogs.length, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>, color: '#e0e7ff', iconColor: '#6366f1' },
+            { label: 'Published', value: published, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>, color: '#dcfce7', iconColor: '#16a34a' },
+            { label: 'Draft', value: drafts, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>, color: '#fef9c3', iconColor: '#ca8a04' },
+            { label: 'Pages', value: pages, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>, color: '#dbeafe', iconColor: '#2563eb' },
           ].map(s => (
             <div key={s.label} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: '18px 20px', display: 'flex', alignItems: 'center', gap: 14 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 10, background: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>{s.icon}</div>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.iconColor }}>{s.icon}</div>
               <div>
                 <div style={{ fontSize: 24, fontWeight: 800, color: '#0f172a', lineHeight: 1 }}>{s.value}</div>
                 <div style={{ fontSize: 12, color: '#94a3b8', marginTop: 2 }}>{s.label}</div>
@@ -443,7 +443,7 @@ export default function AdminBlogs({ startNew = false }) {
         {/* Filters */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
           <div style={{ position: 'relative', flex: 1, minWidth: 220 }}>
-            <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8', fontSize: 14 }}>🔍</span>
+            <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8', display: 'flex' }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
             <input style={{ width: '100%', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px 14px 9px 36px', fontSize: 14, outline: 'none', boxSizing: 'border-box', background: '#fff' }}
               value={search} onChange={e => setSearch(e.target.value)} placeholder="Search blogs..." />
           </div>
@@ -501,13 +501,19 @@ export default function AdminBlogs({ startNew = false }) {
                   </td>
                   <td style={{ padding: '12px 16px', whiteSpace: 'nowrap' }}>
                     <button onClick={() => startEdit(b)}
-                      style={{ background: '#eff6ff', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', marginRight: 4, color: '#2563eb', fontSize: 14 }} title="Edit">✏️</button>
+                      style={{ background: '#eff6ff', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', marginRight: 4, color: '#2563eb', display: 'flex', alignItems: 'center' }} title="Edit">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </button>
                     <button onClick={() => togglePublish(b)}
-                      style={{ background: '#f8fafc', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', marginRight: 4, color: '#64748b', fontSize: 14 }} title={b.is_published ? 'Unpublish' : 'Publish'}>
-                      {b.is_published ? '🙈' : '👁'}
+                      style={{ background: '#f8fafc', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', marginRight: 4, color: '#64748b', display: 'flex', alignItems: 'center' }} title={b.is_published ? 'Unpublish' : 'Publish'}>
+                      {b.is_published
+                        ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>}
                     </button>
                     <button onClick={() => deleteBlog(b.id)}
-                      style={{ background: '#fef2f2', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', color: '#dc2626', fontSize: 14 }} title="Delete">🗑</button>
+                      style={{ background: '#fef2f2', border: 'none', borderRadius: 6, padding: '5px 10px', cursor: 'pointer', color: '#dc2626', display: 'flex', alignItems: 'center' }} title="Delete">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                    </button>
                   </td>
                 </tr>
               ))}

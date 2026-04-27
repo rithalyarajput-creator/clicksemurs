@@ -2,9 +2,16 @@ import { useEffect, useState } from 'react'
 import { supabase } from './supabase'
 import { Link } from 'react-router-dom'
 
-const StatCard = ({ value, label, badge, badgeColor, icon }) => (
+const ICONS = {
+  leads:    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  blogs:    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>,
+  star:     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+  briefcase:<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>,
+}
+
+const StatCard = ({ value, label, badge, badgeColor, iconKey }) => (
   <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24, display: 'flex', alignItems: 'center', gap: 16 }}>
-    <div style={{ width: 48, height: 48, borderRadius: 12, background: badgeColor === 'red' ? '#fee2e2' : badgeColor === 'green' ? '#dcfce7' : '#e0e7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{icon}</div>
+    <div style={{ width: 48, height: 48, borderRadius: 12, background: badgeColor === 'red' ? '#fee2e2' : badgeColor === 'green' ? '#dcfce7' : '#e0e7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: badgeColor === 'red' ? '#dc2626' : badgeColor === 'green' ? '#16a34a' : '#4f46e5' }}>{ICONS[iconKey]}</div>
     <div>
       <div style={{ color: '#0f172a', fontSize: 28, fontWeight: 800, lineHeight: 1 }}>{value}</div>
       <div style={{ color: '#64748b', fontSize: 12, marginTop: 4 }}>{label}</div>
@@ -49,10 +56,10 @@ export default function AdminDashboard() {
       <p style={{ color: '#64748b', fontSize: 14, marginBottom: 24 }}>Welcome back! Here's what's happening.</p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 28 }}>
-        <StatCard value={stats.totalLeads} label="Total Leads" badge={`${stats.unreadLeads} unread`} badgeColor="red" icon="👥" />
-        <StatCard value={stats.totalBlogs} label="Blog Posts" badge={`${stats.publishedBlogs} published`} badgeColor="green" icon="📝" />
-        <StatCard value={stats.totalTestimonials} label="Testimonials" icon="⭐" />
-        <StatCard value={stats.totalPortfolio} label="Case Studies" icon="💼" />
+        <StatCard value={stats.totalLeads} label="Total Leads" badge={`${stats.unreadLeads} unread`} badgeColor="red" iconKey="leads" />
+        <StatCard value={stats.totalBlogs} label="Blog Posts" badge={`${stats.publishedBlogs} published`} badgeColor="green" iconKey="blogs" />
+        <StatCard value={stats.totalTestimonials} label="Testimonials" iconKey="star" />
+        <StatCard value={stats.totalPortfolio} label="Case Studies" iconKey="briefcase" />
       </div>
 
       <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflow: 'hidden' }}>

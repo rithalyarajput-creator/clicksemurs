@@ -78,14 +78,14 @@ export default function About() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#1E1E1E] border border-[#2E2E2E] p-10">
-              <div className="text-4xl mb-4">🎯</div>
+              <div className="mb-4 text-[#F4A100]"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
               <h3 className="text-white font-black text-xl mb-4">Our Vision</h3>
               <p className="text-[#AAAAAA] leading-relaxed">
                 To be the most trusted and results-driven digital marketing partner for businesses across every industry — helping brands not just compete, but lead in the digital age.
               </p>
             </div>
             <div className="bg-[#1E1E1E] border border-[#2E2E2E] p-10">
-              <div className="text-4xl mb-4">🚀</div>
+              <div className="mb-4 text-[#F4A100]"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg></div>
               <h3 className="text-white font-black text-xl mb-4">Our Mission</h3>
               <p className="text-[#AAAAAA] leading-relaxed">
                 To deliver 360° digital marketing solutions that drive real, measurable business growth — combining creativity, technology, and strategy to turn clicks into customers and brands into market leaders.

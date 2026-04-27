@@ -112,7 +112,7 @@ export default function AdminTestimonials() {
       {/* Cards Grid */}
       {items.length === 0 ? (
         <div style={{ background: '#fff', border: '2px dashed #e2e8f0', borderRadius: 12, padding: 60, textAlign: 'center', color: '#94a3b8' }}>
-          <div style={{ fontSize: 36, marginBottom: 8 }}>💬</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8, color: '#94a3b8' }}><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div style={{ fontWeight: 600, marginBottom: 4 }}>No testimonials yet</div>
           <div style={{ fontSize: 13 }}>Click "+ Add Testimonial" to add your first one</div>
         </div>
@@ -153,14 +153,14 @@ export default function AdminTestimonials() {
                 <div style={{ display: 'flex', gap: 6 }}>
                   <button onClick={() => openEdit(t)} title="Edit" style={{
                     width: 32, height: 32, borderRadius: 8, border: '1px solid #e2e8f0',
-                    background: '#f8fafc', cursor: 'pointer', fontSize: 14, color: '#374151',
+                    background: '#f8fafc', cursor: 'pointer', color: '#374151',
                     display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>✏️</button>
+                  }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                   <button onClick={() => deleteItem(t.id)} title="Delete" style={{
                     width: 32, height: 32, borderRadius: 8, border: '1px solid #fecaca',
-                    background: '#fef2f2', cursor: 'pointer', fontSize: 14, color: '#dc2626',
+                    background: '#fef2f2', cursor: 'pointer', color: '#dc2626',
                     display: 'flex', alignItems: 'center', justifyContent: 'center'
-                  }}>🗑</button>
+                  }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button>
                 </div>
               </div>
             </div>

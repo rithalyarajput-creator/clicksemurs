@@ -72,7 +72,7 @@ export default function AdminMediaLibrary() {
 
       {/* Upload from Desktop */}
       <div style={{ background: '#fff', border: '2px dashed #e2e8f0', borderRadius: 12, padding: 28, marginBottom: 20, textAlign: 'center' }}>
-        <div style={{ fontSize: 36, marginBottom: 8 }}>🖼️</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8, color: '#94a3b8' }}><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
         <div style={{ color: '#0f172a', fontWeight: 700, fontSize: 15, marginBottom: 4 }}>Upload from Desktop</div>
         <div style={{ color: '#94a3b8', fontSize: 12, marginBottom: 16 }}>JPG, PNG, WEBP supported -- auto saves to library</div>
         <input ref={fileRef} type="file" accept="image/*" onChange={uploadFile} style={{ display: 'none' }} id="file-upload" />
@@ -110,7 +110,9 @@ export default function AdminMediaLibrary() {
                   <button onClick={() => copy(m.url)} style={{ flex: 1, background: copied === m.url ? '#dcfce7' : '#f1f5f9', border: 'none', borderRadius: 6, padding: '5px 8px', fontSize: 11, cursor: 'pointer', color: copied === m.url ? '#16a34a' : '#374151', fontWeight: 600 }}>
                     {copied === m.url ? '✓ Copied!' : 'Copy URL'}
                   </button>
-                  <button onClick={() => del(m.id)} style={{ background: '#fef2f2', border: 'none', borderRadius: 6, padding: '5px 8px', fontSize: 11, cursor: 'pointer', color: '#dc2626' }}>🗑</button>
+                  <button onClick={() => del(m.id)} style={{ background: '#fef2f2', border: 'none', borderRadius: 6, padding: '5px 8px', cursor: 'pointer', color: '#dc2626', display: 'flex', alignItems: 'center' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                  </button>
                 </div>
               </div>
             </div>
