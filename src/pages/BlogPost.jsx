@@ -230,20 +230,30 @@ export default function BlogPost() {
   useEffect(() => {
     const staticMatch = staticPosts.find(p => p.slug === slug)
 
-    // Always try Supabase first -- admin edits should override static data
     supabase.from('blogs').select('*').eq('slug', slug).single()
       .then(({ data }) => {
-        if (data) {
-          // Supabase has this blog -- use it (admin may have edited title/content)
+        if (data && staticMatch) {
+          // Known static blog -- use Supabase for title/thumbnail/meta only
+          // but keep static structured content (Supabase may have garbage HTML)
+          const hasRichContent = data.content && data.content.length > 500 && !Array.isArray(data.content)
+          setPost({
+            ...staticMatch,
+            title: data.title || staticMatch.title,
+            thumbnail: data.thumbnail || staticMatch.thumbnail,
+            category: data.category || staticMatch.category,
+            meta_title: data.meta_title || '',
+            meta_description: data.meta_description || '',
+            content: hasRichContent ? data.content : staticMatch.content,
+          })
+        } else if (data && !staticMatch) {
+          // Admin-created blog not in static list -- use Supabase fully
           const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
-          setPost({ ...data, thumbnail: data.thumbnail || (staticMatch ? staticMatch.thumbnail : imgs[0]) })
+          setPost({ ...data, thumbnail: data.thumbnail || imgs[0] })
         } else if (staticMatch) {
-          // Not in Supabase yet -- use static fallback
           setPost(staticMatch)
         }
       })
       .catch(() => {
-        // On network error, fall back to static
         if (staticMatch) setPost(staticMatch)
       })
 
