@@ -273,18 +273,9 @@ export default function Navbar() {
           <div style={{ background: '#080808', borderTop: '1px solid #1a1a1a', maxHeight: '80vh', overflowY: 'auto' }}>
             <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 6 }}>
 
-              <div style={{ color: '#444', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '8px 0 4px' }}>Services</div>
-              {megaMenu.map(col => (
-                <div key={col.heading} style={{ marginBottom: 8 }}>
-                  <div style={{ color: '#fff', fontSize: 11, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 0 4px' }}>{col.heading}</div>
-                  {col.items.map(item => (
-                    <Link key={item.label} to={`/services/${item.slug}`}
-                      style={{ display: 'block', color: '#666', fontSize: 13, padding: '5px 0 5px 12px', textDecoration: 'none' }}>
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              ))}
+              <Link to="/services" style={{ display: 'block', color: '#fff', fontSize: 14, fontWeight: 700, padding: '10px 0', textDecoration: 'none', borderBottom: '1px solid #1a1a1a' }}>
+                Services →
+              </Link>
 
               <div style={{ borderTop: '1px solid #1a1a1a', paddingTop: 12, marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <div style={{ color: '#444', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '4px 0 8px' }}>Portfolio</div>
