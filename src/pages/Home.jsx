@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { services } from '../data/services'
+import { supabase } from '../admin/supabase'
 import {
   FaArrowRight, FaCheckCircle, FaQuoteLeft,
   FaStar, FaTrophy, FaLightbulb, FaHandshake,
@@ -24,26 +25,23 @@ const whyUs = [
   { icon: FaHeart, title: '500+ Proven Projects', desc: '98% client retention rate. Brands that choose us don\'t just grow — they dominate.' },
 ]
 
-const testimonials = [
+const STATIC_TESTIMONIALS = [
   {
     quote: 'Clicksemurs transformed our digital presence completely. Within 6 months, our organic traffic tripled and our leads doubled. They are a true growth partner.',
-    name: 'Rahul Sharma',
-    company: 'TechSpark Solutions',
-    role: 'CEO',
+    client_name: 'Rahul Sharma',
+    company: 'CEO, TechSpark Solutions',
     rating: 5,
   },
   {
     quote: 'The difference between Clicksemurs and every other agency we\'d tried is night and day. They actually understand business. Our ROI went up by 400% in 8 months.',
-    name: 'Priya Mehta',
-    company: 'StyleHouse Fashion',
-    role: 'Founder',
+    client_name: 'Priya Mehta',
+    company: 'Founder, StyleHouse Fashion',
     rating: 5,
   },
   {
     quote: 'Their 360° approach meant we didn\'t have to manage multiple vendors. Everything — website, social, ads — handled perfectly. Highly recommend.',
-    name: 'Amit Khanna',
-    company: 'GreenBuild Infrastructure',
-    role: 'Director',
+    client_name: 'Amit Khanna',
+    company: 'Director, GreenBuild Infrastructure',
     rating: 5,
   },
 ]
@@ -87,6 +85,22 @@ function StatCard({ value, label }) {
 export default function Home() {
   const [email, setEmail] = useState('')
   const [emailSent, setEmailSent] = useState(false)
+  const [testimonials, setTestimonials] = useState(STATIC_TESTIMONIALS)
+  const [tSlide, setTSlide] = useState(0)
+
+  useEffect(() => {
+    supabase.from('testimonials').select('*').order('created_at', { ascending: false })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          const active = data.filter(t => t.is_active !== false)
+          setTestimonials(active.length > 0 ? active : STATIC_TESTIMONIALS)
+        }
+      })
+  }, [])
+
+  const tTotal = testimonials.length
+  const tPages = Math.ceil(tTotal / 3)
+  const tVisible = testimonials.slice(tSlide * 3, tSlide * 3 + 3)
 
   const handleAuditSubmit = (e) => {
     e.preventDefault()
@@ -228,18 +242,18 @@ export default function Home() {
               What Our Clients Say
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <div key={i} className="bg-white border border-gray-200 p-8 flex flex-col">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {tVisible.map((t, i) => (
+              <div key={t.id || i} className="bg-white border border-gray-200 p-8 flex flex-col">
                 <FaQuoteLeft size={24} color="#E5E5E5" className="mb-5" />
-                <p className="text-[#4A4A4A] text-sm leading-relaxed flex-1 mb-6">"{t.quote}"</p>
+                <p className="text-[#4A4A4A] text-sm leading-relaxed flex-1 mb-6">"{t.quote || t.review}"</p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[#111111] font-bold text-sm">{t.name}</div>
-                    <div className="text-[#777777] text-xs">{t.role}, {t.company}</div>
+                    <div className="text-[#111111] font-bold text-sm">{t.client_name || t.name}</div>
+                    <div className="text-[#777777] text-xs">{t.company}</div>
                   </div>
                   <div className="flex gap-1">
-                    {[...Array(t.rating)].map((_, j) => (
+                    {[...Array(t.rating || 5)].map((_, j) => (
                       <FaStar key={j} size={12} color="#111111" />
                     ))}
                   </div>
@@ -247,6 +261,26 @@ export default function Home() {
               </div>
             ))}
           </div>
+          {tPages > 1 && (
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={() => setTSlide(p => Math.max(0, p - 1))}
+                disabled={tSlide === 0}
+                style={{ width: 40, height: 40, borderRadius: '50%', border: '2px solid #111', background: tSlide === 0 ? '#e5e5e5' : '#111', color: tSlide === 0 ? '#999' : '#fff', fontSize: 18, cursor: tSlide === 0 ? 'default' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >‹</button>
+              <div className="flex gap-2">
+                {Array.from({ length: tPages }).map((_, p) => (
+                  <button key={p} onClick={() => setTSlide(p)}
+                    style={{ width: 10, height: 10, borderRadius: '50%', border: 'none', background: tSlide === p ? '#111' : '#ccc', cursor: 'pointer', padding: 0 }} />
+                ))}
+              </div>
+              <button
+                onClick={() => setTSlide(p => Math.min(tPages - 1, p + 1))}
+                disabled={tSlide === tPages - 1}
+                style={{ width: 40, height: 40, borderRadius: '50%', border: '2px solid #111', background: tSlide === tPages - 1 ? '#e5e5e5' : '#111', color: tSlide === tPages - 1 ? '#999' : '#fff', fontSize: 18, cursor: tSlide === tPages - 1 ? 'default' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >›</button>
+            </div>
+          )}
         </div>
       </section>
 
