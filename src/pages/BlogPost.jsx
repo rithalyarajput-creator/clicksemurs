@@ -3,211 +3,88 @@ import { useState, useEffect } from 'react'
 import { FaArrowLeft, FaCalendar } from 'react-icons/fa'
 import { supabase } from '../admin/supabase'
 
-const IMGS = [
-  '/blog1.png',
-  '/blog2.png',
-  '/blog1.png',
-  '/blog2.png',
-  '/blog1.png',
-  '/blog2.png',
-]
-
 const staticPosts = [
   {
     slug: 'seo-tips-2024',
-    title: '10 SEO Tips That Will Dominate Google in 2024',
+    title: '10 Proven SEO Strategies That Will Dominate Google in 2025',
     category: 'SEO',
-    created_at: '2024-11-15',
-    thumbnail: IMGS[0],
-    content: `Search engine optimization continues to evolve at a rapid pace. In 2024, the businesses that will dominate search results are those that adapt quickly to Google's evolving algorithm and user behavior shifts.
+    created_at: '2025-01-15',
+    thumbnail: '/blog1.png',
+    content: [
+      { type: 'intro', text: "In today's hyper-competitive digital landscape, ranking on the first page of Google is no longer optional — it's survival. With over 8.5 billion searches happening every single day, businesses that master SEO enjoy a steady stream of high-intent, free traffic while competitors pay heavily for every click. This guide breaks down 10 proven strategies our team at Clicksemurs has used to help brands across India achieve top rankings, drive qualified traffic, and grow revenue organically." },
 
-## 1. Prioritize Core Web Vitals
+      { type: 'h3', text: '1. Prioritize Core Web Vitals — Speed Is a Ranking Factor' },
+      { type: 'p', text: "Google's Core Web Vitals — Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS) — are direct ranking signals. LCP measures how fast your main content loads (target: under 2.5 seconds). FID measures how quickly your page responds to user interaction (target: under 100ms). CLS measures visual stability — how much elements jump around as the page loads (target: under 0.1)." },
+      { type: 'p', text: 'Use Google PageSpeed Insights and Search Console's Core Web Vitals report to identify issues. Common fixes include compressing images, using next-gen formats like WebP, deferring non-critical JavaScript, and upgrading your hosting.' },
 
-Google's Core Web Vitals — Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS) — are now direct ranking factors. Ensure your website loads in under 2.5 seconds, responds to user interactions immediately, and maintains visual stability.
+      { type: 'h3', text: '2. Master Search Intent — The Foundation of Modern SEO' },
+      { type: 'p', text: 'Understanding WHY someone is searching is more important than knowing WHAT they search. Every keyword has a dominant intent: informational (learning), navigational (finding a site), commercial (researching before buying), or transactional (ready to buy). Matching your content format to user intent is the single biggest lever for ranking improvement.' },
+      { type: 'p', text: 'For example, "how to improve website speed" has informational intent — a blog post works best. "Best digital marketing agency in Mumbai" has commercial intent — a comparison or service page performs better.' },
 
-## 2. Focus on Search Intent Above All Else
+      { type: 'h3', text: '3. Build Topical Authority With Content Clusters' },
+      { type: 'p', text: "Google rewards websites that demonstrate deep expertise in a specific niche. Instead of publishing random blog posts, build interconnected content clusters. Create one comprehensive 'pillar page' on a broad topic, then support it with multiple detailed articles on subtopics — all internally linked together. This signals to Google that your website is an authoritative source on that subject." },
 
-Understanding why someone is searching — not just what they're searching for — is the single most important SEO skill. Match your content format to the dominant intent behind each keyword.
+      { type: 'h3', text: '4. Capture Featured Snippets for Instant Visibility' },
+      { type: 'p', text: 'Featured snippets appear above all organic results — often called "position zero." They generate massive click-through rates and establish immediate authority. To win snippets: structure your content with clear question-and-answer formats, use numbered lists for step-by-step processes, include concise definitions (40-60 words), and use table formats for comparisons.' },
 
-## 3. Build Topical Authority
+      { type: 'h3', text: '5. Technical SEO — The Foundation No One Sees But Google Does' },
+      { type: 'p', text: 'Even the best content fails without a technically sound website. Critical technical SEO elements include: a clean XML sitemap submitted to Google Search Console, proper canonical tags to prevent duplicate content, schema markup (structured data) for rich results, a mobile-first responsive design, HTTPS security, and a logical internal linking structure that distributes page authority throughout your site.' },
 
-Google rewards websites that demonstrate deep expertise in a specific subject area. Instead of creating isolated blog posts, build interconnected content clusters around your core topics.
+      { type: 'h3', text: '6. Build High-Authority Backlinks Through Digital PR' },
+      { type: 'p', text: 'Backlinks remain one of the top 3 Google ranking factors. But not all links are equal — one link from a DA 70+ news site or industry publication is worth more than 100 links from low-quality directories. Focus on digital PR (getting mentioned in news articles), creating linkable assets like original research or data studies, resource link building, and guest posting on authoritative industry blogs.' },
 
-## 4. Optimize for Featured Snippets
+      { type: 'h3', text: '7. Optimize for Local SEO — Dominate Your City' },
+      { type: 'p', text: 'For businesses serving specific locations, local SEO is non-negotiable. Fully optimize your Google Business Profile with accurate NAP (Name, Address, Phone), business hours, photos, and regular posts. Build local citations on directories like Justdial, Sulekha, and IndiaMart. Consistently generate genuine customer reviews. Create location-specific landing pages for each city or area you serve.' },
 
-Featured snippets now appear for approximately 12% of all searches. Structure your content with clear question-and-answer formats, concise definitions, and numbered lists to win position zero.
+      { type: 'h3', text: '8. E-E-A-T — Show Google You Are the Real Expert' },
+      { type: 'p', text: "Google's E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) guidelines are more important than ever, especially for YMYL (Your Money, Your Life) topics. Demonstrate E-E-A-T by: publishing content authored by real experts with bylines, citing credible sources and data, showcasing client results and case studies, maintaining a professional 'About' page, and earning mentions and links from authoritative sources." },
 
-## 5. Leverage AI-Assisted Content Creation Responsibly
+      { type: 'h3', text: '9. Refresh and Update Existing Content Regularly' },
+      { type: 'p', text: "One of the most underrated SEO strategies is updating your existing content. Google favors fresh, up-to-date information. Audit your content every 6 months. Update statistics, add new sections, improve readability, add relevant internal links, and update the publication date. Many websites see 30-50% traffic increases simply by refreshing articles that were previously ranking on page 2." },
 
-AI tools can dramatically speed up content creation, but always add human expertise, original insights, and first-hand experience. Google's E-E-A-T guidelines reward authentic expertise.
+      { type: 'h3', text: '10. Track Everything — SEO Without Data Is Just Guessing' },
+      { type: 'p', text: 'Set up Google Search Console to monitor impressions, clicks, and ranking positions. Use Google Analytics 4 to track organic traffic, conversions, and revenue. Monitor keyword rankings weekly with tools like SEMrush or Ahrefs. Track Core Web Vitals monthly. Review backlink profiles quarterly. Create a simple monthly SEO report to measure progress against your goals and identify new opportunities.' },
 
-## 6. Master Local SEO
-
-For businesses with physical locations or service areas, local SEO is non-negotiable. Optimize your Google My Business profile, build local citations, and generate authentic customer reviews consistently.
-
-## 7. Build High-Authority Backlinks
-
-A single link from a DA 70+ domain is worth more than 100 links from low-quality sites. Focus on digital PR, resource link building, and creating genuinely linkable content assets.
-
-## 8. Optimize for Voice Search
-
-With over 50% of searches being voice-based, optimizing for conversational, long-tail keywords and FAQ-style content is increasingly important.
-
-## 9. Technical SEO Fundamentals
-
-Ensure your website has a clean URL structure, proper canonicalization, an XML sitemap, structured data markup, and mobile-first design.
-
-## 10. Track and Iterate with Data
-
-SEO without measurement is guesswork. Set up Google Search Console, Google Analytics 4, and a rank tracking tool. Review performance monthly and adjust your strategy based on real data.`,
+      { type: 'closing', text: "SEO is not a one-time task — it's an ongoing investment that compounds over time. The brands that commit to consistent SEO efforts are the ones that enjoy sustainable, long-term growth without dependence on paid advertising. At Clicksemurs, we've helped businesses across industries achieve top rankings and multiply their organic revenue. If you want a free SEO audit of your website, reach out to our team today." },
+    ]
   },
   {
     slug: 'meta-ads-guide',
-    title: 'The Complete Guide to Meta Ads for E-Commerce in 2024',
+    title: 'The Complete Guide to Meta Ads for Indian Businesses in 2025',
     category: 'Paid Ads',
-    created_at: '2024-11-08',
-    thumbnail: IMGS[1],
-    content: `Meta Ads remain one of the most powerful tools for e-commerce businesses. Here is how to structure your campaigns for maximum ROAS.
+    created_at: '2025-01-08',
+    thumbnail: '/blog2.png',
+    content: [
+      { type: 'intro', text: "Meta Ads — spanning Facebook and Instagram — remain the most powerful paid advertising platform for reaching Indian consumers. With over 500 million active Facebook users and 230 million Instagram users in India, no other platform offers the same combination of scale, targeting precision, and creative flexibility. Whether you run a local business, an e-commerce brand, or a B2B company, Meta Ads can drive measurable growth when done right. This comprehensive guide walks you through everything — from campaign structure to scaling strategies — based on our experience managing crores in ad spend for Indian businesses." },
 
-## Understanding Campaign Structure
+      { type: 'h3', text: 'Understanding the Meta Ads Campaign Structure' },
+      { type: 'p', text: "Meta Ads are organized in three levels: Campaign → Ad Set → Ad. At the Campaign level, you choose your objective — Awareness, Traffic, Engagement, Leads, or Conversions. The objective determines how Meta's algorithm optimizes your delivery. At the Ad Set level, you define your audience, placements, schedule, and budget. At the Ad level, you create your actual creative — image, video, carousel, or collection." },
+      { type: 'p', text: 'The most common mistake Indian businesses make is choosing the wrong campaign objective. If you want sales, choose Conversions — not Traffic. If you want form fills, choose Leads. Mismatched objectives burn budget without results.' },
 
-Organize by awareness, consideration, and conversion objectives. Each stage requires different creative and targeting approaches. Awareness campaigns should focus on broad audiences, while conversion campaigns target warm audiences who already know your brand.
+      { type: 'h3', text: 'Building a Winning Audience Strategy' },
+      { type: 'p', text: "Meta's targeting power is unmatched. For Indian businesses, the most effective approach starts with Custom Audiences — uploading your existing customer list, website visitors (via Pixel), or app users. From these, create Lookalike Audiences (1-3% for highest quality) that find new users similar to your best customers. For cold audiences, layer interests, behaviors, and demographics strategically. Avoid hyper-narrow targeting — with costs-per-result rising, broader audiences often outperform narrow ones as Meta's AI optimizes delivery." },
 
-## Audience Strategy
+      { type: 'h3', text: 'Creative Strategy — What Actually Stops the Scroll' },
+      { type: 'p', text: 'In an era of infinite scroll, your creative has 1-2 seconds to stop someone mid-swipe. What works for Indian audiences: video creatives outperform static images (especially Reels-style vertical videos), Hindi and regional language copy dramatically improves CTR in Tier 2-3 cities, UGC (User Generated Content) and testimonial videos build trust faster than polished brand films, and "before and after" formats work exceptionally well for service businesses.' },
+      { type: 'p', text: 'Always test 3-5 creative variants per ad set. Never assume — let data decide the winner. The creative that performs best in your mind is rarely the one that performs best in the market.' },
 
-Build custom audiences from your customer list, then create lookalikes. Layer interests and behaviors for prospecting campaigns. The key is to start with what you know about your existing customers and expand from there.
+      { type: 'h3', text: 'Retargeting — Convert the Visitors Who Almost Bought' },
+      { type: 'p', text: "80% of your sales come from retargeted audiences. Segment your retargeting carefully: website visitors (last 30 days) who haven't purchased need awareness-building ads. Add-to-cart abandoners need urgency-driven ads with offers or testimonials. Past purchasers need upsell or cross-sell campaigns. Each segment deserves different messaging — one size absolutely does not fit all in retargeting." },
 
-## Creative Testing
+      { type: 'h3', text: 'Budget Management and Bidding Strategy' },
+      { type: 'p', text: "For new campaigns, start with Rs 500-1,000 per day per ad set. Give each ad set at least 7 days and 50+ conversions before making optimization decisions — this is Meta's learning phase. Use Advantage Campaign Budget (formerly CBO) once you have winning ad sets, allowing Meta to automatically distribute budget to the best performers. Avoid manual bidding until you have strong conversion data." },
 
-Test 3-5 creative variants per ad set. Let data decide the winner. Never kill an ad set before 7 days and 1000 impressions. Test different formats — single image, carousel, video, and Reels to understand what resonates with your audience.
+      { type: 'h3', text: 'Scaling Meta Ads Without Killing Performance' },
+      { type: 'p', text: "Scaling is where most advertisers go wrong. Never increase ad set budgets by more than 20-30% every 3-4 days — larger jumps reset the learning phase. Instead of editing winning ad sets, duplicate them at higher budgets. Expand to new audiences (broader demographics, new lookalikes, new geographies) rather than just increasing budgets. Horizontal scaling (more audiences) is often more sustainable than vertical scaling (higher budgets on same audience)." },
 
-## Retargeting
+      { type: 'h3', text: 'Measuring What Actually Matters' },
+      { type: 'p', text: "Stop obsessing over CPM and CPC. The metrics that matter for business results: Cost Per Lead (CPL), Cost Per Acquisition (CPA), Return on Ad Spend (ROAS), and ultimately Revenue Generated. Set up Meta Pixel correctly on your website. Use Conversions API alongside Pixel for accurate tracking (iOS 14+ made Pixel-only tracking unreliable). Create custom events for key actions — form submissions, add-to-cart, purchases, phone calls." },
 
-Target website visitors, add-to-cart abandoners, and past purchasers separately. Each segment needs different messaging. Someone who abandoned their cart needs urgency, while a past customer needs a reason to come back.
+      { type: 'h3', text: 'Common Meta Ads Mistakes Indian Businesses Make' },
+      { type: 'p', text: "1. Running ads without a clear landing page — sending traffic to a homepage kills conversions. 2. Stopping campaigns too early before learning phase completes. 3. Using the same creative for cold and warm audiences. 4. Not testing enough creative variants. 5. Ignoring comment sections — negative comments hurt ad performance significantly. 6. No retargeting strategy — leaving 80% of potential revenue on the table." },
 
-## Budget Management
-
-Start with a modest daily budget of Rs 500-1000 per ad set. Once you identify winners, scale gradually. Avoid making dramatic budget changes — increase by no more than 20-30% every 3-4 days to avoid disrupting the learning phase.
-
-## Scaling
-
-Once you find a winning combination, scale budgets by 20% every 3 days. Avoid drastic budget changes that reset the learning phase. Duplicate winning ad sets at higher budgets rather than editing existing ones.`,
-  },
-  {
-    slug: 'social-media-trends',
-    title: 'Social Media Trends Every Brand Must Know in 2024',
-    category: 'Social Media',
-    created_at: '2024-10-30',
-    thumbnail: IMGS[2],
-    content: `Social media is evolving faster than ever. Here are the trends that are reshaping digital marketing in 2024 and what your brand needs to do to stay ahead.
-
-## Short-Form Video Dominates Everything
-
-Reels, TikToks, and YouTube Shorts are now the highest-engagement content format on every platform. Brands that invest in short-form video see 2-3x more organic reach than those relying on static posts.
-
-## AI-Powered Content Creation
-
-AI tools are changing how brands create content at scale. From auto-generating captions to creating video scripts, AI is now an essential tool in every social media manager's toolkit.
-
-## Community Building Over Broadcasting
-
-The brands winning on social media in 2024 are those building genuine communities — not just broadcasting messages. Private groups, Discord servers, and close-friends lists are becoming key channels.
-
-## Creator Collaborations
-
-Micro-influencers with 10k-100k followers consistently outperform mega-influencers in engagement and conversion. Authentic partnerships with niche creators deliver better ROI than celebrity endorsements.
-
-## Social Commerce
-
-Instagram and Facebook Shops, Pinterest shopping, and TikTok Shop are turning social media into direct sales channels. Brands that integrate shopping into their social strategy see significant revenue uplift.`,
-  },
-  {
-    slug: 'website-conversion',
-    title: "Why Your Website Isn't Converting (And How to Fix It)",
-    category: 'Website',
-    created_at: '2024-10-22',
-    thumbnail: IMGS[3],
-    content: `Most websites lose 95% of visitors without converting them. Here are the exact fixes that turn browsers into buyers.
-
-## The Conversion Problem
-
-The average website conversion rate is just 2-3%. That means 97 out of every 100 visitors leave without taking action. But with the right optimizations, you can dramatically improve these numbers.
-
-## Speed is Everything
-
-A 1-second delay in page load time reduces conversions by 7%. Use Google PageSpeed Insights to identify and fix performance issues. Compress images, minify code, and use a CDN to serve content faster.
-
-## Your Value Proposition Must Be Instantly Clear
-
-Visitors decide within 5 seconds whether to stay or leave. Your headline must immediately answer: What do you do? Who is it for? Why should I care? Make it impossible to misunderstand your offering.
-
-## Reduce Friction in Your Forms
-
-Every field you add to a form reduces conversions. Ask only for what is absolutely necessary. Replace long forms with multi-step forms that feel less overwhelming.
-
-## Add Social Proof Everywhere
-
-Testimonials, case studies, client logos, and review scores build trust. Place social proof near your call-to-action buttons, not just on a dedicated testimonials page.
-
-## Fix Your Call-to-Action
-
-Vague CTAs like "Submit" or "Learn More" underperform. Use specific, benefit-driven CTAs like "Get My Free Audit" or "Start Growing My Business Today."`,
-  },
-  {
-    slug: 'email-marketing-roi',
-    title: "Email Marketing Still Delivers the Highest ROI — Here's Why",
-    category: 'Email Marketing',
-    created_at: '2024-10-15',
-    thumbnail: IMGS[4],
-    content: `With a 4,200% average ROI, email marketing remains the most powerful digital channel. Here is how to harness it effectively.
-
-## Why Email Outperforms Every Other Channel
-
-Unlike social media — where algorithms control your reach — email gives you direct access to your audience. Every subscriber has actively chosen to hear from you, making them far more valuable than a social media follower.
-
-## Building a Quality List
-
-Your email list is only as valuable as its quality. Focus on attracting subscribers who genuinely want your content. Use lead magnets — free guides, templates, or tools — to incentivize sign-ups from your target audience.
-
-## Welcome Sequences That Convert
-
-The first email a new subscriber receives has the highest open rate of any email you will ever send. Use it to set expectations, deliver on your promise, and begin building a relationship.
-
-## Segmentation is Everything
-
-Sending the same email to everyone is leaving money on the table. Segment your list by behavior, purchase history, and interests to send highly relevant messages that drive action.
-
-## Automation That Works While You Sleep
-
-Set up automated flows for: welcome sequences, abandoned cart recovery, post-purchase follow-ups, and re-engagement campaigns. These automated sequences can generate 30-50% of your total email revenue.`,
-  },
-  {
-    slug: 'influencer-marketing-brands',
-    title: 'How to Choose the Right Influencers for Your Brand',
-    category: 'Influencer Marketing',
-    created_at: '2024-10-05',
-    thumbnail: IMGS[5],
-    content: `Influencer marketing can be one of the highest-ROI channels — or a complete waste of budget. The difference is choosing the right partners.
-
-## Micro vs Macro Influencers
-
-Micro-influencers (10k-100k followers) consistently deliver higher engagement rates and more authentic recommendations than mega-influencers. Their audiences trust them more, and their rates are significantly lower.
-
-## Engagement Rate is More Important Than Follower Count
-
-A creator with 50,000 highly engaged followers is more valuable than one with 500,000 passive followers. Calculate engagement rate: (likes + comments) / followers x 100. Anything above 3% is solid.
-
-## Audience Alignment
-
-The influencer's audience must match your target customer. Ask for audience demographics before signing any agreement. A mismatch here will kill your campaign results regardless of how good the content is.
-
-## Authenticity Over Polish
-
-The best performing influencer content often looks casual and genuine, not highly produced. Give creators freedom to present your brand in their natural voice — it will perform better than scripted content.
-
-## Measure Everything
-
-Track: reach, impressions, engagement, link clicks, and conversions. Use unique discount codes or UTM links for each creator to accurately attribute sales and calculate true ROI.`,
+      { type: 'closing', text: "Meta Ads are not a magic button — they require strategic thinking, creative experimentation, and data-driven optimization. But when done right, they can deliver extraordinary results. At Clicksemurs, our certified Meta Ads specialists have managed campaigns across 50+ industries and delivered consistent ROAS improvements for our clients. Ready to scale your business with Meta Ads? Get a free campaign audit from our team." },
+    ]
   },
 ]
 
@@ -229,12 +106,10 @@ function LeadForm() {
 
   return (
     <div style={{ background: '#fff', borderRadius: 12, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', border: '1px solid #e5e5e5' }}>
-      {/* Orange Header */}
       <div style={{ background: '#F4A100', padding: '16px 20px' }}>
         <div style={{ color: '#111', fontWeight: 900, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apply for Instant Consultation</div>
         <div style={{ color: '#111', fontSize: 11, opacity: 0.7, marginTop: 2 }}>Get faster. No paperwork needed.</div>
       </div>
-
       <div style={{ padding: '20px' }}>
         {sent ? (
           <div style={{ textAlign: 'center', padding: '20px 0' }}>
@@ -249,8 +124,7 @@ function LeadForm() {
               { ph: 'Mobile Number', key: 'phone', type: 'tel' },
               { ph: 'Email Address', key: 'email', type: 'email' },
             ].map(f => (
-              <input
-                key={f.key} type={f.type} placeholder={f.ph} required
+              <input key={f.key} type={f.type} placeholder={f.ph} required
                 value={form[f.key]} onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
                 style={{ display: 'block', width: '100%', border: '1px solid #e5e5e5', borderRadius: 6, padding: '10px 14px', fontSize: 13, outline: 'none', marginBottom: 10, boxSizing: 'border-box', color: '#111' }}
               />
@@ -281,14 +155,30 @@ function LeadForm() {
 
 function renderContent(content) {
   if (!content) return null
-  return content.split('\n').map((line, i) => {
-    if (line.startsWith('## ')) return <h2 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 32, marginBottom: 12, lineHeight: 1.3 }}>{line.slice(3)}</h2>
-    if (line.startsWith('# ')) return <h1 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 26, marginTop: 32, marginBottom: 12 }}>{line.slice(2)}</h1>
-    if (line.startsWith('---')) return <hr key={i} style={{ margin: '24px 0', borderColor: '#e5e5e5' }} />
-    if (line.trim() === '') return <div key={i} style={{ height: 6 }} />
-    return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 10 }}>{line}</p>
+  if (typeof content === 'string') {
+    return content.split('\n').map((line, i) => {
+      if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 36, marginBottom: 12, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 14 }}>{line.slice(3)}</h3>
+      if (line.trim() === '') return <div key={i} style={{ height: 6 }} />
+      return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{line}</p>
+    })
+  }
+  return content.map((block, i) => {
+    if (block.type === 'h3') return (
+      <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 36, marginBottom: 12, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 14 }}>{block.text}</h3>
+    )
+    if (block.type === 'intro') return (
+      <p key={i} style={{ color: '#333', fontSize: 16, lineHeight: 1.9, marginBottom: 20, fontWeight: 500, borderLeft: '3px solid #e5e5e5', paddingLeft: 16, fontStyle: 'italic' }}>{block.text}</p>
+    )
+    if (block.type === 'closing') return (
+      <div key={i} style={{ background: '#F4A100', borderRadius: 8, padding: '20px 24px', marginTop: 36 }}>
+        <p style={{ color: '#111', fontSize: 15, lineHeight: 1.8, margin: 0, fontWeight: 500 }}>{block.text}</p>
+      </div>
+    )
+    return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{block.text}</p>
   })
 }
+
+const similarImgs = ['/blog1.png', '/blog2.png', '/blog1.png']
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -296,20 +186,17 @@ export default function BlogPost() {
   const [similarBlogs, setSimilarBlogs] = useState([])
 
   useEffect(() => {
-    // First set static data immediately
     const found = staticPosts.find(p => p.slug === slug)
     if (found) setPost(found)
 
-    // Then try Supabase
     supabase.from('blogs').select('*').eq('slug', slug).single()
-      .then(({ data }) => { if (data && data.content) setPost({ ...data, thumbnail: data.thumbnail || found?.thumbnail || IMGS[0] }) })
+      .then(({ data }) => { if (data && data.content) setPost({ ...data, thumbnail: data.thumbnail || found?.thumbnail || '/blog1.png' }) })
       .catch(() => {})
 
-    // Similar blogs
-    const others = staticPosts.filter(p => p.slug !== slug).slice(0, 3)
+    const others = staticPosts.filter(p => p.slug !== slug)
     setSimilarBlogs(others)
     supabase.from('blogs').select('*').eq('is_published', true).neq('slug', slug).limit(3)
-      .then(({ data }) => { if (data && data.length) setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || IMGS[i % IMGS.length] }))) })
+      .then(({ data }) => { if (data && data.length) setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || similarImgs[i % similarImgs.length] }))) })
       .catch(() => {})
   }, [slug])
 
@@ -320,12 +207,10 @@ export default function BlogPost() {
   )
 
   const date = new Date(post.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
-  const heroImg = post.thumbnail || IMGS[0]
 
   return (
     <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
-
-      {/* Hero — light background, no black banner */}
+      {/* Hero */}
       <div style={{ background: '#fff', paddingTop: 80, borderBottom: '1px solid #e5e5e5' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '24px 24px 0' }}>
           <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#777', fontSize: 13, textDecoration: 'none', marginBottom: 16 }}>
@@ -335,49 +220,42 @@ export default function BlogPost() {
             <span style={{ background: '#F4A100', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
             <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
-          <h1 style={{ color: '#111', fontWeight: 900, fontSize: 30, lineHeight: 1.3, maxWidth: 700, marginBottom: 16 }}>{post.title}</h1>
+          <h1 style={{ color: '#111', fontWeight: 900, fontSize: 30, lineHeight: 1.3, maxWidth: 720, marginBottom: 16 }}>{post.title}</h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 20 }}>
             <img src="/logo.png" alt="Clicksemurs" style={{ height: 22, width: 'auto' }} />
             <span style={{ color: '#777', fontSize: 12 }}>Clicksemurs Team</span>
           </div>
         </div>
-
-        {/* Hero Image */}
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <img src={heroImg} alt={post.title} style={{ width: '100%', height: 340, objectFit: 'cover', borderRadius: '8px 8px 0 0', display: 'block' }} />
+          <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', height: 340, objectFit: 'cover', borderRadius: '8px 8px 0 0', display: 'block' }} />
         </div>
       </div>
 
-      {/* Main: Content + Sticky Form */}
+      {/* Content + Sidebar */}
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 28, alignItems: 'start' }}>
-
-          {/* Left — Scrollable Content */}
           <div>
             <div style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
               {renderContent(post.content)}
             </div>
           </div>
-
-          {/* Right — Sticky Lead Form */}
           <div style={{ position: 'sticky', top: 80 }}>
             <LeadForm />
           </div>
-
         </div>
 
         {/* Similar Blogs */}
         {similarBlogs.length > 0 && (
           <div style={{ marginTop: 56 }}>
-            <h2 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 24, borderBottom: '2px solid #F4A100', paddingBottom: 10, display: 'inline-block' }}>Similar Articles</h2>
+            <h2 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 24, borderBottom: '3px solid #F4A100', paddingBottom: 10, display: 'inline-block' }}>Similar Articles</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginTop: 8 }}>
               {similarBlogs.map((blog, i) => {
-                const img = blog.thumbnail || IMGS[i % IMGS.length]
+                const img = blog.thumbnail || similarImgs[i % similarImgs.length]
                 const bdate = new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
                 return (
-                  <Link key={blog.slug} to={`/blog/${blog.slug}`} style={{ textDecoration: 'none', display: 'block' }} className="group">
+                  <Link key={blog.slug} to={`/blog/${blog.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                     <div style={{ borderRadius: 16, overflow: 'hidden', height: 160 }}>
-                      <img src={img} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }} />
+                      <img src={img} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div style={{ background: '#111', borderRadius: 12, marginTop: -20, marginRight: 28, padding: '14px 16px', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', position: 'relative', zIndex: 1 }}>
                       <div style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 5 }}>{blog.category}</div>

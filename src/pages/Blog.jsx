@@ -13,12 +13,8 @@ const PLACEHOLDER_IMAGES = [
 ]
 
 const staticBlogs = [
-  { id:1, slug:'seo-tips-2024', title:'10 SEO Tips That Will Dominate Google in 2024', category:'SEO', created_at:'2024-11-15' },
-  { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for E-Commerce in 2024', category:'Paid Ads', created_at:'2024-11-08' },
-  { id:3, slug:'social-media-trends', title:'Social Media Trends Every Brand Must Know in 2024', category:'Social Media', created_at:'2024-10-30' },
-  { id:4, slug:'website-conversion', title:"Why Your Website Isn't Converting (And How to Fix It)", category:'Website', created_at:'2024-10-22' },
-  { id:5, slug:'email-marketing-roi', title:"Email Marketing Still Delivers the Highest ROI — Here's Why", category:'Email Marketing', created_at:'2024-10-15' },
-  { id:6, slug:'influencer-marketing-brands', title:'How to Choose the Right Influencers for Your Brand', category:'Influencer Marketing', created_at:'2024-10-05' },
+  { id:1, slug:'seo-tips-2024', title:'10 Proven SEO Strategies That Will Dominate Google in 2025', category:'SEO', created_at:'2025-01-15' },
+  { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for Indian Businesses in 2025', category:'Paid Ads', created_at:'2025-01-08' },
 ]
 
 const categories = ['All', 'SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing']
