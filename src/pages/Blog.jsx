@@ -4,12 +4,12 @@ import PageHero from '../components/PageHero'
 import { supabase } from '../admin/supabase'
 
 const PLACEHOLDER_IMAGES = [
-  'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80',
-  'https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=600&q=80',
-  'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80',
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80',
-  'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80',
-  'https://images.unsplash.com/photo-1557838923-2985c318be48?w=600&q=80',
+  '/blog1.png',
+  '/blog2.png',
+  '/blog1.png',
+  '/blog2.png',
+  '/blog1.png',
+  '/blog2.png',
 ]
 
 const staticBlogs = [
