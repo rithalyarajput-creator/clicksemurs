@@ -84,3 +84,73 @@ body {
 .blog-content a { color: #F4A100; text-decoration: underline; }
 .blog-content img { max-width: 100%; border-radius: 8px; margin: 16px 0; }
 .blog-content pre { background: #f4f4f4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; margin-bottom: 14px; }
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  /* Typography scale down */
+  h1 { font-size: clamp(1.8rem, 8vw, 3rem) !important; }
+  h2 { font-size: clamp(1.4rem, 6vw, 2.2rem) !important; }
+
+  /* Grid overrides for mobile */
+  .mobile-stack { grid-template-columns: 1fr !important; }
+
+  /* Padding */
+  .section-pad { padding: 56px 0 !important; }
+
+  /* Why Us grid */
+  .why-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Stats bar */
+  .stats-bar { grid-template-columns: 1fr 1fr !important; }
+
+  /* Services grid */
+  .services-grid { grid-template-columns: 1fr !important; }
+
+  /* Overflow fixes */
+  body { overflow-x: hidden; }
+  * { max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+
+  /* Mega menu full width on tablet */
+  .mega-menu-dropdown { width: 100vw !important; left: 0 !important; transform: none !important; }
+
+  /* Buttons full width on mobile */
+  .btn-mobile-full { width: 100% !important; justify-content: center !important; }
+
+  /* Hero adjustments */
+  .hero-content { padding-top: 100px !important; padding-bottom: 60px !important; }
+
+  /* Card paddings */
+  .card-pad { padding: 20px !important; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.6rem, 9vw, 2.5rem) !important; }
+  .px-6 { padding-left: 16px !important; padding-right: 16px !important; }
+}
+
+/* Stats grid responsive */
+.stats-grid-resp {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 640px) {
+  .stats-grid-resp { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-grid-resp > div { border-bottom: 1px solid #2E2E2E; }
+}
+
+/* Admin panel responsive overrides */
+@media (max-width: 768px) {
+  .admin-sidebar-desktop { display: none !important; }
+  .admin-main-content { margin-left: 0 !important; }
+  .admin-mobile-topbar { display: flex !important; }
+}
+
+/* Footer responsive */
+@media (max-width: 640px) {
+  footer .grid { grid-template-columns: 1fr !important; }
+}
+
+/* Navbar mobile */
+@media (max-width: 768px) {
+  .max-w-7xl { padding-left: 16px !important; padding-right: 16px !important; }
+}
