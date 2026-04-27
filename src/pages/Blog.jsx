@@ -1,18 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
-import { supabase } from '../admin/supabase'
 
-const PLACEHOLDER_IMAGES = [
-  '/blog1.png',
-  '/blog2.png',
-  '/blog3.png',
-  '/blog1.png',
-  '/blog2.png',
-  '/blog3.png',
-]
-
-const staticBlogs = [
+const blogs = [
   { id:1, slug:'seo-tips-2024', title:'10 Proven SEO Strategies That Will Dominate Google in 2025', category:'SEO', created_at:'2025-01-15', thumbnail:'/blog2.png' },
   { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for Indian Businesses in 2025', category:'Paid Ads', created_at:'2025-01-08', thumbnail:'/blog1.png' },
   { id:3, slug:'reach-right-audience-digital-age', title:'How to Reach the Right Audience in the Digital Age', category:'Social Media', created_at:'2025-01-22', thumbnail:'/blog3.png' },
@@ -21,28 +11,7 @@ const staticBlogs = [
 const categories = ['All', 'SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing']
 
 export default function Blog() {
-  const [blogs, setBlogs] = useState(staticBlogs)
   const [active, setActive] = useState('All')
-
-  useEffect(() => {
-    // Fetch only non-static blogs from Supabase and append them
-    const staticSlugs = staticBlogs.map(b => b.slug)
-    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at')
-      .eq('is_published', true).order('created_at', { ascending: false })
-      .then(({ data }) => {
-        if (data && data.length) {
-          const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
-          // Only add blogs from Supabase that are NOT already in staticBlogs
-          const extraBlogs = data
-            .filter(b => !staticSlugs.includes(b.slug))
-            .map((b, i) => ({ ...b, thumbnail: b.thumbnail || imgs[i % imgs.length] }))
-          if (extraBlogs.length > 0) {
-            setBlogs([...staticBlogs, ...extraBlogs])
-          }
-        }
-      })
-      .catch(() => {})
-  }, [])
 
   const filtered = active === 'All' ? blogs : blogs.filter(b => b.category === active)
 
@@ -75,8 +44,8 @@ export default function Blog() {
 
           {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((blog, i) => {
-              const img = blog.thumbnail || PLACEHOLDER_IMAGES[i % PLACEHOLDER_IMAGES.length]
+            {filtered.map((blog) => {
+              const img = blog.thumbnail
               const date = new Date(blog.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
               return (
                 <Link
