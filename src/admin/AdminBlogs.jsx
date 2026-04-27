@@ -4,7 +4,7 @@ import { supabase } from './supabase'
 const CATEGORIES = ['SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing', 'Strategy', 'Analytics', 'Finance']
 
 const blank = {
-  title: '', slug: '', category: 'SEO', thumbnail: '', thumbnail_url: '',
+  title: '', slug: '', category: 'SEO', thumbnail: '',
   content: '', meta_title: '', meta_description: '', focus_keyword: '',
   tags: '', faqs: [], is_published: false
 }
@@ -126,7 +126,7 @@ export default function AdminBlogs({ startNew = false }) {
   const startEdit = (b) => {
     setForm({
       title: b.title || '', slug: b.slug || '', category: b.category || 'SEO',
-      thumbnail: b.thumbnail || '', thumbnail_url: b.thumbnail || '',
+      thumbnail: b.thumbnail || '',
       content: b.content || '', meta_title: b.meta_title || '',
       meta_description: b.meta_description || '', focus_keyword: b.focus_keyword || '',
       tags: b.tags || '', faqs: b.faqs || [], is_published: b.is_published
@@ -307,8 +307,6 @@ export default function AdminBlogs({ startNew = false }) {
                   <div style={{ fontSize: 10 }}>1200 × 630px recommended</div>
                 </div>
               )}
-              <label style={{ ...lbl, fontSize: 12, marginTop: 10 }}>Alt Text <span style={{ color: '#94a3b8', fontWeight: 400 }}>(SEO)</span></label>
-              <input style={{ ...inp, fontSize: 13 }} value={form.thumbnail_url} onChange={e => f('thumbnail_url', e.target.value)} placeholder="Describe the image..." />
             </div>
           </div>
         </div>
