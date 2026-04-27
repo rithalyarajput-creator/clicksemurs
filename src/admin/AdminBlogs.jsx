@@ -4,7 +4,7 @@ import { supabase } from './supabase'
 const CATEGORIES = ['SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing', 'Strategy', 'Analytics', 'Finance']
 
 const blank = {
-  title: '', slug: '', category: 'SEO', thumbnail: '',
+  title: '', slug: '', category: 'SEO', thumbnail: '', author: 'Clicksemurs Team',
   content: '', meta_title: '', meta_description: '', focus_keyword: '',
   tags: '', faqs: [], is_published: false
 }
@@ -132,6 +132,7 @@ export default function AdminBlogs({ startNew = false }) {
       meta_description: form.meta_description,
       focus_keyword: form.focus_keyword,
       tags: form.tags,
+      author: form.author || 'Clicksemurs Team',
       faqs: form.faqs.length > 0 ? form.faqs : null,
       is_published: publish,
     }
@@ -150,7 +151,7 @@ export default function AdminBlogs({ startNew = false }) {
   const startEdit = (b) => {
     setForm({
       title: b.title || '', slug: b.slug || '', category: b.category || 'SEO',
-      thumbnail: b.thumbnail || '',
+      thumbnail: b.thumbnail || '', author: b.author || 'Clicksemurs Team',
       content: b.content || '', meta_title: b.meta_title || '',
       meta_description: b.meta_description || '', focus_keyword: b.focus_keyword || '',
       tags: b.tags || '', faqs: b.faqs || [], is_published: b.is_published
@@ -225,6 +226,10 @@ export default function AdminBlogs({ startNew = false }) {
               <input style={{ ...inp, marginBottom: 14, fontSize: 16, fontWeight: 600 }} value={form.title}
                 onChange={e => { f('title', e.target.value); if (!editId) f('slug', autoSlug(e.target.value)) }}
                 placeholder="Enter blog title..." />
+              <label style={lbl}>Author Name</label>
+              <input style={{ ...inp, marginBottom: 14 }} value={form.author}
+                onChange={e => f('author', e.target.value)}
+                placeholder="e.g. Rahul Sharma" />
               <label style={lbl}>URL Slug</label>
               <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #e2e8f0', borderRadius: 8, overflow: 'hidden', marginBottom: 0 }}>
                 <span style={{ background: '#f1f5f9', padding: '10px 12px', fontSize: 13, color: '#64748b', borderRight: '1px solid #e2e8f0', whiteSpace: 'nowrap' }}>/blog/</span>

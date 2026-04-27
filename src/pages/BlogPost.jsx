@@ -257,8 +257,19 @@ export default function BlogPost() {
   useEffect(() => {
     const staticMatch = staticPosts.find(p => p.slug === slug)
 
-    // Similar articles: always use static posts (correct images guaranteed)
-    setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
+    // Similar articles: only published blogs from Supabase (excluding current)
+    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at, author').eq('is_published', true).neq('slug', slug).limit(3)
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setSimilarBlogs(data.map(b => ({
+            ...b,
+            thumbnail: staticPosts.find(s => s.slug === b.slug)?.thumbnail || b.thumbnail || '/blog1.png'
+          })))
+        } else {
+          setSimilarBlogs([]) // no similar blogs if none published
+        }
+      })
+      .catch(() => setSimilarBlogs([]))
 
     supabase.from('blogs').select('*').eq('slug', slug).single()
       .then(({ data }) => {
@@ -271,6 +282,7 @@ export default function BlogPost() {
             title: data.title || staticMatch.title,
             thumbnail: data.thumbnail || staticMatch.thumbnail,
             category: data.category || staticMatch.category,
+            author: data.author || 'Clicksemurs Team',
             faqs: data.faqs || [],
             content: hasRichContent ? data.content : staticMatch.content,
           })
@@ -308,8 +320,13 @@ export default function BlogPost() {
           </div>
           <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 24 }}>
-            <img src="/logo.png" alt="Clicksemurs" style={{ height: 22, width: 'auto' }} />
-            <span style={{ color: '#777', fontSize: 12 }}>Clicksemurs Team</span>
+            <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#F4A100', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', fontWeight: 900, fontSize: 13 }}>
+              {(post.author || 'Clicksemurs Team').charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <div style={{ color: '#111', fontSize: 13, fontWeight: 700 }}>{post.author || 'Clicksemurs Team'}</div>
+              <div style={{ color: '#999', fontSize: 11 }}>Author</div>
+            </div>
           </div>
         </div>
       </div>
