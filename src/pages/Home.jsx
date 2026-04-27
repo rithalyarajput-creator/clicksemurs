@@ -97,34 +97,88 @@ export default function Home() {
       {/* ── Hero ── */}
       <section style={{ minHeight: '100vh', background: '#0A0A0A', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div style={{ position: 'absolute', top: '20%', right: '-5%', width: '40vw', height: '40vw', maxWidth: 500, maxHeight: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        {/* Glow blobs */}
+        <div style={{ position: 'absolute', top: '15%', right: '30%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: 112, paddingBottom: 80, width: '100%', position: 'relative' }}>
-          <div style={{ maxWidth: 680 }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 28 }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block', flexShrink: 0 }} />
-              <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>360° Digital Marketing Agency</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'center' }}>
+
+            {/* Left — text */}
+            <div style={{ maxWidth: 620 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 28 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block', flexShrink: 0 }} />
+                <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>360° Digital Marketing Agency</span>
+              </div>
+              <h1 style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.02em' }}>
+                We Don't Just<br />
+                <span style={{ color: '#fff' }}>Market. </span>
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  We Dominate.
+                  <span style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 3, background: '#F4A100' }} />
+                </span>
+              </h1>
+              <p style={{ color: '#AAAAAA', fontSize: 'clamp(15px, 2.5vw, 18px)', marginBottom: 36, maxWidth: 540, lineHeight: 1.7 }}>
+                Full 360° digital marketing for brands that mean business. From SEO and paid ads to website development and social media — we handle everything.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                <Link to="/contact" className="btn-primary" style={{ fontSize: 13, letterSpacing: '0.06em' }}>
+                  Get Free Audit <FaArrowRight size={12} />
+                </Link>
+                <Link to="/portfolio" className="btn-outline" style={{ fontSize: 13, letterSpacing: '0.06em' }}>
+                  See Our Work
+                </Link>
+              </div>
             </div>
-            <h1 style={{ fontSize: 'clamp(2.2rem, 7vw, 4.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.02em' }}>
-              We Don't Just<br />
-              <span style={{ color: '#fff' }}>Market. </span>
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                We Dominate.
-                <span style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 3, background: '#F4A100' }} />
-              </span>
-            </h1>
-            <p style={{ color: '#AAAAAA', fontSize: 'clamp(15px, 2.5vw, 18px)', marginBottom: 36, maxWidth: 580, lineHeight: 1.7 }}>
-              Full 360° digital marketing for brands that mean business. From SEO and paid ads to website development and social media — we handle everything.
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              <Link to="/contact" className="btn-primary" style={{ fontSize: 13, letterSpacing: '0.06em' }}>
-                Get Free Audit <FaArrowRight size={12} />
-              </Link>
-              <Link to="/portfolio" className="btn-outline" style={{ fontSize: 13, letterSpacing: '0.06em' }}>
-                See Our Work
-              </Link>
+
+            {/* Right — 3D floating pills */}
+            <div className="hero-pills-col" style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0 }}>
+              {[
+                { label: 'SEO', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>, active: true },
+                { label: 'Google Ads', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>, active: false },
+                { label: 'Social Media', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>, active: false },
+                { label: 'Web Design', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>, active: false },
+                { label: 'Branding', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, active: false },
+                { label: 'Influencer', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, active: false },
+              ].map((pill, i) => (
+                <div key={pill.label} style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  padding: '13px 24px',
+                  borderRadius: 100,
+                  background: pill.active
+                    ? 'linear-gradient(135deg, #F4A100 0%, #d48e00 100%)'
+                    : 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)',
+                  border: pill.active
+                    ? '1px solid rgba(255,255,255,0.2)'
+                    : '1px solid rgba(255,255,255,0.08)',
+                  boxShadow: pill.active
+                    ? '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.4) inset, 0 8px 24px rgba(244,161,0,0.3)'
+                    : '0 1px 0 rgba(255,255,255,0.06) inset, 0 -2px 0 rgba(0,0,0,0.4) inset, 0 4px 16px rgba(0,0,0,0.4)',
+                  backdropFilter: 'blur(12px)',
+                  minWidth: 220,
+                  transform: `translateX(${i % 2 === 0 ? '0px' : '16px'})`,
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  cursor: 'default',
+                  animation: `floatPill${i} ${3 + i * 0.4}s ease-in-out infinite alternate`,
+                }}>
+                  <span style={{ color: pill.active ? '#111' : '#F4A100', opacity: pill.active ? 1 : 0.9, flexShrink: 0 }}>{pill.icon}</span>
+                  <span style={{ color: pill.active ? '#111' : '#fff', fontWeight: 700, fontSize: 15, letterSpacing: '0.01em' }}>{pill.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+
+        <style>{`
+          .hero-pills-col { display: flex !important; }
+          @media (max-width: 900px) { .hero-pills-col { display: none !important; } }
+          @keyframes floatPill0 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-8px); } }
+          @keyframes floatPill1 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-6px); } }
+          @keyframes floatPill2 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-10px); } }
+          @keyframes floatPill3 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-7px); } }
+          @keyframes floatPill4 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-9px); } }
+          @keyframes floatPill5 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-5px); } }
+        `}</style>
       </section>
 
       {/* ── Stats Bar ── */}
