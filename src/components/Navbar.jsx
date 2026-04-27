@@ -65,74 +65,122 @@ export default function Navbar() {
   const timeoutRef = useRef(null)
   const portfolioTimeoutRef = useRef(null)
 
-  const isLightPage = ['/about', '/services', '/portfolio', '/industries', '/blog', '/pricing', '/contact'].some(p =>
-    location.pathname === p || location.pathname.startsWith(p + '/')
-  )
-
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => { setOpen(false); setMegaOpen(false) }, [location])
-
-  const navBg = scrolled
-    ? 'bg-[#0A0A0A]/95 backdrop-blur-sm shadow-lg shadow-black/50'
-    : isLightPage
-    ? 'bg-[#0A0A0A]'
-    : 'bg-transparent'
+  useEffect(() => { setOpen(false); setMegaOpen(false); setPortfolioOpen(false) }, [location])
 
   const handleMouseEnter = () => { clearTimeout(timeoutRef.current); setMegaOpen(true) }
   const handleMouseLeave = () => { timeoutRef.current = setTimeout(() => setMegaOpen(false), 150) }
   const handlePortfolioEnter = () => { clearTimeout(portfolioTimeoutRef.current); setPortfolioOpen(true) }
   const handlePortfolioLeave = () => { portfolioTimeoutRef.current = setTimeout(() => setPortfolioOpen(false), 150) }
 
+  const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/')
+  const isServicesActive = location.pathname.startsWith('/services')
+  const isPortfolioActive = location.pathname.startsWith('/portfolio') || location.pathname.startsWith('/projects')
+
+  // pill nav item style
+  const pillStyle = (active) => ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: 5,
+    padding: '7px 16px',
+    borderRadius: 100,
+    fontSize: 13,
+    fontWeight: 600,
+    letterSpacing: '0.01em',
+    cursor: 'pointer',
+    border: 'none',
+    textDecoration: 'none',
+    transition: 'all 0.18s',
+    background: active
+      ? 'linear-gradient(180deg, #2a2a2a 0%, #111 100%)'
+      : 'transparent',
+    color: active ? '#fff' : '#999',
+    boxShadow: active
+      ? '0 1px 0 rgba(255,255,255,0.08) inset, 0 -2px 0 rgba(0,0,0,0.6) inset, 0 4px 12px rgba(0,0,0,0.5)'
+      : 'none',
+  })
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b border-[#2E2E2E]`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <>
+      <style>{`
+        .nav-pill:hover {
+          color: #fff !important;
+          background: rgba(255,255,255,0.06) !important;
+        }
+        .nav-pill-active:hover {
+          opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+          .navbar-pill-wrapper { display: none !important; }
+          .navbar-mobile-btn { display: flex !important; }
+          .navbar-cta-desktop { display: none !important; }
+        }
+      `}</style>
+
+      <header style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+        transition: 'all 0.3s',
+        background: scrolled ? 'rgba(5,5,5,0.97)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        borderBottom: scrolled ? '1px solid #1a1a1a' : '1px solid transparent',
+      }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Clicksemurs" className="h-10 w-auto" />
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <img src="/logo.png" alt="Clicksemurs" style={{ height: 40, width: 'auto' }} />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Center pill nav */}
+          <nav className="navbar-pill-wrapper" style={{
+            display: 'flex',
+            alignItems: 'center',
+            background: 'rgba(255,255,255,0.04)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: 100,
+            padding: '5px 6px',
+            gap: 2,
+            backdropFilter: 'blur(8px)',
+            boxShadow: '0 2px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
+          }}>
 
-            {/* Services with Mega Menu */}
-            <div
-              className="relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              ref={megaRef}
-            >
-              <button className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-200 ${megaOpen ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`}>
-                Services <FaChevronDown size={10} className={`transition-transform duration-200 ${megaOpen ? 'rotate-180' : ''}`} />
+            {/* Services */}
+            <div style={{ position: 'relative' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={megaRef}>
+              <button
+                className={isServicesActive ? 'nav-pill-active' : 'nav-pill'}
+                style={pillStyle(isServicesActive || megaOpen)}>
+                Services
+                <FaChevronDown size={9} style={{ transition: 'transform 0.2s', transform: megaOpen ? 'rotate(180deg)' : 'none', opacity: 0.6 }} />
               </button>
 
-              {/* Mega Menu Dropdown */}
               {megaOpen && (
-                <div
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-[#111111] border border-[#2E2E2E] shadow-2xl"
-                  style={{ width: 820, padding: '32px 32px' }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div className="grid grid-cols-4 gap-8">
+                <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+                  style={{
+                    position: 'absolute', top: 'calc(100% + 14px)', left: '50%', transform: 'translateX(-50%)',
+                    width: 820, background: '#0d0d0d',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 16, padding: '28px 28px',
+                    boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
+                    animation: 'fadeDown 0.15s ease',
+                  }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 28 }}>
                     {megaMenu.map(col => (
                       <div key={col.heading}>
-                        <h4 className="text-white font-black text-sm tracking-widest uppercase mb-4 pb-2 border-b border-[#2E2E2E]">
+                        <h4 style={{ color: '#fff', fontWeight: 800, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 14, paddingBottom: 10, borderBottom: '1px solid #1e1e1e' }}>
                           {col.heading}
                         </h4>
-                        <ul className="space-y-2">
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
                           {col.items.map(item => (
                             <li key={item.label}>
-                              <Link
-                                to={`/services/${item.slug}`}
-                                className="text-[#AAAAAA] text-sm hover:text-white transition-colors duration-150 block py-0.5"
-                              >
+                              <Link to={`/services/${item.slug}`}
+                                style={{ color: '#777', fontSize: 13, textDecoration: 'none', display: 'block', transition: 'color 0.15s' }}
+                                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                                onMouseLeave={e => e.currentTarget.style.color = '#777'}>
                                 {item.label}
                               </Link>
                             </li>
@@ -141,9 +189,9 @@ export default function Navbar() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 pt-4 border-t border-[#2E2E2E] flex items-center justify-between">
-                    <span className="text-[#777] text-xs">360° Digital Marketing Agency</span>
-                    <Link to="/services" className="text-white text-xs font-bold tracking-widest uppercase hover:text-[#aaa] transition-colors">
+                  <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #1e1e1e', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span style={{ color: '#444', fontSize: 12 }}>360° Digital Marketing Agency</span>
+                    <Link to="/services" style={{ color: '#F4A100', fontSize: 12, fontWeight: 700, textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       View All Services →
                     </Link>
                   </div>
@@ -151,83 +199,133 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Portfolio dropdown */}
-            <div className="relative" onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave} ref={portfolioRef}>
-              <button className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-200 ${portfolioOpen || location.pathname.startsWith('/portfolio') || location.pathname.startsWith('/projects') ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`}>
-                Portfolio <FaChevronDown size={10} className={`transition-transform duration-200 ${portfolioOpen ? 'rotate-180' : ''}`} />
+            {/* Portfolio */}
+            <div style={{ position: 'relative' }} onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave} ref={portfolioRef}>
+              <button
+                className={isPortfolioActive ? 'nav-pill-active' : 'nav-pill'}
+                style={pillStyle(isPortfolioActive || portfolioOpen)}>
+                Portfolio
+                <FaChevronDown size={9} style={{ transition: 'transform 0.2s', transform: portfolioOpen ? 'rotate(180deg)' : 'none', opacity: 0.6 }} />
               </button>
               {portfolioOpen && (
-                <div className="absolute top-full left-0 mt-2 bg-[#111111] border border-[#2E2E2E] shadow-2xl"
-                  style={{ minWidth: 240, padding: '12px 0' }}
-                  onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave}>
+                <div onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave}
+                  style={{
+                    position: 'absolute', top: 'calc(100% + 14px)', left: 0,
+                    minWidth: 240, background: '#0d0d0d',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: 14, padding: '8px',
+                    boxShadow: '0 24px 64px rgba(0,0,0,0.7)',
+                    animation: 'fadeDown 0.15s ease',
+                  }}>
                   {portfolioMenu.map(item => (
-                    <Link key={item.to} to={item.to} className="block px-5 py-3 hover:bg-[#1a1a1a] transition-colors">
-                      <div className="text-white text-sm font-semibold">{item.label}</div>
-                      <div className="text-[#777] text-xs mt-0.5">{item.desc}</div>
+                    <Link key={item.to} to={item.to}
+                      style={{ display: 'block', padding: '10px 14px', borderRadius: 8, textDecoration: 'none', transition: 'background 0.15s' }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <div style={{ color: '#fff', fontSize: 13, fontWeight: 600 }}>{item.label}</div>
+                      <div style={{ color: '#555', fontSize: 11, marginTop: 2 }}>{item.desc}</div>
                     </Link>
                   ))}
                 </div>
               )}
             </div>
 
+            {/* About, Blog, Contact */}
             {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
-              <NavLink key={link.to} to={link.to}
-                className={({ isActive }) => `text-sm font-medium tracking-wide transition-colors duration-200 ${isActive ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`}>
-                {link.label}
+              <NavLink key={link.to} to={link.to} style={{ textDecoration: 'none' }}>
+                {({ isActive: active }) => (
+                  <span
+                    className={active ? 'nav-pill-active' : 'nav-pill'}
+                    style={pillStyle(active)}>
+                    {link.label}
+                  </span>
+                )}
               </NavLink>
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link to="/contact" className="btn-primary text-xs tracking-widest uppercase">
-              Free Audit
+          {/* CTA */}
+          <div className="navbar-cta-desktop" style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+            <Link to="/contact" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: 'linear-gradient(180deg, #F4A100 0%, #d48e00 100%)',
+              color: '#111', padding: '9px 20px', fontWeight: 800, fontSize: 12,
+              letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none',
+              borderRadius: 100,
+              boxShadow: '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 6px 16px rgba(244,161,0,0.3)',
+              transition: 'all 0.18s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 10px 24px rgba(244,161,0,0.4)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 6px 16px rgba(244,161,0,0.3)' }}>
+              Free Audit ✦
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden text-white p-2"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-          >
-            {open ? <FaTimes size={20} /> : <FaBars size={20} />}
+          {/* Mobile toggle */}
+          <button className="navbar-mobile-btn" style={{ display: 'none', color: '#fff', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '8px 10px', cursor: 'pointer', alignItems: 'center' }}
+            onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            {open ? <FaTimes size={18} /> : <FaBars size={18} />}
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden bg-[#0A0A0A] border-t border-[#2E2E2E] max-h-[80vh] overflow-y-auto">
-          <div className="px-6 py-4 flex flex-col gap-4">
-            <div className="text-[#777] text-xs uppercase tracking-widest font-bold mb-1">Services</div>
-            {megaMenu.map(col => (
-              <div key={col.heading}>
-                <div className="text-white text-xs font-black uppercase tracking-wider mb-2">{col.heading}</div>
-                {col.items.map(item => (
-                  <Link key={item.label} to={`/services/${item.slug}`} className="block text-[#AAAAAA] text-sm py-1 pl-3">
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            ))}
-            <div className="border-t border-[#2E2E2E] pt-3 mt-1">
-              <div className="text-[#777] text-xs uppercase tracking-widest font-bold mb-2">Portfolio</div>
-              {portfolioMenu.map(item => (
-                <NavLink key={item.to} to={item.to} className={({ isActive }) => `block text-sm font-medium py-2 pl-3 ${isActive ? 'text-white' : 'text-[#AAAAAA]'}`}>{item.label}</NavLink>
+        {/* Mobile Menu */}
+        {open && (
+          <div style={{ background: '#080808', borderTop: '1px solid #1a1a1a', maxHeight: '80vh', overflowY: 'auto' }}>
+            <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+
+              <div style={{ color: '#444', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '8px 0 4px' }}>Services</div>
+              {megaMenu.map(col => (
+                <div key={col.heading} style={{ marginBottom: 8 }}>
+                  <div style={{ color: '#fff', fontSize: 11, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '6px 0 4px' }}>{col.heading}</div>
+                  {col.items.map(item => (
+                    <Link key={item.label} to={`/services/${item.slug}`}
+                      style={{ display: 'block', color: '#666', fontSize: 13, padding: '5px 0 5px 12px', textDecoration: 'none' }}>
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               ))}
-              <div className="border-t border-[#2E2E2E] mt-2 pt-2">
-                {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
-                  <NavLink key={link.to} to={link.to} className={({ isActive }) => `block text-sm font-medium py-2 ${isActive ? 'text-white' : 'text-[#AAAAAA]'}`}>{link.label}</NavLink>
+
+              <div style={{ borderTop: '1px solid #1a1a1a', paddingTop: 12, marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <div style={{ color: '#444', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '4px 0 8px' }}>Portfolio</div>
+                {portfolioMenu.map(item => (
+                  <NavLink key={item.to} to={item.to}
+                    style={({ isActive }) => ({ display: 'block', color: isActive ? '#fff' : '#666', fontSize: 13, padding: '7px 0', textDecoration: 'none', fontWeight: isActive ? 700 : 400 })}>
+                    {item.label}
+                  </NavLink>
                 ))}
               </div>
+
+              <div style={{ borderTop: '1px solid #1a1a1a', paddingTop: 12, marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
+                  <NavLink key={link.to} to={link.to}
+                    style={({ isActive }) => ({ display: 'block', color: isActive ? '#fff' : '#666', fontSize: 13, padding: '7px 0', textDecoration: 'none', fontWeight: isActive ? 700 : 400 })}>
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+
+              <Link to="/contact" style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                background: 'linear-gradient(180deg, #F4A100 0%, #d48e00 100%)',
+                color: '#111', padding: '12px 24px', fontWeight: 800, fontSize: 12,
+                letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none',
+                borderRadius: 100, marginTop: 12,
+                boxShadow: '0 -3px 0 rgba(0,0,0,0.25) inset',
+              }}>
+                Free Audit ✦
+              </Link>
             </div>
-            <Link to="/contact" className="btn-primary text-xs tracking-widest uppercase mt-2 w-fit">
-              Free Audit
-            </Link>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+
+        <style>{`
+          @keyframes fadeDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+          }
+        `}</style>
+      </header>
+    </>
   )
 }
