@@ -35,42 +35,45 @@ export default function AdminLeads() {
     a.click()
   }
 
-  const th = { color: '#555', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '10px 14px', textAlign: 'left', borderBottom: '1px solid #2E2E2E' }
-  const td = { color: '#aaa', padding: '12px 14px', fontSize: 13, borderBottom: '1px solid #1a1a1a' }
+  const th = { color: '#94a3b8', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', padding: '10px 16px', textAlign: 'left', borderBottom: '1px solid #e2e8f0', background: '#f8fafc' }
+  const td = { color: '#64748b', padding: '12px 16px', fontSize: 13, borderBottom: '1px solid #f1f5f9' }
 
   return (
-    <div style={{ padding: 32 }}>
+    <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700 }}>Leads / Inquiries ({leads.length})</h1>
-        <button onClick={exportCSV} style={{ background: 'none', border: '1px solid #2E2E2E', color: '#aaa', padding: '8px 16px', cursor: 'pointer', fontSize: 12 }}>Export CSV</button>
+        <div>
+          <h1 style={{ color: '#0f172a', fontSize: 22, fontWeight: 800 }}>Leads & Inquiries</h1>
+          <p style={{ color: '#64748b', fontSize: 13, marginTop: 2 }}>{leads.length} total leads</p>
+        </div>
+        <button onClick={exportCSV} style={{ background: '#0f172a', border: 'none', color: '#fff', padding: '9px 18px', cursor: 'pointer', fontSize: 13, borderRadius: 8, fontWeight: 600 }}>Export CSV</button>
       </div>
-      {msg && <div style={{ background: '#0a1a0a', border: '1px solid #166534', color: '#4ade80', padding: '10px 16px', marginBottom: 16, fontSize: 13 }}>{msg}</div>}
-      {loading ? <div style={{ color: '#777' }}>Loading...</div> : (
-        <div style={{ background: '#1E1E1E', border: '1px solid #2E2E2E', overflowX: 'auto' }}>
+      {msg && <div style={{ background: '#f0fdf4', border: '1px solid #86efac', color: '#16a34a', padding: '10px 16px', marginBottom: 16, fontSize: 13, borderRadius: 8 }}>{msg}</div>}
+      {loading ? <div style={{ color: '#94a3b8' }}>Loading...</div> : (
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr>{['#', 'Name', 'Email', 'Phone', 'Service', 'Message', 'Date', 'Status', 'Actions'].map(h => <th key={h} style={th}>{h}</th>)}</tr>
             </thead>
             <tbody>
               {leads.length === 0 ? (
-                <tr><td colSpan={9} style={{ ...td, textAlign: 'center', padding: 40 }}>No inquiries yet.</td></tr>
+                <tr><td colSpan={9} style={{ ...td, textAlign: 'center', padding: 40, color: '#94a3b8' }}>No inquiries yet.</td></tr>
               ) : leads.map(l => (
                 <tr key={l.id}>
                   <td style={td}>{l.id}</td>
-                  <td style={{ ...td, color: '#fff', fontWeight: 600 }}>{l.name}</td>
+                  <td style={{ ...td, color: '#0f172a', fontWeight: 600 }}>{l.name}</td>
                   <td style={td}>{l.email}</td>
                   <td style={td}>{l.phone || '—'}</td>
                   <td style={td}>{l.service || '—'}</td>
                   <td style={{ ...td, maxWidth: 180 }}>{(l.message || '').slice(0, 80)}{(l.message || '').length > 80 ? '…' : ''}</td>
                   <td style={{ ...td, whiteSpace: 'nowrap' }}>{new Date(l.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
                   <td style={td}>
-                    <span style={{ background: l.is_read ? '#1a1a1a' : '#2a1010', color: l.is_read ? '#555' : '#ff6b6b', fontSize: 11, padding: '2px 8px', border: `1px solid ${l.is_read ? '#2E2E2E' : '#5a1a1a'}` }}>
+                    <span style={{ background: l.is_read ? '#f1f5f9' : '#fee2e2', color: l.is_read ? '#64748b' : '#dc2626', fontSize: 11, padding: '3px 10px', borderRadius: 20, fontWeight: 600 }}>
                       {l.is_read ? 'Read' : 'New'}
                     </span>
                   </td>
                   <td style={{ ...td, whiteSpace: 'nowrap' }}>
-                    {!l.is_read && <button onClick={() => markRead(l.id)} style={{ background: 'none', border: '1px solid #2E2E2E', color: '#aaa', padding: '4px 10px', cursor: 'pointer', fontSize: 11, marginRight: 6 }}>Mark Read</button>}
-                    <button onClick={() => deleteLead(l.id)} style={{ background: '#2a1010', border: '1px solid #5a1a1a', color: '#ff6b6b', padding: '4px 10px', cursor: 'pointer', fontSize: 11 }}>Delete</button>
+                    {!l.is_read && <button onClick={() => markRead(l.id)} style={{ background: '#eff6ff', border: 'none', color: '#2563eb', padding: '4px 10px', cursor: 'pointer', fontSize: 11, borderRadius: 6, marginRight: 6, fontWeight: 600 }}>Mark Read</button>}
+                    <button onClick={() => deleteLead(l.id)} style={{ background: '#fef2f2', border: 'none', color: '#dc2626', padding: '4px 10px', cursor: 'pointer', fontSize: 11, borderRadius: 6, fontWeight: 600 }}>Delete</button>
                   </td>
                 </tr>
               ))}

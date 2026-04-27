@@ -22,7 +22,7 @@ export default function AdminLayout({ children }) {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#0A0A0A', fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#f1f5f9', fontFamily: 'Inter, system-ui, sans-serif' }}>
       {/* Sidebar */}
       <aside style={{ width: 220, background: '#111111', borderRight: '1px solid #2E2E2E', display: 'flex', flexDirection: 'column', position: 'fixed', top: 0, left: 0, height: '100vh' }}>
         <div style={{ padding: '20px 20px', borderBottom: '1px solid #2E2E2E' }}>
@@ -56,7 +56,7 @@ export default function AdminLayout({ children }) {
       </aside>
 
       {/* Main */}
-      <main style={{ marginLeft: 220, flex: 1, minHeight: '100vh', background: '#0A0A0A' }}>
+      <main style={{ marginLeft: 220, flex: 1, minHeight: '100vh', background: '#f1f5f9', padding: 32 }}>
         {children}
       </main>
     </div>
