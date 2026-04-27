@@ -110,14 +110,25 @@ export default function AdminBlogs({ startNew = false }) {
 
   const handleSubmit = async (publish) => {
     if (!form.title || !form.slug) return flash('Title and slug are required.', 'error')
-    const payload = { ...form, is_published: publish }
+    const payload = {
+      title: form.title,
+      slug: form.slug,
+      category: form.category,
+      thumbnail: form.thumbnail,
+      content: form.content,
+      meta_title: form.meta_title,
+      meta_description: form.meta_description,
+      focus_keyword: form.focus_keyword,
+      tags: form.tags,
+      is_published: publish,
+    }
     if (editId) {
       const { error } = await supabase.from('blogs').update(payload).eq('id', editId)
-      if (error) return flash(error.message, 'error')
+      if (error) return flash('Save failed: ' + error.message, 'error')
       flash(publish ? 'Blog published!' : 'Saved as draft!')
     } else {
       const { error } = await supabase.from('blogs').insert([payload])
-      if (error) return flash('Error: ' + error.message, 'error')
+      if (error) return flash('Create failed: ' + error.message, 'error')
       flash(publish ? 'Blog published!' : 'Saved as draft!')
     }
     setForm(blank); setEditId(null); setView('list'); load()
