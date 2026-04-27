@@ -13,8 +13,8 @@ const PLACEHOLDER_IMAGES = [
 ]
 
 const staticBlogs = [
-  { id:1, slug:'seo-tips-2024', title:'10 Proven SEO Strategies That Will Dominate Google in 2025', category:'SEO', created_at:'2025-01-15', thumbnail:'/blog1.png' },
-  { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for Indian Businesses in 2025', category:'Paid Ads', created_at:'2025-01-08', thumbnail:'/blog2.png' },
+  { id:1, slug:'seo-tips-2024', title:'10 Proven SEO Strategies That Will Dominate Google in 2025', category:'SEO', created_at:'2025-01-15', thumbnail:'/blog2.png' },
+  { id:2, slug:'meta-ads-guide', title:'The Complete Guide to Meta Ads for Indian Businesses in 2025', category:'Paid Ads', created_at:'2025-01-08', thumbnail:'/blog1.png' },
 ]
 
 const categories = ['All', 'SEO', 'Paid Ads', 'Social Media', 'Website', 'Email Marketing', 'Influencer Marketing']
@@ -25,7 +25,12 @@ export default function Blog() {
 
   useEffect(() => {
     supabase.from('blogs').select('*').eq('is_published', true).order('created_at', { ascending: false })
-      .then(({ data }) => { if (data && data.length) setBlogs(data) })
+      .then(({ data }) => {
+        if (data && data.length) {
+          const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
+          setBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || imgs[i % imgs.length] })))
+        }
+      })
       .catch(() => {})
   }, [])
 
