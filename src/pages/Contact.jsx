@@ -65,19 +65,26 @@ export default function Contact() {
 
   return (
     <div style={{ background: '#f1f5f9', minHeight: '100vh', paddingTop: 40, paddingBottom: 60 }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .contact-grid { grid-template-columns: 1fr !important; }
+          .contact-info-grid { grid-template-columns: 1fr !important; }
+          .contact-form-pad { padding: 24px 20px !important; }
+        }
+      `}</style>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
 
         {/* Page Header */}
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 28, paddingTop: 80 }}>
           <p style={{ color: '#F4A100', fontSize: 12, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 6 }}>Contact Us</p>
-          <h1 style={{ fontSize: 'clamp(26px,4vw,40px)', fontWeight: 900, color: '#0f172a', lineHeight: 1.2, marginBottom: 8 }}>Get in Touch with Our Team</h1>
-          <p style={{ color: '#64748b', fontSize: 15 }}>Ready to grow your brand? Let's talk. Get your free digital marketing audit today.</p>
+          <h1 style={{ fontSize: 'clamp(24px,5vw,40px)', fontWeight: 900, color: '#0f172a', lineHeight: 1.2, marginBottom: 8 }}>Get in Touch with Our Team</h1>
+          <p style={{ color: '#64748b', fontSize: 'clamp(13px,3vw,15px)' }}>Ready to grow your brand? Let's talk. Get your free digital marketing audit today.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 420px', gap: 24, alignItems: 'start' }}>
+        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 20, alignItems: 'start' }}>
 
           {/* LEFT - Form */}
-          <div style={{ background: '#fff', borderRadius: 16, padding: '36px 40px', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }}>
+          <div className="contact-form-pad" style={{ background: '#fff', borderRadius: 16, padding: '36px 40px', boxShadow: '0 1px 4px rgba(0,0,0,0.07)' }}>
             <h2 style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', marginBottom: 4 }}>We're Here</h2>
             <p style={{ color: '#64748b', fontSize: 14, marginBottom: 28 }}>We'd love to hear from you — send us a message.</p>
 

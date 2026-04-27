@@ -270,41 +270,57 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {open && (
-          <div style={{ background: '#080808', borderTop: '1px solid #1a1a1a', maxHeight: '80vh', overflowY: 'auto' }}>
-            <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ background: '#0a0a0a', borderTop: '1px solid #1e1e1e', maxHeight: '85vh', overflowY: 'auto' }}>
+            <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 4 }}>
 
-              <Link to="/services" style={{ display: 'block', color: '#fff', fontSize: 14, fontWeight: 700, padding: '10px 0', textDecoration: 'none', borderBottom: '1px solid #1a1a1a' }}>
-                Services →
+              {/* Services - direct link */}
+              <Link to="/services" onClick={() => setOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: '#fff', fontSize: 15, fontWeight: 700, padding: '14px 16px', textDecoration: 'none', borderRadius: 12, background: 'rgba(255,255,255,0.04)', border: '1px solid #1e1e1e' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontSize: 18 }}>⚡</span> Services
+                </span>
+                <span style={{ color: '#F4A100', fontSize: 12 }}>→</span>
               </Link>
 
-              <div style={{ borderTop: '1px solid #1a1a1a', paddingTop: 12, marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <div style={{ color: '#444', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '4px 0 8px' }}>Portfolio</div>
+              {/* Portfolio group */}
+              <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid #1e1e1e', borderRadius: 12, overflow: 'hidden', marginTop: 4 }}>
+                <div style={{ padding: '14px 16px', borderBottom: '1px solid #1e1e1e' }}>
+                  <span style={{ color: '#777', fontSize: 10, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase' }}>🗂 Portfolio</span>
+                </div>
                 {portfolioMenu.map(item => (
-                  <NavLink key={item.to} to={item.to}
-                    style={({ isActive }) => ({ display: 'block', color: isActive ? '#fff' : '#666', fontSize: 13, padding: '7px 0', textDecoration: 'none', fontWeight: isActive ? 700 : 400 })}>
+                  <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}
+                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#F4A100' : '#ccc', fontSize: 14, padding: '12px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: '1px solid #1a1a1a' })}>
                     {item.label}
+                    {<span style={{ fontSize: 10, opacity: 0.4 }}>›</span>}
                   </NavLink>
                 ))}
               </div>
 
-              <div style={{ borderTop: '1px solid #1a1a1a', paddingTop: 12, marginTop: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
-                  <NavLink key={link.to} to={link.to}
-                    style={({ isActive }) => ({ display: 'block', color: isActive ? '#fff' : '#666', fontSize: 13, padding: '7px 0', textDecoration: 'none', fontWeight: isActive ? 700 : 400 })}>
-                    {link.label}
+              {/* Main links */}
+              <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid #1e1e1e', borderRadius: 12, overflow: 'hidden', marginTop: 4 }}>
+                {[
+                  { to: '/about', label: 'About Us', icon: '👋' },
+                  { to: '/blog', label: 'Blog', icon: '📝' },
+                  { to: '/contact', label: 'Contact', icon: '📞' },
+                ].map((link, i, arr) => (
+                  <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)}
+                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#F4A100' : '#ccc', fontSize: 14, padding: '13px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: i < arr.length - 1 ? '1px solid #1a1a1a' : 'none' })}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <span style={{ fontSize: 16 }}>{link.icon}</span> {link.label}
+                    </span>
+                    <span style={{ fontSize: 10, opacity: 0.4 }}>›</span>
                   </NavLink>
                 ))}
               </div>
 
-              <Link to="/contact" style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              <Link to="/contact" onClick={() => setOpen(false)} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 background: 'linear-gradient(180deg, #F4A100 0%, #d48e00 100%)',
-                color: '#111', padding: '12px 24px', fontWeight: 800, fontSize: 12,
+                color: '#111', padding: '14px 24px', fontWeight: 800, fontSize: 13,
                 letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none',
-                borderRadius: 100, marginTop: 12,
-                boxShadow: '0 -3px 0 rgba(0,0,0,0.25) inset',
+                borderRadius: 12, marginTop: 8,
+                boxShadow: '0 -3px 0 rgba(0,0,0,0.25) inset, 0 4px 16px rgba(244,161,0,0.3)',
               }}>
-                Free Audit ✦
+                ✦ Get Free Audit — It's Free!
               </Link>
             </div>
           </div>
