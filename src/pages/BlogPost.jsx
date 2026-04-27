@@ -9,7 +9,7 @@ const staticPosts = [
     title: '10 Proven SEO Strategies That Will Dominate Google in 2025',
     category: 'SEO',
     created_at: '2025-01-15',
-    thumbnail: '/blog1.png',
+    thumbnail: '/blog2.png',
     content: [
       { type: 'intro', text: "In today's hyper-competitive digital landscape, ranking on the first page of Google is no longer optional — it's survival. With over 8.5 billion searches happening every single day, businesses that master SEO enjoy a steady stream of high-intent, free traffic while competitors pay heavily for every click. This guide breaks down 10 proven strategies our team at Clicksemurs has used to help brands across India achieve top rankings, drive qualified traffic, and grow revenue organically." },
 
@@ -86,6 +86,48 @@ const staticPosts = [
       { type: 'closing', text: "Meta Ads are not a magic button — they require strategic thinking, creative experimentation, and data-driven optimization. But when done right, they can deliver extraordinary results. At Clicksemurs, our certified Meta Ads specialists have managed campaigns across 50+ industries and delivered consistent ROAS improvements for our clients. Ready to scale your business with Meta Ads? Get a free campaign audit from our team." },
     ]
   },
+  {
+    slug: 'reach-right-audience-digital-age',
+    title: 'How to Reach the Right Audience in the Digital Age',
+    category: 'Social Media',
+    created_at: '2025-01-22',
+    thumbnail: '/blog3.png',
+    content: [
+      { type: 'intro', text: "The digital world moves faster than ever. Every day, millions of posts, videos, ads, and campaigns compete for attention across platforms like Instagram, Facebook, LinkedIn, and X (formerly Twitter). In this crowded space, reaching people is no longer the challenge. Reaching the right people is. Brands often focus on numbers like views, followers, and clicks, but real growth does not come from attention alone. Growth comes from connection. And connection begins when your message reaches the people who truly need what you offer. The real power of digital marketing is not visibility. It is relevance." },
+
+      { type: 'h3', text: 'Understanding Who You Want to Reach' },
+      { type: 'p', text: 'Before reaching people, you need to define who they are. Many businesses struggle because their message reaches the wrong audience. Even the best product can fail if it is shown to people who are not interested. Start by asking important questions: Who needs your product? What problem are they facing? What platforms do they use? What motivates their buying decisions? The clearer your audience profile becomes, the easier it becomes to reach them.' },
+
+      { type: 'h3', text: 'Choosing the Right Platform Matters' },
+      { type: 'p', text: 'Every platform has a different audience behavior. Using the same strategy everywhere rarely works. Instagram is ideal for visual storytelling, lifestyle branding, and younger audiences. Facebook remains powerful for community building, local targeting, and paid campaigns. LinkedIn works best for professional networking and B2B marketing. X (formerly Twitter) helps brands join conversations and trends quickly. Choosing the right platform increases the chance of reaching the right people.' },
+
+      { type: 'h3', text: 'Content is the Bridge Between You and Your Audience' },
+      { type: 'p', text: 'Content is how people discover you. But content without value gets ignored. The strongest content solves problems, answers questions, and builds trust. Educational posts, short-form videos, blogs, and case studies help brands build stronger connections with their audience. People connect with value before they connect with products. That is how reach becomes trust.' },
+
+      { type: 'h3', text: 'Consistency Creates Recognition' },
+      { type: 'p', text: 'One post rarely changes everything. Consistency does. People trust what they see repeatedly. Regular posting creates familiarity. Familiarity creates trust. And trust creates action. Brands that stay active remain visible. Brands that remain visible stay relevant.' },
+
+      { type: 'h3', text: 'Paid Advertising Accelerates Reach' },
+      { type: 'p', text: 'Organic growth takes time. Paid advertising helps brands scale faster. Platforms like Google Ads and Facebook Ads Manager allow businesses to target audiences based on interests, location, behavior, and demographics. This level of targeting makes paid advertising highly effective. Instead of reaching everyone, you reach the people most likely to convert.' },
+
+      { type: 'h3', text: 'Engagement Builds Real Relationships' },
+      { type: 'p', text: 'Reaching people is only the beginning. Keeping them engaged is what matters. Replying to comments, answering messages, and starting conversations builds stronger audience relationships. Engagement tells the platform that your content matters. And platforms reward valuable content with more visibility. The brands that listen grow faster.' },
+
+      { type: 'h3', text: 'SEO Helps People Find You' },
+      { type: 'p', text: 'Not all audience discovery happens on social media. Search engines still play a major role. Google remains one of the strongest discovery tools for businesses. Search Engine Optimization helps your content appear when people search for solutions related to your business. Strong SEO includes quality content, proper keywords, fast website speed, and a clear website structure. SEO builds long-term visibility.' },
+
+      { type: 'h3', text: 'Data Shows What Works' },
+      { type: 'p', text: 'Growth without tracking becomes guesswork. Digital marketing gives brands access to important insights. Track what content performs best, where traffic comes from, and which audience converts. Data helps improve strategy. It removes assumptions and shows what actually works.' },
+
+      { type: 'h3', text: 'Trust Converts Reach into Results' },
+      { type: 'p', text: 'People may discover your brand quickly. But trust takes time. Trust comes from consistency, honesty, and proof. Customer reviews, testimonials, and success stories help build confidence. People trust real experiences more than advertisements. Trust is what turns attention into action.' },
+
+      { type: 'h3', text: 'The Real Secret to Digital Reach' },
+      { type: 'p', text: 'The biggest mistake brands make is trying to reach everyone. Trying to connect with everyone often means connecting with no one. The goal is not maximum reach. The goal is meaningful reach. The right audience, the right message, and the right timing create real growth.' },
+
+      { type: 'closing', text: "In digital marketing, reaching the right audience is more important than reaching a large audience. Strategy matters more than noise. Brands that understand their audience, create valuable content, stay consistent, and build trust are the ones that grow. Because being seen is important. But being remembered is everything." },
+    ]
+  },
 ]
 
 function LeadForm() {
@@ -157,24 +199,24 @@ function renderContent(content) {
   if (!content) return null
   if (typeof content === 'string') {
     return content.split('\n').map((line, i) => {
-      if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 36, marginBottom: 12, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 14 }}>{line.slice(3)}</h3>
+      if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{line.slice(3)}</strong></h3>
       if (line.trim() === '') return <div key={i} style={{ height: 6 }} />
       return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{line}</p>
     })
   }
   return content.map((block, i) => {
     if (block.type === 'h3') return (
-      <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 20, marginTop: 36, marginBottom: 12, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 14 }}>{block.text}</h3>
+      <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{block.text}</strong></h3>
     )
     if (block.type === 'intro') return (
-      <p key={i} style={{ color: '#333', fontSize: 16, lineHeight: 1.9, marginBottom: 20, fontWeight: 500, borderLeft: '3px solid #e5e5e5', paddingLeft: 16, fontStyle: 'italic' }}>{block.text}</p>
+      <p key={i} style={{ color: '#333', fontSize: 16, lineHeight: 1.9, marginBottom: 24, fontWeight: 500, borderLeft: '3px solid #e5e5e5', paddingLeft: 16, fontStyle: 'italic' }}>{block.text}</p>
     )
     if (block.type === 'closing') return (
-      <div key={i} style={{ background: '#F4A100', borderRadius: 8, padding: '20px 24px', marginTop: 36 }}>
-        <p style={{ color: '#111', fontSize: 15, lineHeight: 1.8, margin: 0, fontWeight: 500 }}>{block.text}</p>
+      <div key={i} style={{ background: '#F4A100', borderRadius: 8, padding: '20px 24px', marginTop: 40 }}>
+        <p style={{ color: '#111', fontSize: 15, lineHeight: 1.8, margin: 0, fontWeight: 600 }}>{block.text}</p>
       </div>
     )
-    return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{block.text}</p>
+    return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 14 }}>{block.text}</p>
   })
 }
 
@@ -220,7 +262,7 @@ export default function BlogPost() {
             <span style={{ background: '#F4A100', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
             <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
-          <h1 style={{ color: '#111', fontWeight: 900, fontSize: 30, lineHeight: 1.3, maxWidth: 720, marginBottom: 16 }}>{post.title}</h1>
+          <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 20 }}>
             <img src="/logo.png" alt="Clicksemurs" style={{ height: 22, width: 'auto' }} />
             <span style={{ color: '#777', fontSize: 12 }}>Clicksemurs Team</span>
