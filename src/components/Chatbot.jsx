@@ -52,7 +52,7 @@ function getBotReply(msg) {
     if (key.includes(k)) return BOT_RESPONSES[k]
   }
   return {
-    text: "Thanks for your message! Our team will get back to you shortly. You can also reach us at hello@clicksemurs.com or call +91 XXXXX XXXXX.",
+    text: "Thanks for your message! Our team will get back to you shortly. You can also reach us at clicksemurs@gmail.com or call +91 96503 03312 / +91 92175 94664.",
   }
 }
 

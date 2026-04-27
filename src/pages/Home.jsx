@@ -353,7 +353,7 @@ export default function Home() {
               </button>
             </form>
           )}
-          <p className="text-[#555] text-xs mt-4">hello@clicksemurs.com · www.clicksemurs.com</p>
+          <p className="text-[#555] text-xs mt-4">clicksemurs@gmail.com · www.clicksemurs.com</p>
         </div>
       </section>
     </div>

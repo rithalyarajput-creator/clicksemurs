@@ -18,9 +18,9 @@ const serviceOptions = [
 ]
 
 const DEFAULTS = {
-  email: 'hello@clicksemurs.com',
-  phone: '+91 XXXXX XXXXX',
-  whatsapp: '91XXXXXXXXXX',
+  email: 'clicksemurs@gmail.com',
+  phone: '+91 96503 03312 / +91 92175 94664',
+  whatsapp: '919650303312',
   address: 'India',
   maps_embed: '',
   maps_link: '',

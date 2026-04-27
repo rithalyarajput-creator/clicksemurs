@@ -24,9 +24,9 @@ const services = [
 ]
 
 const DEFAULTS = {
-  email: 'hello@clicksemurs.com',
-  phone: '+91 XXXXX XXXXX',
-  whatsapp: '91XXXXXXXXXX',
+  email: 'clicksemurs@gmail.com',
+  phone: '+91 96503 03312 / +91 92175 94664',
+  whatsapp: '919650303312',
   address: 'India',
   company_description: "We don't just run campaigns — we build digital ecosystems. From strategy to execution, we deliver measurable growth.",
   copyright_text: '© 2025 Clicksemurs. All Rights Reserved.',

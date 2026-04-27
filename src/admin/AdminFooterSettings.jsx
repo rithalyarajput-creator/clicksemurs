@@ -15,9 +15,9 @@ const SECTIONS = [
     title: 'Contact Details',
     icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
     fields: [
-      { key: 'email', label: 'Email Address', placeholder: 'hello@clicksemurs.com' },
-      { key: 'phone', label: 'Phone / Customer Support Number', placeholder: '+91 XXXXX XXXXX' },
-      { key: 'whatsapp', label: 'WhatsApp Number (with country code, no +)', placeholder: '919XXXXXXXXX' },
+      { key: 'email', label: 'Email Address', placeholder: 'clicksemurs@gmail.com' },
+      { key: 'phone', label: 'Phone / Customer Support Number', placeholder: '+91 96503 03312 / +91 92175 94664' },
+      { key: 'whatsapp', label: 'WhatsApp Number (with country code, no +)', placeholder: '919650303312' },
       { key: 'address', label: 'Full Office Address', placeholder: 'B-76, 2nd Floor, Wazirpur Industrial Area, Delhi 110052' },
       { key: 'support_hours', label: 'Support Hours', placeholder: 'Monday - Saturday, 10 AM to 7 PM' },
       { key: 'maps_link', label: 'Google Maps Link (View on Maps button)', placeholder: 'https://maps.google.com/?q=...' },
