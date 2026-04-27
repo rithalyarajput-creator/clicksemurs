@@ -9,7 +9,7 @@ const staticPosts = [
     title: '10 Proven SEO Strategies That Will Dominate Google in 2025',
     category: 'SEO',
     created_at: '2025-01-15',
-    thumbnail: '/blog2.png',
+    thumbnail: '/blog1.png',
     content: [
       { type: 'intro', text: "In today's hyper-competitive digital landscape, ranking on the first page of Google is no longer optional — it's survival. With over 8.5 billion searches happening every single day, businesses that master SEO enjoy a steady stream of high-intent, free traffic while competitors pay heavily for every click. This guide breaks down 10 proven strategies our team at Clicksemurs has used to help brands across India achieve top rankings, drive qualified traffic, and grow revenue organically." },
 
@@ -54,6 +54,7 @@ const staticPosts = [
     category: 'Paid Ads',
     created_at: '2025-01-08',
     thumbnail: '/blog2.png',
+
     content: [
       { type: 'intro', text: "Meta Ads — spanning Facebook and Instagram — remain the most powerful paid advertising platform for reaching Indian consumers. With over 500 million active Facebook users and 230 million Instagram users in India, no other platform offers the same combination of scale, targeting precision, and creative flexibility. Whether you run a local business, an e-commerce brand, or a B2B company, Meta Ads can drive measurable growth when done right. This comprehensive guide walks you through everything — from campaign structure to scaling strategies — based on our experience managing crores in ad spend for Indian businesses." },
 
@@ -92,6 +93,7 @@ const staticPosts = [
     category: 'Social Media',
     created_at: '2025-01-22',
     thumbnail: '/blog3.png',
+
     content: [
       { type: 'intro', text: "The digital world moves faster than ever. Every day, millions of posts, videos, ads, and campaigns compete for attention across platforms like Instagram, Facebook, LinkedIn, and X (formerly Twitter). In this crowded space, reaching people is no longer the challenge. Reaching the right people is. Brands often focus on numbers like views, followers, and clicks, but real growth does not come from attention alone. Growth comes from connection. And connection begins when your message reaches the people who truly need what you offer. The real power of digital marketing is not visibility. It is relevance." },
 
