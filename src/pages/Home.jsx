@@ -197,40 +197,77 @@ export default function Home() {
       </section>
 
       {/* ── Why Us ── */}
-      <section className="bg-[#111111] py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="mb-12">
-            <span className="section-label">Why Clicksemurs</span>
-            <h2 className="text-3xl md:text-4xl font-black text-white">
-              7 Reasons Businesses Choose Us
+      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)', padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Decorative background elements */}
+        <div style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -60, left: -60, width: 260, height: 260, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
+          {/* Header */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: 56 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+              <div style={{ width: 36, height: 3, background: '#F4A100', borderRadius: 2 }} />
+              <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase' }}>Why Clicksemurs</span>
+            </div>
+            <h2 style={{ color: '#ffffff', fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 900, lineHeight: 1.1, marginBottom: 12 }}>
+              7 Reasons Businesses<br />
+              <span style={{ color: '#F4A100' }}>Choose Us</span>
             </h2>
-            <p className="text-[#777777] mt-3 max-w-xl">And why they stay — 98% client retention rate speaks for itself.</p>
+            <p style={{ color: '#6b7280', fontSize: 15, maxWidth: 480 }}>And why they stay — 98% client retention rate speaks for itself.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          {/* Cards Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
             {whyUs.slice(0, 6).map((item, i) => {
               const Icon = item.icon
+              const accent = i % 3 === 0 ? '#F4A100' : i % 3 === 1 ? '#3b82f6' : '#10b981'
               return (
-                <div key={i} className="bg-[#1E1E1E] border border-[#2E2E2E] p-7 hover:border-[#555] transition-all duration-200">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 border border-[#2E2E2E] flex items-center justify-center">
-                      <Icon size={14} color="white" />
-                    </div>
-                    <span className="text-[#777777] text-xs font-mono">0{i + 1}</span>
+                <div key={i} style={{
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  padding: '32px 28px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  cursor: 'default',
+                  transition: 'background 0.2s'
+                }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                >
+                  {/* Number watermark */}
+                  <div style={{ position: 'absolute', top: 16, right: 20, fontSize: 52, fontWeight: 900, color: 'rgba(255,255,255,0.04)', lineHeight: 1, fontFamily: 'monospace', userSelect: 'none' }}>
+                    {String(i + 1).padStart(2, '0')}
                   </div>
-                  <h3 className="text-white font-bold mb-2">{item.title}</h3>
-                  <p className="text-[#777777] text-sm leading-relaxed">{item.desc}</p>
+                  {/* Top accent line */}
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: accent, opacity: 0.7 }} />
+                  {/* Icon */}
+                  <div style={{ width: 46, height: 46, background: `${accent}18`, border: `1px solid ${accent}30`, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: accent }}>
+                    <Icon size={18} />
+                  </div>
+                  <h3 style={{ color: '#ffffff', fontWeight: 800, fontSize: 16, marginBottom: 10 }}>{item.title}</h3>
+                  <p style={{ color: '#6b7280', fontSize: 13.5, lineHeight: 1.7 }}>{item.desc}</p>
                 </div>
               )
             })}
           </div>
-          {/* 7th reason — wide */}
-          <div className="mt-5 bg-[#1E1E1E] border border-[#2E2E2E] p-7 flex flex-col md:flex-row items-center gap-6 hover:border-[#555] transition-all duration-200">
-            <div className="w-8 h-8 border border-[#2E2E2E] flex items-center justify-center flex-shrink-0">
-              <FaHeart size={14} color="white" />
+
+          {/* 7th reason — full width highlight */}
+          <div style={{
+            marginTop: 2,
+            background: 'linear-gradient(90deg, rgba(244,161,0,0.12) 0%, rgba(244,161,0,0.04) 100%)',
+            border: '1px solid rgba(244,161,0,0.25)',
+            padding: '28px 32px',
+            display: 'flex', alignItems: 'center', gap: 24
+          }}>
+            <div style={{ width: 52, height: 52, background: 'rgba(244,161,0,0.15)', border: '1px solid rgba(244,161,0,0.3)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: '#F4A100' }}>
+              <FaHeart size={20} />
             </div>
-            <div>
-              <h3 className="text-white font-bold mb-1">{whyUs[6].title}</h3>
-              <p className="text-[#777777] text-sm">{whyUs[6].desc}</p>
+            <div style={{ flex: 1 }}>
+              <h3 style={{ color: '#ffffff', fontWeight: 800, fontSize: 17, marginBottom: 4 }}>{whyUs[6].title}</h3>
+              <p style={{ color: '#9ca3af', fontSize: 14 }}>{whyUs[6].desc}</p>
+            </div>
+            <div style={{ flexShrink: 0, background: '#F4A100', color: '#111', fontSize: 12, fontWeight: 800, padding: '8px 18px', borderRadius: 6, letterSpacing: '0.05em' }}>
+              #7 REASON
             </div>
           </div>
         </div>
