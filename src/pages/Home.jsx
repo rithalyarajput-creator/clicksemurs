@@ -63,6 +63,41 @@ function StatCard({ value, label }) {
   )
 }
 
+const PILLS = [
+  { label: 'SEO', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
+  { label: 'Google Ads', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> },
+  { label: 'Social Media', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },
+  { label: 'Web Design', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> },
+  { label: 'Branding', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> },
+  { label: 'Influencer', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+]
+
+function HeroPills() {
+  const [active, setActive] = useState(0)
+  return (
+    <div className="hero-pills-col" style={{ display: 'flex', flexDirection: 'column', gap: 10, flexShrink: 0 }}>
+      {PILLS.map((pill, i) => {
+        const isActive = active === i
+        return (
+          <button key={pill.label} onClick={() => setActive(i)} style={{
+            display: 'flex', alignItems: 'center', gap: 14,
+            padding: '13px 24px', borderRadius: 100, minWidth: 230,
+            transform: `translateX(${i % 2 === 0 ? '0px' : '20px'})`,
+            background: isActive ? 'linear-gradient(135deg, #F4A100 0%, #d48e00 100%)' : 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            border: isActive ? '1px solid rgba(255,255,255,0.25)' : '1px solid rgba(255,255,255,0.07)',
+            boxShadow: isActive ? '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.4) inset, 0 8px 28px rgba(244,161,0,0.35)' : '0 1px 0 rgba(255,255,255,0.05) inset, 0 -2px 0 rgba(0,0,0,0.5) inset, 0 4px 16px rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(12px)', cursor: 'pointer',
+            transition: 'all 0.22s cubic-bezier(0.4,0,0.2,1)',
+          }}>
+            <span style={{ color: isActive ? '#111' : '#F4A100', flexShrink: 0 }}>{pill.icon}</span>
+            <span style={{ color: isActive ? '#111' : '#fff', fontWeight: 700, fontSize: 15 }}>{pill.label}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 export default function Home() {
   const [email, setEmail] = useState('')
   const [emailSent, setEmailSent] = useState(false)
@@ -131,53 +166,14 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — 3D floating pills */}
-            <div className="hero-pills-col" style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0 }}>
-              {[
-                { label: 'SEO', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>, active: true },
-                { label: 'Google Ads', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>, active: false },
-                { label: 'Social Media', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>, active: false },
-                { label: 'Web Design', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>, active: false },
-                { label: 'Branding', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>, active: false },
-                { label: 'Influencer', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, active: false },
-              ].map((pill, i) => (
-                <div key={pill.label} style={{
-                  display: 'flex', alignItems: 'center', gap: 14,
-                  padding: '13px 24px',
-                  borderRadius: 100,
-                  background: pill.active
-                    ? 'linear-gradient(135deg, #F4A100 0%, #d48e00 100%)'
-                    : 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)',
-                  border: pill.active
-                    ? '1px solid rgba(255,255,255,0.2)'
-                    : '1px solid rgba(255,255,255,0.08)',
-                  boxShadow: pill.active
-                    ? '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.4) inset, 0 8px 24px rgba(244,161,0,0.3)'
-                    : '0 1px 0 rgba(255,255,255,0.06) inset, 0 -2px 0 rgba(0,0,0,0.4) inset, 0 4px 16px rgba(0,0,0,0.4)',
-                  backdropFilter: 'blur(12px)',
-                  minWidth: 220,
-                  transform: `translateX(${i % 2 === 0 ? '0px' : '16px'})`,
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  cursor: 'default',
-                  animation: `floatPill${i} ${3 + i * 0.4}s ease-in-out infinite alternate`,
-                }}>
-                  <span style={{ color: pill.active ? '#111' : '#F4A100', opacity: pill.active ? 1 : 0.9, flexShrink: 0 }}>{pill.icon}</span>
-                  <span style={{ color: pill.active ? '#111' : '#fff', fontWeight: 700, fontSize: 15, letterSpacing: '0.01em' }}>{pill.label}</span>
-                </div>
-              ))}
-            </div>
+            {/* Right — 3D clickable pills */}
+            <HeroPills />
           </div>
         </div>
 
         <style>{`
           .hero-pills-col { display: flex !important; }
           @media (max-width: 900px) { .hero-pills-col { display: none !important; } }
-          @keyframes floatPill0 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-8px); } }
-          @keyframes floatPill1 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-6px); } }
-          @keyframes floatPill2 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-10px); } }
-          @keyframes floatPill3 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-7px); } }
-          @keyframes floatPill4 { from { transform: translateX(0px) translateY(0px); } to { transform: translateX(0px) translateY(-9px); } }
-          @keyframes floatPill5 { from { transform: translateX(16px) translateY(0px); } to { transform: translateX(16px) translateY(-5px); } }
         `}</style>
       </section>
 
@@ -276,83 +272,74 @@ export default function Home() {
       </section>
 
       {/* ── Orbit / Integrations ── */}
-      <section style={{ background: '#0a0a0a', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.2)', borderRadius: 100, padding: '4px 14px', marginBottom: 16 }}>
+      <section style={{ background: '#f8fafc', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 50%, rgba(244,161,0,0.04) 0%, transparent 60%)', pointerEvents: 'none' }} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.2)', borderRadius: 100, padding: '4px 16px', marginBottom: 16 }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
             <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Platforms We Work With</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#fff', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#0f172a', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
             One Agency. <span style={{ color: '#F4A100' }}>Every Platform.</span>
           </h2>
-          <p style={{ color: '#555', fontSize: 14, textAlign: 'center', marginBottom: 56, maxWidth: 400 }}>We connect your brand across all major digital platforms — seamlessly.</p>
+          <p style={{ color: '#64748b', fontSize: 15, textAlign: 'center', marginBottom: 56, maxWidth: 420 }}>We connect your brand across all major digital platforms — seamlessly.</p>
 
-          {/* Orbit animation */}
-          <div style={{ position: 'relative', width: 420, height: 420, maxWidth: '90vw' }}>
+          {/* Orbit */}
+          <div style={{ position: 'relative', width: 480, height: 480, maxWidth: '92vw' }}>
             <style>{`
-              @keyframes orbit1 { from { transform: rotate(0deg) translateX(140px) rotate(0deg); } to { transform: rotate(360deg) translateX(140px) rotate(-360deg); } }
-              @keyframes orbit2 { from { transform: rotate(45deg) translateX(140px) rotate(-45deg); } to { transform: rotate(405deg) translateX(140px) rotate(-405deg); } }
-              @keyframes orbit3 { from { transform: rotate(90deg) translateX(195px) rotate(-90deg); } to { transform: rotate(450deg) translateX(195px) rotate(-450deg); } }
-              @keyframes orbit4 { from { transform: rotate(180deg) translateX(195px) rotate(-180deg); } to { transform: rotate(540deg) translateX(195px) rotate(-540deg); } }
-              @keyframes orbit5 { from { transform: rotate(270deg) translateX(195px) rotate(-270deg); } to { transform: rotate(630deg) translateX(195px) rotate(-630deg); } }
-              @keyframes orbit6 { from { transform: rotate(135deg) translateX(195px) rotate(-135deg); } to { transform: rotate(495deg) translateX(195px) rotate(-495deg); } }
-              @keyframes orbit7 { from { transform: rotate(315deg) translateX(140px) rotate(-315deg); } to { transform: rotate(675deg) translateX(140px) rotate(-675deg); } }
-              @keyframes orbit8 { from { transform: rotate(225deg) translateX(140px) rotate(-225deg); } to { transform: rotate(585deg) translateX(140px) rotate(-585deg); } }
-              @keyframes pulseCenter { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.3),0 0 40px rgba(244,161,0,0.1)} 50%{box-shadow:0 0 0 20px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.2)} }
+              @keyframes spinCW  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes spinCCW { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes pulseCtr{ 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.25),0 0 32px rgba(244,161,0,0.08)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 56px rgba(244,161,0,0.18)} }
             `}</style>
 
-            {/* Orbit rings */}
-            <div style={{ position: 'absolute', inset: '0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ position: 'absolute', width: 280, height: 280, borderRadius: '50%', border: '1px dashed rgba(244,161,0,0.15)' }} />
-              <div style={{ position: 'absolute', width: 390, height: 390, borderRadius: '50%', border: '1px dashed rgba(255,255,255,0.06)' }} />
-              <div style={{ position: 'absolute', width: 160, height: 160, borderRadius: '50%', border: '1px solid rgba(244,161,0,0.1)' }} />
+            {/* Rings */}
+            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center' }}>
+              <div style={{ position:'absolute',width:180,height:180,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.25)' }} />
+              <div style={{ position:'absolute',width:310,height:310,borderRadius:'50%',border:'1.5px dashed rgba(15,23,42,0.12)' }} />
+              <div style={{ position:'absolute',width:440,height:440,borderRadius:'50%',border:'1.5px dashed rgba(15,23,42,0.07)' }} />
             </div>
 
             {/* Center */}
-            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 110, height: 110, borderRadius: '50%', background: 'linear-gradient(135deg, #1a1a1a, #111)', border: '1px solid rgba(244,161,0,0.3)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, animation: 'pulseCenter 3s ease-in-out infinite', zIndex: 10 }}>
-              <span style={{ fontSize: 24 }}>🚀</span>
-              <span style={{ color: '#F4A100', fontSize: 9, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center', lineHeight: 1.2 }}>Digital<br/>Marketing</span>
+            <div style={{ position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:120,height:120,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f1f5f9 100%)',border:'2px solid rgba(244,161,0,0.3)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:6,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 32px rgba(0,0,0,0.1)' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#F4A100" strokeWidth="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="#F4A100" strokeWidth="1.5"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#F4A100" strokeWidth="1.5"/></svg>
+              <span style={{ color:'#F4A100',fontSize:8,fontWeight:900,letterSpacing:'0.1em',textTransform:'uppercase',textAlign:'center',lineHeight:1.3 }}>Digital<br/>Marketing</span>
             </div>
 
-            {/* Inner orbit icons — 4 icons */}
-            {[
-              { icon: '📘', label: 'Facebook', color: '#1877F2', anim: 'orbit1', dur: '8s' },
-              { icon: '📸', label: 'Instagram', color: '#E1306C', anim: 'orbit2', dur: '8s' },
-              { icon: '💼', label: 'LinkedIn', color: '#0A66C2', anim: 'orbit7', dur: '8s' },
-              { icon: '▶️', label: 'YouTube', color: '#FF0000', anim: 'orbit8', dur: '8s' },
-            ].map(({ icon, label, color, anim, dur }) => (
-              <div key={label} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0 }}>
-                <div style={{ animation: `${anim} ${dur} linear infinite`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: '50%', background: `${color}22`, border: `1.5px solid ${color}55`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', boxShadow: `0 4px 16px ${color}33`, cursor: 'default' }}>
-                    <span style={{ fontSize: 20 }}>{icon}</span>
-                  </div>
+            {/* Inner ring — 4 icons, clockwise 10s */}
+            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',animation:'spinCW 10s linear infinite' }}>
+              {[
+                { bg:'#1877F2', label:'FB', svg:<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="white"/> },
+                { bg:'#E1306C', label:'IG', svg:<><rect x="2" y="2" width="20" height="20" rx="5" fill="white" fillOpacity="0"/><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="2"/><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></> },
+                { bg:'#0A66C2', label:'LI', svg:<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" fill="white"/><rect x="2" y="9" width="4" height="12" fill="white"/><circle cx="4" cy="4" r="2" fill="white"/></> },
+                { bg:'#FF0000', label:'YT', svg:<><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="white" fillOpacity="0.9"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/></> },
+              ].map((ic, idx) => (
+                <div key={ic.label} style={{ position:'absolute',width:50,height:50,borderRadius:'50%',background:ic.bg,display:'flex',alignItems:'center',justifyContent:'center',boxShadow:`0 4px 20px ${ic.bg}55`,transform:`rotate(${idx*90}deg) translateX(90px) rotate(${idx*-90}deg)`,animation:`spinCCW 10s linear infinite` }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24">{ic.svg}</svg>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
 
-            {/* Outer orbit icons — 4 icons */}
-            {[
-              { icon: '🔍', label: 'Google Ads', color: '#F4A100', anim: 'orbit3', dur: '12s' },
-              { icon: '🌐', label: 'WordPress', color: '#21759b', anim: 'orbit4', dur: '12s' },
-              { icon: '🛒', label: 'Shopify', color: '#96bf48', anim: 'orbit5', dur: '12s' },
-              { icon: '✉️', label: 'Email', color: '#a855f7', anim: 'orbit6', dur: '12s' },
-            ].map(({ icon, label, color, anim, dur }) => (
-              <div key={label} style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0 }}>
-                <div style={{ animation: `${anim} ${dur} linear infinite`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
-                  <div style={{ width: 52, height: 52, borderRadius: '50%', background: `${color}18`, border: `1.5px solid ${color}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(8px)', boxShadow: `0 4px 20px ${color}30` }}>
-                    <span style={{ fontSize: 22 }}>{icon}</span>
-                  </div>
-                  <span style={{ color: '#555', fontSize: 9, fontWeight: 600, whiteSpace: 'nowrap', marginTop: 2 }}>{label}</span>
+            {/* Outer ring — 6 icons, counter-clockwise 16s */}
+            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',animation:'spinCCW 16s linear infinite' }}>
+              {[
+                { bg:'#4285F4', label:'G', svg:<><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="white"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="white" fillOpacity="0.85"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="white" fillOpacity="0.7"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="white" fillOpacity="0.9"/></> },
+                { bg:'#21759B', label:'WP', svg:<><circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" fill="none"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" fill="white"/></> },
+                { bg:'#96BF48', label:'SP', svg:<><path d="M9 22C9.55 22 10 21.55 10 21V3C10 2.45 9.55 2 9 2H5C4.45 2 4 2.45 4 3V21C4 21.55 4.45 22 5 22H9Z" fill="white"/><path d="M19 22C19.55 22 20 21.55 20 21V8C20 7.45 19.55 7 19 7H15C14.45 7 14 7.45 14 8V21C14 21.55 14.45 22 15 22H19Z" fill="white"/></> },
+                { bg:'#F4A100', label:'AD', svg:<><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/></> },
+                { bg:'#a855f7', label:'EM', svg:<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" strokeWidth="1.8" fill="none"/><polyline points="22,6 12,13 2,6" stroke="white" strokeWidth="1.8" fill="none"/></> },
+                { bg:'#0f172a', label:'SE', svg:<><circle cx="11" cy="11" r="7" stroke="white" strokeWidth="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></> },
+              ].map((ic, idx) => (
+                <div key={ic.label} style={{ position:'absolute',width:56,height:56,borderRadius:'50%',background:ic.bg,display:'flex',alignItems:'center',justifyContent:'center',boxShadow:`0 6px 24px ${ic.bg}44`,transform:`rotate(${idx*60}deg) translateX(155px) rotate(${idx*-60}deg)`,animation:`spinCW 16s linear infinite` }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24">{ic.svg}</svg>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Platform tags below */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 48 }}>
-            {['Instagram','Facebook','LinkedIn','YouTube','Google Ads','WordPress','Shopify','Email Marketing','SEO','Analytics'].map(p => (
-              <span key={p} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 100, padding: '6px 16px', color: '#666', fontSize: 12, fontWeight: 600 }}>{p}</span>
+          {/* Platform tags */}
+          <div style={{ display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center',marginTop:48 }}>
+            {['Instagram','Facebook','LinkedIn','YouTube','Google Ads','WordPress','Shopify','Email','SEO','Analytics'].map(p => (
+              <span key={p} style={{ background:'#fff',border:'1px solid #e2e8f0',borderRadius:100,padding:'6px 16px',color:'#475569',fontSize:12,fontWeight:600,boxShadow:'0 1px 4px rgba(0,0,0,0.05)' }}>{p}</span>
             ))}
           </div>
         </div>
@@ -413,12 +400,12 @@ export default function Home() {
             <span style={{ display: 'block', color: '#777', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</span>
             <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 900, color: '#111' }}>What Our Clients Say</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 28, alignItems: 'stretch' }}>
             {tVisible.map((t, i) => (
-              <div key={t.id || i} style={{ background: '#fff', border: '1px solid #e2e8f0', padding: 'clamp(20px,3vw,32px)', display: 'flex', flexDirection: 'column', borderRadius: 12 }}>
+              <div key={t.id || i} style={{ background: '#fff', border: '1px solid #e2e8f0', padding: 'clamp(20px,3vw,32px)', display: 'flex', flexDirection: 'column', borderRadius: 12, height: '100%', boxSizing: 'border-box' }}>
                 <FaQuoteLeft size={22} color="#e2e8f0" style={{ marginBottom: 18, flexShrink: 0 }} />
                 <p style={{ color: '#4A4A4A', fontSize: 14, lineHeight: 1.75, flex: 1, marginBottom: 24 }}>"{t.quote || t.review}"</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                   <div>
                     <div style={{ color: '#111', fontWeight: 700, fontSize: 14 }}>{t.client_name || t.name}</div>
                     <div style={{ color: '#777', fontSize: 12, marginTop: 2 }}>{t.company}</div>

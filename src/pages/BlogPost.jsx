@@ -363,16 +363,23 @@ export default function BlogPost() {
         </div>
       </div>
 
+      <style>{`
+        @media (max-width: 768px) {
+          .blogpost-grid { grid-template-columns: 1fr !important; }
+          .blogpost-sidebar { display: none !important; }
+          .blogpost-content-pad { padding: 24px 18px !important; }
+        }
+      `}</style>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 28, alignItems: 'start' }}>
+        <div className="blogpost-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 28, alignItems: 'start' }}>
           <div>
-            <div style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
+            <div className="blogpost-content-pad" style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
               <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', maxHeight: 420, objectFit: 'cover', borderRadius: 8, display: 'block', marginBottom: 32 }} />
               {renderContent(post.content)}
               <FaqAccordion faqs={post.faqs} />
             </div>
           </div>
-          <div style={{ position: 'sticky', top: 80 }}>
+          <div className="blogpost-sidebar" style={{ position: 'sticky', top: 80 }}>
             <LeadForm />
           </div>
         </div>
