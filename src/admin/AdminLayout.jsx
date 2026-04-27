@@ -37,6 +37,7 @@ const nav = [
       { label: 'About Page', path: '/admin/about' },
       { label: 'Footer Settings', path: '/admin/footer' },
       { label: 'Stats & Numbers', path: '/admin/stats' },
+      { label: 'Projects Gallery', path: '/admin/projects' },
     ]
   },
   {

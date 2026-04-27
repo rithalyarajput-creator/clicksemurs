@@ -49,20 +49,21 @@ const megaMenu = [
   },
 ]
 
-const navLinks = [
-  { to: '/portfolio', label: 'Work' },
-  { to: '/about', label: 'About' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
+const portfolioMenu = [
+  { label: 'Case Studies', to: '/portfolio', desc: 'Real results across 50+ industries' },
+  { label: 'Projects Gallery', to: '/projects', desc: 'Websites, social media, branding & more' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
+  const [portfolioOpen, setPortfolioOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const megaRef = useRef(null)
+  const portfolioRef = useRef(null)
   const timeoutRef = useRef(null)
+  const portfolioTimeoutRef = useRef(null)
 
   const isLightPage = ['/about', '/services', '/portfolio', '/industries', '/blog', '/pricing', '/contact'].some(p =>
     location.pathname === p || location.pathname.startsWith(p + '/')
@@ -82,14 +83,10 @@ export default function Navbar() {
     ? 'bg-[#0A0A0A]'
     : 'bg-transparent'
 
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutRef.current)
-    setMegaOpen(true)
-  }
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setMegaOpen(false), 150)
-  }
+  const handleMouseEnter = () => { clearTimeout(timeoutRef.current); setMegaOpen(true) }
+  const handleMouseLeave = () => { timeoutRef.current = setTimeout(() => setMegaOpen(false), 150) }
+  const handlePortfolioEnter = () => { clearTimeout(portfolioTimeoutRef.current); setPortfolioOpen(true) }
+  const handlePortfolioLeave = () => { portfolioTimeoutRef.current = setTimeout(() => setPortfolioOpen(false), 150) }
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg} border-b border-[#2E2E2E]`}>
@@ -154,15 +151,28 @@ export default function Navbar() {
               )}
             </div>
 
-            {navLinks.map(link => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `text-sm font-medium tracking-wide transition-colors duration-200 ${isActive ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`
-                }
-              >
+            {/* Portfolio dropdown */}
+            <div className="relative" onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave} ref={portfolioRef}>
+              <button className={`flex items-center gap-1 text-sm font-medium tracking-wide transition-colors duration-200 ${portfolioOpen || location.pathname.startsWith('/portfolio') || location.pathname.startsWith('/projects') ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`}>
+                Portfolio <FaChevronDown size={10} className={`transition-transform duration-200 ${portfolioOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {portfolioOpen && (
+                <div className="absolute top-full left-0 mt-2 bg-[#111111] border border-[#2E2E2E] shadow-2xl"
+                  style={{ minWidth: 240, padding: '12px 0' }}
+                  onMouseEnter={handlePortfolioEnter} onMouseLeave={handlePortfolioLeave}>
+                  {portfolioMenu.map(item => (
+                    <Link key={item.to} to={item.to} className="block px-5 py-3 hover:bg-[#1a1a1a] transition-colors">
+                      <div className="text-white text-sm font-semibold">{item.label}</div>
+                      <div className="text-[#777] text-xs mt-0.5">{item.desc}</div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
+              <NavLink key={link.to} to={link.to}
+                className={({ isActive }) => `text-sm font-medium tracking-wide transition-colors duration-200 ${isActive ? 'text-white' : 'text-[#AAAAAA] hover:text-white'}`}>
                 {link.label}
               </NavLink>
             ))}
@@ -202,15 +212,15 @@ export default function Navbar() {
               </div>
             ))}
             <div className="border-t border-[#2E2E2E] pt-3 mt-1">
-              {navLinks.map(link => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) => `block text-sm font-medium py-2 ${isActive ? 'text-white' : 'text-[#AAAAAA]'}`}
-                >
-                  {link.label}
-                </NavLink>
+              <div className="text-[#777] text-xs uppercase tracking-widest font-bold mb-2">Portfolio</div>
+              {portfolioMenu.map(item => (
+                <NavLink key={item.to} to={item.to} className={({ isActive }) => `block text-sm font-medium py-2 pl-3 ${isActive ? 'text-white' : 'text-[#AAAAAA]'}`}>{item.label}</NavLink>
               ))}
+              <div className="border-t border-[#2E2E2E] mt-2 pt-2">
+                {[{ to: '/about', label: 'About' }, { to: '/blog', label: 'Blog' }, { to: '/contact', label: 'Contact' }].map(link => (
+                  <NavLink key={link.to} to={link.to} className={({ isActive }) => `block text-sm font-medium py-2 ${isActive ? 'text-white' : 'text-[#AAAAAA]'}`}>{link.label}</NavLink>
+                ))}
+              </div>
             </div>
             <Link to="/contact" className="btn-primary text-xs tracking-widest uppercase mt-2 w-fit">
               Free Audit

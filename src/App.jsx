@@ -37,6 +37,8 @@ import AdminMediaLibrary from './admin/AdminMediaLibrary'
 import AdminAuthors from './admin/AdminAuthors'
 import AdminCategories from './admin/AdminCategories'
 import AdminAbout from './admin/AdminAbout'
+import AdminProjects from './admin/AdminProjects'
+import Projects from './pages/Projects'
 
 function PublicLayout({ children }) {
   return (
@@ -79,6 +81,7 @@ export default function App() {
         <Route path="/admin/authors" element={<AdminGuard><AdminAuthors /></AdminGuard>} />
         <Route path="/admin/categories" element={<AdminGuard><AdminCategories /></AdminGuard>} />
         <Route path="/admin/about" element={<AdminGuard><AdminAbout /></AdminGuard>} />
+        <Route path="/admin/projects" element={<AdminGuard><AdminProjects /></AdminGuard>} />
 
         {/* Public Routes */}
         <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
@@ -86,6 +89,7 @@ export default function App() {
         <Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
         <Route path="/services/:slug" element={<PublicLayout><ServiceDetail /></PublicLayout>} />
         <Route path="/portfolio" element={<PublicLayout><Portfolio /></PublicLayout>} />
+        <Route path="/projects" element={<PublicLayout><Projects /></PublicLayout>} />
         <Route path="/industries" element={<PublicLayout><Industries /></PublicLayout>} />
         <Route path="/blog" element={<PublicLayout><Blog /></PublicLayout>} />
         <Route path="/blog/:slug" element={<PublicLayout><BlogPost /></PublicLayout>} />
