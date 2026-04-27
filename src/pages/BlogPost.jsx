@@ -274,13 +274,10 @@ export default function BlogPost() {
             <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
           <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 24 }}>
             <img src="/logo.png" alt="Clicksemurs" style={{ height: 22, width: 'auto' }} />
             <span style={{ color: '#777', fontSize: 12 }}>Clicksemurs Team</span>
           </div>
-        </div>
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-          <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', height: 340, objectFit: 'cover', borderRadius: '8px 8px 0 0', display: 'block' }} />
         </div>
       </div>
 
@@ -288,6 +285,7 @@ export default function BlogPost() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 28, alignItems: 'start' }}>
           <div>
             <div style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
+              <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', maxHeight: 420, objectFit: 'cover', borderRadius: 8, display: 'block', marginBottom: 32 }} />
               {renderContent(post.content)}
             </div>
           </div>
