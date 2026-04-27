@@ -257,47 +257,33 @@ export default function BlogPost() {
   useEffect(() => {
     const staticMatch = staticPosts.find(p => p.slug === slug)
 
+    // Similar articles: always use static posts (correct images guaranteed)
+    setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
+
     supabase.from('blogs').select('*').eq('slug', slug).single()
       .then(({ data }) => {
         if (data && staticMatch) {
-          // Known static blog -- use Supabase for title/thumbnail/meta only
-          // but keep static structured content (Supabase may have garbage HTML)
-          const hasRichContent = data.content && data.content.length > 500 && !Array.isArray(data.content)
+          // Known static blog -- Supabase overrides title/thumbnail/category/faqs
+          // Use Supabase content only if it has real HTML content (admin wrote something)
+          const hasRichContent = data.content && data.content.trim().length > 100
           setPost({
             ...staticMatch,
             title: data.title || staticMatch.title,
             thumbnail: data.thumbnail || staticMatch.thumbnail,
             category: data.category || staticMatch.category,
-            meta_title: data.meta_title || '',
-            meta_description: data.meta_description || '',
+            faqs: data.faqs || [],
             content: hasRichContent ? data.content : staticMatch.content,
           })
         } else if (data && !staticMatch) {
-          // Admin-created blog not in static list -- use Supabase fully
+          // Admin-created blog -- use Supabase fully
           const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
-          setPost({ ...data, thumbnail: data.thumbnail || imgs[0] })
+          setPost({ ...data, thumbnail: data.thumbnail || imgs[0], faqs: data.faqs || [] })
         } else if (staticMatch) {
           setPost(staticMatch)
         }
       })
       .catch(() => {
         if (staticMatch) setPost(staticMatch)
-      })
-
-    supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at').eq('is_published', true).neq('slug', slug).limit(3)
-      .then(({ data }) => {
-        if (data && data.length) {
-          setSimilarBlogs(data.map((b) => ({
-            ...b,
-            // Always use static thumbnail if slug matches -- Supabase may have wrong URL
-            thumbnail: staticPosts.find(s => s.slug === b.slug)?.thumbnail || b.thumbnail || '/blog1.png'
-          })))
-        } else {
-          setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
-        }
-      })
-      .catch(() => {
-        setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
       })
   }, [slug])
 

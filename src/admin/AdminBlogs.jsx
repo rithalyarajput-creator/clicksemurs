@@ -62,10 +62,22 @@ function RichEditor({ value, onChange }) {
         </button>
       </div>
       {/* Editable area */}
+      <style>{`
+        .rich-editor h1{font-size:26px;font-weight:900;color:#0f172a;margin:20px 0 10px;border-left:4px solid #F4A100;padding-left:12px}
+        .rich-editor h2{font-size:22px;font-weight:800;color:#0f172a;margin:18px 0 8px;border-left:4px solid #F4A100;padding-left:12px}
+        .rich-editor h3{font-size:18px;font-weight:700;color:#0f172a;margin:16px 0 8px;border-left:4px solid #F4A100;padding-left:12px}
+        .rich-editor h4{font-size:15px;font-weight:700;color:#0f172a;margin:14px 0 6px}
+        .rich-editor p{color:#334155;font-size:14px;line-height:1.75;margin-bottom:10px}
+        .rich-editor ul,.rich-editor ol{padding-left:22px;color:#334155;font-size:14px;margin-bottom:10px}
+        .rich-editor li{margin-bottom:4px}
+        .rich-editor strong,.rich-editor b{font-weight:700;color:#0f172a}
+        .rich-editor blockquote{border-left:3px solid #F4A100;padding-left:12px;color:#64748b;font-style:italic;margin:12px 0}
+      `}</style>
       <div
         ref={ref}
         contentEditable
         suppressContentEditableWarning
+        className="rich-editor"
         onInput={e => onChange(e.currentTarget.innerHTML)}
         dangerouslySetInnerHTML={{ __html: value }}
         style={{
@@ -120,6 +132,7 @@ export default function AdminBlogs({ startNew = false }) {
       meta_description: form.meta_description,
       focus_keyword: form.focus_keyword,
       tags: form.tags,
+      faqs: form.faqs.length > 0 ? form.faqs : null,
       is_published: publish,
     }
     if (editId) {
