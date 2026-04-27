@@ -197,13 +197,25 @@ function LeadForm() {
 
 function renderContent(content) {
   if (!content) return null
+  // HTML string from rich editor -- render as HTML
   if (typeof content === 'string') {
+    if (content.trim().startsWith('<') || content.includes('<p>') || content.includes('<h')) {
+      return (
+        <div
+          className="blog-content"
+          style={{ color: '#444', fontSize: 15, lineHeight: 1.85 }}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )
+    }
+    // Plain text fallback
     return content.split('\n').map((line, i) => {
       if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{line.slice(3)}</strong></h3>
       if (line.trim() === '') return <div key={i} style={{ height: 6 }} />
       return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{line}</p>
     })
   }
+  // Static array format
   return content.map((block, i) => {
     if (block.type === 'h3') return (
       <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{block.text}</strong></h3>
@@ -218,6 +230,21 @@ function renderContent(content) {
     )
     return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 14 }}>{block.text}</p>
   })
+}
+
+function renderFaqs(faqs) {
+  if (!faqs || !faqs.length) return null
+  return (
+    <div style={{ marginTop: 48 }}>
+      <h3 style={{ color: '#111', fontWeight: 900, fontSize: 20, marginBottom: 20, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}>Frequently Asked Questions</h3>
+      {faqs.map((faq, i) => (
+        <div key={i} style={{ borderBottom: '1px solid #eee', paddingBottom: 16, marginBottom: 16 }}>
+          <div style={{ color: '#111', fontWeight: 700, fontSize: 15, marginBottom: 6 }}>{faq.q}</div>
+          <div style={{ color: '#555', fontSize: 14, lineHeight: 1.7 }}>{faq.a}</div>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 const similarImgs = ['/blog1.png', '/blog2.png', '/blog3.png']
@@ -260,7 +287,11 @@ export default function BlogPost() {
     supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at').eq('is_published', true).neq('slug', slug).limit(3)
       .then(({ data }) => {
         if (data && data.length) {
-          setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || similarImgs[i % similarImgs.length] })))
+          setSimilarBlogs(data.map((b) => ({
+            ...b,
+            // Always use static thumbnail if slug matches -- Supabase may have wrong URL
+            thumbnail: staticPosts.find(s => s.slug === b.slug)?.thumbnail || b.thumbnail || '/blog1.png'
+          })))
         } else {
           setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
         }
@@ -303,6 +334,7 @@ export default function BlogPost() {
             <div style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
               <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', maxHeight: 420, objectFit: 'cover', borderRadius: 8, display: 'block', marginBottom: 32 }} />
               {renderContent(post.content)}
+              {renderFaqs(post.faqs)}
             </div>
           </div>
           <div style={{ position: 'sticky', top: 80 }}>
