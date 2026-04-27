@@ -80,26 +80,26 @@ export default function AdminLayout({ children }) {
         position: 'fixed', top: 0, left: 0, height: '100vh', overflowY: 'auto', zIndex: 100
       }}>
         {/* Logo */}
-        <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
           <img src="/logo.png" alt="Clicksemurs" style={{ height: 30, width: 'auto' }} />
-          <div style={{ color: '#334155', fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 6, fontWeight: 600 }}>Admin Panel</div>
+          <div style={{ color: '#60a5fa', fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 6, fontWeight: 700 }}>Admin Panel</div>
         </div>
 
         {/* Nav */}
-        <nav style={{ flex: 1, padding: '8px 0 16px' }}>
+        <nav style={{ flex: 1, padding: '10px 0 16px' }}>
           {nav.map(item => {
             if (!item.children) {
               const active = isActive(item.path)
               return (
                 <Link key={item.path} to={item.path} style={{
-                  display: 'flex', alignItems: 'center', gap: 10, padding: '9px 16px 9px 20px',
-                  color: active ? '#fff' : '#64748b',
-                  background: active ? 'rgba(59,130,246,0.12)' : 'transparent',
-                  textDecoration: 'none', fontSize: 13, fontWeight: active ? 600 : 400,
-                  borderLeft: active ? '3px solid #3b82f6' : '3px solid transparent',
+                  display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px 10px 20px',
+                  color: active ? '#ffffff' : '#cbd5e1',
+                  background: active ? 'rgba(59,130,246,0.18)' : 'transparent',
+                  textDecoration: 'none', fontSize: 13.5, fontWeight: active ? 700 : 500,
+                  borderLeft: active ? '3px solid #60a5fa' : '3px solid transparent',
                   transition: 'all 0.15s', margin: '1px 0'
                 }}>
-                  <span style={{ color: active ? '#60a5fa' : '#475569', flexShrink: 0 }}>{Icons[item.icon]}</span>
+                  <span style={{ color: active ? '#60a5fa' : '#94a3b8', flexShrink: 0 }}>{Icons[item.icon]}</span>
                   {item.label}
                 </Link>
               )
@@ -110,19 +110,19 @@ export default function AdminLayout({ children }) {
               <div key={item.label}>
                 <button onClick={() => toggle(item.label)} style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  width: '100%', padding: '9px 16px 9px 20px',
-                  background: anyActive ? 'rgba(59,130,246,0.06)' : 'transparent',
-                  border: 'none', borderLeft: anyActive ? '3px solid rgba(59,130,246,0.4)' : '3px solid transparent',
-                  color: anyActive ? '#cbd5e1' : '#64748b', fontSize: 13,
-                  fontWeight: anyActive ? 600 : 400, cursor: 'pointer', textAlign: 'left',
+                  width: '100%', padding: '10px 16px 10px 20px',
+                  background: anyActive ? 'rgba(59,130,246,0.1)' : 'transparent',
+                  border: 'none', borderLeft: anyActive ? '3px solid #60a5fa' : '3px solid transparent',
+                  color: anyActive ? '#ffffff' : '#cbd5e1', fontSize: 13.5,
+                  fontWeight: anyActive ? 700 : 500, cursor: 'pointer', textAlign: 'left',
                   margin: '1px 0'
                 }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ color: anyActive ? '#60a5fa' : '#475569', flexShrink: 0 }}>{Icons[item.icon]}</span>
+                    <span style={{ color: anyActive ? '#60a5fa' : '#94a3b8', flexShrink: 0 }}>{Icons[item.icon]}</span>
                     {item.label}
                   </span>
                   <span style={{
-                    color: '#334155', transition: 'transform 0.2s',
+                    color: '#64748b', transition: 'transform 0.2s',
                     transform: open ? 'rotate(90deg)' : 'none',
                     display: 'flex', alignItems: 'center'
                   }}>{Icons.chevron}</span>
@@ -135,15 +135,15 @@ export default function AdminLayout({ children }) {
                       return (
                         <Link key={child.path} to={child.path} style={{
                           display: 'flex', alignItems: 'center', gap: 8,
-                          padding: '7px 16px 7px 46px',
-                          color: active ? '#60a5fa' : '#475569',
-                          textDecoration: 'none', fontSize: 12.5,
-                          fontWeight: active ? 600 : 400,
-                          background: active ? 'rgba(59,130,246,0.1)' : 'transparent',
-                          borderLeft: active ? '3px solid #3b82f6' : '3px solid transparent',
+                          padding: '8px 16px 8px 46px',
+                          color: active ? '#60a5fa' : '#94a3b8',
+                          textDecoration: 'none', fontSize: 13,
+                          fontWeight: active ? 700 : 400,
+                          background: active ? 'rgba(59,130,246,0.12)' : 'transparent',
+                          borderLeft: active ? '3px solid #60a5fa' : '3px solid transparent',
                           transition: 'all 0.1s'
                         }}>
-                          <span style={{ color: active ? '#60a5fa' : '#334155' }}>{Icons.dot}</span>
+                          <span style={{ color: active ? '#60a5fa' : '#475569' }}>{Icons.dot}</span>
                           {child.label}
                         </Link>
                       )
@@ -158,11 +158,11 @@ export default function AdminLayout({ children }) {
         {/* Logout */}
         <button onClick={handleLogout} style={{
           display: 'flex', alignItems: 'center', gap: 10, padding: '14px 20px',
-          background: 'none', border: 'none', borderTop: '1px solid rgba(255,255,255,0.06)',
-          color: '#475569', cursor: 'pointer', fontSize: 13, width: '100%', textAlign: 'left',
+          background: 'none', border: 'none', borderTop: '1px solid rgba(255,255,255,0.08)',
+          color: '#94a3b8', cursor: 'pointer', fontSize: 13, width: '100%', textAlign: 'left',
           transition: 'color 0.15s'
         }}>
-          <span style={{ color: '#475569' }}>{Icons.logout}</span>
+          <span style={{ color: '#94a3b8' }}>{Icons.logout}</span>
           Logout
         </button>
       </aside>
