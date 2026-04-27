@@ -81,9 +81,9 @@ function RichEditor({ value, onChange }) {
   )
 }
 
-export default function AdminBlogs() {
+export default function AdminBlogs({ startNew = false }) {
   const [blogs, setBlogs] = useState([])
-  const [view, setView] = useState('list') // 'list' | 'new' | 'edit'
+  const [view, setView] = useState(startNew ? 'new' : 'list') // 'list' | 'new' | 'edit'
   const [form, setForm] = useState(blank)
   const [editId, setEditId] = useState(null)
   const [msg, setMsg] = useState('')

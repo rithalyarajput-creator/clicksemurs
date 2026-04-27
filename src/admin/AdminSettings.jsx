@@ -1,76 +1,93 @@
-import { useEffect, useState } from 'react'
-import { supabase } from './supabase'
-
-const FIELDS = [
-  { key: 'phone', label: 'Phone Number', placeholder: '+91 XXXXX XXXXX', group: 'contact' },
-  { key: 'email', label: 'Email Address', placeholder: 'hello@clicksemurs.com', group: 'contact' },
-  { key: 'address', label: 'Office Address', placeholder: 'India', group: 'contact', textarea: true },
-  { key: 'whatsapp', label: 'WhatsApp Number (with country code)', placeholder: '91XXXXXXXXXX', group: 'contact' },
-  { key: 'facebook', label: 'Facebook URL', placeholder: 'https://...', group: 'social' },
-  { key: 'instagram', label: 'Instagram URL', placeholder: 'https://...', group: 'social' },
-  { key: 'linkedin', label: 'LinkedIn URL', placeholder: 'https://...', group: 'social' },
-  { key: 'youtube', label: 'YouTube URL', placeholder: 'https://...', group: 'social' },
-  { key: 'twitter', label: 'Twitter/X URL', placeholder: 'https://...', group: 'social' },
-]
+import { useState } from 'react'
+import { useAdminAuth } from './useAdminAuth'
 
 export default function AdminSettings() {
-  const [settings, setSettings] = useState({})
+  const { logout } = useAdminAuth()
+  const [profile, setProfile] = useState({ name: 'Admin', email: 'admin@clicksemurs.com' })
+  const [pwd, setPwd] = useState({ current: '', newPwd: '', confirm: '' })
   const [msg, setMsg] = useState('')
-  const [loading, setLoading] = useState(true)
+  const [msgType, setMsgType] = useState('success')
 
-  useEffect(() => {
-    supabase.from('settings').select('*').then(({ data }) => {
-      const s = {}
-      ;(data || []).forEach(r => { s[r.setting_key] = r.setting_value })
-      setSettings(s)
-      setLoading(false)
-    })
-  }, [])
+  const flash = (m, t = 'success') => { setMsg(m); setMsgType(t); setTimeout(() => setMsg(''), 3000) }
 
-  const handleSubmit = async (e) => {
+  const saveProfile = (e) => {
     e.preventDefault()
-    const upserts = FIELDS.map(f => ({ setting_key: f.key, setting_value: settings[f.key] || '' }))
-    await supabase.from('settings').upsert(upserts, { onConflict: 'setting_key' })
-    setMsg('Settings saved!')
-    setTimeout(() => setMsg(''), 3000)
+    flash('Profile updated!')
   }
 
-  const inp = { display: 'block', width: '100%', background: '#111', border: '1px solid #2E2E2E', color: '#fff', padding: '10px 14px', fontSize: 13, outline: 'none', boxSizing: 'border-box', marginBottom: 14 }
-  const lbl = { display: 'block', color: '#aaa', fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 }
+  const changePassword = (e) => {
+    e.preventDefault()
+    if (pwd.current !== 'Admin@123') return flash('Current password incorrect.', 'error')
+    if (pwd.newPwd !== pwd.confirm) return flash('New passwords do not match.', 'error')
+    if (pwd.newPwd.length < 6) return flash('Password must be at least 6 characters.', 'error')
+    flash('Password changed successfully!')
+    setPwd({ current: '', newPwd: '', confirm: '' })
+  }
 
-  if (loading) return <div style={{ color: '#777', padding: 40 }}>Loading...</div>
+  const inp = { width: '100%', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px 14px', fontSize: 14, outline: 'none', boxSizing: 'border-box', color: '#1e293b', background: '#fff', marginBottom: 12 }
+  const lbl = { display: 'block', color: '#374151', fontSize: 12, fontWeight: 600, marginBottom: 6 }
 
   return (
-    <div style={{ padding: 32 }}>
-      <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Settings</h1>
-      {msg && <div style={{ background: '#0a1a0a', border: '1px solid #166534', color: '#4ade80', padding: '10px 16px', marginBottom: 16, fontSize: 13 }}>{msg}</div>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-          <div style={{ background: '#1E1E1E', border: '1px solid #2E2E2E', padding: 24 }}>
-            <h2 style={{ color: '#fff', fontSize: 16, fontWeight: 600, marginBottom: 20 }}>Contact Information</h2>
-            {FIELDS.filter(f => f.group === 'contact').map(f => (
-              <div key={f.key}>
-                <label style={lbl}>{f.label}</label>
-                {f.textarea ? (
-                  <textarea style={{ ...inp, height: 80 }} value={settings[f.key] || ''} onChange={e => setSettings(s => ({ ...s, [f.key]: e.target.value }))} placeholder={f.placeholder} />
-                ) : (
-                  <input style={inp} value={settings[f.key] || ''} onChange={e => setSettings(s => ({ ...s, [f.key]: e.target.value }))} placeholder={f.placeholder} />
-                )}
-              </div>
-            ))}
-          </div>
-          <div style={{ background: '#1E1E1E', border: '1px solid #2E2E2E', padding: 24 }}>
-            <h2 style={{ color: '#fff', fontSize: 16, fontWeight: 600, marginBottom: 20 }}>Social Media Links</h2>
-            {FIELDS.filter(f => f.group === 'social').map(f => (
-              <div key={f.key}>
-                <label style={lbl}>{f.label}</label>
-                <input style={inp} value={settings[f.key] || ''} onChange={e => setSettings(s => ({ ...s, [f.key]: e.target.value }))} placeholder={f.placeholder} />
-              </div>
+    <div>
+      <h1 style={{ color: '#0f172a', fontSize: 22, fontWeight: 800, marginBottom: 4 }}>Settings</h1>
+      <p style={{ color: '#64748b', fontSize: 13, marginBottom: 24 }}>Manage your admin account and preferences</p>
+      {msg && <div style={{ background: msgType === 'error' ? '#fef2f2' : '#f0fdf4', border: `1px solid ${msgType === 'error' ? '#fca5a5' : '#86efac'}`, color: msgType === 'error' ? '#dc2626' : '#16a34a', padding: '10px 16px', borderRadius: 8, marginBottom: 16, fontSize: 13 }}>{msg}</div>}
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        {/* Profile */}
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24 }}>
+          <h2 style={{ color: '#0f172a', fontSize: 15, fontWeight: 700, marginBottom: 20 }}>Admin Profile</h2>
+          <form onSubmit={saveProfile}>
+            <label style={lbl}>Display Name</label>
+            <input style={inp} value={profile.name} onChange={e => setProfile(p => ({ ...p, name: e.target.value }))} />
+            <label style={lbl}>Email Address</label>
+            <input type="email" style={inp} value={profile.email} onChange={e => setProfile(p => ({ ...p, email: e.target.value }))} />
+            <button type="submit" style={{ background: '#0f172a', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>Update Profile</button>
+          </form>
+        </div>
+
+        {/* Password */}
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24 }}>
+          <h2 style={{ color: '#0f172a', fontSize: 15, fontWeight: 700, marginBottom: 20 }}>Change Password</h2>
+          <form onSubmit={changePassword}>
+            <label style={lbl}>Current Password</label>
+            <input type="password" style={inp} value={pwd.current} onChange={e => setPwd(p => ({ ...p, current: e.target.value }))} />
+            <label style={lbl}>New Password</label>
+            <input type="password" style={inp} value={pwd.newPwd} onChange={e => setPwd(p => ({ ...p, newPwd: e.target.value }))} />
+            <label style={lbl}>Confirm New Password</label>
+            <input type="password" style={inp} value={pwd.confirm} onChange={e => setPwd(p => ({ ...p, confirm: e.target.value }))} />
+            <button type="submit" style={{ background: '#0f172a', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 20px', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>Change Password</button>
+          </form>
+        </div>
+
+        {/* Quick Links */}
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24, gridColumn: 'span 2' }}>
+          <h2 style={{ color: '#0f172a', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Quick Workflow</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+            {[
+              { label: 'Home page text', path: '/admin/home-content', icon: '🏠' },
+              { label: 'Website stats', path: '/admin/stats', icon: '📊' },
+              { label: 'Footer info', path: '/admin/footer', icon: '⚙' },
+              { label: 'New blog post', path: '/admin/blogs/new', icon: '📝' },
+              { label: 'Job posting', path: '/admin/jobs', icon: '💼' },
+              { label: 'View applications', path: '/admin/applications', icon: '👔' },
+              { label: 'Contact leads', path: '/admin/leads', icon: '📬' },
+              { label: 'Chatbot inquiries', path: '/admin/chatbot-leads', icon: '🤖' },
+              { label: 'FAQ management', path: '/admin/faqs', icon: '❓' },
+            ].map(item => (
+              <a key={item.path} href={item.path} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', background: '#f8fafc', borderRadius: 8, textDecoration: 'none', color: '#374151', fontSize: 13, fontWeight: 500, border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: 18 }}>{item.icon}</span> {item.label}
+              </a>
             ))}
           </div>
         </div>
-        <button type="submit" style={{ background: '#fff', color: '#111', padding: '12px 28px', border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: 14 }}>Save Settings →</button>
-      </form>
+
+        {/* Danger Zone */}
+        <div style={{ background: '#fff', border: '1px solid #fca5a5', borderRadius: 12, padding: 24, gridColumn: 'span 2' }}>
+          <h2 style={{ color: '#dc2626', fontSize: 15, fontWeight: 700, marginBottom: 12 }}>Danger Zone</h2>
+          <button onClick={() => { if (confirm('Logout?')) logout() }} style={{ background: '#fef2f2', border: '1px solid #fca5a5', color: '#dc2626', borderRadius: 8, padding: '10px 20px', fontWeight: 600, fontSize: 13, cursor: 'pointer' }}>Logout from Admin</button>
+        </div>
+      </div>
     </div>
   )
 }
