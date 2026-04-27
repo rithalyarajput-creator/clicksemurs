@@ -139,7 +139,7 @@ export default function Chatbot() {
       <button
         onClick={() => open ? setOpen(false) : handleOpen()}
         style={{
-          position: 'fixed', bottom: 88, right: 24, zIndex: 999,
+          position: 'fixed', bottom: 24, left: 24, zIndex: 999,
           width: 52, height: 52, borderRadius: '50%',
           background: open ? '#374151' : '#0f172a',
           border: '2px solid rgba(255,255,255,0.15)',
@@ -167,7 +167,7 @@ export default function Chatbot() {
       {/* Chat Window */}
       {open && (
         <div style={{
-          position: 'fixed', bottom: 152, right: 24, zIndex: 998,
+          position: 'fixed', bottom: 88, left: 24, zIndex: 998,
           width: 340, height: 480, background: '#fff',
           borderRadius: 16, boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
           display: 'flex', flexDirection: 'column', overflow: 'hidden',
