@@ -230,28 +230,34 @@ export default function BlogPost() {
   useEffect(() => {
     const staticMatch = staticPosts.find(p => p.slug === slug)
 
-    if (staticMatch) {
-      setPost(staticMatch)
-      setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
-      return
-    }
-
+    // Always try Supabase first -- admin edits should override static data
     supabase.from('blogs').select('*').eq('slug', slug).single()
       .then(({ data }) => {
         if (data) {
+          // Supabase has this blog -- use it (admin may have edited title/content)
           const imgs = ['/blog1.png', '/blog2.png', '/blog3.png']
-          setPost({ ...data, thumbnail: data.thumbnail || imgs[0] })
+          setPost({ ...data, thumbnail: data.thumbnail || (staticMatch ? staticMatch.thumbnail : imgs[0]) })
+        } else if (staticMatch) {
+          // Not in Supabase yet -- use static fallback
+          setPost(staticMatch)
         }
       })
-      .catch(() => {})
+      .catch(() => {
+        // On network error, fall back to static
+        if (staticMatch) setPost(staticMatch)
+      })
 
     supabase.from('blogs').select('id, slug, title, category, thumbnail, created_at').eq('is_published', true).neq('slug', slug).limit(3)
       .then(({ data }) => {
         if (data && data.length) {
           setSimilarBlogs(data.map((b, i) => ({ ...b, thumbnail: b.thumbnail || similarImgs[i % similarImgs.length] })))
+        } else {
+          setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
         }
       })
-      .catch(() => {})
+      .catch(() => {
+        setSimilarBlogs(staticPosts.filter(p => p.slug !== slug))
+      })
   }, [slug])
 
   if (!post) return (
