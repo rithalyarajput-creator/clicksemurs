@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PageHero from '../components/PageHero'
 import { FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowRight } from 'react-icons/fa'
+import { supabase } from '../admin/supabase'
 
 const serviceOptions = [
   'Social Media Marketing',
@@ -27,24 +28,21 @@ export default function Contact() {
   const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
-    try {
-      const res = await fetch('/api/contact.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        setForm({ name:'', email:'', phone:'', service:'', message:'' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
+    const { error } = await supabase.from('leads').insert([{
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      service: form.service,
+      message: form.message,
+      is_read: false
+    }])
+    if (error) {
       setStatus('error')
-    } finally {
-      setLoading(false)
+    } else {
+      setStatus('success')
+      setForm({ name:'', email:'', phone:'', service:'', message:'' })
     }
+    setLoading(false)
   }
 
   return (

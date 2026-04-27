@@ -102,9 +102,12 @@ export default function Home() {
   const tPages = Math.ceil(tTotal / 3)
   const tVisible = testimonials.slice(tSlide * 3, tSlide * 3 + 3)
 
-  const handleAuditSubmit = (e) => {
+  const handleAuditSubmit = async (e) => {
     e.preventDefault()
-    if (email) { setEmailSent(true); setEmail('') }
+    if (!email) return
+    await supabase.from('newsletter').insert([{ email }])
+    setEmailSent(true)
+    setEmail('')
   }
 
   return (

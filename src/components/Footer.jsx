@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube, FaTwitter, FaArrowRight } from 'react-icons/fa'
+import { supabase } from '../admin/supabase'
 
 const services = [
   { label: 'Social Media Marketing', to: '/services/social-media-marketing' },
@@ -30,6 +32,24 @@ const socials = [
 ]
 
 export default function Footer() {
+  const [nEmail, setNEmail] = useState('')
+  const [nStatus, setNStatus] = useState(null)
+
+  const handleNewsletter = async (e) => {
+    e.preventDefault()
+    if (!nEmail) return
+    const { error } = await supabase.from('newsletter').insert([{ email: nEmail }])
+    if (error && error.code === '23505') {
+      setNStatus('already')
+    } else if (error) {
+      setNStatus('error')
+    } else {
+      setNStatus('success')
+      setNEmail('')
+    }
+    setTimeout(() => setNStatus(null), 4000)
+  }
+
   return (
     <footer className="bg-[#0A0A0A] border-t border-[#2E2E2E]">
       {/* Main Footer */}
@@ -117,15 +137,33 @@ export default function Footer() {
                   +91 XXXXX XXXXX
                 </a>
               </div>
-              <div>
-                <div className="text-[#777777] text-xs uppercase tracking-widest mb-1">Website</div>
-                <span className="text-white">www.clicksemurs.com</span>
-              </div>
               <div className="pt-2">
                 <Link to="/contact" className="btn-primary text-xs tracking-widest uppercase">
                   Free Audit →
                 </Link>
               </div>
+            </div>
+
+            {/* Newsletter */}
+            <div className="mt-8">
+              <h4 className="text-white font-semibold text-sm tracking-widest uppercase mb-3">Newsletter</h4>
+              <p className="text-[#777777] text-xs mb-3">Get marketing tips in your inbox.</p>
+              <form onSubmit={handleNewsletter} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <input
+                  type="email"
+                  value={nEmail}
+                  onChange={e => setNEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  style={{ width: '100%', background: '#1a1a1a', border: '1px solid #2E2E2E', color: '#fff', padding: '9px 12px', fontSize: 13, outline: 'none', borderRadius: 6, boxSizing: 'border-box' }}
+                />
+                <button type="submit" style={{ background: '#F4A100', color: '#111', border: 'none', padding: '9px', fontWeight: 700, fontSize: 12, cursor: 'pointer', borderRadius: 6, letterSpacing: '0.05em' }}>
+                  SUBSCRIBE →
+                </button>
+              </form>
+              {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 6 }}>Subscribed successfully!</p>}
+              {nStatus === 'already' && <p style={{ color: '#facc15', fontSize: 12, marginTop: 6 }}>Already subscribed!</p>}
+              {nStatus === 'error' && <p style={{ color: '#f87171', fontSize: 12, marginTop: 6 }}>Something went wrong. Try again.</p>}
             </div>
           </div>
         </div>
