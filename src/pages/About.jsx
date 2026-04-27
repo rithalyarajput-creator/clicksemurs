@@ -221,6 +221,91 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── How We Build Trust ── */}
+      <section style={{ background: '#f0f2f5', padding: 'clamp(64px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Faint lined paper bg */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, #dde1e7 39px, #dde1e7 40px)', opacity: 0.5 }} />
+
+        <div className="max-w-4xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
+          <FadeIn>
+            <div style={{ textAlign: 'center', marginBottom: 64 }}>
+              <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Approach</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+                How We Build<br /><span style={{ color: '#F4A100' }}>Trust With You</span>
+              </h2>
+            </div>
+          </FadeIn>
+
+          {/* Cards zigzag */}
+          {[
+            { num: '01', title: 'Real Client Testimonials', desc: "We let our clients do the talking. Real names, real businesses, real results — not generic reviews. Every testimonial reflects a genuine growth story we're proud of.", bg: '#fff1eb', numColor: '#e8623a', pin: '#e8623a' },
+            { num: '02', title: 'Awards & Certifications', desc: 'Google Partner, Meta Certified, industry awards — we display our credentials because your trust must be earned, not assumed.', bg: '#e8eeff', numColor: '#4f6ef7', pin: '#4f6ef7' },
+            { num: '03', title: 'Always Reachable', desc: "We believe you should never feel alone. Direct phone, WhatsApp, email, and dedicated account managers — we're there when you need us, not just during business hours.", bg: '#ede8ff', numColor: '#7c3aed', pin: '#7c3aed' },
+            { num: '04', title: 'Detailed Case Studies', desc: "Numbers don't lie. We document every campaign — before, after, and why. Our case studies show exactly what we did, how we did it, and the results it delivered.", bg: '#fff1eb', numColor: '#e8623a', pin: '#e8623a' },
+            { num: '05', title: 'Transparent Reporting', desc: "No jargon, no hidden numbers. Every client gets clear monthly reports showing exactly where their budget went and what it achieved. Full transparency, always.", bg: '#e8eeff', numColor: '#4f6ef7', pin: '#4f6ef7' },
+          ].map((card, i) => {
+            const isRight = i % 2 === 1
+            return (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{ position: 'relative', marginBottom: i < 4 ? 0 : 0 }}>
+                  {/* Dashed connector line (not on last) */}
+                  {i < 4 && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: -48,
+                      left: isRight ? '25%' : '72%',
+                      width: 2,
+                      height: 56,
+                      borderLeft: '2.5px dashed #b0b8c9',
+                      zIndex: 0,
+                      transform: `rotate(${isRight ? '15deg' : '-15deg'})`,
+                    }} />
+                  )}
+
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: isRight ? 'flex-end' : 'flex-start',
+                    marginBottom: 56,
+                  }}>
+                    <div style={{
+                      width: 'min(360px, 88vw)',
+                      background: card.bg,
+                      borderRadius: 18,
+                      padding: '32px 32px 28px',
+                      position: 'relative',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06)',
+                      transform: `rotate(${i % 2 === 0 ? '-1.2deg' : '1.2deg'})`,
+                      transition: 'transform 0.3s, box-shadow 0.3s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'rotate(0deg) scale(1.02)'; e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15)' }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = `rotate(${i % 2 === 0 ? '-1.2deg' : '1.2deg'})`; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.10)' }}
+                    >
+                      {/* Pin */}
+                      <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', zIndex: 2 }}>
+                        <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
+                          <ellipse cx="14" cy="14" rx="13" ry="13" fill={card.pin} />
+                          <ellipse cx="10" cy="10" rx="4" ry="4" fill="rgba(255,255,255,0.3)" />
+                          <rect x="13" y="25" width="2" height="11" rx="1" fill={card.pin} />
+                        </svg>
+                      </div>
+
+                      {/* Number */}
+                      <div style={{ color: card.numColor, fontSize: 15, fontWeight: 800, letterSpacing: '0.05em', marginBottom: 10, marginTop: 4, fontFamily: 'monospace' }}>{card.num}</div>
+
+                      {/* Title */}
+                      <h3 style={{ color: '#0f172a', fontWeight: 900, fontSize: 22, marginBottom: 14, lineHeight: 1.2 }}>{card.title}</h3>
+
+                      {/* Desc */}
+                      <p style={{ color: '#4a5568', fontSize: 14, lineHeight: 1.75 }}>{card.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            )
+          })}
+        </div>
+      </section>
+
       {/* Core Values */}
       <section style={{ background: '#fff', padding: '96px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
