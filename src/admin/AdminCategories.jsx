@@ -43,7 +43,7 @@ export default function AdminCategories() {
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 12, padding: 24 }}>
           <h2 style={{ color: '#0f172a', fontSize: 15, fontWeight: 700, marginBottom: 16 }}>Add New Category</h2>
           <input
-            style={{ width: '100%', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px 14px', fontSize: 14, outline: 'none', boxSizing: 'border-box', marginBottom: 12 }}
+            style={{ width: '100%', border: '1px solid #e2e8f0', borderRadius: 8, padding: '9px 14px', fontSize: 14, outline: 'none', boxSizing: 'border-box', marginBottom: 12, color: '#0f172a', background: '#fff' }}
             value={newCat}
             onChange={e => setNewCat(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && add()}
