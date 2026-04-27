@@ -56,7 +56,7 @@ export default function AdminLayout({ children }) {
       </aside>
 
       {/* Main */}
-      <main style={{ marginLeft: 220, flex: 1, padding: '32px', minHeight: '100vh' }}>
+      <main style={{ marginLeft: 220, flex: 1, minHeight: '100vh', background: '#0A0A0A' }}>
         {children}
       </main>
     </div>

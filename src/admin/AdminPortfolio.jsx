@@ -48,7 +48,7 @@ export default function AdminPortfolio() {
   const td = { color: '#aaa', padding: '12px 14px', fontSize: 13, borderBottom: '1px solid #1a1a1a' }
 
   return (
-    <div>
+    <div style={{ padding: 32 }}>
       <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Portfolio / Case Studies</h1>
       {msg && <div style={{ background: msgType === 'error' ? '#2a1010' : '#0a1a0a', border: `1px solid ${msgType === 'error' ? '#5a1a1a' : '#166534'}`, color: msgType === 'error' ? '#ff6b6b' : '#4ade80', padding: '10px 16px', marginBottom: 16, fontSize: 13 }}>{msg}</div>}
 

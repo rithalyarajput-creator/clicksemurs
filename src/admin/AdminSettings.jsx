@@ -41,7 +41,7 @@ export default function AdminSettings() {
   if (loading) return <div style={{ color: '#777', padding: 40 }}>Loading...</div>
 
   return (
-    <div>
+    <div style={{ padding: 32 }}>
       <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Settings</h1>
       {msg && <div style={{ background: '#0a1a0a', border: '1px solid #166534', color: '#4ade80', padding: '10px 16px', marginBottom: 16, fontSize: 13 }}>{msg}</div>}
       <form onSubmit={handleSubmit}>

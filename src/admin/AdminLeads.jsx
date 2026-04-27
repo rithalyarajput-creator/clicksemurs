@@ -39,7 +39,7 @@ export default function AdminLeads() {
   const td = { color: '#aaa', padding: '12px 14px', fontSize: 13, borderBottom: '1px solid #1a1a1a' }
 
   return (
-    <div>
+    <div style={{ padding: 32 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
         <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700 }}>Leads / Inquiries ({leads.length})</h1>
         <button onClick={exportCSV} style={{ background: 'none', border: '1px solid #2E2E2E', color: '#aaa', padding: '8px 16px', cursor: 'pointer', fontSize: 12 }}>Export CSV</button>

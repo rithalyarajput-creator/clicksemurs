@@ -47,7 +47,7 @@ export default function AdminDashboard() {
   if (loading) return <div style={{ color: '#777', padding: 40 }}>Loading...</div>
 
   return (
-    <div>
+    <div style={{ padding: 32 }}>
       <h1 style={{ color: '#fff', fontSize: 24, fontWeight: 700, marginBottom: 24 }}>Dashboard</h1>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
         <StatCard value={stats.totalLeads} label="Total Leads" badge={`${stats.unreadLeads} unread`} badgeColor="red" />
