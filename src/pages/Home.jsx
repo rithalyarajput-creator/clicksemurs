@@ -643,60 +643,60 @@ export default function Home() {
 
             {/* Center */}
             <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f0f4ff 100%)',border:'2.5px solid rgba(244,161,0,0.45)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
-              <img src="https://img.icons8.com/color/48/000000/globe--v1.png" width="34" height="34" alt="" style={{borderRadius:4}} onError={e=>{e.target.style.display='none'}}/>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#F4A100" strokeWidth="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="#F4A100" strokeWidth="1.5"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#F4A100" strokeWidth="1.5"/></svg>
               <span style={{color:'#F4A100',fontSize:7.5,fontWeight:900,letterSpacing:'0.08em',textTransform:'uppercase',textAlign:'center',lineHeight:1.45}}>Digital<br/>Marketing</span>
             </div>
 
-            {/* Inner ring spinner — 5 icons CW 14s */}
+            {/* Inner ring — 5 icons CW 14s */}
             <div className="orb-ring" style={{animation:'sCW14 14s linear infinite'}}>
               {[
-                {src:'https://img.icons8.com/fluency/48/instagram-new.png', name:'Instagram'},
-                {src:'https://img.icons8.com/fluency/48/facebook-new.png', name:'Facebook'},
-                {src:'https://img.icons8.com/fluency/48/linkedin.png', name:'LinkedIn'},
-                {src:'https://img.icons8.com/fluency/48/youtube-play.png', name:'YouTube'},
-                {src:'https://img.icons8.com/fluency/48/whatsapp.png', name:'WhatsApp'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg', bg:'#E1306C', name:'Instagram'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg', bg:'#1877F2', name:'Facebook'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg', bg:'#0A66C2', name:'LinkedIn'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg', bg:'#FF0000', name:'YouTube'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg', bg:'#25D366', name:'WhatsApp'},
               ].map((ic,idx) => (
                 <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*72}deg) translateY(-100px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <div className="orb-icon-sq" style={{width:50,height:50,animation:'rCW14 14s linear infinite'}}>
-                    <img src={ic.src} width="32" height="32" alt={ic.name}/>
+                  <div className="orb-icon-sq" style={{width:52,height:52,background:ic.bg,animation:'rCW14 14s linear infinite'}}>
+                    <img src={ic.src} width="26" height="26" alt={ic.name} style={{filter:'invert(1)',objectFit:'contain'}}/>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Middle ring spinner — 6 icons CCW 20s */}
+            {/* Middle ring — 6 icons CCW 20s */}
             <div className="orb-ring" style={{animation:'sCCW20 20s linear infinite'}}>
               {[
-                {src:'https://img.icons8.com/fluency/48/google-logo.png', name:'Google'},
-                {src:'https://img.icons8.com/fluency/48/shopify.png', name:'Shopify'},
-                {src:'https://img.icons8.com/fluency/48/wordpress.png', name:'WordPress'},
-                {src:'https://img.icons8.com/fluency/48/canva.png', name:'Canva'},
-                {src:'https://img.icons8.com/fluency/48/twitter--v1.png', name:'Twitter'},
-                {src:'https://img.icons8.com/fluency/48/figma.png', name:'Figma'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg', bg:'#fff', name:'Google', invert:false},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/shopify.svg', bg:'#96BF48', name:'Shopify', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/wordpress.svg', bg:'#21759B', name:'WordPress', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/canva.svg', bg:'#00C4CC', name:'Canva', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg', bg:'#000', name:'X / Twitter', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/figma.svg', bg:'#F24E1E', name:'Figma', invert:true},
               ].map((ic,idx) => (
                 <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*60}deg) translateY(-170px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <div className="orb-icon-sq" style={{width:54,height:54,animation:'rCCW20 20s linear infinite'}}>
-                    <img src={ic.src} width="34" height="34" alt={ic.name}/>
+                  <div className="orb-icon-sq" style={{width:56,height:56,background:ic.bg,border:ic.bg==='#fff'?'1px solid #e2e8f0':'none',animation:'rCCW20 20s linear infinite'}}>
+                    <img src={ic.src} width="30" height="30" alt={ic.name} style={{filter:ic.invert?'invert(1)':'none',objectFit:'contain'}}/>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Outer ring spinner — 8 icons CW 28s */}
+            {/* Outer ring — 8 icons CW 28s */}
             <div className="orb-ring" style={{animation:'sCW28 28s linear infinite'}}>
               {[
-                {src:'https://img.icons8.com/fluency/48/google-ads.png', name:'Google Ads'},
-                {src:'https://img.icons8.com/fluency/48/mailchimp.png', name:'Mailchimp'},
-                {src:'https://img.icons8.com/fluency/48/adobe-photoshop.png', name:'Photoshop'},
-                {src:'https://img.icons8.com/fluency/48/hubspot.png', name:'HubSpot'},
-                {src:'https://img.icons8.com/fluency/48/pinterest.png', name:'Pinterest'},
-                {src:'https://img.icons8.com/fluency/48/google-analytics.png', name:'Analytics'},
-                {src:'https://img.icons8.com/fluency/48/discord-logo.png', name:'Discord'},
-                {src:'https://img.icons8.com/fluency/48/semrush.png', name:'SEMrush'},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleads.svg', bg:'#4285F4', name:'Google Ads', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/mailchimp.svg', bg:'#FFE01B', name:'Mailchimp', invert:false},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/adobephotoshop.svg', bg:'#31A8FF', name:'Photoshop', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/hubspot.svg', bg:'#FF7A59', name:'HubSpot', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg', bg:'#E60023', name:'Pinterest', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googleanalytics.svg', bg:'#E37400', name:'Analytics', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg', bg:'#5865F2', name:'Discord', invert:true},
+                {src:'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/semrush.svg', bg:'#FF642D', name:'SEMrush', invert:true},
               ].map((ic,idx) => (
                 <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*45}deg) translateY(-245px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <div className="orb-icon-sq" style={{width:48,height:48,animation:'rCW28 28s linear infinite'}}>
-                    <img src={ic.src} width="30" height="30" alt={ic.name}/>
+                  <div className="orb-icon-sq" style={{width:50,height:50,background:ic.bg,animation:'rCW28 28s linear infinite'}}>
+                    <img src={ic.src} width="28" height="28" alt={ic.name} style={{filter:ic.invert?'invert(1)':'none',objectFit:'contain'}}/>
                   </div>
                 </div>
               ))}
