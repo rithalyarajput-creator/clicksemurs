@@ -727,31 +727,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Testimonials — off-white, large quote layout ── */}
-      <section style={{ background: '#F2F2F2', padding: 'clamp(56px, 8vw, 96px) 0' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* ── Testimonials — black bg, glossy glass cards ── */}
+      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0', position: 'relative', overflow: 'hidden' }}>
+        {/* Background glow */}
+        <div style={{ position: 'absolute', top: '30%', left: '20%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.06) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', bottom: '10%', right: '15%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+        <style>{`
+          .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.2);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+          .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 0 1px rgba(244,161,0,0.2);
+          }
+        `}</style>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 52, flexWrap: 'wrap', gap: 16 }}>
             <div>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#999', display: 'block', marginBottom: 14 }}>Client Stories</span>
-              <h2 style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, color: '#111', lineHeight: 1.1 }}>What Clients<br/>Say About Us</h2>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Client Stories</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>What Clients<br/>Say About Us</h2>
             </div>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {[...Array(5)].map((_,j) => <FaStar key={j} size={14} color="#F4A100"/>)}
-              <span style={{ color: '#888', fontSize: 12, marginLeft: 8, alignSelf: 'center' }}>5.0 average</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              {[...Array(5)].map((_,j) => <FaStar key={j} size={15} color="#F4A100"/>)}
+              <span style={{ color: '#555', fontSize: 12, marginLeft: 6 }}>5.0 average</span>
             </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16, marginBottom: 28, alignItems: 'stretch' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, marginBottom: 32, alignItems: 'stretch' }}>
             {tVisible.map((t, i) => (
-              <div key={t.id || i} style={{ background: '#fff', padding: 'clamp(24px,3vw,36px)', display: 'flex', flexDirection: 'column', borderRadius: 0, height: '100%', boxSizing: 'border-box', borderTop: '3px solid #111' }}>
-                <div style={{ fontSize: 40, color: '#F4A100', lineHeight: 1, marginBottom: 16, fontFamily: 'Georgia, serif' }}>"</div>
-                <p style={{ color: '#333', fontSize: 14.5, lineHeight: 1.8, flex: 1, marginBottom: 24 }}>{t.quote || t.review}</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: '1px solid #eee' }}>
-                  <div>
-                    <div style={{ color: '#111', fontWeight: 800, fontSize: 14 }}>{t.client_name || t.name}</div>
-                    <div style={{ color: '#999', fontSize: 12, marginTop: 2 }}>{t.company}</div>
+              <div key={t.id || i} className="glass-card" style={{ padding: 'clamp(24px,3vw,36px)', display: 'flex', flexDirection: 'column', height: '100%', boxSizing: 'border-box' }}>
+                {/* Quote mark */}
+                <div style={{ fontSize: 52, color: '#F4A100', lineHeight: 0.8, marginBottom: 20, fontFamily: 'Georgia, serif', opacity: 0.9 }}>"</div>
+                <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14.5, lineHeight: 1.8, flex: 1, marginBottom: 24 }}>{t.quote || t.review}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #F4A100, #d48e00)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <span style={{ color: '#111', fontSize: 13, fontWeight: 900 }}>{(t.client_name || t.name || 'U')[0]}</span>
+                    </div>
+                    <div>
+                      <div style={{ color: '#fff', fontWeight: 800, fontSize: 13 }}>{t.client_name || t.name}</div>
+                      <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: 11, marginTop: 1 }}>{t.company}</div>
+                    </div>
                   </div>
                   <div style={{ display: 'flex', gap: 2 }}>
-                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={11} color="#F4A100"/>)}
+                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={10} color="#F4A100"/>)}
                   </div>
                 </div>
               </div>
@@ -760,13 +784,13 @@ export default function Home() {
           {tPages > 1 && (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
               <button onClick={() => setTSlide(p => Math.max(0, p - 1))} disabled={tSlide === 0}
-                style={{ width: 38, height: 38, border: '1px solid #ccc', background: tSlide === 0 ? '#eee' : '#111', color: tSlide === 0 ? '#999' : '#fff', cursor: tSlide === 0 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>‹</button>
+                style={{ width: 38, height: 38, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: tSlide === 0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.08)', color: tSlide === 0 ? '#444' : '#fff', cursor: tSlide === 0 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
               {Array.from({ length: tPages }).map((_, p) => (
                 <button key={p} onClick={() => setTSlide(p)}
-                  style={{ width: 8, height: 8, border: 'none', background: tSlide === p ? '#111' : '#ccc', cursor: 'pointer', padding: 0 }} />
+                  style={{ width: 8, height: 8, border: 'none', borderRadius: '50%', background: tSlide === p ? '#F4A100' : 'rgba(255,255,255,0.15)', cursor: 'pointer', padding: 0, transition: 'background 0.2s' }} />
               ))}
               <button onClick={() => setTSlide(p => Math.min(tPages - 1, p + 1))} disabled={tSlide === tPages - 1}
-                style={{ width: 38, height: 38, border: '1px solid #ccc', background: tSlide === tPages - 1 ? '#eee' : '#111', color: tSlide === tPages - 1 ? '#999' : '#fff', cursor: tSlide === tPages - 1 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>›</button>
+                style={{ width: 38, height: 38, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: tSlide === tPages - 1 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.08)', color: tSlide === tPages - 1 ? '#444' : '#fff', cursor: tSlide === tPages - 1 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
             </div>
           )}
         </div>
