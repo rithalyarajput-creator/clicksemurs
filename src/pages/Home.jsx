@@ -514,7 +514,7 @@ export default function Home() {
       </div>
 
       {/* ── Stats Bar ── */}
-      <section style={{ background: '#111111', borderTop: '1px solid #2E2E2E', borderBottom: '1px solid #2E2E2E' }}>
+      <section style={{ background: '#0A0A0A', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }} className="stats-grid-resp">
             {stats.map(s => <StatCard key={s.label} value={s.value} label={s.label} />)}
@@ -522,103 +522,84 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Services ── */}
-      <section style={{ background: '#F4F4F4', padding: 'clamp(48px, 8vw, 96px) 0' }}>
+      {/* ── Services — light grey bg, horizontal scroll cards with left big text ── */}
+      <section style={{ background: '#F2F2F2', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div style={{ marginBottom: 48 }}>
-            <span style={{ display: 'block', color: '#777', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>What We Do</span>
-            <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 900, color: '#111', marginBottom: 12 }}>Full-Service Digital Marketing</h2>
-            <p style={{ color: '#777', maxWidth: 480, fontSize: 15, lineHeight: 1.6 }}>Every service you need under one roof — no coordination headaches, no gaps.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-            {services.slice(0, 6).map(svc => {
-              const Icon = svc.icon
-              return (
-                <Link key={svc.id} to={`/services/${svc.slug}`} style={{ background: '#fff', border: '1px solid #e5e7eb', padding: 32, display: 'block', textDecoration: 'none', transition: 'border-color 0.2s, transform 0.2s', borderRadius: 4 }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#111'; e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.transform = 'none' }}>
-                  <div style={{ width: 42, height: 42, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18, borderRadius: 8 }}>
-                    <Icon size={18} color="white" />
-                  </div>
-                  <h3 style={{ color: '#111', fontWeight: 800, fontSize: 16, marginBottom: 8 }}>{svc.title}</h3>
-                  <p style={{ color: '#777', fontSize: 13.5, lineHeight: 1.65 }}>{svc.short}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 16, color: '#111', fontSize: 13, fontWeight: 700 }}>
-                    Learn More <FaArrowRight size={10} />
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 36 }}>
-            <Link to="/services" className="btn-dark">View All 10 Services <FaArrowRight size={12} /></Link>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 56, alignItems: 'start' }} className="services-two-col">
+            <style>{`.services-two-col { grid-template-columns: 1fr 2fr !important; } @media(max-width:860px){.services-two-col{grid-template-columns:1fr !important;}}`}</style>
+            {/* Left sticky label */}
+            <div style={{ position: 'sticky', top: 120 }}>
+              <span style={{ display: 'block', fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#999', marginBottom: 14 }}>What We Do</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, color: '#111', lineHeight: 1.1, marginBottom: 16 }}>Full-Service<br/>Digital<br/>Marketing</h2>
+              <div style={{ width: 40, height: 3, background: '#111', marginBottom: 18 }}/>
+              <p style={{ color: '#666', fontSize: 14, lineHeight: 1.7, maxWidth: 260 }}>Every service under one roof. No gaps, no juggling vendors.</p>
+              <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 28, background: '#111', color: '#fff', padding: '12px 22px', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textDecoration: 'none', borderRadius: 2 }}>
+                All Services <FaArrowRight size={10}/>
+              </Link>
+            </div>
+            {/* Right — services list */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {services.slice(0, 6).map((svc, i) => {
+                const Icon = svc.icon
+                return (
+                  <Link key={svc.id} to={`/services/${svc.slug}`} style={{ background: '#fff', padding: '22px 28px', display: 'flex', alignItems: 'center', gap: 20, textDecoration: 'none', borderLeft: '3px solid transparent', transition: 'border-color 0.2s, background 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderLeftColor = '#F4A100'; e.currentTarget.style.background = '#fafafa' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderLeftColor = 'transparent'; e.currentTarget.style.background = '#fff' }}>
+                    <div style={{ width: 40, height: 40, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6, flexShrink: 0 }}>
+                      <Icon size={17} color="white"/>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ color: '#111', fontWeight: 800, fontSize: 15, marginBottom: 3 }}>{svc.title}</div>
+                      <div style={{ color: '#888', fontSize: 13, lineHeight: 1.5 }}>{svc.short}</div>
+                    </div>
+                    <span style={{ color: '#ccc', fontSize: 18, flexShrink: 0 }}>→</span>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Why Us ── */}
-      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 50%, #0a0a0a 100%)', padding: 'clamp(56px, 8vw, 96px) 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: -60, left: -60, width: 260, height: 260, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
-          <div style={{ marginBottom: 52 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <div style={{ width: 32, height: 3, background: '#F4A100', borderRadius: 2, flexShrink: 0 }} />
-              <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase' }}>Why Clicksemurs</span>
+      {/* ── Why Us — pure black, numbered list layout ── */}
+      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 16 }}>
+            <div>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Why Clicksemurs</span>
+              <h2 style={{ color: '#fff', fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, lineHeight: 1.1 }}>
+                7 Reasons Brands<br/>Never Leave Us
+              </h2>
             </div>
-            <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem, 4vw, 3rem)', fontWeight: 900, lineHeight: 1.1, marginBottom: 12 }}>
-              7 Reasons Businesses<br /><span style={{ color: '#F4A100' }}>Choose Us</span>
-            </h2>
-            <p style={{ color: '#6b7280', fontSize: 15, maxWidth: 420 }}>And why they stay — 98% client retention rate speaks for itself.</p>
+            <p style={{ color: '#555', fontSize: 14, maxWidth: 280, lineHeight: 1.65 }}>98% client retention. Not a coincidence — it's a system.</p>
           </div>
-
-          {/* 6 cards grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
-            {whyUs.slice(0, 6).map((item, i) => {
-              const accent = i % 3 === 0 ? '#F4A100' : i % 3 === 1 ? '#3b82f6' : '#10b981'
-              return (
-                <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', padding: 'clamp(20px,3vw,32px)', position: 'relative', overflow: 'hidden', transition: 'background 0.2s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}>
-                  <div style={{ position: 'absolute', top: 14, right: 16, fontSize: 48, fontWeight: 900, color: 'rgba(255,255,255,0.04)', lineHeight: 1, userSelect: 'none' }}>{String(i + 1).padStart(2, '0')}</div>
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: accent, opacity: 0.7 }} />
-                  <div style={{ width: 44, height: 44, background: `${accent}18`, border: `1px solid ${accent}30`, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18, color: accent }}>
-                    {item.icon}
-                  </div>
-                  <h3 style={{ color: '#fff', fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{item.title}</h3>
-                  <p style={{ color: '#6b7280', fontSize: 13.5, lineHeight: 1.7 }}>{item.desc}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 1, background: '#1a1a1a' }}>
+            {whyUs.map((item, i) => (
+              <div key={i} style={{ background: '#0A0A0A', padding: 'clamp(24px,3vw,36px)', display: 'flex', gap: 20, transition: 'background 0.2s', cursor: 'default' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#111'}
+                onMouseLeave={e => e.currentTarget.style.background = '#0A0A0A'}>
+                <div style={{ fontSize: 11, fontWeight: 900, color: '#F4A100', letterSpacing: '0.05em', flexShrink: 0, paddingTop: 2, minWidth: 28 }}>
+                  {String(i + 1).padStart(2, '0')}
                 </div>
-              )
-            })}
-          </div>
-
-          {/* 7th reason full-width */}
-          <div style={{ marginTop: 2, background: 'linear-gradient(90deg, rgba(244,161,0,0.12) 0%, rgba(244,161,0,0.04) 100%)', border: '1px solid rgba(244,161,0,0.25)', padding: 'clamp(18px, 3vw, 28px) clamp(18px, 3vw, 32px)', display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-            <div style={{ width: 50, height: 50, background: 'rgba(244,161,0,0.15)', border: '1px solid rgba(244,161,0,0.3)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: '#F4A100' }}>
-              {whyUs[6].icon}
-            </div>
-            <div style={{ flex: 1, minWidth: 200 }}>
-              <h3 style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 4 }}>{whyUs[6].title}</h3>
-              <p style={{ color: '#9ca3af', fontSize: 14 }}>{whyUs[6].desc}</p>
-            </div>
-            <div style={{ flexShrink: 0, background: '#F4A100', color: '#111', fontSize: 12, fontWeight: 800, padding: '8px 18px', borderRadius: 6, letterSpacing: '0.05em' }}>
-              #7 REASON
-            </div>
+                <div>
+                  <div style={{ color: '#fff', fontWeight: 800, fontSize: 15, marginBottom: 8 }}>{item.title}</div>
+                  <div style={{ color: '#555', fontSize: 13.5, lineHeight: 1.7 }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Orbit / Integrations ── */}
-      <section style={{ background: '#f8fafc', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 50%, rgba(244,161,0,0.04) 0%, transparent 60%)', pointerEvents: 'none' }} />
+      {/* ── Orbit / Integrations — white bg, centered ── */}
+      <section style={{ background: '#fff', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 40%, rgba(244,161,0,0.05) 0%, transparent 55%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.2)', borderRadius: 100, padding: '4px 16px', marginBottom: 16 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
-            <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Platforms We Work With</span>
-          </div>
-          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#0f172a', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
+          <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#999', display: 'block', marginBottom: 14 }}>Platforms We Work With</span>
+          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#111', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
             One Agency. <span style={{ color: '#F4A100' }}>Every Platform.</span>
           </h2>
-          <p style={{ color: '#64748b', fontSize: 15, textAlign: 'center', marginBottom: 56, maxWidth: 420 }}>We connect your brand across all major digital platforms — seamlessly.</p>
+          <p style={{ color: '#888', fontSize: 15, textAlign: 'center', marginBottom: 56, maxWidth: 400 }}>We connect your brand across all major digital platforms — seamlessly.</p>
 
           {/* Orbit */}
           <div style={{ position:'relative', width:560, height:560, maxWidth:'96vw' }}>
@@ -704,55 +685,41 @@ export default function Home() {
           </div>
 
           {/* Platform tags */}
-          <div style={{display:'flex',flexWrap:'wrap',gap:8,justifyContent:'center',marginTop:52,maxWidth:700}}>
+          <div style={{display:'flex',flexWrap:'wrap',gap:8,justifyContent:'center',marginTop:48,maxWidth:700}}>
             {['Instagram','Facebook','LinkedIn','YouTube','WhatsApp','Google Ads','WordPress','Shopify','Figma','Canva','HubSpot','Mailchimp','Pinterest','Analytics','SEMrush'].map(p=>(
-              <span key={p} style={{background:'#fff',border:'1px solid #e2e8f0',borderRadius:100,padding:'5px 14px',color:'#475569',fontSize:11,fontWeight:600,boxShadow:'0 1px 4px rgba(0,0,0,0.05)'}}>{p}</span>
+              <span key={p} style={{background:'#f5f5f5',border:'1px solid #e5e5e5',borderRadius:2,padding:'5px 14px',color:'#444',fontSize:11,fontWeight:600}}>{p}</span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Work Preview ── */}
-      <section style={{ background: '#fff', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+      {/* ── Work Preview — charcoal bg, big number layout ── */}
+      <section style={{ background: '#161616', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 16 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 52, flexWrap: 'wrap', gap: 16 }}>
             <div>
-              <span style={{ display: 'block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Our Work</span>
-              <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 900, color: '#0f172a', marginBottom: 8 }}>Results That Speak</h2>
-              <p style={{ color: '#64748b', fontSize: 15 }}>Real clients. Real numbers. Zero fluff.</p>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Results</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>Numbers That<br/>Prove It</h2>
             </div>
-            <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#0f172a', fontWeight: 700, fontSize: 13, textDecoration: 'none', borderBottom: '2px solid #0f172a', paddingBottom: 2, whiteSpace: 'nowrap' }}>
-              View All Work <FaArrowRight size={10} />
+            <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#fff', fontWeight: 700, fontSize: 12, textDecoration: 'none', border: '1px solid #333', padding: '10px 20px', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+              View All Work <FaArrowRight size={10}/>
             </Link>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 1, background: '#222' }}>
             {[
-              { client: 'TechSpark Solutions', industry: 'Technology', metric: '300%', metricLabel: 'Organic Traffic Growth', detail: '6 months · SEO + Content', accent: '#6366f1' },
-              { client: 'StyleHouse Fashion', industry: 'Fashion & Retail', metric: '400%', metricLabel: 'ROI Improvement', detail: '8 months · Meta Ads', accent: '#ec4899' },
-              { client: 'GreenBuild Infra', industry: 'Real Estate', metric: '120+', metricLabel: 'Leads Per Month', detail: 'Google Ads + Website', accent: '#10b981' },
+              { client: 'TechSpark Solutions', industry: 'Technology · SEO + Content', metric: '300%', metricLabel: 'Organic Traffic Growth', detail: '6 months' },
+              { client: 'StyleHouse Fashion', industry: 'Fashion & Retail · Meta Ads', metric: '400%', metricLabel: 'ROI Improvement', detail: '8 months' },
+              { client: 'GreenBuild Infra', industry: 'Real Estate · Google Ads', metric: '120+', metricLabel: 'Leads Per Month', detail: 'Ongoing' },
             ].map((cs, i) => (
-              <div key={i} style={{ border: '1px solid #e2e8f0', borderRadius: 14, overflow: 'hidden', background: '#fff', transition: 'box-shadow 0.2s, transform 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}>
-                <div style={{ height: 6, background: cs.accent }} />
-                <div style={{ padding: 28 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: 16, color: '#0f172a', marginBottom: 4 }}>{cs.client}</div>
-                      <div style={{ fontSize: 12, color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{cs.industry}</div>
-                    </div>
-                    <div style={{ background: `${cs.accent}15`, border: `1px solid ${cs.accent}30`, borderRadius: 8, padding: '4px 10px' }}>
-                      <span style={{ color: cs.accent, fontSize: 11, fontWeight: 700 }}>Case Study</span>
-                    </div>
-                  </div>
-                  <div style={{ background: '#f8fafc', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
-                    <div style={{ fontSize: 'clamp(2rem, 6vw, 2.8rem)', fontWeight: 900, color: cs.accent, lineHeight: 1 }}>{cs.metric}</div>
-                    <div style={{ fontSize: 13, color: '#475569', fontWeight: 600, marginTop: 4 }}>{cs.metricLabel}</div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10b981', flexShrink: 0 }} />
-                    <span style={{ color: '#64748b', fontSize: 13 }}>{cs.detail}</span>
-                  </div>
+              <div key={i} style={{ background: '#161616', padding: 'clamp(28px,4vw,44px)', display: 'flex', flexDirection: 'column', gap: 16, transition: 'background 0.2s' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#1e1e1e'}
+                onMouseLeave={e => e.currentTarget.style.background = '#161616'}>
+                <div style={{ fontSize: 'clamp(3rem,8vw,5rem)', fontWeight: 900, color: '#F4A100', lineHeight: 1, letterSpacing: '-0.03em' }}>{cs.metric}</div>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: 15 }}>{cs.metricLabel}</div>
+                <div style={{ width: 32, height: 2, background: '#333' }}/>
+                <div>
+                  <div style={{ color: '#fff', fontWeight: 800, fontSize: 14, marginBottom: 4 }}>{cs.client}</div>
+                  <div style={{ color: '#555', fontSize: 12 }}>{cs.industry} · {cs.detail}</div>
                 </div>
               </div>
             ))}
@@ -760,25 +727,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section style={{ background: '#f8fafc', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+      {/* ── Testimonials — off-white, large quote layout ── */}
+      <section style={{ background: '#F2F2F2', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div style={{ marginBottom: 48 }}>
-            <span style={{ display: 'block', color: '#777', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</span>
-            <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.5rem)', fontWeight: 900, color: '#111' }}>What Our Clients Say</h2>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 52, flexWrap: 'wrap', gap: 16 }}>
+            <div>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#999', display: 'block', marginBottom: 14 }}>Client Stories</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, color: '#111', lineHeight: 1.1 }}>What Clients<br/>Say About Us</h2>
+            </div>
+            <div style={{ display: 'flex', gap: 4 }}>
+              {[...Array(5)].map((_,j) => <FaStar key={j} size={14} color="#F4A100"/>)}
+              <span style={{ color: '#888', fontSize: 12, marginLeft: 8, alignSelf: 'center' }}>5.0 average</span>
+            </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 28, alignItems: 'stretch' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16, marginBottom: 28, alignItems: 'stretch' }}>
             {tVisible.map((t, i) => (
-              <div key={t.id || i} style={{ background: '#fff', border: '1px solid #e2e8f0', padding: 'clamp(20px,3vw,32px)', display: 'flex', flexDirection: 'column', borderRadius: 12, height: '100%', boxSizing: 'border-box' }}>
-                <FaQuoteLeft size={22} color="#e2e8f0" style={{ marginBottom: 18, flexShrink: 0 }} />
-                <p style={{ color: '#4A4A4A', fontSize: 14, lineHeight: 1.75, flex: 1, marginBottom: 24 }}>"{t.quote || t.review}"</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+              <div key={t.id || i} style={{ background: '#fff', padding: 'clamp(24px,3vw,36px)', display: 'flex', flexDirection: 'column', borderRadius: 0, height: '100%', boxSizing: 'border-box', borderTop: '3px solid #111' }}>
+                <div style={{ fontSize: 40, color: '#F4A100', lineHeight: 1, marginBottom: 16, fontFamily: 'Georgia, serif' }}>"</div>
+                <p style={{ color: '#333', fontSize: 14.5, lineHeight: 1.8, flex: 1, marginBottom: 24 }}>{t.quote || t.review}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: '1px solid #eee' }}>
                   <div>
-                    <div style={{ color: '#111', fontWeight: 700, fontSize: 14 }}>{t.client_name || t.name}</div>
-                    <div style={{ color: '#777', fontSize: 12, marginTop: 2 }}>{t.company}</div>
+                    <div style={{ color: '#111', fontWeight: 800, fontSize: 14 }}>{t.client_name || t.name}</div>
+                    <div style={{ color: '#999', fontSize: 12, marginTop: 2 }}>{t.company}</div>
                   </div>
                   <div style={{ display: 'flex', gap: 2 }}>
-                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={12} color="#F4A100" />)}
+                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={11} color="#F4A100"/>)}
                   </div>
                 </div>
               </div>
@@ -787,42 +760,54 @@ export default function Home() {
           {tPages > 1 && (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
               <button onClick={() => setTSlide(p => Math.max(0, p - 1))} disabled={tSlide === 0}
-                style={{ width: 38, height: 38, borderRadius: '50%', border: '2px solid #111', background: tSlide === 0 ? '#e5e5e5' : '#111', color: tSlide === 0 ? '#999' : '#fff', cursor: tSlide === 0 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
+                style={{ width: 38, height: 38, border: '1px solid #ccc', background: tSlide === 0 ? '#eee' : '#111', color: tSlide === 0 ? '#999' : '#fff', cursor: tSlide === 0 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>‹</button>
               {Array.from({ length: tPages }).map((_, p) => (
                 <button key={p} onClick={() => setTSlide(p)}
-                  style={{ width: 10, height: 10, borderRadius: '50%', border: 'none', background: tSlide === p ? '#111' : '#ccc', cursor: 'pointer', padding: 0 }} />
+                  style={{ width: 8, height: 8, border: 'none', background: tSlide === p ? '#111' : '#ccc', cursor: 'pointer', padding: 0 }} />
               ))}
               <button onClick={() => setTSlide(p => Math.min(tPages - 1, p + 1))} disabled={tSlide === tPages - 1}
-                style={{ width: 38, height: 38, borderRadius: '50%', border: '2px solid #111', background: tSlide === tPages - 1 ? '#e5e5e5' : '#111', color: tSlide === tPages - 1 ? '#999' : '#fff', cursor: tSlide === tPages - 1 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
+                style={{ width: 38, height: 38, border: '1px solid #ccc', background: tSlide === tPages - 1 ? '#eee' : '#111', color: tSlide === tPages - 1 ? '#999' : '#fff', cursor: tSlide === tPages - 1 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 0 }}>›</button>
             </div>
           )}
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
-      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0', borderTop: '1px solid #2E2E2E' }}>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8" style={{ textAlign: 'center' }}>
-          <span style={{ display: 'block', color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20 }}>Limited Spots Available</span>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontWeight: 900, color: '#fff', marginBottom: 16, lineHeight: 1.15 }}>
-            Get Your FREE Digital<br />Marketing Audit Today
-          </h2>
-          <p style={{ color: '#AAAAAA', marginBottom: 36, maxWidth: 480, margin: '0 auto 36px', lineHeight: 1.7, fontSize: 15 }}>
-            Let our experts analyze your current digital presence and show you exactly how to grow — no commitment, no cost.
-          </p>
-          {emailSent ? (
-            <div style={{ background: '#1E1E1E', border: '1px solid #2E2E2E', padding: '20px 32px', display: 'inline-block', borderRadius: 8 }}>
-              <p style={{ color: '#fff', fontWeight: 600 }}>Thank you! We'll be in touch shortly.</p>
+      {/* ── CTA Banner — full black, split layout ── */}
+      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }} className="cta-two-col">
+            <style>{`@media(max-width:768px){.cta-two-col{grid-template-columns:1fr !important;}}`}</style>
+            <div>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Limited Spots Available</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 16 }}>
+                Get Your FREE<br/>Marketing Audit<br/>Today
+              </h2>
+              <p style={{ color: '#555', fontSize: 14, lineHeight: 1.7, maxWidth: 400 }}>
+                Let our experts analyze your digital presence and show you exactly where the growth is hiding.
+              </p>
             </div>
-          ) : (
-            <form onSubmit={handleAuditSubmit} style={{ display: 'flex', gap: 10, maxWidth: 420, margin: '0 auto', flexWrap: 'wrap' }}>
-              <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required
-                style={{ flex: 1, minWidth: 200, background: '#1E1E1E', border: '1px solid #2E2E2E', color: '#fff', padding: '12px 16px', fontSize: 14, outline: 'none', borderRadius: 6 }} />
-              <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap', borderRadius: 6 }}>
-                Start Growing →
-              </button>
-            </form>
-          )}
-          <p style={{ color: '#555', fontSize: 12, marginTop: 16 }}>clicksemurs@gmail.com · www.clicksemurs.com</p>
+            <div>
+              {emailSent ? (
+                <div style={{ background: '#111', border: '1px solid #222', padding: '32px', borderRadius: 0 }}>
+                  <p style={{ color: '#F4A100', fontWeight: 700, fontSize: 16 }}>✓ We'll be in touch shortly.</p>
+                  <p style={{ color: '#666', fontSize: 13, marginTop: 8 }}>Check your inbox within 24 hours.</p>
+                </div>
+              ) : (
+                <div style={{ background: '#111', padding: 'clamp(24px,4vw,40px)', borderLeft: '3px solid #F4A100' }}>
+                  <div style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 6 }}>Start with a free audit</div>
+                  <div style={{ color: '#555', fontSize: 13, marginBottom: 24 }}>No commitment. No cost. Real insights.</div>
+                  <form onSubmit={handleAuditSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required
+                      style={{ background: '#0A0A0A', border: '1px solid #2a2a2a', color: '#fff', padding: '14px 16px', fontSize: 14, outline: 'none', borderRadius: 0, width: '100%', boxSizing: 'border-box' }}/>
+                    <button type="submit" style={{ background: '#F4A100', color: '#111', padding: '14px 24px', fontSize: 13, fontWeight: 800, border: 'none', cursor: 'pointer', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      Get My Free Audit →
+                    </button>
+                  </form>
+                  <p style={{ color: '#333', fontSize: 11, marginTop: 12 }}>clicksemurs@gmail.com · www.clicksemurs.com</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </section>
     </div>
