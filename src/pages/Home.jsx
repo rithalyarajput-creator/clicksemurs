@@ -406,6 +406,113 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Logo Marquee ── */}
+      <div style={{ background: '#0A0A0A', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 0', overflow: 'hidden', position: 'relative' }}>
+        <style>{`
+          @keyframes marqueeScroll {
+            0%   { transform: translateX(0) }
+            100% { transform: translateX(-50%) }
+          }
+          .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            width: max-content;
+            animation: marqueeScroll 22s linear infinite;
+          }
+          .marquee-track:hover { animation-play-state: paused; }
+          .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 36px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+            white-space: nowrap;
+          }
+        `}</style>
+        {/* Left fade */}
+        <div style={{ position:'absolute', left:0, top:0, bottom:0, width:80, background:'linear-gradient(90deg,#0A0A0A,transparent)', zIndex:2, pointerEvents:'none' }}/>
+        {/* Right fade */}
+        <div style={{ position:'absolute', right:0, top:0, bottom:0, width:80, background:'linear-gradient(270deg,#0A0A0A,transparent)', zIndex:2, pointerEvents:'none' }}/>
+
+        <div className="marquee-track">
+          {/* First copy */}
+          {[
+            { img: '/instagram.png',    label: 'Instagram',   blend: false },
+            { img: '/google ads.png',   label: 'Google Ads',  blend: true  },
+            { img: '/wordpress.png',    label: 'WordPress',   blend: true  },
+            { img: '/Shopify_logo.svg', label: 'Shopify',     blend: false },
+            { img: null, label: 'Facebook',   emoji: '📘' },
+            { img: null, label: 'LinkedIn',   emoji: '💼' },
+            { img: null, label: 'YouTube',    emoji: '▶️' },
+            { img: null, label: 'SEO',        emoji: '🔍' },
+            { img: null, label: 'Meta Ads',   emoji: '📊' },
+            { img: null, label: 'WhatsApp',   emoji: '💬' },
+            { img: null, label: 'Canva',      emoji: '🎨' },
+            { img: null, label: 'HubSpot',    emoji: '🧲' },
+          ].map((item, i) => (
+            <div key={i} className="marquee-item">
+              {item.img ? (
+                <img
+                  src={item.img}
+                  alt={item.label}
+                  height="22"
+                  style={{
+                    height: 22,
+                    width: 'auto',
+                    maxWidth: 90,
+                    objectFit: 'contain',
+                    mixBlendMode: item.blend ? 'screen' : 'normal',
+                    filter: item.blend ? 'brightness(1.8) contrast(0.9)' : 'none',
+                    opacity: 0.9,
+                  }}
+                />
+              ) : (
+                <span style={{ fontSize: 16 }}>{item.emoji}</span>
+              )}
+              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12, fontWeight: 600, letterSpacing: '0.04em' }}>{item.label}</span>
+            </div>
+          ))}
+          {/* Duplicate copy for seamless loop */}
+          {[
+            { img: '/instagram.png',    label: 'Instagram',   blend: false },
+            { img: '/google ads.png',   label: 'Google Ads',  blend: true  },
+            { img: '/wordpress.png',    label: 'WordPress',   blend: true  },
+            { img: '/Shopify_logo.svg', label: 'Shopify',     blend: false },
+            { img: null, label: 'Facebook',   emoji: '📘' },
+            { img: null, label: 'LinkedIn',   emoji: '💼' },
+            { img: null, label: 'YouTube',    emoji: '▶️' },
+            { img: null, label: 'SEO',        emoji: '🔍' },
+            { img: null, label: 'Meta Ads',   emoji: '📊' },
+            { img: null, label: 'WhatsApp',   emoji: '💬' },
+            { img: null, label: 'Canva',      emoji: '🎨' },
+            { img: null, label: 'HubSpot',    emoji: '🧲' },
+          ].map((item, i) => (
+            <div key={`d${i}`} className="marquee-item">
+              {item.img ? (
+                <img
+                  src={item.img}
+                  alt={item.label}
+                  height="22"
+                  style={{
+                    height: 22,
+                    width: 'auto',
+                    maxWidth: 90,
+                    objectFit: 'contain',
+                    mixBlendMode: item.blend ? 'screen' : 'normal',
+                    filter: item.blend ? 'brightness(1.8) contrast(0.9)' : 'none',
+                    opacity: 0.9,
+                  }}
+                />
+              ) : (
+                <span style={{ fontSize: 16 }}>{item.emoji}</span>
+              )}
+              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12, fontWeight: 600, letterSpacing: '0.04em' }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* ── Stats Bar ── */}
       <section style={{ background: '#111111', borderTop: '1px solid #2E2E2E', borderBottom: '1px solid #2E2E2E' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
