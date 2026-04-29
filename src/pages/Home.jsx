@@ -287,105 +287,89 @@ export default function Home() {
           {/* Orbit */}
           <div style={{ position:'relative', width:560, height:560, maxWidth:'96vw' }}>
             <style>{`
-              @keyframes orbitCW   { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
-              @keyframes orbitCCW  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
-              @keyframes orbitCW3  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
-              @keyframes pulseCtr  { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.35),0 0 40px rgba(244,161,0,0.12)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.25)} }
-              @keyframes counterCW   { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
-              @keyframes counterCCW  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
-              @keyframes counterCW3  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
-              .orb-wrap { position:absolute; top:50%; left:50%; }
-              .orb-icon-sq { display:flex;align-items:center;justify-content:center;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.13);background:#fff; }
+              @keyframes sCW14  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes sCCW20 { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes sCW28  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes rCW14  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes rCCW20 { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes rCW28  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes pulseCtr { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.35),0 0 40px rgba(244,161,0,0.12)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.25)} }
+              .orb-ring { position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center; }
+              .orb-icon-sq { display:flex;align-items:center;justify-content:center;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,0.13);background:#fff; }
             `}</style>
 
-            {/* Rings */}
-            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)'}}>
-              <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.35)',transform:'translate(-50%,-50%)'}}/>
-              <div style={{position:'absolute',width:340,height:340,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.22)',transform:'translate(-50%,-50%)'}}/>
-              <div style={{position:'absolute',width:490,height:490,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.13)',transform:'translate(-50%,-50%)'}}/>
+            {/* Static rings */}
+            <div className="orb-ring">
+              <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.4)'}}/>
+              <div style={{position:'absolute',width:340,height:340,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.25)'}}/>
+              <div style={{position:'absolute',width:490,height:490,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.15)'}}/>
             </div>
 
             {/* Center */}
-            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f0f4ff 100%)',border:'2.5px solid rgba(244,161,0,0.4)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
+            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f0f4ff 100%)',border:'2.5px solid rgba(244,161,0,0.45)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
               <img src="https://img.icons8.com/color/48/000000/globe--v1.png" width="34" height="34" alt="" style={{borderRadius:4}} onError={e=>{e.target.style.display='none'}}/>
               <span style={{color:'#F4A100',fontSize:7.5,fontWeight:900,letterSpacing:'0.08em',textTransform:'uppercase',textAlign:'center',lineHeight:1.45}}>Digital<br/>Marketing</span>
             </div>
 
-            {/* Inner ring — 5 icons CW 14s */}
-            {[
-              {src:'https://img.icons8.com/fluency/48/instagram-new.png', name:'Instagram'},
-              {src:'https://img.icons8.com/fluency/48/facebook-new.png', name:'Facebook'},
-              {src:'https://img.icons8.com/fluency/48/linkedin.png', name:'LinkedIn'},
-              {src:'https://img.icons8.com/fluency/48/youtube-play.png', name:'YouTube'},
-              {src:'https://img.icons8.com/fluency/48/whatsapp.png', name:'WhatsApp'},
-            ].map((ic,idx) => {
-              const angle = idx * 72
-              const rad = angle * Math.PI / 180
-              const r = 100
-              const x = Math.cos(rad) * r
-              const y = Math.sin(rad) * r
-              return (
-                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCW 14s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
-                  <div className="orb-icon-sq" style={{width:50,height:50,animation:`counterCW 14s linear infinite`}}>
-                    <img src={ic.src} width="32" height="32" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+            {/* Inner ring spinner — 5 icons CW 14s */}
+            <div className="orb-ring" style={{animation:'sCW14 14s linear infinite'}}>
+              {[
+                {src:'https://img.icons8.com/fluency/48/instagram-new.png', name:'Instagram'},
+                {src:'https://img.icons8.com/fluency/48/facebook-new.png', name:'Facebook'},
+                {src:'https://img.icons8.com/fluency/48/linkedin.png', name:'LinkedIn'},
+                {src:'https://img.icons8.com/fluency/48/youtube-play.png', name:'YouTube'},
+                {src:'https://img.icons8.com/fluency/48/whatsapp.png', name:'WhatsApp'},
+              ].map((ic,idx) => (
+                <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*72}deg) translateY(-100px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <div className="orb-icon-sq" style={{width:50,height:50,animation:'rCW14 14s linear infinite'}}>
+                    <img src={ic.src} width="32" height="32" alt={ic.name}/>
                   </div>
                 </div>
-              )
-            })}
+              ))}
+            </div>
 
-            {/* Middle ring — 7 icons CCW 20s */}
-            {[
-              {src:'https://img.icons8.com/fluency/48/google-logo.png', name:'Google'},
-              {src:'https://img.icons8.com/fluency/48/shopify.png', name:'Shopify'},
-              {src:'https://img.icons8.com/fluency/48/wordpress.png', name:'WordPress'},
-              {src:'https://img.icons8.com/fluency/48/tiktok.png', name:'TikTok'},
-              {src:'https://img.icons8.com/fluency/48/canva.png', name:'Canva'},
-              {src:'https://img.icons8.com/fluency/48/twitter--v1.png', name:'Twitter'},
-              {src:'https://img.icons8.com/fluency/48/figma.png', name:'Figma'},
-            ].map((ic,idx) => {
-              const angle = idx * (360/7)
-              const rad = angle * Math.PI / 180
-              const r = 170
-              const x = Math.cos(rad) * r
-              const y = Math.sin(rad) * r
-              return (
-                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCCW 20s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
-                  <div className="orb-icon-sq" style={{width:54,height:54,animation:`counterCCW 20s linear infinite`}}>
-                    <img src={ic.src} width="34" height="34" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+            {/* Middle ring spinner — 6 icons CCW 20s */}
+            <div className="orb-ring" style={{animation:'sCCW20 20s linear infinite'}}>
+              {[
+                {src:'https://img.icons8.com/fluency/48/google-logo.png', name:'Google'},
+                {src:'https://img.icons8.com/fluency/48/shopify.png', name:'Shopify'},
+                {src:'https://img.icons8.com/fluency/48/wordpress.png', name:'WordPress'},
+                {src:'https://img.icons8.com/fluency/48/canva.png', name:'Canva'},
+                {src:'https://img.icons8.com/fluency/48/twitter--v1.png', name:'Twitter'},
+                {src:'https://img.icons8.com/fluency/48/figma.png', name:'Figma'},
+              ].map((ic,idx) => (
+                <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*60}deg) translateY(-170px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <div className="orb-icon-sq" style={{width:54,height:54,animation:'rCCW20 20s linear infinite'}}>
+                    <img src={ic.src} width="34" height="34" alt={ic.name}/>
                   </div>
                 </div>
-              )
-            })}
+              ))}
+            </div>
 
-            {/* Outer ring — 8 icons CW 28s */}
-            {[
-              {src:'https://img.icons8.com/fluency/48/google-ads.png', name:'Google Ads'},
-              {src:'https://img.icons8.com/fluency/48/mailchimp.png', name:'Mailchimp'},
-              {src:'https://img.icons8.com/fluency/48/adobe-photoshop.png', name:'Photoshop'},
-              {src:'https://img.icons8.com/fluency/48/hubspot.png', name:'HubSpot'},
-              {src:'https://img.icons8.com/fluency/48/pinterest.png', name:'Pinterest'},
-              {src:'https://img.icons8.com/fluency/48/google-analytics.png', name:'Analytics'},
-              {src:'https://img.icons8.com/fluency/48/discord-logo.png', name:'Discord'},
-              {src:'https://img.icons8.com/fluency/48/semrush.png', name:'SEMrush'},
-            ].map((ic,idx) => {
-              const angle = idx * 45
-              const rad = angle * Math.PI / 180
-              const r = 245
-              const x = Math.cos(rad) * r
-              const y = Math.sin(rad) * r
-              return (
-                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCW3 28s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
-                  <div className="orb-icon-sq" style={{width:48,height:48,animation:`counterCW3 28s linear infinite`}}>
-                    <img src={ic.src} width="30" height="30" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+            {/* Outer ring spinner — 8 icons CW 28s */}
+            <div className="orb-ring" style={{animation:'sCW28 28s linear infinite'}}>
+              {[
+                {src:'https://img.icons8.com/fluency/48/google-ads.png', name:'Google Ads'},
+                {src:'https://img.icons8.com/fluency/48/mailchimp.png', name:'Mailchimp'},
+                {src:'https://img.icons8.com/fluency/48/adobe-photoshop.png', name:'Photoshop'},
+                {src:'https://img.icons8.com/fluency/48/hubspot.png', name:'HubSpot'},
+                {src:'https://img.icons8.com/fluency/48/pinterest.png', name:'Pinterest'},
+                {src:'https://img.icons8.com/fluency/48/google-analytics.png', name:'Analytics'},
+                {src:'https://img.icons8.com/fluency/48/discord-logo.png', name:'Discord'},
+                {src:'https://img.icons8.com/fluency/48/semrush.png', name:'SEMrush'},
+              ].map((ic,idx) => (
+                <div key={ic.name} style={{position:'absolute',transform:`rotate(${idx*45}deg) translateY(-245px)`,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <div className="orb-icon-sq" style={{width:48,height:48,animation:'rCW28 28s linear infinite'}}>
+                    <img src={ic.src} width="30" height="30" alt={ic.name}/>
                   </div>
                 </div>
-              )
-            })}
+              ))}
+            </div>
           </div>
 
           {/* Platform tags */}
           <div style={{display:'flex',flexWrap:'wrap',gap:8,justifyContent:'center',marginTop:52,maxWidth:700}}>
-            {['Instagram','Facebook','LinkedIn','YouTube','WhatsApp','Google Ads','WordPress','Shopify','Figma','Canva','HubSpot','Mailchimp','Pinterest','TikTok','Analytics'].map(p=>(
+            {['Instagram','Facebook','LinkedIn','YouTube','WhatsApp','Google Ads','WordPress','Shopify','Figma','Canva','HubSpot','Mailchimp','Pinterest','Analytics','SEMrush'].map(p=>(
               <span key={p} style={{background:'#fff',border:'1px solid #e2e8f0',borderRadius:100,padding:'5px 14px',color:'#475569',fontSize:11,fontWeight:600,boxShadow:'0 1px 4px rgba(0,0,0,0.05)'}}>{p}</span>
             ))}
           </div>
