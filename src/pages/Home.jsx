@@ -285,61 +285,108 @@ export default function Home() {
           <p style={{ color: '#64748b', fontSize: 15, textAlign: 'center', marginBottom: 56, maxWidth: 420 }}>We connect your brand across all major digital platforms — seamlessly.</p>
 
           {/* Orbit */}
-          <div style={{ position: 'relative', width: 480, height: 480, maxWidth: '92vw' }}>
+          <div style={{ position:'relative', width:560, height:560, maxWidth:'96vw' }}>
             <style>{`
-              @keyframes spinCW  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
-              @keyframes spinCCW { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
-              @keyframes pulseCtr{ 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.25),0 0 32px rgba(244,161,0,0.08)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 56px rgba(244,161,0,0.18)} }
+              @keyframes orbitCW   { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes orbitCCW  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes orbitCW3  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes pulseCtr  { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.35),0 0 40px rgba(244,161,0,0.12)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.25)} }
+              @keyframes counterCW   { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              @keyframes counterCCW  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+              @keyframes counterCW3  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+              .orb-wrap { position:absolute; top:50%; left:50%; }
+              .orb-icon-sq { display:flex;align-items:center;justify-content:center;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.13);background:#fff; }
             `}</style>
 
             {/* Rings */}
-            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center' }}>
-              <div style={{ position:'absolute',width:180,height:180,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.25)' }} />
-              <div style={{ position:'absolute',width:310,height:310,borderRadius:'50%',border:'1.5px dashed rgba(15,23,42,0.12)' }} />
-              <div style={{ position:'absolute',width:440,height:440,borderRadius:'50%',border:'1.5px dashed rgba(15,23,42,0.07)' }} />
+            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)'}}>
+              <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.35)',transform:'translate(-50%,-50%)'}}/>
+              <div style={{position:'absolute',width:340,height:340,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.22)',transform:'translate(-50%,-50%)'}}/>
+              <div style={{position:'absolute',width:490,height:490,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.13)',transform:'translate(-50%,-50%)'}}/>
             </div>
 
             {/* Center */}
-            <div style={{ position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:120,height:120,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f1f5f9 100%)',border:'2px solid rgba(244,161,0,0.3)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:6,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 32px rgba(0,0,0,0.1)' }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#F4A100" strokeWidth="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="#F4A100" strokeWidth="1.5"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#F4A100" strokeWidth="1.5"/></svg>
-              <span style={{ color:'#F4A100',fontSize:8,fontWeight:900,letterSpacing:'0.1em',textTransform:'uppercase',textAlign:'center',lineHeight:1.3 }}>Digital<br/>Marketing</span>
+            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f0f4ff 100%)',border:'2.5px solid rgba(244,161,0,0.4)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
+              <img src="https://img.icons8.com/color/48/000000/globe--v1.png" width="34" height="34" alt="" style={{borderRadius:4}} onError={e=>{e.target.style.display='none'}}/>
+              <span style={{color:'#F4A100',fontSize:7.5,fontWeight:900,letterSpacing:'0.08em',textTransform:'uppercase',textAlign:'center',lineHeight:1.45}}>Digital<br/>Marketing</span>
             </div>
 
-            {/* Inner ring — 4 icons, clockwise 10s */}
-            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',animation:'spinCW 10s linear infinite' }}>
-              {[
-                { bg:'#1877F2', label:'FB', svg:<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="white"/> },
-                { bg:'#E1306C', label:'IG', svg:<><rect x="2" y="2" width="20" height="20" rx="5" fill="white" fillOpacity="0"/><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" strokeWidth="2"/><circle cx="12" cy="12" r="4" stroke="white" strokeWidth="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></> },
-                { bg:'#0A66C2', label:'LI', svg:<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" fill="white"/><rect x="2" y="9" width="4" height="12" fill="white"/><circle cx="4" cy="4" r="2" fill="white"/></> },
-                { bg:'#FF0000', label:'YT', svg:<><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="white" fillOpacity="0.9"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/></> },
-              ].map((ic, idx) => (
-                <div key={ic.label} style={{ position:'absolute',width:50,height:50,borderRadius:'50%',background:ic.bg,display:'flex',alignItems:'center',justifyContent:'center',boxShadow:`0 4px 20px ${ic.bg}55`,transform:`rotate(${idx*90}deg) translateX(90px) rotate(${idx*-90}deg)`,animation:`spinCCW 10s linear infinite` }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24">{ic.svg}</svg>
+            {/* Inner ring — 5 icons CW 14s */}
+            {[
+              {src:'https://img.icons8.com/fluency/48/instagram-new.png', name:'Instagram'},
+              {src:'https://img.icons8.com/fluency/48/facebook-new.png', name:'Facebook'},
+              {src:'https://img.icons8.com/fluency/48/linkedin.png', name:'LinkedIn'},
+              {src:'https://img.icons8.com/fluency/48/youtube-play.png', name:'YouTube'},
+              {src:'https://img.icons8.com/fluency/48/whatsapp.png', name:'WhatsApp'},
+            ].map((ic,idx) => {
+              const angle = idx * 72
+              const rad = angle * Math.PI / 180
+              const r = 100
+              const x = Math.cos(rad) * r
+              const y = Math.sin(rad) * r
+              return (
+                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCW 14s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
+                  <div className="orb-icon-sq" style={{width:50,height:50,animation:`counterCW 14s linear infinite`}}>
+                    <img src={ic.src} width="32" height="32" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
 
-            {/* Outer ring — 6 icons, counter-clockwise 16s */}
-            <div style={{ position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',animation:'spinCCW 16s linear infinite' }}>
-              {[
-                { bg:'#4285F4', label:'G', svg:<><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="white"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="white" fillOpacity="0.85"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="white" fillOpacity="0.7"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="white" fillOpacity="0.9"/></> },
-                { bg:'#21759B', label:'WP', svg:<><circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" fill="none"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4" stroke="white" strokeWidth="1.5"/><circle cx="12" cy="12" r="3" fill="white"/></> },
-                { bg:'#96BF48', label:'SP', svg:<><path d="M9 22C9.55 22 10 21.55 10 21V3C10 2.45 9.55 2 9 2H5C4.45 2 4 2.45 4 3V21C4 21.55 4.45 22 5 22H9Z" fill="white"/><path d="M19 22C19.55 22 20 21.55 20 21V8C20 7.45 19.55 7 19 7H15C14.45 7 14 7.45 14 8V21C14 21.55 14.45 22 15 22H19Z" fill="white"/></> },
-                { bg:'#F4A100', label:'AD', svg:<><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round"/></> },
-                { bg:'#a855f7', label:'EM', svg:<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" strokeWidth="1.8" fill="none"/><polyline points="22,6 12,13 2,6" stroke="white" strokeWidth="1.8" fill="none"/></> },
-                { bg:'#0f172a', label:'SE', svg:<><circle cx="11" cy="11" r="7" stroke="white" strokeWidth="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></> },
-              ].map((ic, idx) => (
-                <div key={ic.label} style={{ position:'absolute',width:56,height:56,borderRadius:'50%',background:ic.bg,display:'flex',alignItems:'center',justifyContent:'center',boxShadow:`0 6px 24px ${ic.bg}44`,transform:`rotate(${idx*60}deg) translateX(155px) rotate(${idx*-60}deg)`,animation:`spinCW 16s linear infinite` }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24">{ic.svg}</svg>
+            {/* Middle ring — 7 icons CCW 20s */}
+            {[
+              {src:'https://img.icons8.com/fluency/48/google-logo.png', name:'Google'},
+              {src:'https://img.icons8.com/fluency/48/shopify.png', name:'Shopify'},
+              {src:'https://img.icons8.com/fluency/48/wordpress.png', name:'WordPress'},
+              {src:'https://img.icons8.com/fluency/48/tiktok.png', name:'TikTok'},
+              {src:'https://img.icons8.com/fluency/48/canva.png', name:'Canva'},
+              {src:'https://img.icons8.com/fluency/48/twitter--v1.png', name:'Twitter'},
+              {src:'https://img.icons8.com/fluency/48/figma.png', name:'Figma'},
+            ].map((ic,idx) => {
+              const angle = idx * (360/7)
+              const rad = angle * Math.PI / 180
+              const r = 170
+              const x = Math.cos(rad) * r
+              const y = Math.sin(rad) * r
+              return (
+                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCCW 20s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
+                  <div className="orb-icon-sq" style={{width:54,height:54,animation:`counterCCW 20s linear infinite`}}>
+                    <img src={ic.src} width="34" height="34" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
+
+            {/* Outer ring — 8 icons CW 28s */}
+            {[
+              {src:'https://img.icons8.com/fluency/48/google-ads.png', name:'Google Ads'},
+              {src:'https://img.icons8.com/fluency/48/mailchimp.png', name:'Mailchimp'},
+              {src:'https://img.icons8.com/fluency/48/adobe-photoshop.png', name:'Photoshop'},
+              {src:'https://img.icons8.com/fluency/48/hubspot.png', name:'HubSpot'},
+              {src:'https://img.icons8.com/fluency/48/pinterest.png', name:'Pinterest'},
+              {src:'https://img.icons8.com/fluency/48/google-analytics.png', name:'Analytics'},
+              {src:'https://img.icons8.com/fluency/48/discord-logo.png', name:'Discord'},
+              {src:'https://img.icons8.com/fluency/48/semrush.png', name:'SEMrush'},
+            ].map((ic,idx) => {
+              const angle = idx * 45
+              const rad = angle * Math.PI / 180
+              const r = 245
+              const x = Math.cos(rad) * r
+              const y = Math.sin(rad) * r
+              return (
+                <div key={ic.name} style={{position:'absolute',top:'50%',left:'50%',transform:`translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,animation:`orbitCW3 28s linear infinite`,transformOrigin:`${-x}px ${-y}px`,zIndex:5}}>
+                  <div className="orb-icon-sq" style={{width:48,height:48,animation:`counterCW3 28s linear infinite`}}>
+                    <img src={ic.src} width="30" height="30" alt={ic.name} onError={e=>{e.target.src=`https://img.icons8.com/color/48/${ic.name.toLowerCase().replace(/ /g,'-')}.png`}}/>
+                  </div>
+                </div>
+              )
+            })}
           </div>
 
           {/* Platform tags */}
-          <div style={{ display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center',marginTop:48 }}>
-            {['Instagram','Facebook','LinkedIn','YouTube','Google Ads','WordPress','Shopify','Email','SEO','Analytics'].map(p => (
-              <span key={p} style={{ background:'#fff',border:'1px solid #e2e8f0',borderRadius:100,padding:'6px 16px',color:'#475569',fontSize:12,fontWeight:600,boxShadow:'0 1px 4px rgba(0,0,0,0.05)' }}>{p}</span>
+          <div style={{display:'flex',flexWrap:'wrap',gap:8,justifyContent:'center',marginTop:52,maxWidth:700}}>
+            {['Instagram','Facebook','LinkedIn','YouTube','WhatsApp','Google Ads','WordPress','Shopify','Figma','Canva','HubSpot','Mailchimp','Pinterest','TikTok','Analytics'].map(p=>(
+              <span key={p} style={{background:'#fff',border:'1px solid #e2e8f0',borderRadius:100,padding:'5px 14px',color:'#475569',fontSize:11,fontWeight:600,boxShadow:'0 1px 4px rgba(0,0,0,0.05)'}}>{p}</span>
             ))}
           </div>
         </div>
