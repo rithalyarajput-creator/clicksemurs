@@ -286,6 +286,7 @@ export default function Home() {
         .hero-fade > *:nth-child(3) { animation-delay: 0.2s; }
         .hero-fade > *:nth-child(4) { animation-delay: 0.3s; }
         .ig-review-anim { transition: opacity 0.3s, transform 0.3s; }
+        @keyframes igSlideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-mockup-col { display: none !important; }
@@ -557,102 +558,165 @@ export default function Home() {
       {/* ── TESTIMONIALS ── */}
       <section ref={testiRef} className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div className="testi-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
 
-            {/* Left */}
-            <div className={`reveal-left${testiInView ? ' in-view' : ''}`}>
-              <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</div>
-              <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
-                What Clients<br />Say About Us
-              </h2>
-              <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, marginBottom: 32 }}>Real reviews from real clients.</p>
+          {/* heading — centered */}
+          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
+              What Clients Say About Us
+            </h2>
+            <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7 }}>Tap a story to read their review.</p>
+          </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                {testimonials.map((item, i) => (
-                  <div key={item.id || i} className={`testi-card-wrap${activeT === i ? ' active-t' : ''}`}
-                    onClick={() => setActiveT(i)}
-                    style={{ background: '#fff', borderRadius: 16, padding: '18px 20px', border: '1px solid rgba(0,0,0,0.08)', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                    <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#f5e6c8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 15, color: item.color, flexShrink: 0, border: `2px solid ${activeT === i ? item.color : 'transparent'}`, transition: 'border-color 0.2s' }}>
-                      {item.initials}
+          {/* phone centered */}
+          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
+            {/* 3D phone wrapper */}
+            <div style={{ perspective: 1000 }}>
+              <div style={{
+                width: 300,
+                transform: 'rotateY(-5deg) rotateX(2deg)',
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
+              }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'rotateY(0deg) rotateX(0deg)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(-5deg) rotateX(2deg)'}
+              >
+                {/* ── STARLIGHT iPhone frame ── */}
+                <div style={{
+                  background: 'linear-gradient(160deg, #e8e0d0 0%, #d4c9b8 40%, #c8bca8 100%)',
+                  borderRadius: 54,
+                  padding: '0 6px',
+                  border: '1px solid rgba(255,255,255,0.7)',
+                  boxShadow: [
+                    '0 50px 80px rgba(0,0,0,0.35)',
+                    '0 20px 40px rgba(0,0,0,0.2)',
+                    'inset 0 1px 0 rgba(255,255,255,0.8)',
+                    'inset 0 -1px 0 rgba(0,0,0,0.15)',
+                    '2px 4px 0 rgba(180,160,130,0.8)',
+                  ].join(','),
+                  position: 'relative',
+                }}>
+                  {/* left side buttons */}
+                  <div style={{ position: 'absolute', left: -5, top: 90, width: 5, height: 28, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
+                  <div style={{ position: 'absolute', left: -5, top: 130, width: 5, height: 56, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
+                  <div style={{ position: 'absolute', left: -5, top: 196, width: 5, height: 56, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
+                  {/* right side button */}
+                  <div style={{ position: 'absolute', right: -5, top: 150, width: 5, height: 80, background: 'linear-gradient(270deg,#b8ad9e,#cec3b2)', borderRadius: '0 3px 3px 0', boxShadow: '1px 0 2px rgba(0,0,0,0.2)' }} />
+
+                  {/* inner black bezel */}
+                  <div style={{
+                    background: '#000',
+                    borderRadius: 48,
+                    padding: '12px 4px 8px',
+                    margin: '6px 0',
+                  }}>
+                    {/* notch */}
+                    <div style={{ width: 120, height: 26, background: '#000', borderRadius: '0 0 18px 18px', margin: '0 auto 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                      <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1a1a1a', border: '1px solid #2a2a2a' }} />
+                      <div style={{ width: 22, height: 5, borderRadius: 3, background: '#111' }} />
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ color: '#c8892a', fontSize: 12, marginBottom: 3 }}>{'★'.repeat(item.rating || 5)}</div>
-                      <div style={{ fontWeight: 500, fontSize: 14, color: '#1a1a1a', marginBottom: 2 }}>{item.name}</div>
-                      <div style={{ fontSize: 12, color: '#aaa', marginBottom: 5 }}>{item.handle}</div>
-                      <div style={{ fontSize: 13, color: '#555', lineHeight: 1.5 }}>"{item.quote?.slice(0, 90)}{item.quote?.length > 90 ? '...' : ''}"</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Right — iPhone mockup */}
-            <div className={`testi-phone-col reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{ width: 260, position: 'relative' }}>
-                <div style={{ background: '#1a1a1a', borderRadius: 44, padding: 12, border: '2px solid #333', boxShadow: '0 32px 80px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.06)' }}>
-                  {/* Notch */}
-                  <div style={{ width: 90, height: 28, background: '#1a1a1a', borderRadius: '0 0 20px 20px', margin: '0 auto 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 10, height: 10, background: '#222', borderRadius: '50%', border: '1px solid #444' }} />
-                  </div>
-                  {/* Screen */}
-                  <div style={{ background: '#f9f9f9', borderRadius: 34, overflow: 'hidden' }}>
-                    {/* Status */}
-                    <div style={{ background: '#fff', padding: '10px 16px 6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 13, fontWeight: 600, color: '#000' }}>9:41</span>
-                      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 1.5, height: 10 }}>
-                        {[4,6,8,10].map((h,i) => <div key={i} style={{ width: 3, height: h, background: '#000', borderRadius: 1 }} />)}
+                  {/* screen */}
+                  <div style={{ background: '#fff', borderRadius: 38, overflow: 'hidden' }}>
+                    {/* status bar */}
+                    <div style={{ background: '#fff', padding: '8px 18px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: '#000' }}>9:41</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 1.5, height: 9 }}>
+                          {[3,5,7,9].map((h,i) => <div key={i} style={{ width: 2.5, height: h, background: '#000', borderRadius: 1 }} />)}
+                        </div>
+                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M6.5 2.5C8.2 2.5 9.7 3.2 10.8 4.3L12 3C10.6 1.7 8.6 1 6.5 1C4.4 1 2.4 1.7 1 3L2.2 4.3C3.3 3.2 4.8 2.5 6.5 2.5Z" fill="black"/><path d="M6.5 5C7.6 5 8.5 5.4 9.2 6.1L10.4 4.8C9.4 3.9 8 3.5 6.5 3.5C5 3.5 3.7 4 2.6 4.8L3.8 6.1C4.5 5.4 5.4 5 6.5 5Z" fill="black"/><circle cx="6.5" cy="8" r="1.5" fill="black"/></svg>
+                        <div style={{ width: 20, height: 10, border: '1.5px solid #000', borderRadius: 3, position: 'relative' }}>
+                          <div style={{ position: 'absolute', left: 1, top: 1, bottom: 1, width: '70%', background: '#000', borderRadius: 1.5 }} />
+                          <div style={{ position: 'absolute', right: -4, top: '50%', transform: 'translateY(-50%)', width: 3, height: 5, background: '#555', borderRadius: 1 }} />
+                        </div>
                       </div>
                     </div>
-                    {/* IG topbar */}
-                    <div style={{ background: '#fff', padding: '8px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #eee' }}>
-                      <span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 16, color: '#000' }}>Instagram</span>
-                      <div style={{ display: 'flex', gap: 12, fontSize: 17 }}>
-                        <span>♡</span><span>✉</span>
+
+                    {/* IG header */}
+                    <div style={{ background: '#fff', padding: '6px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #eee' }}>
+                      <span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 17, color: '#000', letterSpacing: '-0.5px' }}>Instagram</span>
+                      <div style={{ display: 'flex', gap: 14, fontSize: 16 }}>
+                        <span style={{ cursor: 'pointer' }}>♡</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                       </div>
                     </div>
-                    {/* Stories */}
-                    <div style={{ background: '#fff', padding: '10px 12px', display: 'flex', gap: 10, overflow: 'hidden', borderBottom: '0.5px solid #eee' }}>
-                      {[{init:'+',color:'#c8892a'},{init:'RS',color:'#c8892a'},{init:'PM',color:'#4a9e85'},{init:'AK',color:'#d4603a'}].map((s,i) => (
-                        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-                          <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <div style={{ width: 44, height: 44, borderRadius: '50%', background: s.color, border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 13, color: '#fff' }}>{s.init}</div>
+
+                    {/* stories row — clickable */}
+                    <div style={{ background: '#fff', padding: '10px 12px 10px', display: 'flex', gap: 10, overflowX: 'auto', borderBottom: '0.5px solid #eee', scrollbarWidth: 'none' }}>
+                      {/* "Your story" */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, flexShrink: 0 }}>
+                        <div style={{ width: 52, height: 52, borderRadius: '50%', background: '#f0f0f0', border: '1.5px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, color: '#999' }}>+</div>
+                        <span style={{ fontSize: 8.5, color: '#333' }}>Your story</span>
+                      </div>
+                      {/* testimonial story circles */}
+                      {testimonials.map((item, i) => (
+                        <div key={i} onClick={() => setActiveT(i)}
+                          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, flexShrink: 0, cursor: 'pointer' }}>
+                          <div style={{
+                            width: 52, height: 52, borderRadius: '50%',
+                            background: activeT === i
+                              ? `conic-gradient(${item.color} 0%, ${item.color} 100%)`
+                              : 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)',
+                            padding: 2,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            boxShadow: activeT === i ? `0 0 0 2px #fff, 0 0 0 4px ${item.color}` : 'none',
+                            transition: 'box-shadow 0.2s',
+                          }}>
+                            <div style={{ width: 44, height: 44, borderRadius: '50%', background: item.color, border: '2.5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 12, color: '#fff' }}>
+                              {item.initials}
+                            </div>
                           </div>
-                          <span style={{ fontSize: 9, color: '#333' }}>{i === 0 ? 'Your story' : ['rahul...','priya...','amit...'][i-1]}</span>
+                          <span style={{ fontSize: 8.5, color: activeT === i ? item.color : '#555', fontWeight: activeT === i ? 600 : 400, maxWidth: 48, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {item.name?.split(' ')[0].toLowerCase()}...
+                          </span>
                         </div>
                       ))}
                     </div>
-                    {/* Post */}
-                    <div style={{ background: '#fff' }}>
-                      <div style={{ padding: '10px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, color: '#fff', fontWeight: 700 }}>C</div>
-                          <div>
-                            <div style={{ fontSize: 12, fontWeight: 600, color: '#000' }}>clicksemurs</div>
-                            <div style={{ fontSize: 10, color: '#999' }}>Client Review</div>
-                          </div>
-                        </div>
-                        <span style={{ fontSize: 18, color: '#999' }}>···</span>
-                      </div>
-                      {/* Review card */}
-                      <div className="ig-review-anim" style={{ background: 'linear-gradient(135deg,#fefaef,#f5e6c8)', margin: '0 12px 10px', borderRadius: 12, padding: 14, border: '1px solid rgba(200,137,42,0.2)', minHeight: 140 }}>
-                        <div style={{ color: '#c8892a', fontSize: 12, marginBottom: 6 }}>★★★★★</div>
-                        <div style={{ fontSize: 11, color: '#444', lineHeight: 1.5, marginBottom: 10 }}>"{t.quote?.slice(0, 100)}..."</div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div style={{ width: 26, height: 26, borderRadius: '50%', background: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: '#fff' }}>{t.initials}</div>
-                          <div>
-                            <div style={{ fontSize: 11, fontWeight: 600, color: '#333' }}>{t.name}</div>
-                            <div style={{ fontSize: 10, color: '#aaa' }}>{t.handle}</div>
-                          </div>
+
+                    {/* post header */}
+                    <div style={{ background: '#fff', padding: '10px 14px 6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff', fontWeight: 800 }}>C</div>
+                        <div>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: '#000' }}>clicksemurs</div>
+                          <div style={{ fontSize: 10, color: '#999' }}>Client Review</div>
                         </div>
                       </div>
-                      <div style={{ padding: '4px 12px 10px', display: 'flex', gap: 14, fontSize: 16 }}>
-                        <span>♡</span><span>💬</span><span>↗</span>
+                      <span style={{ fontSize: 16, color: '#999', letterSpacing: 2 }}>···</span>
+                    </div>
+
+                    {/* review card — switches on story click */}
+                    <div key={activeT} style={{
+                      background: 'linear-gradient(135deg,#fefaef 0%,#f5e6c8 100%)',
+                      margin: '0 12px 10px', borderRadius: 14, padding: 14,
+                      border: '1px solid rgba(200,137,42,0.25)',
+                      animation: 'igSlideIn 0.3s ease',
+                    }}>
+                      <div style={{ color: '#c8892a', fontSize: 11, marginBottom: 5 }}>{'★'.repeat(t.rating || 5)}</div>
+                      <div style={{ fontSize: 11, color: '#444', lineHeight: 1.6, marginBottom: 10, fontStyle: 'italic' }}>
+                        "{t.quote?.slice(0, 110)}{t.quote?.length > 110 ? '...' : ''}"
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <div style={{ width: 28, height: 28, borderRadius: '50%', background: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{t.initials}</div>
+                        <div>
+                          <div style={{ fontSize: 11, fontWeight: 700, color: '#222' }}>{t.name}</div>
+                          <div style={{ fontSize: 10, color: '#aaa' }}>{t.handle}</div>
+                        </div>
                       </div>
                     </div>
+
+                    {/* post actions */}
+                    <div style={{ padding: '2px 14px 12px', display: 'flex', gap: 14, alignItems: 'center' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                  </div>{/* end inner black bezel */}
+                </div>{/* end starlight frame */}
+              </div>{/* end 3D tilt */}
+            </div>{/* end perspective */}
           </div>
         </div>
       </section>
