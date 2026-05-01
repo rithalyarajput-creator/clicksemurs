@@ -262,8 +262,11 @@ export default function Home() {
         .stat-item-last:last-child { border-right: none !important; }
         .service-card-wrap { transition: transform 0.25s; cursor: pointer; }
         .service-card-wrap:hover { transform: translateY(-5px); }
-        .reason-item-wrap { transition: background 0.2s; }
+        .reason-item-wrap { transition: background 0.2s, opacity 0.5s, transform 0.5s; }
         .reason-item-wrap:hover { background: rgba(255,255,255,0.04) !important; }
+        @keyframes cardFoldIn { from { opacity:0; transform: translateY(32px) scale(0.94); } to { opacity:1; transform: translateY(0) scale(1); } }
+        .why-card { opacity: 0; }
+        .why-card.visible { animation: cardFoldIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
         .result-card-wrap { transition: transform 0.2s; }
         .result-card-wrap:hover { transform: translateY(-4px); }
         .testi-card-wrap { transition: all 0.2s; cursor: pointer; }
@@ -474,13 +477,23 @@ export default function Home() {
 
           <div className="reasons-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 1, background: 'rgba(255,255,255,0.06)', borderRadius: 16, overflow: 'hidden' }}>
             {WHY_US.map((item, i) => (
-              <div key={i} className={`reveal delay-${i + 1}${whyInView ? ' in-view' : ''} reason-item-wrap`} style={{ background: '#1a1a1a', padding: '28px 24px' }}>
+              <div key={i}
+                className={`reason-item-wrap why-card${whyInView ? ' visible' : ''}`}
+                style={{
+                  background: '#1a1a1a', padding: '28px 24px',
+                  animationDelay: whyInView ? `${i * 0.1}s` : '0s',
+                }}>
                 <div className="syne" style={{ fontSize: 13, fontWeight: 700, color: '#c8892a', marginBottom: 12 }}>{item.n}</div>
                 <div className="syne" style={{ fontSize: 16, fontWeight: 700, color: '#fefaef', marginBottom: 8, lineHeight: 1.3 }}>{item.title}</div>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
-            <div className={`reveal delay-8${whyInView ? ' in-view' : ''} reason-item-wrap`} style={{ background: 'rgba(200,137,42,0.08)', border: '1px solid rgba(200,137,42,0.2)', padding: '28px 24px' }}>
+            <div
+              className={`reason-item-wrap why-card${whyInView ? ' visible' : ''}`}
+              style={{
+                background: 'rgba(200,137,42,0.08)', border: '1px solid rgba(200,137,42,0.2)', padding: '28px 24px',
+                animationDelay: whyInView ? '0.7s' : '0s',
+              }}>
               <div style={{ fontSize: 20, marginBottom: 12 }}>🏆</div>
               <div className="syne" style={{ fontSize: 16, fontWeight: 700, color: '#c8892a', marginBottom: 8, lineHeight: 1.3 }}>Award-Winning Agency</div>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>Recognized by top marketing bodies across India.</p>
