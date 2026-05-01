@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../admin/supabase'
+import { useInView } from '../hooks/useScrollAnimation'
 
 /* ── data ── */
 const STATIC_TESTIMONIALS = [
@@ -98,6 +99,17 @@ export default function Home() {
   const [sent, setSent] = useState(false)
   const [pillHover, setPillHover] = useState(null)
 
+  // scroll animation refs
+  const [heroRef, heroInView] = useInView()
+  const [marqueeRef, marqueeInView] = useInView()
+  const [statsRef, statsInView] = useInView()
+  const [servicesRef, servicesInView] = useInView()
+  const [whyRef, whyInView] = useInView()
+  const [platformsRef, platformsInView] = useInView()
+  const [resultsRef, resultsInView] = useInView()
+  const [testiRef, testiInView] = useInView()
+  const [ctaRef, ctaInView] = useInView()
+
   useEffect(() => {
     supabase.from('testimonials').select('*').order('created_at', { ascending: false })
       .then(({ data }) => {
@@ -179,14 +191,14 @@ export default function Home() {
       `}</style>
 
       {/* ── HERO ── */}
-      <section className="hero-section-pad" style={{ background: '#fefaef', padding: '80px 48px 60px', position: 'relative', overflow: 'hidden', minHeight: '88vh', display: 'flex', alignItems: 'center' }}>
+      <section ref={heroRef} className={`hero-section-pad reveal${heroInView ? ' in-view' : ''}`} style={{ background: '#fefaef', padding: '80px 48px 60px', position: 'relative', overflow: 'hidden', minHeight: '88vh', display: 'flex', alignItems: 'center' }}>
         <div style={{ position: 'absolute', top: -120, right: -120, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,137,42,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -80, left: -80, width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(74,158,133,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
           <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
 
             {/* Left */}
-            <div className="hero-fade">
+            <div className={`hero-fade reveal-left${heroInView ? ' in-view' : ''}`}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#f5e6c8', color: '#7a5a1e', fontSize: 12, fontWeight: 500, padding: '6px 14px', borderRadius: 20, marginBottom: 20 }}>
                 <span style={{ width: 7, height: 7, background: '#c8892a', borderRadius: '50%', flexShrink: 0 }} />
                 360° Digital Marketing Agency
@@ -212,7 +224,7 @@ export default function Home() {
             </div>
 
             {/* Right — dashboard mockup */}
-            <div className="hero-mockup-col" style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            <div className={`hero-mockup-col reveal-right${heroInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
               <div style={{ width: '100%', maxWidth: 460, background: '#1a1a1a', borderRadius: 20, padding: 24, border: '1px solid rgba(255,255,255,0.08)', position: 'relative' }}>
                 <div style={{ position: 'absolute', top: -16, right: -16, background: '#c8892a', color: '#fff', fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: 13, padding: '10px 16px', borderRadius: 12, whiteSpace: 'nowrap', zIndex: 2 }}>
                   🔥 +340% ROI
@@ -248,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* ── MARQUEE ── */}
-      <div style={{ background: '#1a1a1a', padding: '18px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <div ref={marqueeRef} className={`reveal${marqueeInView ? ' in-view' : ''}`} style={{ background: '#1a1a1a', padding: '18px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 80, background: 'linear-gradient(90deg,#1a1a1a,transparent)', zIndex: 2, pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 80, background: 'linear-gradient(270deg,#1a1a1a,transparent)', zIndex: 2, pointerEvents: 'none' }} />
         <div className="marquee-row">
@@ -260,7 +272,7 @@ export default function Home() {
       </div>
 
       {/* ── STATS ── */}
-      <div style={{ background: '#fefaef', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
+      <div ref={statsRef} className={`reveal${statsInView ? ' in-view' : ''}`} style={{ background: '#fefaef', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 48px' }}>
           <div className="stats-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
             {[
@@ -268,23 +280,29 @@ export default function Home() {
               { value: '50+', label: 'Industries Served' },
               { value: '98%', label: 'Client Retention' },
               { value: '5X', label: 'Average ROI' },
-            ].map(s => <StatItem key={s.label} value={s.value} label={s.label} />)}
+            ].map((s, i) => (
+              <div key={s.label} className={`reveal delay-${i + 1}${statsInView ? ' in-view' : ''}`}>
+                <StatItem value={s.value} label={s.label} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* ── SERVICES ── */}
-      <section className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
+      <section ref={servicesRef} className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>What We Do</div>
-          <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16, color: '#1a1a1a' }}>
-            Full-Service Digital<br />Marketing
-          </h2>
-          <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, maxWidth: 480, marginBottom: 48 }}>Every service under one roof. No gaps, no juggling vendors. Just results.</p>
+          <div className={`reveal${servicesInView ? ' in-view' : ''}`}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>What We Do</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, marginBottom: 16, color: '#1a1a1a' }}>
+              Full-Service Digital<br />Marketing
+            </h2>
+            <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, maxWidth: 480, marginBottom: 48 }}>Every service under one roof. No gaps, no juggling vendors. Just results.</p>
+          </div>
 
           <div className="services-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
             {SERVICE_CARDS.map((card, i) => (
-              <div key={i} className="service-card-wrap" onClick={() => navigate('/services')}
+              <div key={i} className={`reveal-scale delay-${i + 1}${servicesInView ? ' in-view' : ''} service-card-wrap`} onClick={() => navigate('/services')}
                 style={{ position: 'relative', borderRadius: 20, padding: 28, background: card.bg, color: card.color, overflow: 'hidden', minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 {/* gloss top line */}
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)', zIndex: 2 }} />
@@ -305,23 +323,25 @@ export default function Home() {
       </section>
 
       {/* ── WHY US ── */}
-      <section className="section-pad" style={{ background: '#1a1a1a', padding: '80px 48px' }}>
+      <section ref={whyRef} className="section-pad" style={{ background: '#1a1a1a', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Why Choose Us</div>
-          <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#fefaef', marginBottom: 12 }}>
-            7 Reasons Brands<br />Never Leave Us
-          </h2>
-          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, maxWidth: 420, marginBottom: 40 }}>We're not just an agency — we're a growth partner.</p>
+          <div className={`reveal-left${whyInView ? ' in-view' : ''}`}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Why Choose Us</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#fefaef', marginBottom: 12 }}>
+              7 Reasons Brands<br />Never Leave Us
+            </h2>
+            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, maxWidth: 420, marginBottom: 40 }}>We're not just an agency — we're a growth partner.</p>
+          </div>
 
           <div className="reasons-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 1, background: 'rgba(255,255,255,0.06)', borderRadius: 16, overflow: 'hidden' }}>
             {WHY_US.map((item, i) => (
-              <div key={i} className="reason-item-wrap" style={{ background: '#1a1a1a', padding: '28px 24px' }}>
+              <div key={i} className={`reveal delay-${i + 1}${whyInView ? ' in-view' : ''} reason-item-wrap`} style={{ background: '#1a1a1a', padding: '28px 24px' }}>
                 <div className="syne" style={{ fontSize: 13, fontWeight: 700, color: '#c8892a', marginBottom: 12 }}>{item.n}</div>
                 <div className="syne" style={{ fontSize: 16, fontWeight: 700, color: '#fefaef', marginBottom: 8, lineHeight: 1.3 }}>{item.title}</div>
                 <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
-            <div className="reason-item-wrap" style={{ background: 'rgba(200,137,42,0.08)', border: '1px solid rgba(200,137,42,0.2)', padding: '28px 24px' }}>
+            <div className={`reveal delay-8${whyInView ? ' in-view' : ''} reason-item-wrap`} style={{ background: 'rgba(200,137,42,0.08)', border: '1px solid rgba(200,137,42,0.2)', padding: '28px 24px' }}>
               <div style={{ fontSize: 20, marginBottom: 12 }}>🏆</div>
               <div className="syne" style={{ fontSize: 16, fontWeight: 700, color: '#c8892a', marginBottom: 8, lineHeight: 1.3 }}>Award-Winning Agency</div>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>Recognized by top marketing bodies across India.</p>
@@ -331,17 +351,19 @@ export default function Home() {
       </section>
 
       {/* ── PLATFORMS ── */}
-      <section className="section-pad" style={{ background: '#fefaef', padding: '80px 48px', textAlign: 'center' }}>
+      <section ref={platformsRef} className="section-pad" style={{ background: '#fefaef', padding: '80px 48px', textAlign: 'center' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Platforms We Work On</div>
-          <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
-            One Agency.<br /><em style={{ fontStyle: 'normal', color: '#c8892a' }}>Every Platform.</em>
-          </h2>
-          <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>We connect your brand across all major digital platforms, seamlessly.</p>
+          <div className={`reveal${platformsInView ? ' in-view' : ''}`}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Platforms We Work On</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
+              One Agency.<br /><em style={{ fontStyle: 'normal', color: '#c8892a' }}>Every Platform.</em>
+            </h2>
+            <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>We connect your brand across all major digital platforms, seamlessly.</p>
+          </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 12, maxWidth: 640, margin: '0 auto' }}>
             {PLATFORMS.map((p, i) => (
-              <div key={i} className={pillHover === i ? '' : ''}
+              <div key={i} className={`${i < 8 ? `reveal-scale delay-${i + 1}` : 'reveal-scale'}${platformsInView ? ' in-view' : ''}`}
                 onMouseEnter={() => setPillHover(i)} onMouseLeave={() => setPillHover(null)}
                 style={{ display: 'flex', alignItems: 'center', gap: 8, background: pillHover === i ? '#1a1a1a' : '#fff', border: `1px solid ${pillHover === i ? '#1a1a1a' : 'rgba(0,0,0,0.08)'}`, borderRadius: 40, padding: '10px 18px', fontSize: 13, fontWeight: 500, color: pillHover === i ? '#fefaef' : '#1a1a1a', transition: 'all 0.18s', cursor: 'pointer' }}>
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: p.dot, flexShrink: 0 }} />
@@ -353,12 +375,14 @@ export default function Home() {
       </section>
 
       {/* ── RESULTS ── */}
-      <section className="section-pad" style={{ background: '#f5e6c8', padding: '80px 48px' }}>
+      <section ref={resultsRef} className="section-pad" style={{ background: '#f5e6c8', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Numbers That Prove It</div>
-          <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 40 }}>
-            Real Results,<br />Real Clients.
-          </h2>
+          <div className={`reveal-left${resultsInView ? ' in-view' : ''}`}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Numbers That Prove It</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 40 }}>
+              Real Results,<br />Real Clients.
+            </h2>
+          </div>
 
           <div className="results-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
             {[
@@ -366,7 +390,7 @@ export default function Home() {
               { num: '400%', label: 'ROI Improvement', client: 'StyleHouse Fashion', industry: 'Fashion & Retail · Meta Ads', time: '8 months' },
               { num: '120+', label: 'Leads Per Month', client: 'GreenBuild Infra', industry: 'Real Estate · Google Ads', time: 'Ongoing' },
             ].map((r, i) => (
-              <div key={i} className="result-card-wrap" style={{ background: '#fefaef', borderRadius: 20, padding: 32, border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div key={i} className={`reveal-scale delay-${i + 1}${resultsInView ? ' in-view' : ''} result-card-wrap`} style={{ background: '#fefaef', borderRadius: 20, padding: 32, border: '1px solid rgba(0,0,0,0.06)' }}>
                 <div className="syne" style={{ fontSize: 'clamp(42px,6vw,56px)', fontWeight: 800, letterSpacing: '-2px', color: '#c8892a', lineHeight: 1, marginBottom: 8 }}>{r.num}</div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a1a', marginBottom: 4 }}>{r.label}</div>
                 <div style={{ width: 32, height: 2, background: '#e0d0b8', margin: '12px 0' }} />
@@ -379,12 +403,12 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
+      <section ref={testiRef} className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div className="testi-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'start' }}>
 
             {/* Left */}
-            <div>
+            <div className={`reveal-left${testiInView ? ' in-view' : ''}`}>
               <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</div>
               <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
                 What Clients<br />Say About Us
@@ -411,7 +435,7 @@ export default function Home() {
             </div>
 
             {/* Right — iPhone mockup */}
-            <div className="testi-phone-col" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className={`testi-phone-col reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
               <div style={{ width: 260, position: 'relative' }}>
                 <div style={{ background: '#1a1a1a', borderRadius: 44, padding: 12, border: '2px solid #333', boxShadow: '0 32px 80px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.06)' }}>
                   {/* Notch */}
@@ -482,17 +506,17 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="section-pad" style={{ background: '#1a1a1a', padding: '80px 48px' }}>
+      <section ref={ctaRef} className="section-pad" style={{ background: '#1a1a1a', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div className="cta-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
-            <div>
+            <div className={`reveal-left${ctaInView ? ' in-view' : ''}`}>
               <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Limited Spots Available</div>
               <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#fefaef', marginBottom: 16 }}>
                 Get Your FREE<br />Marketing Audit<br /><em style={{ fontStyle: 'normal', color: '#c8892a' }}>Today.</em>
               </h2>
               <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.4)', lineHeight: 1.7, maxWidth: 400 }}>No commitment. Just clarity on where your brand stands and exactly how to grow it.</p>
             </div>
-            <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 20, padding: 32 }}>
+            <div className={`reveal-right${ctaInView ? ' in-view' : ''}`} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 20, padding: 32 }}>
               {sent ? (
                 <div>
                   <p style={{ color: '#c8892a', fontWeight: 700, fontSize: 18, marginBottom: 8 }}>✓ We'll be in touch shortly.</p>
