@@ -255,23 +255,29 @@ export default function Footer() {
               <h4 style={{ color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 20, height: 2, background: '#c8892a', display: 'inline-block', borderRadius: 2 }} />Newsletter
               </h4>
-              <p style={{ color: '#666', fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>Get weekly digital marketing tips, trends & case studies — straight to your inbox.</p>
+              <p style={{ color: '#555', fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>Get weekly digital marketing tips, trends & case studies — straight to your inbox.</p>
               <form onSubmit={handleNewsletter}>
                 <input type="email" value={nEmail} onChange={e => setNEmail(e.target.value)} placeholder="your@email.com" required
-                  style={{ width: '100%', background: '#0d0d0d', border: '1px solid #1e1e1e', color: '#fff', padding: '13px 16px', fontSize: 13, outline: 'none', borderRadius: 10, boxSizing: 'border-box', marginBottom: 8 }}
-                  onFocus={e => e.target.style.borderColor = '#c8892a'} onBlur={e => e.target.style.borderColor = '#1e1e1e'} />
-                <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #c8892a, #b07520)', color: '#fff', border: 'none', padding: '13px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff', padding: '12px 16px', fontSize: 13, outline: 'none', borderRadius: 8, boxSizing: 'border-box', marginBottom: 8 }}
+                  onFocus={e => e.target.style.borderColor = '#c8892a'} onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'} />
+                <button type="submit" style={{ width: '100%', background: '#c8892a', color: '#fff', border: 'none', padding: '12px', fontWeight: 600, fontSize: 13, cursor: 'pointer', borderRadius: 8, letterSpacing: '0.04em', transition: 'opacity 0.2s' }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.88'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
                   Subscribe →
                 </button>
-                {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>🎉 Subscribed!</p>}
-                {nStatus === 'already' && <p style={{ color: '#facc15', fontSize: 12, marginTop: 8 }}>Already subscribed!</p>}
+                {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>Subscribed successfully!</p>}
+                {nStatus === 'already' && <p style={{ color: '#aaa', fontSize: 12, marginTop: 8 }}>Already subscribed.</p>}
                 {nStatus === 'error' && <p style={{ color: '#f87171', fontSize: 12, marginTop: 8 }}>Something went wrong.</p>}
               </form>
-              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {[{ icon: '🏆', text: '50+ Industries Served' }, { icon: '⭐', text: '200+ Happy Clients' }, { icon: '📈', text: '3x Average ROI' }].map(b => (
-                  <div key={b.text} style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#0d0d0d', border: '1px solid #1a1a1a', borderRadius: 8, padding: '8px 12px' }}>
-                    <span style={{ fontSize: 14 }}>{b.icon}</span>
-                    <span style={{ color: '#888', fontSize: 12, fontWeight: 600 }}>{b.text}</span>
+              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {[
+                  { num: '500+', text: 'Projects Delivered' },
+                  { num: '50+',  text: 'Industries Served' },
+                  { num: '5x',   text: 'Average ROI' },
+                ].map(b => (
+                  <div key={b.text} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <span style={{ color: '#c8892a', fontSize: 13, fontWeight: 700, minWidth: 36 }}>{b.num}</span>
+                    <span style={{ color: '#555', fontSize: 12 }}>{b.text}</span>
                   </div>
                 ))}
               </div>
@@ -332,15 +338,15 @@ export default function Footer() {
         </AccordionSection>
 
         <AccordionSection title="Newsletter">
-          <p style={{ color: '#666', fontSize: 13, lineHeight: 1.6, marginBottom: 14 }}>Get weekly marketing tips straight to your inbox.</p>
+          <p style={{ color: '#555', fontSize: 13, lineHeight: 1.6, marginBottom: 14 }}>Get weekly marketing tips straight to your inbox.</p>
           <form onSubmit={handleNewsletter}>
             <input type="email" value={nEmail} onChange={e => setNEmail(e.target.value)} placeholder="your@email.com" required
-              style={{ width: '100%', background: '#0d0d0d', border: '1px solid #1e1e1e', color: '#fff', padding: '12px 14px', fontSize: 13, outline: 'none', borderRadius: 8, boxSizing: 'border-box', marginBottom: 8 }} />
-            <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #c8892a, #b07520)', color: '#fff', border: 'none', padding: '12px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: '#fff', padding: '12px 14px', fontSize: 13, outline: 'none', borderRadius: 8, boxSizing: 'border-box', marginBottom: 8 }} />
+            <button type="submit" style={{ width: '100%', background: '#c8892a', color: '#fff', border: 'none', padding: '12px', fontWeight: 600, fontSize: 13, cursor: 'pointer', borderRadius: 8, letterSpacing: '0.04em' }}>
               Subscribe →
             </button>
-            {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>🎉 Subscribed!</p>}
-            {nStatus === 'already' && <p style={{ color: '#facc15', fontSize: 12, marginTop: 8 }}>Already subscribed!</p>}
+            {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>Subscribed successfully!</p>}
+            {nStatus === 'already' && <p style={{ color: '#aaa', fontSize: 12, marginTop: 8 }}>Already subscribed.</p>}
           </form>
         </AccordionSection>
       </div>
