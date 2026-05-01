@@ -79,13 +79,13 @@ export default function Contact() {
         }
         @media (max-width: 600px) {
           .contact-name-row { grid-template-columns: 1fr !important; }
-          .contact-hero-pad { padding: 176px 20px 48px !important; }
+          .contact-hero-pad { padding: 100px 20px 48px !important; }
           .contact-body-pad { padding: 32px 16px !important; }
         }
       `}</style>
 
       {/* ── Hero ── */}
-      <div className="contact-hero-pad" style={{ background: '#1a1a1a', padding: '176px 48px 64px', position: 'relative', overflow: 'hidden' }}>
+      <div className="contact-hero-pad" style={{ background: '#1a1a1a', padding: '120px 48px 64px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(200,137,42,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(200,137,42,0.03) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: '20%', right: '10%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,137,42,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative' }}>

@@ -110,7 +110,7 @@ export default function About() {
   return (
     <div>
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', position: 'relative', overflow: 'hidden', padding: '176px 0 80px' }}>
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', position: 'relative', overflow: 'hidden', padding: '100px 0 80px' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(200,137,42,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(200,137,42,0.04) 0%, transparent 60%)' }} />
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>

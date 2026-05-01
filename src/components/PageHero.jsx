@@ -1,6 +1,6 @@
 export default function PageHero({ label, title, subtitle, center = false }) {
   return (
-    <section style={{ background: '#1a1a1a', paddingTop: 176, paddingBottom: 72, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+    <section style={{ background: '#1a1a1a', paddingTop: 120, paddingBottom: 72, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ textAlign: center ? 'center' : 'left' }}>
         {label && (
           <span style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c8892a', marginBottom: 14 }}>

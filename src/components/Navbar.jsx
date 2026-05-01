@@ -105,8 +105,6 @@ export default function Navbar() {
       : 'none',
   })
 
-  const offerImgs = [1,2,3,4,5,6,7,8]
-
   return (
     <>
       <style>{`
@@ -122,37 +120,10 @@ export default function Navbar() {
           .navbar-mobile-btn { display: flex !important; }
           .navbar-cta-desktop { display: none !important; }
         }
-        @keyframes offerScroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .offer-track {
-          display: flex;
-          animation: offerScroll 28s linear infinite;
-          will-change: transform;
-        }
-        .offer-track:hover {
-          animation-play-state: paused;
-        }
       `}</style>
 
-      {/* ── Offer image marquee bar ── */}
-      <div style={{ background: '#111', borderBottom: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden', height: 56, display: 'flex', alignItems: 'center', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 51 }}>
-        <div className="offer-track">
-          {/* Render twice for seamless loop */}
-          {[...offerImgs, ...offerImgs].map((n, i) => (
-            <img
-              key={i}
-              src={`/offer-imgs/${n}.png`}
-              alt={`offer-${n}`}
-              style={{ height: 44, width: 'auto', flexShrink: 0, marginRight: 24, objectFit: 'contain', borderRadius: 6 }}
-            />
-          ))}
-        </div>
-      </div>
-
       <header style={{
-        position: 'fixed', top: 56, left: 0, right: 0, zIndex: 50,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
         transition: 'all 0.3s',
         background: scrolled ? 'rgba(26,26,26,0.97)' : '#1a1a1a',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',

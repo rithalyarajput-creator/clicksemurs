@@ -112,7 +112,7 @@ export default function Projects() {
     <div style={{ overflowX: 'hidden' }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', padding: 'clamp(152px,14vw,196px) 0 clamp(56px,6vw,72px)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', padding: 'clamp(96px,12vw,140px) 0 clamp(56px,6vw,72px)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         <div style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(200,137,42,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
