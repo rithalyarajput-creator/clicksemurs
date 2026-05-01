@@ -50,6 +50,29 @@ const BRAND_ICONS = {
       <rect x="26" y="10" width="7" height="20" rx="3" fill="#FF8C00"/>
     </svg>
   )},
+  /* Google Ads — A shape: blue right leg + yellow left leg + green circle */
+  googleads: { bg: '#fff', svg: (
+    <svg viewBox="0 0 64 64" width="22" height="22">
+      <rect x="30" y="6" width="14" height="38" rx="7" fill="#4285F4" transform="rotate(20 37 25)"/>
+      <rect x="20" y="6" width="14" height="38" rx="7" fill="#FBBC04" transform="rotate(-20 27 25)"/>
+      <circle cx="16" cy="47" r="9" fill="#34A853"/>
+    </svg>
+  )},
+  /* Meta — infinity loop in gradient blue */
+  meta: { bg: '#0082FB', svg: (
+    <svg viewBox="0 0 60 30" width="24" height="12" fill="none">
+      <path d="M7 15 C7 8 11 4 16 4 C21 4 24 8 30 15 C36 22 39 26 44 26 C49 26 53 22 53 15 C53 8 49 4 44 4 C39 4 36 8 30 15 C24 22 21 26 16 26 C11 26 7 22 7 15 Z" stroke="white" strokeWidth="5" fill="none" strokeLinecap="round"/>
+    </svg>
+  )},
+  /* Microsoft — 4 colored squares */
+  microsoft: { bg: '#fff', svg: (
+    <svg viewBox="0 0 21 21" width="20" height="20">
+      <rect x="1" y="1" width="9" height="9" fill="#F25022"/>
+      <rect x="11" y="1" width="9" height="9" fill="#7FBA00"/>
+      <rect x="1" y="11" width="9" height="9" fill="#00A4EF"/>
+      <rect x="11" y="11" width="9" height="9" fill="#FFB900"/>
+    </svg>
+  )},
 }
 
 const SERVICE_CARDS = [
@@ -71,7 +94,7 @@ const SERVICE_CARDS = [
     title: 'PPC / Paid Ads',
     desc: 'We run targeted ad campaigns that deliver maximum ROI with your targeted budget.',
     bg: '#f0ede8', titleColor: '#1a1a1a', descColor: '#666',
-    icons: ['googleads', 'facebook', 'instagram'],
+    icons: ['googleads', 'meta', 'microsoft'],
     slug: 'ppc-paid-ads',
   },
   {
