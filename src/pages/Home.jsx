@@ -627,101 +627,105 @@ export default function Home() {
                       <div style={{ width: 28, height: 10, borderRadius: 5, background: '#111' }} />
                     </div>
 
-                  {/* screen */}
-                  <div style={{ background: '#fff', borderRadius: 38, overflow: 'hidden' }}>
+                  {/* ── SCREEN: Credit Score Dashboard ── */}
+                  <div style={{ background: '#fff', borderRadius: 38, overflow: 'hidden', fontFamily: "'DM Sans',sans-serif" }}>
+
                     {/* status bar */}
-                    <div style={{ background: '#fff', padding: '8px 18px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: '#000' }}>9:41</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div style={{ background: '#fff', padding: '6px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: '#000' }}>9:41</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                        {/* signal bars */}
                         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 1.5, height: 9 }}>
                           {[3,5,7,9].map((h,i) => <div key={i} style={{ width: 2.5, height: h, background: '#000', borderRadius: 1 }} />)}
                         </div>
-                        <svg width="13" height="10" viewBox="0 0 13 10" fill="none"><path d="M6.5 2.5C8.2 2.5 9.7 3.2 10.8 4.3L12 3C10.6 1.7 8.6 1 6.5 1C4.4 1 2.4 1.7 1 3L2.2 4.3C3.3 3.2 4.8 2.5 6.5 2.5Z" fill="black"/><path d="M6.5 5C7.6 5 8.5 5.4 9.2 6.1L10.4 4.8C9.4 3.9 8 3.5 6.5 3.5C5 3.5 3.7 4 2.6 4.8L3.8 6.1C4.5 5.4 5.4 5 6.5 5Z" fill="black"/><circle cx="6.5" cy="8" r="1.5" fill="black"/></svg>
+                        {/* wifi */}
+                        <svg width="12" height="9" viewBox="0 0 24 18"><path d="M12 14l-3-3a4.2 4.2 0 016 0l-3 3z" fill="#000"/><path d="M12 10L6 4a8.5 8.5 0 0112 0L12 10z" fill="#000" opacity=".5"/><path d="M12 6L3 0A14 14 0 0121 0L12 6z" fill="#000" opacity=".25"/></svg>
+                        {/* battery */}
                         <div style={{ width: 20, height: 10, border: '1.5px solid #000', borderRadius: 3, position: 'relative' }}>
-                          <div style={{ position: 'absolute', left: 1, top: 1, bottom: 1, width: '70%', background: '#000', borderRadius: 1.5 }} />
+                          <div style={{ position: 'absolute', left: 1, top: 1, bottom: 1, width: '80%', background: '#000', borderRadius: 1.5 }} />
                           <div style={{ position: 'absolute', right: -4, top: '50%', transform: 'translateY(-50%)', width: 3, height: 5, background: '#555', borderRadius: 1 }} />
                         </div>
                       </div>
                     </div>
 
-                    {/* IG header */}
-                    <div style={{ background: '#fff', padding: '6px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #eee' }}>
-                      <span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 17, color: '#000', letterSpacing: '-0.5px' }}>Instagram</span>
-                      <div style={{ display: 'flex', gap: 14, fontSize: 16 }}>
-                        <span style={{ cursor: 'pointer' }}>♡</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                    {/* app header */}
+                    <div style={{ padding: '8px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div>
+                        <div style={{ fontSize: 15, fontWeight: 700, color: '#000', lineHeight: 1.2 }}>Credit Score</div>
+                        <div style={{ fontSize: 10, color: '#aaa', marginTop: 2 }}>Updated just now</div>
+                      </div>
+                      {/* refresh icon */}
+                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#f0f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2C6275" strokeWidth="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
                       </div>
                     </div>
 
-                    {/* stories row — clickable */}
-                    <div style={{ background: '#fff', padding: '10px 12px 10px', display: 'flex', gap: 10, overflowX: 'auto', borderBottom: '0.5px solid #eee', scrollbarWidth: 'none' }}>
-                      {/* "Your story" */}
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, flexShrink: 0 }}>
-                        <div style={{ width: 52, height: 52, borderRadius: '50%', background: '#f0f0f0', border: '1.5px dashed #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, color: '#999' }}>+</div>
-                        <span style={{ fontSize: 8.5, color: '#333' }}>Your story</span>
+                    {/* gauge */}
+                    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '4px 0 0' }}>
+                      <svg viewBox="0 0 200 120" width="220" height="132">
+                        <defs>
+                          <linearGradient id="scoreGrad2" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stopColor="#e53935"/>
+                            <stop offset="25%" stopColor="#ff9800"/>
+                            <stop offset="50%" stopColor="#fdd835"/>
+                            <stop offset="75%" stopColor="#66bb6a"/>
+                            <stop offset="100%" stopColor="#3a7d8f"/>
+                          </linearGradient>
+                        </defs>
+                        {/* track */}
+                        <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="#f0f0f0" strokeWidth="13" strokeLinecap="round"/>
+                        {/* colored arc */}
+                        <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="url(#scoreGrad2)" strokeWidth="13" strokeLinecap="round"
+                          strokeDasharray="235" strokeDashoffset="0"/>
+                        {/* needle — 742 maps to ~73% → angle from -90 to 90 = 56deg */}
+                        <line x1="100" y1="110" x2="142" y2="47" stroke="#2C6275" strokeWidth="2.5" strokeLinecap="round"/>
+                        <circle cx="100" cy="110" r="5" fill="#2C6275"/>
+                        <text x="26" y="125" fontSize="9" fill="#999">300</text>
+                        <text x="163" y="125" fontSize="9" fill="#999">900</text>
+                      </svg>
+                      {/* score number */}
+                      <div style={{ position: 'absolute', bottom: 22, left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
+                        <div style={{ fontSize: 28, fontWeight: 800, color: '#1a1a1a', lineHeight: 1, fontFamily: "'Poppins',sans-serif" }}>742</div>
                       </div>
-                      {/* testimonial story circles */}
-                      {testimonials.map((item, i) => (
-                        <div key={i} onClick={() => setActiveT(i)}
-                          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, flexShrink: 0, cursor: 'pointer' }}>
-                          <div style={{
-                            width: 52, height: 52, borderRadius: '50%',
-                            background: activeT === i
-                              ? `conic-gradient(${item.color} 0%, ${item.color} 100%)`
-                              : 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)',
-                            padding: 2,
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: activeT === i ? `0 0 0 2px #fff, 0 0 0 4px ${item.color}` : 'none',
-                            transition: 'box-shadow 0.2s',
-                          }}>
-                            <div style={{ width: 44, height: 44, borderRadius: '50%', background: item.color, border: '2.5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 12, color: '#fff' }}>
-                              {item.initials}
-                            </div>
+                    </div>
+
+                    {/* good score badge */}
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+                      <div style={{ background: '#e8f4f6', color: '#2C6275', fontSize: 11, fontWeight: 600, padding: '4px 12px', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="#2C6275"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4.5-4.5 1.41-1.41L10 13.67l7.09-7.09 1.41 1.41L10 16.5z"/></svg>
+                        Good Score
+                      </div>
+                    </div>
+
+                    {/* score breakdown */}
+                    <div style={{ padding: '0 14px 6px' }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: '#1a1a1a', marginBottom: 8 }}>Score Breakdown</div>
+                      {[
+                        { label: 'Payment History',    pct: 95, color: '#4a9aaa' },
+                        { label: 'Credit Utilization', pct: 28, color: '#1565C0' },
+                        { label: 'Account Age',        pct: 72, color: '#FF9800' },
+                        { label: 'Total Accounts',     pct: 88, color: '#6A1B9A' },
+                        { label: 'Hard Inquiries',     pct: 90, color: '#00695C' },
+                      ].map((f, i) => (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 7 }}>
+                          <div style={{ width: 22, height: 22, borderRadius: 6, background: f.color+'15', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            <div style={{ width: 8, height: 8, borderRadius: 2, background: f.color }} />
                           </div>
-                          <span style={{ fontSize: 8.5, color: activeT === i ? item.color : '#555', fontWeight: activeT === i ? 600 : 400, maxWidth: 48, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {item.name?.split(' ')[0].toLowerCase()}...
-                          </span>
+                          <span style={{ fontSize: 10, color: '#555', flex: 1, whiteSpace: 'nowrap' }}>{f.label}</span>
+                          <div style={{ flex: 2, height: 5, background: '#f0f0f0', borderRadius: 3, overflow: 'hidden' }}>
+                            <div style={{ width: `${f.pct}%`, height: '100%', background: f.color, borderRadius: 3 }} />
+                          </div>
+                          <span style={{ fontSize: 10, fontWeight: 700, color: f.color, minWidth: 26, textAlign: 'right' }}>{f.pct}%</span>
                         </div>
                       ))}
                     </div>
 
-                    {/* post header */}
-                    <div style={{ background: '#fff', padding: '10px 14px 6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff', fontWeight: 800 }}>C</div>
-                        <div>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: '#000' }}>clicksemurs</div>
-                          <div style={{ fontSize: 10, color: '#999' }}>Client Review</div>
-                        </div>
+                    {/* CTA button */}
+                    <div style={{ padding: '6px 14px 16px' }}>
+                      <div style={{ background: '#2C6275', borderRadius: 10, padding: '11px 0', textAlign: 'center', color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                        Check Your Score
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                       </div>
-                      <span style={{ fontSize: 16, color: '#999', letterSpacing: 2 }}>···</span>
-                    </div>
-
-                    {/* review card — switches on story click */}
-                    <div key={activeT} style={{
-                      background: 'linear-gradient(135deg,#fefaef 0%,#f5e6c8 100%)',
-                      margin: '0 12px 10px', borderRadius: 14, padding: 14,
-                      border: '1px solid rgba(200,137,42,0.25)',
-                      animation: 'igSlideIn 0.3s ease',
-                    }}>
-                      <div style={{ color: '#c8892a', fontSize: 11, marginBottom: 5 }}>{'★'.repeat(t.rating || 5)}</div>
-                      <div style={{ fontSize: 11, color: '#444', lineHeight: 1.6, marginBottom: 10, fontStyle: 'italic' }}>
-                        "{t.quote?.slice(0, 110)}{t.quote?.length > 110 ? '...' : ''}"
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ width: 28, height: 28, borderRadius: '50%', background: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{t.initials}</div>
-                        <div>
-                          <div style={{ fontSize: 11, fontWeight: 700, color: '#222' }}>{t.name}</div>
-                          <div style={{ fontSize: 10, color: '#aaa' }}>{t.handle}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* post actions */}
-                    <div style={{ padding: '2px 14px 12px', display: 'flex', gap: 14, alignItems: 'center' }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                     </div>
                   </div>
                   </div>{/* end inner bezel */}
