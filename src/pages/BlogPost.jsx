@@ -336,7 +336,7 @@ export default function BlogPost() {
 
   return (
     <div style={{ background: '#fefaef', minHeight: '100vh' }}>
-      <div style={{ background: '#fefaef', paddingTop: 80, borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
+      <div style={{ background: '#fefaef', paddingTop: 136, borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '24px 24px 0' }}>
           <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#777', fontSize: 13, textDecoration: 'none', marginBottom: 16 }}>
             <FaArrowLeft size={11} /> Back to Blog

@@ -185,13 +185,13 @@ export default function Home() {
           .results-grid-3 { grid-template-columns: 1fr !important; }
           .footer-grid-4 { grid-template-columns: 1fr !important; }
           .stats-grid-4 { grid-template-columns: 1fr 1fr !important; }
-          .hero-section-pad { padding: 60px 20px 48px !important; }
+          .hero-section-pad { padding: 116px 20px 48px !important; }
           .section-pad { padding: 56px 20px !important; }
         }
       `}</style>
 
       {/* ── HERO ── */}
-      <section ref={heroRef} className={`hero-section-pad reveal${heroInView ? ' in-view' : ''}`} style={{ background: '#fefaef', padding: '80px 48px 60px', position: 'relative', overflow: 'hidden', minHeight: '88vh', display: 'flex', alignItems: 'center' }}>
+      <section ref={heroRef} className={`hero-section-pad reveal${heroInView ? ' in-view' : ''}`} style={{ background: '#fefaef', padding: '136px 48px 60px', position: 'relative', overflow: 'hidden', minHeight: '88vh', display: 'flex', alignItems: 'center' }}>
         <div style={{ position: 'absolute', top: -120, right: -120, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,137,42,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -80, left: -80, width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(74,158,133,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>

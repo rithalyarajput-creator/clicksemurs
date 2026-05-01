@@ -22,7 +22,7 @@ export default function ServiceDetail() {
   return (
     <div>
       {/* Hero */}
-      <section style={{ background: '#1a1a1a', paddingTop: 128, paddingBottom: 80, borderBottom: '1px solid #2E2E2E' }}>
+      <section style={{ background: '#1a1a1a', paddingTop: 184, paddingBottom: 80, borderBottom: '1px solid #2E2E2E' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#aaaaaa', fontSize: 13, textDecoration: 'none', marginBottom: 32, transition: 'color 0.2s' }}
             onMouseEnter={e => e.currentTarget.style.color = '#fefaef'}
