@@ -16,12 +16,72 @@ const STATIC_TESTIMONIALS = [
 ]
 
 const SERVICE_CARDS = [
-  { emoji: '📱', title: 'Social Media Marketing', desc: 'Build an audience that converts. We manage all major platforms and turn followers into paying customers.', bg: '#1a1a1a', color: '#fff' },
-  { emoji: '🔍', title: 'Search Engine Optimization', desc: 'Rank higher, get found. We create content that generates sustainable, compounding traffic.', bg: '#c8892a', color: '#fff' },
-  { emoji: '🎯', title: 'PPC / Paid Ads', desc: 'We run targeted ad campaigns that deliver maximum ROI with your targeted budget.', bg: '#f5e6c8', color: '#1a1a1a' },
-  { emoji: '💻', title: 'Website Design & Dev', desc: 'Your website is your best salesperson. Fast, beautiful platforms that convert visitors.', bg: '#d4603a', color: '#fff' },
-  { emoji: '✍️', title: 'Content Marketing', desc: 'Content is the backbone of digital marketing. We create content that engages, grows, and converts.', bg: '#e8f4f0', color: '#1a1a1a' },
-  { emoji: '🎬', title: 'Video Marketing', desc: 'Video is the most powerful medium. We help brands tell their story through compelling visual content.', bg: '#4a9e85', color: '#fff' },
+  {
+    title: 'Social Media Marketing',
+    desc: 'Build an audience that converts. We manage all major platforms and turn followers into paying customers.',
+    bg: '#f5e8d0', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#1877F2', label: 'f' },
+      { color: '#E1306C', label: '◎' },
+      { color: '#25D366', label: '✆' },
+    ],
+    slug: 'social-media-marketing',
+  },
+  {
+    title: 'Search Engine Optimization',
+    desc: 'Rank higher, get found. We create content that generates sustainable, compounding traffic.',
+    bg: '#e8f0f5', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#4285F4', label: 'G' },
+      { color: '#34A853', label: '◉' },
+      { color: '#FBBC05', label: '★' },
+    ],
+    slug: 'search-engine-optimization',
+  },
+  {
+    title: 'PPC / Paid Ads',
+    desc: 'We run targeted ad campaigns that deliver maximum ROI with your targeted budget.',
+    bg: '#f0ede8', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#FF6B35', label: '◈' },
+      { color: '#1877F2', label: 'f' },
+      { color: '#4285F4', label: 'G' },
+    ],
+    slug: 'ppc-paid-ads',
+  },
+  {
+    title: 'Website Design & Dev',
+    desc: 'Your website is your best salesperson. Fast, beautiful platforms that convert visitors.',
+    bg: '#edf5f0', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#21759B', label: 'W' },
+      { color: '#96BF48', label: 'S' },
+      { color: '#00C4CC', label: '✦' },
+    ],
+    slug: 'website-design-development',
+  },
+  {
+    title: 'Content Marketing',
+    desc: 'Content is the backbone of digital marketing. We create content that engages, grows, and converts.',
+    bg: '#f5edf0', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#E1306C', label: '◎' },
+      { color: '#FF0000', label: '▶' },
+      { color: '#0A66C2', label: 'in' },
+    ],
+    slug: 'content-marketing',
+  },
+  {
+    title: 'Video Marketing',
+    desc: 'Video is the most powerful medium. We help brands tell their story through compelling visual content.',
+    bg: '#ede8f5', titleColor: '#1a1a1a', descColor: '#666',
+    icons: [
+      { color: '#FF0000', label: '▶' },
+      { color: '#E1306C', label: '◎' },
+      { color: '#25D366', label: '✆' },
+    ],
+    slug: 'video-marketing',
+  },
 ]
 
 const WHY_US = [
@@ -300,22 +360,33 @@ export default function Home() {
             <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7, maxWidth: 480, marginBottom: 48 }}>Every service under one roof. No gaps, no juggling vendors. Just results.</p>
           </div>
 
-          <div className="services-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 }}>
+          <div className="services-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
             {SERVICE_CARDS.map((card, i) => (
-              <div key={i} className={`reveal-scale delay-${i + 1}${servicesInView ? ' in-view' : ''} service-card-wrap`} onClick={() => navigate('/services')}
-                style={{ position: 'relative', borderRadius: 20, padding: 28, background: card.bg, color: card.color, overflow: 'hidden', minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                {/* gloss top line */}
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent)', zIndex: 2 }} />
-                {/* gloss overlay */}
-                <div style={{ position: 'absolute', inset: 0, borderRadius: 20, background: 'linear-gradient(135deg,rgba(255,255,255,0.13) 0%,rgba(255,255,255,0.03) 100%)', pointerEvents: 'none' }} />
-                <div style={{ position: 'relative', zIndex: 3 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16, fontSize: 20 }}>
-                    {card.emoji}
-                  </div>
-                  <div className="syne" style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, lineHeight: 1.2 }}>{card.title}</div>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, opacity: 0.75 }}>{card.desc}</p>
+              <div key={i} className={`reveal-scale delay-${i + 1}${servicesInView ? ' in-view' : ''} service-card-wrap`}
+                onClick={() => navigate('/services')}
+                style={{ position: 'relative', borderRadius: 24, padding: '32px 28px 24px', background: card.bg, overflow: 'hidden', minHeight: 220, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer' }}>
+
+                {/* floating brand icons — top right */}
+                <div style={{ position: 'absolute', top: 20, right: 20, display: 'flex', gap: 8 }}>
+                  {card.icons.map((ic, j) => (
+                    <div key={j} style={{ width: 34, height: 34, borderRadius: '50%', background: ic.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.18)', fontFamily: "'Poppins',sans-serif" }}>
+                      {ic.label}
+                    </div>
+                  ))}
                 </div>
-                <div style={{ alignSelf: 'flex-end', width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, position: 'relative', zIndex: 3 }}>↗</div>
+
+                {/* content */}
+                <div style={{ paddingRight: 120 }}>
+                  <div className="syne" style={{ fontSize: 19, fontWeight: 700, color: card.titleColor, marginBottom: 10, lineHeight: 1.25 }}>{card.title}</div>
+                  <p style={{ fontSize: 13.5, color: card.descColor, lineHeight: 1.65, margin: 0 }}>{card.desc}</p>
+                </div>
+
+                {/* arrow button — bottom right */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 24 }}>
+                  <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 16 }}>
+                    →
+                  </div>
+                </div>
               </div>
             ))}
           </div>
