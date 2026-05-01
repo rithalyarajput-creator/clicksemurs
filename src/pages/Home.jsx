@@ -214,6 +214,21 @@ export default function Home() {
   const [website, setWebsite] = useState('')
   const [sent, setSent] = useState(false)
   const [pillHover, setPillHover] = useState(null)
+  const [likes, setLikes] = useState([12453, 9821, 15302, 8764])
+  const [liked, setLiked] = useState([false, false, false, false])
+  const [heartPop, setHeartPop] = useState(false)
+  const lastTap = useRef(0)
+
+  const handleLike = (i) => {
+    setLikes(prev => { const a=[...prev]; a[i]=a[i]+(liked[i]?-1:1); return a })
+    setLiked(prev => { const a=[...prev]; a[i]=!a[i]; return a })
+    if (!liked[i]) { setHeartPop(true); setTimeout(()=>setHeartPop(false), 700) }
+  }
+  const handleDoubleTap = () => {
+    const now = Date.now()
+    if (now - lastTap.current < 350) { handleLike(activeT) }
+    lastTap.current = now
+  }
 
   // scroll animation refs
   const [heroRef, heroInView] = useInView()
@@ -287,6 +302,10 @@ export default function Home() {
         .hero-fade > *:nth-child(4) { animation-delay: 0.3s; }
         .ig-review-anim { transition: opacity 0.3s, transform 0.3s; }
         @keyframes igSlideIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes heartBoom { 0%{transform:translate(-50%,-50%) scale(0);opacity:1} 50%{transform:translate(-50%,-50%) scale(1.4);opacity:1} 100%{transform:translate(-50%,-50%) scale(1.8);opacity:0} }
+        .heart-pop { animation: heartBoom 0.65s ease forwards; }
+        @keyframes likeBounce { 0%{transform:scale(1)} 30%{transform:scale(1.5)} 60%{transform:scale(0.9)} 100%{transform:scale(1)} }
+        .like-bounce { animation: likeBounce 0.4s ease; }
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-mockup-col { display: none !important; }
@@ -635,8 +654,8 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Stories row — clickable testimonials */}
-                  <div style={{ position:'absolute', top:103, left:0, right:0, display:'flex', gap:10, padding:'10px 12px', overflow:'hidden', borderBottom:'0.5px solid #eee', background:'#fff', zIndex:9 }}>
+                  {/* Stories row — scrollable + clickable */}
+                  <div style={{ position:'absolute', top:103, left:0, right:0, display:'flex', gap:10, padding:'10px 12px', overflowX:'auto', overflowY:'hidden', borderBottom:'0.5px solid #eee', background:'#fff', zIndex:9, scrollbarWidth:'none', WebkitOverflowScrolling:'touch' }}>
                     {/* Your story */}
                     <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4, flexShrink:0 }}>
                       <div style={{ position:'relative', width:56, height:56 }}>
@@ -671,8 +690,9 @@ export default function Home() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="#111"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
                   </div>
 
-                  {/* Review card area */}
-                  <div key={activeT} style={{ position:'absolute', top:275, left:0, right:0, height:230, background:'linear-gradient(160deg,#fefaef,#f5e6c8)', zIndex:7, display:'flex', flexDirection:'column', justifyContent:'center', padding:'0 20px', animation:'igSlideIn 0.3s ease' }}>
+                  {/* Review card area — double tap to like */}
+                  <div key={activeT} onClick={handleDoubleTap}
+                    style={{ position:'absolute', top:275, left:0, right:0, height:230, background:'linear-gradient(160deg,#fefaef,#f5e6c8)', zIndex:7, display:'flex', flexDirection:'column', justifyContent:'center', padding:'0 20px', animation:'igSlideIn 0.3s ease', cursor:'pointer', userSelect:'none', position:'absolute' }}>
                     <div style={{ fontSize:18, color:'#c8892a', marginBottom:10 }}>{'★'.repeat(t.rating || 5)}</div>
                     <div style={{ fontSize:13, color:'#444', lineHeight:1.65, fontStyle:'italic', marginBottom:14 }}>
                       "{t.quote?.slice(0,140)}{t.quote?.length > 140 ? '...' : ''}"
@@ -684,19 +704,37 @@ export default function Home() {
                         <div style={{ fontSize:11, color:'#aaa' }}>{t.handle}</div>
                       </div>
                     </div>
+                    {/* double-tap heart pop */}
+                    {heartPop && (
+                      <div className="heart-pop" style={{ position:'absolute', top:'50%', left:'50%', pointerEvents:'none', zIndex:99 }}>
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="#e0245e"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+                      </div>
+                    )}
                   </div>
 
                   {/* Post actions */}
                   <div style={{ position:'absolute', top:505, left:0, right:0, background:'#fff', padding:'8px 14px', zIndex:8 }}>
                     <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:6 }}>
                       <div style={{ display:'flex', gap:14, alignItems:'center' }}>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+                        {/* like button */}
+                        <div onClick={() => handleLike(activeT)} style={{ cursor:'pointer', display:'flex', alignItems:'center' }}
+                          className={liked[activeT] ? 'like-bounce' : ''}>
+                          <svg width="24" height="24" viewBox="0 0 24 24"
+                            fill={liked[activeT] ? '#e0245e' : 'none'}
+                            stroke={liked[activeT] ? '#e0245e' : '#111'}
+                            strokeWidth="1.8"
+                            style={{ transition:'fill 0.2s, transform 0.2s' }}>
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
+                          </svg>
+                        </div>
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                       </div>
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
                     </div>
-                    <div style={{ fontSize:12, fontWeight:600, color:'#111', fontFamily:'-apple-system,sans-serif', marginBottom:3 }}>{(12000 + activeT * 453).toLocaleString()} likes</div>
+                    <div style={{ fontSize:12, fontWeight:600, color:'#111', fontFamily:'-apple-system,sans-serif', marginBottom:3 }}>
+                      {likes[activeT]?.toLocaleString()} likes
+                    </div>
                     <div style={{ fontSize:12, color:'#111', fontFamily:'-apple-system,sans-serif' }}><span style={{ fontWeight:600 }}>clicksemurs</span> ⭐ Verified Client Review</div>
                   </div>
 
