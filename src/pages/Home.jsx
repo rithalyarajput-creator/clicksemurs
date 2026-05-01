@@ -576,41 +576,22 @@ export default function Home() {
 
       {/* ── TESTIMONIALS ── */}
       <section ref={testiRef} className="section-pad" style={{ background: '#f0f4f8', padding: '80px 48px' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div className="testi-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
-          {/* LEFT — heading + features + button */}
-          <div className={`reveal-left${testiInView ? ' in-view' : ''}`}>
+          {/* heading — centered */}
+          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ textAlign: 'center', marginBottom: 48 }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 14 }}>Client Stories</div>
-            <h2 className="syne" style={{ fontSize: 'clamp(36px,4vw,58px)', fontWeight: 800, letterSpacing: '-2px', lineHeight: 1.05, color: '#1a1a1a', marginBottom: 20 }}>
+            <h2 className="syne" style={{ fontSize: 'clamp(36px,4vw,58px)', fontWeight: 800, letterSpacing: '-2px', lineHeight: 1.05, color: '#1a1a1a', marginBottom: 16 }}>
               What Clients<br />
               <em style={{ fontStyle: 'normal', color: '#c8892a' }}>Say About Us</em>
             </h2>
-            <p style={{ fontSize: 16, color: '#555', lineHeight: 1.75, marginBottom: 36, maxWidth: 440 }}>
-              Real reviews from real clients who grew their business with Clicksemurs. Tap a story on the phone to read their experience.
+            <p style={{ fontSize: 16, color: '#555', lineHeight: 1.75, maxWidth: 480, margin: '0 auto' }}>
+              Real reviews from real clients. Tap a story on the phone to read their experience.
             </p>
-            {/* feature rows */}
-            {[
-              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>, text: 'Real results from real campaigns' },
-              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: '100% transparent reporting' },
-              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>, text: 'Average 5x ROI across clients' },
-            ].map((f, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
-                <div style={{ width: 42, height: 42, borderRadius: 12, background: '#fff', border: '1px solid #e8e0d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-                  {f.icon}
-                </div>
-                <span style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a' }}>{f.text}</span>
-              </div>
-            ))}
-            <button onClick={() => window.location.href='/contact'} style={{ marginTop: 8, background: '#1a1a1a', color: '#fefaef', padding: '14px 32px', borderRadius: 12, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'transform 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'none'}>
-              View All Reviews →
-            </button>
           </div>
 
-          {/* RIGHT — big phone */}
-          <div className={`reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
+          {/* phone — centered */}
+          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
             {/* ── EXACT iPhone mockup from HTML file ── */}
             <div style={{ perspective: 1200 }}>
               {/* scale wrapper: 500/680 ≈ 0.735 — all internal abs positions stay intact */}
@@ -765,8 +746,7 @@ export default function Home() {
               </div>{/* end scale container */}
               </div>
             </div>
-          </div>{/* end right col */}
-          </div>{/* end grid */}
+          </div>{/* end phone col */}
         </div>
       </section>
 
