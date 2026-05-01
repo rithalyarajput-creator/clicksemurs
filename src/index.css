@@ -31,9 +31,34 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', 'Inter', sans-serif;
   background-color: var(--bg);
   color: var(--black);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+
+p {
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+}
+
+button, input, textarea, select {
+  font-family: 'DM Sans', sans-serif;
+}
+
+a {
+  font-family: inherit;
 }
 
 #root {
@@ -42,6 +67,45 @@ body {
   display: flex;
   flex-direction: column;
   text-align: left;
+}
+
+/* ── Global font override: Syne for all headings incl. Tailwind text-* ── */
+.text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-8xl,
+.text-3xl, .text-2xl, .text-xl {
+  font-family: 'Syne', sans-serif !important;
+  letter-spacing: -0.025em;
+}
+
+/* Tailwind font-black / font-extrabold on headings → Syne */
+h1.font-black, h2.font-black, h3.font-black,
+h1.font-extrabold, h2.font-extrabold, h3.font-extrabold,
+h1.font-bold, h2.font-bold, h3.font-bold {
+  font-family: 'Syne', sans-serif !important;
+}
+
+/* Eyebrow / section labels */
+.eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Body copy */
+.body-copy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #666;
+}
+
+/* Nav & UI text */
+nav, footer, .ui-text {
+  font-family: 'DM Sans', sans-serif;
 }
 
 @layer components {
@@ -78,7 +142,22 @@ body {
   }
 }
 
-/* Rich text content from admin editor */
+/* ── Form elements global ── */
+input, textarea, select {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px;
+}
+input::placeholder, textarea::placeholder {
+  font-family: 'DM Sans', sans-serif;
+  opacity: 0.5;
+}
+label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ── Rich text content from admin editor ── */
 .blog-content h1, .blog-content h2, .blog-content h3,
 .blog-content h4, .blog-content h5, .blog-content h6 {
   color: #111;

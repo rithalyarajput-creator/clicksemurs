@@ -1,13 +1,17 @@
 export default function PageHero({ label, title, subtitle, center = false }) {
   return (
-    <section className="bg-[#0A0A0A] pt-32 pb-20 border-b border-[#2E2E2E]">
-      <div className={`max-w-7xl mx-auto px-6 lg:px-8 ${center ? 'text-center' : ''}`}>
-        {label && <span className="section-label">{label}</span>}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+    <section style={{ background: '#1a1a1a', paddingTop: 120, paddingBottom: 72, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ textAlign: center ? 'center' : 'left' }}>
+        {label && (
+          <span style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#c8892a', marginBottom: 14 }}>
+            {label}
+          </span>
+        )}
+        <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.8rem)', fontWeight: 800, color: '#fefaef', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: 16 }}>
           {title}
         </h1>
         {subtitle && (
-          <p className="text-[#AAAAAA] text-lg md:text-xl max-w-2xl leading-relaxed">
+          <p style={{ fontFamily: "'DM Sans', sans-serif", color: '#aaaaaa', fontSize: 'clamp(15px, 2vw, 18px)', maxWidth: 600, lineHeight: 1.7 }}>
             {subtitle}
           </p>
         )}
