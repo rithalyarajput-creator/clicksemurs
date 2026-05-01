@@ -149,8 +149,8 @@ function LeadForm() {
   return (
     <div style={{ background: '#fff', borderRadius: 12, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', border: '1px solid #e5e5e5' }}>
       <div style={{ background: '#c8892a', padding: '16px 20px' }}>
-        <div style={{ color: '#111', fontWeight: 900, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apply for Instant Consultation</div>
-        <div style={{ color: '#111', fontSize: 11, opacity: 0.7, marginTop: 2 }}>Get faster. No paperwork needed.</div>
+        <div style={{ color: '#fff', fontWeight: 900, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apply for Instant Consultation</div>
+        <div style={{ color: '#fff', fontSize: 11, opacity: 0.7, marginTop: 2 }}>Get faster. No paperwork needed.</div>
       </div>
       <div style={{ padding: '20px' }}>
         {sent ? (
@@ -172,7 +172,7 @@ function LeadForm() {
               />
             ))}
             <button type="submit" disabled={loading} style={{
-              display: 'block', width: '100%', background: '#c8892a', color: '#111',
+              display: 'block', width: '100%', background: '#c8892a', color: '#fff',
               padding: '12px', fontWeight: 900, fontSize: 13, border: 'none',
               borderRadius: 6, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 14
             }}>
@@ -327,7 +327,7 @@ export default function BlogPost() {
   }, [post?.author])
 
   if (!post) return (
-    <div style={{ minHeight: '100vh', background: '#f4f4f4', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 64 }}>
+    <div style={{ minHeight: '100vh', background: '#fefaef', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: 64 }}>
       <div style={{ color: '#777', fontSize: 16 }}>Loading...</div>
     </div>
   )
@@ -335,14 +335,14 @@ export default function BlogPost() {
   const date = new Date(post.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div style={{ background: '#F4F4F4', minHeight: '100vh' }}>
-      <div style={{ background: '#fff', paddingTop: 80, borderBottom: '1px solid #e5e5e5' }}>
+    <div style={{ background: '#fefaef', minHeight: '100vh' }}>
+      <div style={{ background: '#fefaef', paddingTop: 80, borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '24px 24px 0' }}>
           <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#777', fontSize: 13, textDecoration: 'none', marginBottom: 16 }}>
             <FaArrowLeft size={11} /> Back to Blog
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-            <span style={{ background: '#c8892a', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
+            <span style={{ background: '#c8892a', color: '#fff', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
             <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
           <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
@@ -373,7 +373,7 @@ export default function BlogPost() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 24px' }}>
         <div className="blogpost-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 28, alignItems: 'start' }}>
           <div>
-            <div className="blogpost-content-pad" style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #ebebeb' }}>
+            <div className="blogpost-content-pad" style={{ background: '#fff', borderRadius: 10, padding: '36px 40px', boxShadow: '0 2px 12px rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.07)' }}>
               <img src={post.thumbnail || '/blog1.png'} alt={post.title} style={{ width: '100%', maxHeight: 420, objectFit: 'cover', borderRadius: 8, display: 'block', marginBottom: 32 }} />
               {renderContent(post.content)}
               <FaqAccordion faqs={post.faqs} />

@@ -38,18 +38,18 @@ export default function Portfolio() {
     <div style={{ overflowX: 'hidden' }}>
 
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 60%, #0a0a0a 100%)', padding: 'clamp(96px,12vw,140px) 0 clamp(56px,8vw,80px)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', padding: 'clamp(96px,12vw,140px) 0 clamp(56px,8vw,80px)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '40vw', maxWidth: 400, height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(244,161,0,0.07) 0%, transparent 60%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '40vw', maxWidth: 400, height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(200,137,42,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 24 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(200,137,42,0.1)', border: '1px solid rgba(200,137,42,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 24 }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
             <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Work</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 6vw, 3.8rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
             Results That<br /><span style={{ color: '#c8892a' }}>Speak for Themselves</span>
           </h1>
-          <p style={{ color: '#94a3b8', fontSize: 'clamp(14px, 2.5vw, 17px)', maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.7 }}>
+          <p style={{ color: '#aaaaaa', fontSize: 'clamp(14px, 2.5vw, 17px)', maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.7 }}>
             Real clients. Real numbers. Zero fluff. Explore our case studies across 50+ industries.
           </p>
           {/* Stats strip */}
@@ -57,7 +57,7 @@ export default function Portfolio() {
             {[['500+','Projects'],['50+','Industries'],['98%','Retention'],['5X','Avg. ROI']].map(([v, l], i) => (
               <div key={i} style={{ padding: 'clamp(16px,3vw,28px) clamp(20px,4vw,48px)', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.08)' : 'none', minWidth: 100 }}>
                 <div style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 900, color: '#c8892a', lineHeight: 1 }}>{v}</div>
-                <div style={{ color: '#64748b', fontSize: 12, marginTop: 4, letterSpacing: '0.05em' }}>{l}</div>
+                <div style={{ color: '#aaaaaa', fontSize: 12, marginTop: 4, letterSpacing: '0.05em' }}>{l}</div>
               </div>
             ))}
           </div>
@@ -65,7 +65,7 @@ export default function Portfolio() {
       </section>
 
       {/* Filter + Cards */}
-      <section style={{ background: '#f8fafc', padding: 'clamp(48px,8vw,80px) 0' }}>
+      <section style={{ background: '#fefaef', padding: 'clamp(48px,8vw,80px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
           {/* Filter chips */}
@@ -73,9 +73,9 @@ export default function Portfolio() {
             {industries.map(ind => (
               <button key={ind} onClick={() => setActive(ind)} style={{
                 padding: '8px 18px', fontSize: 13, fontWeight: 600, cursor: 'pointer', borderRadius: 100,
-                border: active === ind ? '1px solid #0f172a' : '1px solid #e2e8f0',
-                background: active === ind ? '#0f172a' : '#fff',
-                color: active === ind ? '#fff' : '#64748b',
+                border: active === ind ? '1px solid #1a1a1a' : '1px solid rgba(0,0,0,0.1)',
+                background: active === ind ? '#1a1a1a' : '#fff',
+                color: active === ind ? '#fefaef' : '#666',
                 transition: 'all 0.15s'
               }}>
                 {ind}
@@ -87,12 +87,12 @@ export default function Portfolio() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 24 }}>
             {filtered.map((cs, i) => (
               <FadeIn key={cs.id} delay={i * 60}>
-                <div style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', border: '1px solid #e2e8f0', transition: 'box-shadow 0.2s, transform 0.2s', height: '100%' }}
+                <div style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', border: '1px solid rgba(0,0,0,0.08)', transition: 'box-shadow 0.2s, transform 0.2s', height: '100%' }}
                   onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}>
 
                   {/* Card header */}
-                  <div style={{ background: '#0f172a', padding: '24px 28px', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ background: '#1a1a1a', padding: '24px 28px', position: 'relative', overflow: 'hidden' }}>
                     <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: cs.accent }} />
                     <div style={{ position: 'absolute', right: -20, top: -20, width: 100, height: 100, borderRadius: '50%', background: `${cs.accent}15` }} />
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -115,13 +115,13 @@ export default function Portfolio() {
                   </div>
 
                   {/* Before / After */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderBottom: '1px solid #f1f5f9' }}>
-                    <div style={{ padding: '16px 20px', borderRight: '1px solid #f1f5f9' }}>
-                      <div style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>Before</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderBottom: '1px solid rgba(0,0,0,0.07)' }}>
+                    <div style={{ padding: '16px 20px', borderRight: '1px solid rgba(0,0,0,0.07)' }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, color: '#999', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>Before</div>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#ef4444' }}>{cs.before}</div>
                     </div>
                     <div style={{ padding: '16px 20px', background: '#f0fdf4' }}>
-                      <div style={{ fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>After</div>
+                      <div style={{ fontSize: 10, fontWeight: 700, color: '#999', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>After</div>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#16a34a' }}>{cs.after}</div>
                     </div>
                   </div>
@@ -129,16 +129,16 @@ export default function Portfolio() {
                   {/* Details */}
                   <div style={{ padding: '20px 24px' }}>
                     <div style={{ marginBottom: 10 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Challenge: </span>
-                      <span style={{ fontSize: 13.5, color: '#475569' }}>{cs.challenge}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Challenge: </span>
+                      <span style={{ fontSize: 13.5, color: '#555' }}>{cs.challenge}</span>
                     </div>
                     <div style={{ marginBottom: 14 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Solution: </span>
-                      <span style={{ fontSize: 13.5, color: '#475569' }}>{cs.solution}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: '#999', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Solution: </span>
+                      <span style={{ fontSize: 13.5, color: '#555' }}>{cs.solution}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                       <div style={{ width: 8, height: 8, borderRadius: '50%', background: cs.accent, flexShrink: 0 }} />
-                      <span style={{ fontSize: 13, fontWeight: 700, color: '#0f172a' }}>{cs.result} {cs.resultLabel}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: '#1a1a1a' }}>{cs.result} {cs.resultLabel}</span>
                     </div>
                   </div>
                 </div>
@@ -158,11 +158,11 @@ export default function Portfolio() {
       </section>
 
       {/* Process Strip */}
-      <section style={{ background: '#0f172a', padding: 'clamp(48px,6vw,72px) 0' }}>
+      <section style={{ background: '#1a1a1a', padding: 'clamp(48px,6vw,72px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', display: 'block', marginBottom: 12 }}>How We Work</span>
-            <h2 style={{ color: '#fff', fontSize: 'clamp(1.5rem, 3.5vw, 2.2rem)', fontWeight: 900, letterSpacing: '-0.02em' }}>Our Proven Process</h2>
+            <h2 style={{ color: '#fefaef', fontSize: 'clamp(1.5rem, 3.5vw, 2.2rem)', fontWeight: 900, letterSpacing: '-0.02em' }}>Our Proven Process</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 2 }}>
             {[
@@ -175,8 +175,8 @@ export default function Portfolio() {
               <div key={i} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ fontSize: 44, fontWeight: 900, color: 'rgba(255,255,255,0.04)', position: 'absolute', top: 8, right: 12, lineHeight: 1 }}>{p.step}</div>
                 <div style={{ color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{p.step}</div>
-                <div style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 8 }}>{p.label}</div>
-                <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>{p.desc}</div>
+                <div style={{ color: '#fefaef', fontWeight: 800, fontSize: 16, marginBottom: 8 }}>{p.label}</div>
+                <div style={{ color: '#aaaaaa', fontSize: 13, lineHeight: 1.6 }}>{p.desc}</div>
               </div>
             ))}
           </div>
@@ -184,16 +184,16 @@ export default function Portfolio() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 100%)', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(244,161,0,0.1) 0%, transparent 60%)' }} />
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 100%)', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(200,137,42,0.1) 0%, transparent 60%)' }} />
         <div className="max-w-3xl mx-auto px-6 lg:px-8" style={{ textAlign: 'center', position: 'relative' }}>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, color: '#fff', marginBottom: 16, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, color: '#fefaef', marginBottom: 16, letterSpacing: '-0.02em' }}>
             Want Results Like These?
           </h2>
-          <p style={{ color: '#94a3b8', fontSize: 16, marginBottom: 36, lineHeight: 1.7 }}>
+          <p style={{ color: '#aaaaaa', fontSize: 16, marginBottom: 36, lineHeight: 1.7 }}>
             Get a free digital audit and see exactly how we can transform your business metrics.
           </p>
-          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
+          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#fff', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
             Get Your Free Audit <FaArrowRight size={12} />
           </Link>
         </div>

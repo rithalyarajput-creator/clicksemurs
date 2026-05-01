@@ -51,7 +51,7 @@ export default function Blog() {
         subtitle="Stay updated with the latest trends, tips, and strategy design"
       />
 
-      <section className="bg-[#F4F4F4] py-20">
+      <section style={{ background: '#fefaef', padding: '80px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Filter */}
           <div className="flex flex-wrap gap-2 mb-12">
@@ -59,11 +59,15 @@ export default function Blog() {
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                  active === cat
-                    ? 'bg-[#111111] text-white'
-                    : 'bg-white border border-gray-200 text-[#777777] hover:border-[#111111] hover:text-[#111111]'
-                }`}
+                style={{
+                  padding: '8px 18px', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                  background: active === cat ? '#1a1a1a' : '#fff',
+                  color: active === cat ? '#fefaef' : '#777',
+                  border: active === cat ? '1px solid #1a1a1a' : '1px solid rgba(0,0,0,0.1)',
+                  transition: 'all 0.15s',
+                }}
+                onMouseEnter={e => { if (active !== cat) { e.currentTarget.style.borderColor = '#1a1a1a'; e.currentTarget.style.color = '#1a1a1a' } }}
+                onMouseLeave={e => { if (active !== cat) { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)'; e.currentTarget.style.color = '#777' } }}
               >
                 {cat}
               </button>

@@ -73,54 +73,52 @@ export default function Pricing() {
         center
       />
 
-      <section className="bg-[#F4F4F4] py-20">
+      <section style={{ background: '#fefaef', padding: '80px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {plans.map((plan, i) => (
-              <div
-                key={i}
-                className={`relative ${
-                  plan.highlight
-                    ? 'bg-[#111111] border-2 border-white'
-                    : 'bg-white border border-gray-200'
-                }`}
-              >
+              <div key={i} style={{
+                position: 'relative',
+                background: plan.highlight ? '#1a1a1a' : '#fff',
+                border: plan.highlight ? '2px solid rgba(200,137,42,0.4)' : '1px solid rgba(0,0,0,0.1)',
+                boxShadow: plan.highlight ? '0 16px 48px rgba(0,0,0,0.15)' : 'none',
+              }}>
                 {plan.badge && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="bg-white text-[#111111] text-xs font-black px-4 py-1 uppercase tracking-widest">
+                  <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)' }}>
+                    <span style={{ background: '#c8892a', color: '#fff', fontSize: 11, fontWeight: 800, padding: '4px 16px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                       {plan.badge}
                     </span>
                   </div>
                 )}
-                <div className={`p-8 border-b ${plan.highlight ? 'border-[#2E2E2E]' : 'border-gray-200'}`}>
-                  <h3 className={`font-black text-2xl mb-1 ${plan.highlight ? 'text-white' : 'text-[#111111]'}`}>
+                <div style={{ padding: 32, borderBottom: `1px solid ${plan.highlight ? '#2E2E2E' : 'rgba(0,0,0,0.08)'}` }}>
+                  <h3 style={{ fontWeight: 900, fontSize: 24, marginBottom: 4, color: plan.highlight ? '#fefaef' : '#1a1a1a' }}>
                     {plan.name}
                   </h3>
-                  <p className={`text-sm mb-6 ${plan.highlight ? 'text-[#777777]' : 'text-[#777777]'}`}>
+                  <p style={{ fontSize: 14, marginBottom: 24, color: '#777' }}>
                     {plan.tagline}
                   </p>
-                  <div className="flex items-end gap-1">
-                    <span className={`font-black text-4xl ${plan.highlight ? 'text-white' : 'text-[#111111]'}`}>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 4 }}>
+                    <span style={{ fontWeight: 900, fontSize: 36, color: plan.highlight ? '#fefaef' : '#1a1a1a' }}>
                       {plan.price}
                     </span>
-                    <span className={`text-sm pb-1 ${plan.highlight ? 'text-[#777777]' : 'text-[#777777]'}`}>
+                    <span style={{ fontSize: 14, paddingBottom: 4, color: '#777' }}>
                       {plan.period}
                     </span>
                   </div>
                 </div>
-                <div className="p-8">
-                  <ul className="space-y-3 mb-8">
+                <div style={{ padding: 32 }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                     {plan.features.map((f, j) => (
-                      <li key={j} className="flex items-center gap-3">
+                      <li key={j} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         {f.included
-                          ? <FaCheckCircle size={14} color={plan.highlight ? 'white' : '#111111'} className="flex-shrink-0" />
-                          : <FaTimes size={14} color="#555555" className="flex-shrink-0" />
+                          ? <FaCheckCircle size={14} color={plan.highlight ? '#c8892a' : '#1a1a1a'} style={{ flexShrink: 0 }} />
+                          : <FaTimes size={14} color="#555" style={{ flexShrink: 0 }} />
                         }
-                        <span className={`text-sm ${
-                          f.included
-                            ? plan.highlight ? 'text-[#AAAAAA]' : 'text-[#4A4A4A]'
-                            : 'text-[#777777] line-through'
-                        }`}>
+                        <span style={{
+                          fontSize: 14,
+                          color: f.included ? (plan.highlight ? '#aaaaaa' : '#4a4a4a') : '#777',
+                          textDecoration: f.included ? 'none' : 'line-through',
+                        }}>
                           {f.text}
                         </span>
                       </li>
@@ -138,9 +136,9 @@ export default function Pricing() {
           </div>
 
           {/* Custom Quote */}
-          <div className="bg-[#111111] p-10 mt-12 text-center border border-[#2E2E2E]">
-            <h3 className="text-white font-black text-2xl mb-3">Need a Custom Package?</h3>
-            <p className="text-[#AAAAAA] text-sm mb-6 max-w-xl mx-auto">
+          <div style={{ background: '#1a1a1a', padding: 40, marginTop: 48, textAlign: 'center', border: '1px solid #2E2E2E' }}>
+            <h3 style={{ color: '#fefaef', fontWeight: 900, fontSize: 24, marginBottom: 12 }}>Need a Custom Package?</h3>
+            <p style={{ color: '#aaaaaa', fontSize: 14, marginBottom: 24, maxWidth: 480, margin: '0 auto 24px' }}>
               Every business is different. We'll build a tailored package around your specific goals, budget, and timeline.
             </p>
             <Link to="/contact" className="btn-primary">

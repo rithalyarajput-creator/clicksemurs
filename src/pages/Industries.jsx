@@ -26,18 +26,20 @@ export default function Industries() {
         subtitle="We bring cross-industry insights and proven strategies to every client — whatever your sector, we've delivered results in it."
       />
 
-      <section className="bg-[#F4F4F4] py-20">
+      <section style={{ background: '#fefaef', padding: '80px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((ind, i) => {
               const Icon = ind.icon
               return (
-                <div key={i} className="bg-white border border-gray-200 p-8 group hover:border-[#111111] transition-all duration-200">
-                  <div className="w-12 h-12 bg-[#111111] flex items-center justify-center mb-5">
+                <div key={i} style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.08)', padding: 32, transition: 'border-color 0.2s, box-shadow 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#1a1a1a'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.07)' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
+                  <div style={{ width: 48, height: 48, background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
                     <Icon size={20} color="white" />
                   </div>
-                  <h3 className="text-[#111111] font-black text-lg mb-3">{ind.name}</h3>
-                  <p className="text-[#777777] text-sm leading-relaxed">{ind.desc}</p>
+                  <h3 style={{ color: '#1a1a1a', fontWeight: 900, fontSize: 17, marginBottom: 12 }}>{ind.name}</h3>
+                  <p style={{ color: '#777', fontSize: 14, lineHeight: 1.7 }}>{ind.desc}</p>
                 </div>
               )
             })}
@@ -45,10 +47,10 @@ export default function Industries() {
         </div>
       </section>
 
-      <section className="bg-[#111111] py-16 border-t border-[#2E2E2E]">
+      <section style={{ background: '#1a1a1a', padding: '64px 0', borderTop: '1px solid #2E2E2E' }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black text-white mb-4">Don't See Your Industry?</h2>
-          <p className="text-[#AAAAAA] mb-8">We work with businesses across all sectors. Get in touch and let's talk about your specific needs.</p>
+          <h2 style={{ color: '#fefaef', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', marginBottom: 16 }}>Don't See Your Industry?</h2>
+          <p style={{ color: '#aaaaaa', marginBottom: 32 }}>We work with businesses across all sectors. Get in touch and let's talk about your specific needs.</p>
           <Link to="/contact" className="btn-primary">
             Talk to Us <FaArrowRight size={12} />
           </Link>

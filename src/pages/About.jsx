@@ -110,32 +110,32 @@ export default function About() {
   return (
     <div>
       {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #111827 60%, #0a0a0a 100%)', position: 'relative', overflow: 'hidden', padding: '100px 0 80px' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(244,161,0,0.07) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(59,130,246,0.07) 0%, transparent 60%)' }} />
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 60%, #1a1a1a 100%)', position: 'relative', overflow: 'hidden', padding: '100px 0 80px' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(200,137,42,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(200,137,42,0.04) 0%, transparent 60%)' }} />
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
           <FadeIn>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.12)', border: '1px solid rgba(244,161,0,0.3)', borderRadius: 100, padding: '6px 18px', marginBottom: 28 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(200,137,42,0.12)', border: '1px solid rgba(200,137,42,0.3)', borderRadius: 100, padding: '6px 18px', marginBottom: 28 }}>
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
               <span style={{ color: '#c8892a', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{d.hero_label}</span>
             </div>
           </FadeIn>
           <FadeIn delay={100}>
-            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: '#fefaef', lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
               {d.hero_title.split(' ').map((word, i) => (
                 <span key={i}>{i === 3 ? <span style={{ color: '#c8892a' }}>{word} </span> : word + ' '}</span>
               ))}
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
-            <p style={{ color: '#94a3b8', fontSize: 18, maxWidth: 640, margin: '0 auto 36px', lineHeight: 1.7 }}>{d.hero_subtitle}</p>
+            <p style={{ color: '#aaaaaa', fontSize: 18, maxWidth: 640, margin: '0 auto 36px', lineHeight: 1.7 }}>{d.hero_subtitle}</p>
           </FadeIn>
           <FadeIn delay={300}>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6, transition: 'opacity 0.2s' }}>
+              <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#fff', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6, transition: 'opacity 0.2s' }}>
                 Work With Us <FaArrowRight size={11} />
               </Link>
-              <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', color: '#fff', padding: '13px 28px', fontWeight: 700, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 6, transition: 'all 0.2s' }}>
+              <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', color: '#fefaef', padding: '13px 28px', fontWeight: 700, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 6, transition: 'all 0.2s' }}>
                 Our Services
               </Link>
             </div>
@@ -144,19 +144,19 @@ export default function About() {
       </section>
 
       {/* Our Story */}
-      <section style={{ background: '#f8fafc', padding: '96px 0' }}>
+      <section style={{ background: '#fefaef', padding: '96px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center' }}>
             <FadeIn>
               <div>
                 <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Story</span>
-                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 900, color: '#0f172a', lineHeight: 1.15, marginBottom: 28, letterSpacing: '-0.02em' }}>{d.story_heading}</h2>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 900, color: '#1a1a1a', lineHeight: 1.15, marginBottom: 28, letterSpacing: '-0.02em' }}>{d.story_heading}</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {[d.story_p1, d.story_p2, d.story_p3].map((p, i) => (
-                    <p key={i} style={{ color: '#475569', lineHeight: 1.8, fontSize: 15 }}>{p}</p>
+                    <p key={i} style={{ color: '#555', lineHeight: 1.8, fontSize: 15 }}>{p}</p>
                   ))}
                 </div>
-                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 32, background: '#0f172a', color: '#fff', padding: '12px 26px', fontWeight: 700, fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6 }}>
+                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 32, background: '#1a1a1a', color: '#fefaef', padding: '12px 26px', fontWeight: 700, fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6 }}>
                   Start Your Journey <FaArrowRight size={11} />
                 </Link>
               </div>
@@ -164,14 +164,14 @@ export default function About() {
 
             {/* Logo + Stats Panel */}
             <FadeIn delay={150}>
-              <div style={{ background: '#0a0a0a', borderRadius: 20, overflow: 'hidden', position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(244,161,0,0.12) 0%, transparent 60%)' }} />
+              <div style={{ background: '#1a1a1a', borderRadius: 20, overflow: 'hidden', position: 'relative' }}>
+                <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(200,137,42,0.12) 0%, transparent 60%)' }} />
                 <div style={{ padding: '40px 32px', textAlign: 'center', position: 'relative' }}>
                   <div style={{ marginBottom: 32 }}>
                     <img src="/logo.png" alt="Clicksemurs" style={{ height: 56, width: 'auto', margin: '0 auto', display: 'block' }} />
-                    <div style={{ color: '#475569', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', marginTop: 10, fontWeight: 600 }}>360° Digital Marketing Agency</div>
+                    <div style={{ color: '#aaaaaa', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', marginTop: 10, fontWeight: 600 }}>360° Digital Marketing Agency</div>
                   </div>
-                  <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(244,161,0,0.4), transparent)', marginBottom: 32 }} />
+                  <div style={{ width: '100%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(200,137,42,0.4), transparent)', marginBottom: 32 }} />
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
                     {stats.map((s, i) => {
                       const numPart = s.value.replace(/[^0-9]/g, '')
@@ -181,7 +181,7 @@ export default function About() {
                           <div style={{ color: '#c8892a', fontWeight: 900, fontSize: 28, lineHeight: 1 }}>
                             <AnimatedCounter target={numPart} suffix={suffix} />
                           </div>
-                          <div style={{ color: '#64748b', fontSize: 12, marginTop: 4, fontWeight: 600, letterSpacing: '0.05em' }}>{s.label}</div>
+                          <div style={{ color: '#aaaaaa', fontSize: 12, marginTop: 4, fontWeight: 600, letterSpacing: '0.05em' }}>{s.label}</div>
                         </div>
                       )
                     })}
@@ -194,13 +194,13 @@ export default function About() {
       </section>
 
       {/* Vision & Mission */}
-      <section style={{ background: '#0a0a0a', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(244,161,0,0.06) 0%, transparent 60%)' }} />
+      <section style={{ background: '#1a1a1a', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'radial-gradient(ellipse at 30% 50%, rgba(200,137,42,0.06) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(200,137,42,0.04) 0%, transparent 60%)' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Purpose</span>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em' }}>Vision & Mission</h2>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fefaef', letterSpacing: '-0.02em' }}>Vision & Mission</h2>
             </div>
           </FadeIn>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
@@ -212,8 +212,8 @@ export default function About() {
                 <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '40px 36px', position: 'relative', overflow: 'hidden', height: '100%' }}>
                   <div style={{ position: 'absolute', top: 0, left: 0, width: 3, height: '100%', background: `linear-gradient(180deg, ${item.accent}, transparent)` }} />
                   <div style={{ marginBottom: 20 }}>{item.icon}</div>
-                  <h3 style={{ color: '#fff', fontWeight: 800, fontSize: 20, marginBottom: 16 }}>{item.label}</h3>
-                  <p style={{ color: '#94a3b8', lineHeight: 1.8, fontSize: 15 }}>{item.text}</p>
+                  <h3 style={{ color: '#fefaef', fontWeight: 800, fontSize: 20, marginBottom: 16 }}>{item.label}</h3>
+                  <p style={{ color: '#aaaaaa', lineHeight: 1.8, fontSize: 15 }}>{item.text}</p>
                 </div>
               </FadeIn>
             ))}
@@ -222,15 +222,14 @@ export default function About() {
       </section>
 
       {/* ── How We Build Trust ── */}
-      <section style={{ background: '#f0f2f5', padding: 'clamp(64px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
-        {/* Faint lined paper bg */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, #dde1e7 39px, #dde1e7 40px)', opacity: 0.5 }} />
+      <section style={{ background: '#fefaef', padding: 'clamp(64px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, rgba(200,137,42,0.07) 39px, rgba(200,137,42,0.07) 40px)', opacity: 0.5 }} />
 
         <div className="max-w-4xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 64 }}>
               <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Approach</span>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, color: '#1a1a1a', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
                 How We Build<br /><span style={{ color: '#c8892a' }}>Trust With You</span>
               </h2>
             </div>
@@ -293,10 +292,10 @@ export default function About() {
                       <div style={{ color: card.numColor, fontSize: 15, fontWeight: 800, letterSpacing: '0.05em', marginBottom: 10, marginTop: 4, fontFamily: 'monospace' }}>{card.num}</div>
 
                       {/* Title */}
-                      <h3 style={{ color: '#0f172a', fontWeight: 900, fontSize: 22, marginBottom: 14, lineHeight: 1.2 }}>{card.title}</h3>
+                      <h3 style={{ color: '#1a1a1a', fontWeight: 900, fontSize: 22, marginBottom: 14, lineHeight: 1.2 }}>{card.title}</h3>
 
                       {/* Desc */}
-                      <p style={{ color: '#4a5568', fontSize: 14, lineHeight: 1.75 }}>{card.desc}</p>
+                      <p style={{ color: '#555', fontSize: 14, lineHeight: 1.75 }}>{card.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -307,25 +306,25 @@ export default function About() {
       </section>
 
       {/* Core Values */}
-      <section style={{ background: '#fff', padding: '96px 0' }}>
+      <section style={{ background: '#fefaef', padding: '96px 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div style={{ marginBottom: 56 }}>
               <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>What Drives Us</span>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em' }}>Our Core Values</h2>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#1a1a1a', letterSpacing: '-0.02em' }}>Our Core Values</h2>
             </div>
           </FadeIn>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
             {values.map((v, i) => (
               <FadeIn key={i} delay={i * 80}>
-                <div style={{ border: '1px solid #e2e8f0', borderRadius: 14, padding: '32px 28px', background: '#fff', transition: 'box-shadow 0.2s, transform 0.2s', cursor: 'default' }}
+                <div style={{ border: '1px solid rgba(0,0,0,0.08)', borderRadius: 14, padding: '32px 28px', background: '#fff', transition: 'box-shadow 0.2s, transform 0.2s', cursor: 'default' }}
                   onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}>
-                  <div style={{ width: 48, height: 48, background: '#0f172a', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: '#c8892a' }}>
+                  <div style={{ width: 48, height: 48, background: '#1a1a1a', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: '#c8892a' }}>
                     {v.icon}
                   </div>
-                  <h3 style={{ color: '#0f172a', fontWeight: 800, fontSize: 17, marginBottom: 10 }}>{v.title}</h3>
-                  <p style={{ color: '#64748b', fontSize: 14, lineHeight: 1.7 }}>{v.desc}</p>
+                  <h3 style={{ color: '#1a1a1a', fontWeight: 800, fontSize: 17, marginBottom: 10 }}>{v.title}</h3>
+                  <p style={{ color: '#666', fontSize: 14, lineHeight: 1.7 }}>{v.desc}</p>
                 </div>
               </FadeIn>
             ))}
@@ -334,28 +333,28 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section style={{ background: '#0a0a0a', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: '#1a1a1a', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ marginBottom: 56 }}>
               <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>The People</span>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', marginBottom: 12 }}>{d.team_heading}</h2>
-              <p style={{ color: '#64748b', fontSize: 15, maxWidth: 500 }}>{d.team_subheading}</p>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fefaef', letterSpacing: '-0.02em', marginBottom: 12 }}>{d.team_heading}</h2>
+              <p style={{ color: '#aaaaaa', fontSize: 15, maxWidth: 500 }}>{d.team_subheading}</p>
             </div>
           </FadeIn>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
             {team.map((member, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '36px 24px', textAlign: 'center', transition: 'border-color 0.2s, background 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(244,161,0,0.3)' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; e.currentTarget.style.borderColor = 'rgba(200,137,42,0.3)' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}>
                   <div style={{ width: 72, height: 72, borderRadius: '50%', background: AVATAR_COLORS[i % AVATAR_COLORS.length], margin: '0 auto 20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ color: '#fff', fontSize: 26, fontWeight: 900 }}>{(member.name || '?')[0]}</span>
                   </div>
-                  <h3 style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 6 }}>{member.name}</h3>
+                  <h3 style={{ color: '#fefaef', fontWeight: 800, fontSize: 16, marginBottom: 6 }}>{member.name}</h3>
                   <p style={{ color: '#c8892a', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>{member.role}</p>
-                  <p style={{ color: '#64748b', fontSize: 12 }}>{member.exp}</p>
+                  <p style={{ color: '#aaaaaa', fontSize: 12 }}>{member.exp}</p>
                 </div>
               </FadeIn>
             ))}
@@ -364,16 +363,16 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(244,161,0,0.12) 0%, transparent 60%)' }} />
+      <section style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #111827 100%)', padding: '96px 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(200,137,42,0.12) 0%, transparent 60%)' }} />
         <div className="max-w-3xl mx-auto px-6 text-center" style={{ position: 'relative' }}>
           <FadeIn>
-            <div style={{ width: 64, height: 64, background: 'rgba(244,161,0,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 28px' }}>
+            <div style={{ width: 64, height: 64, background: 'rgba(200,137,42,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 28px' }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
-            <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 900, color: '#fff', marginBottom: 16, letterSpacing: '-0.02em' }}>{d.cta_heading}</h2>
-            <p style={{ color: '#94a3b8', fontSize: 17, marginBottom: 36, lineHeight: 1.6 }}>{d.cta_subtext}</p>
-            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, transition: 'opacity 0.2s' }}>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 900, color: '#fefaef', marginBottom: 16, letterSpacing: '-0.02em' }}>{d.cta_heading}</h2>
+            <p style={{ color: '#aaaaaa', fontSize: 17, marginBottom: 36, lineHeight: 1.6 }}>{d.cta_subtext}</p>
+            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#fff', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, transition: 'opacity 0.2s' }}>
               Get Your Free Audit <FaArrowRight size={12} />
             </Link>
           </FadeIn>
