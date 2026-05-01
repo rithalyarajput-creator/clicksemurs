@@ -613,6 +613,7 @@ export default function Home() {
           <div className={`reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
             {/* ── EXACT iPhone mockup from HTML file ── */}
             <div style={{ perspective: 1200 }}>
+              {/* scale wrapper: 500/680 ≈ 0.735 — all internal abs positions stay intact */}
               <div style={{
                 display: 'inline-block',
                 transform: 'rotateY(-4deg) rotateX(2deg)',
@@ -622,6 +623,8 @@ export default function Home() {
                 onMouseEnter={e => e.currentTarget.style.transform = 'rotateY(0deg) rotateX(0deg)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(-4deg) rotateX(2deg)'}
               >
+              <div style={{ width: 235, height: 500, transformOrigin: 'top left' }}>
+              <div style={{ transform: 'scale(0.735)', transformOrigin: 'top left', width: 320, height: 680 }}>
                 <div style={{ position:'relative', width:320, height:680, borderRadius:50, background:'#1a1a1a', boxShadow:'0 0 0 2px #3a3a3a, 0 0 0 5px #222, 0 20px 60px rgba(0,0,0,0.4)', overflow:'hidden' }}>
 
                   {/* white screen bg */}
@@ -758,6 +761,8 @@ export default function Home() {
                   {/* Home indicator */}
                   <div style={{ position:'absolute', bottom:6, left:'50%', transform:'translateX(-50%)', width:100, height:3, background:'#bbb', borderRadius:2, zIndex:30 }} />
                 </div>
+              </div>{/* end scale inner */}
+              </div>{/* end scale container */}
               </div>
             </div>
           </div>{/* end right col */}
