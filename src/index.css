@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -41,7 +41,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -72,7 +72,7 @@ a {
 /* ── Global font override: Syne for all headings incl. Tailwind text-* ── */
 .text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-8xl,
 .text-3xl, .text-2xl, .text-xl {
-  font-family: 'Syne', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   letter-spacing: -0.025em;
 }
 
@@ -80,7 +80,7 @@ a {
 h1.font-black, h2.font-black, h3.font-black,
 h1.font-extrabold, h2.font-extrabold, h3.font-extrabold,
 h1.font-bold, h2.font-bold, h3.font-bold {
-  font-family: 'Syne', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 /* Eyebrow / section labels */

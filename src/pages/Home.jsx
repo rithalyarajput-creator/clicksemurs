@@ -81,7 +81,7 @@ function StatItem({ value, label }) {
   const suffix = animated.replace(/[0-9]/g, '')
   return (
     <div ref={ref} style={{ textAlign: 'center', padding: '28px 16px', borderRight: '1px solid rgba(0,0,0,0.08)' }} className="stat-item-last">
-      <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2.4rem,5vw,3.2rem)', fontWeight: 800, color: '#1a1a1a', letterSpacing: '-2px', lineHeight: 1, marginBottom: 6 }}>
+      <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2.4rem,5vw,3.2rem)', fontWeight: 800, color: '#1a1a1a', letterSpacing: '-2px', lineHeight: 1, marginBottom: 6 }}>
         {num}<span style={{ color: '#c8892a' }}>{suffix}</span>
       </div>
       <div style={{ fontSize: 13, color: '#888' }}>{label}</div>
@@ -142,7 +142,7 @@ export default function Home() {
     <div style={{ overflowX: 'hidden', fontFamily: "'DM Sans', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
-        .syne { font-family: 'Syne', sans-serif !important; }
+        .syne { font-family: 'Poppins', sans-serif !important; }
         .stat-item-last:last-child { border-right: none !important; }
         .service-card-wrap { transition: transform 0.25s; cursor: pointer; }
         .service-card-wrap:hover { transform: translateY(-5px); }
@@ -226,7 +226,7 @@ export default function Home() {
             {/* Right — dashboard mockup */}
             <div className={`hero-mockup-col reveal-right${heroInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
               <div style={{ width: '100%', maxWidth: 460, background: '#1a1a1a', borderRadius: 20, padding: 24, border: '1px solid rgba(255,255,255,0.08)', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: -16, right: -16, background: '#c8892a', color: '#fff', fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: 13, padding: '10px 16px', borderRadius: 12, whiteSpace: 'nowrap', zIndex: 2 }}>
+                <div style={{ position: 'absolute', top: -16, right: -16, background: '#c8892a', color: '#fff', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 13, padding: '10px 16px', borderRadius: 12, whiteSpace: 'nowrap', zIndex: 2 }}>
                   🔥 +340% ROI
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
@@ -266,7 +266,7 @@ export default function Home() {
         <div className="marquee-row">
           {['Instagram','Google Ads','WordPress','Shopify','Facebook','LinkedIn','YouTube','Mailchimp','SEMrush','Canva','HubSpot','Analytics',
             'Instagram','Google Ads','WordPress','Shopify','Facebook','LinkedIn','YouTube','Mailchimp','SEMrush','Canva','HubSpot','Analytics'].map((item, i) => (
-            <span key={i} style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: 14, color: 'rgba(255,255,255,0.22)', whiteSpace: 'nowrap', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{item}</span>
+            <span key={i} style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: 14, color: 'rgba(255,255,255,0.22)', whiteSpace: 'nowrap', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{item}</span>
           ))}
         </div>
       </div>
@@ -420,7 +420,7 @@ export default function Home() {
                   <div key={item.id || i} className={`testi-card-wrap${activeT === i ? ' active-t' : ''}`}
                     onClick={() => setActiveT(i)}
                     style={{ background: '#fff', borderRadius: 16, padding: '18px 20px', border: '1px solid rgba(0,0,0,0.08)', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                    <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#f5e6c8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 15, color: item.color, flexShrink: 0, border: `2px solid ${activeT === i ? item.color : 'transparent'}`, transition: 'border-color 0.2s' }}>
+                    <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#f5e6c8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 15, color: item.color, flexShrink: 0, border: `2px solid ${activeT === i ? item.color : 'transparent'}`, transition: 'border-color 0.2s' }}>
                       {item.initials}
                     </div>
                     <div style={{ flex: 1 }}>
@@ -453,7 +453,7 @@ export default function Home() {
                     </div>
                     {/* IG topbar */}
                     <div style={{ background: '#fff', padding: '8px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #eee' }}>
-                      <span style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 16, color: '#000' }}>Instagram</span>
+                      <span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 16, color: '#000' }}>Instagram</span>
                       <div style={{ display: 'flex', gap: 12, fontSize: 17 }}>
                         <span>♡</span><span>✉</span>
                       </div>
@@ -463,7 +463,7 @@ export default function Home() {
                       {[{init:'+',color:'#c8892a'},{init:'RS',color:'#c8892a'},{init:'PM',color:'#4a9e85'},{init:'AK',color:'#d4603a'}].map((s,i) => (
                         <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, flexShrink: 0 }}>
                           <div style={{ width: 50, height: 50, borderRadius: '50%', background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <div style={{ width: 44, height: 44, borderRadius: '50%', background: s.color, border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 13, color: '#fff' }}>{s.init}</div>
+                            <div style={{ width: 44, height: 44, borderRadius: '50%', background: s.color, border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 13, color: '#fff' }}>{s.init}</div>
                           </div>
                           <span style={{ fontSize: 9, color: '#333' }}>{i === 0 ? 'Your story' : ['rahul...','priya...','amit...'][i-1]}</span>
                         </div>

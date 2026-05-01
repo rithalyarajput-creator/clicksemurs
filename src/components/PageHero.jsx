@@ -7,7 +7,7 @@ export default function PageHero({ label, title, subtitle, center = false }) {
             {label}
           </span>
         )}
-        <h1 style={{ fontFamily: "'Syne', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.8rem)', fontWeight: 800, color: '#fefaef', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: 16 }}>
+        <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.8rem)', fontWeight: 800, color: '#fefaef', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: 16 }}>
           {title}
         </h1>
         {subtitle && (
