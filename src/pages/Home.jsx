@@ -556,64 +556,75 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section ref={testiRef} className="section-pad" style={{ background: '#fefaef', padding: '80px 48px' }}>
+      <section ref={testiRef} className="section-pad" style={{ background: '#f0f4f8', padding: '80px 48px' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="testi-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
 
-          {/* heading — centered */}
-          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ textAlign: 'center', marginBottom: 56 }}>
-            <div style={{ fontSize: 12, fontWeight: 500, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>Client Stories</div>
-            <h2 className="syne" style={{ fontSize: 'clamp(32px,4vw,52px)', fontWeight: 800, letterSpacing: '-1.5px', lineHeight: 1.1, color: '#1a1a1a', marginBottom: 12 }}>
-              What Clients Say About Us
+          {/* LEFT — heading + features + button */}
+          <div className={`reveal-left${testiInView ? ' in-view' : ''}`}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#c8892a', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 14 }}>Client Stories</div>
+            <h2 className="syne" style={{ fontSize: 'clamp(36px,4vw,58px)', fontWeight: 800, letterSpacing: '-2px', lineHeight: 1.05, color: '#1a1a1a', marginBottom: 20 }}>
+              What Clients<br />
+              <em style={{ fontStyle: 'normal', color: '#c8892a' }}>Say About Us</em>
             </h2>
-            <p style={{ fontSize: 15, color: '#777', lineHeight: 1.7 }}>Tap a story to read their review.</p>
+            <p style={{ fontSize: 16, color: '#555', lineHeight: 1.75, marginBottom: 36, maxWidth: 440 }}>
+              Real reviews from real clients who grew their business with Clicksemurs. Tap a story on the phone to read their experience.
+            </p>
+            {/* feature rows */}
+            {[
+              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>, text: 'Real results from real campaigns' },
+              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: '100% transparent reporting' },
+              { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2.2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>, text: 'Average 5x ROI across clients' },
+            ].map((f, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
+                <div style={{ width: 42, height: 42, borderRadius: 12, background: '#fff', border: '1px solid #e8e0d0', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                  {f.icon}
+                </div>
+                <span style={{ fontSize: 15, fontWeight: 600, color: '#1a1a1a' }}>{f.text}</span>
+              </div>
+            ))}
+            <button onClick={() => window.location.href='/contact'} style={{ marginTop: 8, background: '#1a1a1a', color: '#fefaef', padding: '14px 32px', borderRadius: 12, fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'transform 0.15s' }}
+              onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseLeave={e => e.currentTarget.style.transform = 'none'}>
+              View All Reviews →
+            </button>
           </div>
 
-          {/* phone centered */}
-          <div className={`reveal${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
+          {/* RIGHT — big phone */}
+          <div className={`reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
             {/* 3D phone wrapper */}
-            <div style={{ perspective: 1000 }}>
+            <div style={{ perspective: 1200 }}>
               <div style={{
-                width: 300,
-                transform: 'rotateY(-5deg) rotateX(2deg)',
+                width: 340,
+                transform: 'rotateY(-4deg) rotateX(2deg)',
                 transformStyle: 'preserve-3d',
                 transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
               }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'rotateY(0deg) rotateX(0deg)'}
-                onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(-5deg) rotateX(2deg)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(-4deg) rotateX(2deg)'}
               >
-                {/* ── STARLIGHT iPhone frame ── */}
+                {/* ── Black iPhone 14 Pro style frame ── */}
                 <div style={{
-                  background: 'linear-gradient(160deg, #e8e0d0 0%, #d4c9b8 40%, #c8bca8 100%)',
-                  borderRadius: 54,
-                  padding: '0 6px',
-                  border: '1px solid rgba(255,255,255,0.7)',
-                  boxShadow: [
-                    '0 50px 80px rgba(0,0,0,0.35)',
-                    '0 20px 40px rgba(0,0,0,0.2)',
-                    'inset 0 1px 0 rgba(255,255,255,0.8)',
-                    'inset 0 -1px 0 rgba(0,0,0,0.15)',
-                    '2px 4px 0 rgba(180,160,130,0.8)',
-                  ].join(','),
+                  background: 'linear-gradient(160deg,#2c2c2e,#1c1c1e)',
+                  borderRadius: 56,
+                  padding: '0 5px',
+                  border: '1px solid #3a3a3c',
+                  boxShadow: '0 60px 100px rgba(0,0,0,0.45), 0 20px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)',
                   position: 'relative',
                 }}>
-                  {/* left side buttons */}
-                  <div style={{ position: 'absolute', left: -5, top: 90, width: 5, height: 28, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
-                  <div style={{ position: 'absolute', left: -5, top: 130, width: 5, height: 56, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
-                  <div style={{ position: 'absolute', left: -5, top: 196, width: 5, height: 56, background: 'linear-gradient(90deg,#b8ad9e,#cec3b2)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 2px rgba(0,0,0,0.2)' }} />
-                  {/* right side button */}
-                  <div style={{ position: 'absolute', right: -5, top: 150, width: 5, height: 80, background: 'linear-gradient(270deg,#b8ad9e,#cec3b2)', borderRadius: '0 3px 3px 0', boxShadow: '1px 0 2px rgba(0,0,0,0.2)' }} />
+                  {/* left buttons */}
+                  <div style={{ position: 'absolute', left: -4, top: 100, width: 4, height: 32, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
+                  <div style={{ position: 'absolute', left: -4, top: 148, width: 4, height: 62, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
+                  <div style={{ position: 'absolute', left: -4, top: 220, width: 4, height: 62, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
+                  {/* right button */}
+                  <div style={{ position: 'absolute', right: -4, top: 170, width: 4, height: 88, background: '#3a3a3c', borderRadius: '0 3px 3px 0' }} />
 
-                  {/* inner black bezel */}
-                  <div style={{
-                    background: '#000',
-                    borderRadius: 48,
-                    padding: '12px 4px 8px',
-                    margin: '6px 0',
-                  }}>
-                    {/* notch */}
-                    <div style={{ width: 120, height: 26, background: '#000', borderRadius: '0 0 18px 18px', margin: '0 auto 0', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                      <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1a1a1a', border: '1px solid #2a2a2a' }} />
-                      <div style={{ width: 22, height: 5, borderRadius: 3, background: '#111' }} />
+                  {/* inner bezel */}
+                  <div style={{ background: '#000', borderRadius: 50, padding: '14px 4px 10px', margin: '6px 0' }}>
+                    {/* dynamic island */}
+                    <div style={{ width: 110, height: 30, background: '#000', borderRadius: 20, margin: '0 auto 2px', border: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#111' }} />
+                      <div style={{ width: 28, height: 10, borderRadius: 5, background: '#111' }} />
                     </div>
 
                   {/* screen */}
@@ -713,11 +724,12 @@ export default function Home() {
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                     </div>
                   </div>
-                  </div>{/* end inner black bezel */}
-                </div>{/* end starlight frame */}
+                  </div>{/* end inner bezel */}
+                </div>{/* end black frame */}
               </div>{/* end 3D tilt */}
             </div>{/* end perspective */}
-          </div>
+          </div>{/* end right col */}
+          </div>{/* end grid */}
         </div>
       </section>
 
