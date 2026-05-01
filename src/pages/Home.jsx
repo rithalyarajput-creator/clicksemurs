@@ -266,7 +266,7 @@ export default function Home() {
         <div className="marquee-row" style={{ gap: 24 }}>
           {[1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8].map((n, i) => (
             <img key={i} src={`/offer-imgs/${n}.png`} alt={`offer-${n}`}
-              style={{ height: 44, width: 'auto', flexShrink: 0, objectFit: 'contain', borderRadius: 6 }} />
+              style={{ height: 90, width: 'auto', flexShrink: 0, objectFit: 'contain', borderRadius: 6 }} />
           ))}
         </div>
       </div>
