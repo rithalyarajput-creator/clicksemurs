@@ -50,7 +50,7 @@ function ProjectModal({ project, onClose }) {
             )}
             <div>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', marginBottom: 2 }}>{project.title}</h2>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#F4A100', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{project.category}</span>
+              <span style={{ fontSize: 12, fontWeight: 700, color: '#c8892a', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{project.category}</span>
             </div>
           </div>
           <button onClick={onClose} style={{ background: '#f1f5f9', border: 'none', borderRadius: '50%', width: 36, height: 36, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -117,11 +117,11 @@ export default function Projects() {
         <div style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(244,161,0,0.07) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 24 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
-            <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Portfolio</span>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
+            <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Portfolio</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 6vw, 3.8rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
-            Creative Work That<br /><span style={{ color: '#F4A100' }}>Drives Real Results</span>
+            Creative Work That<br /><span style={{ color: '#c8892a' }}>Drives Real Results</span>
           </h1>
           <p style={{ color: '#94a3b8', fontSize: 'clamp(14px, 2.5vw, 17px)', maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.7 }}>
             Websites, social media, e-commerce, branding — see our best work across every digital discipline.
@@ -131,7 +131,7 @@ export default function Projects() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap' }}>
             {CATEGORIES.filter(c => catCounts[c] > 0).map(c => (
               <div key={c} style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 100, padding: '6px 16px', fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
-                {c} <span style={{ color: '#F4A100', marginLeft: 4 }}>{catCounts[c]}</span>
+                {c} <span style={{ color: '#c8892a', marginLeft: 4 }}>{catCounts[c]}</span>
               </div>
             ))}
           </div>
@@ -249,7 +249,7 @@ export default function Projects() {
             Want a Project Like This?
           </h2>
           <p style={{ color: '#94a3b8', fontSize: 16, marginBottom: 32, lineHeight: 1.7 }}>Let's build something remarkable together.</p>
-          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F4A100', color: '#111', padding: '14px 32px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
+          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '14px 32px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
             Start Your Project <FaArrowRight size={12} />
           </Link>
         </div>

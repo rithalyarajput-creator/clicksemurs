@@ -116,14 +116,14 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
           <FadeIn>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.12)', border: '1px solid rgba(244,161,0,0.3)', borderRadius: 100, padding: '6px 18px', marginBottom: 28 }}>
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
-              <span style={{ color: '#F4A100', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{d.hero_label}</span>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
+              <span style={{ color: '#c8892a', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase' }}>{d.hero_label}</span>
             </div>
           </FadeIn>
           <FadeIn delay={100}>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
               {d.hero_title.split(' ').map((word, i) => (
-                <span key={i}>{i === 3 ? <span style={{ color: '#F4A100' }}>{word} </span> : word + ' '}</span>
+                <span key={i}>{i === 3 ? <span style={{ color: '#c8892a' }}>{word} </span> : word + ' '}</span>
               ))}
             </h1>
           </FadeIn>
@@ -132,7 +132,7 @@ export default function About() {
           </FadeIn>
           <FadeIn delay={300}>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F4A100', color: '#111', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6, transition: 'opacity 0.2s' }}>
+              <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 6, transition: 'opacity 0.2s' }}>
                 Work With Us <FaArrowRight size={11} />
               </Link>
               <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', color: '#fff', padding: '13px 28px', fontWeight: 700, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 6, transition: 'all 0.2s' }}>
@@ -149,7 +149,7 @@ export default function About() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 64, alignItems: 'center' }}>
             <FadeIn>
               <div>
-                <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Story</span>
+                <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Story</span>
                 <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 900, color: '#0f172a', lineHeight: 1.15, marginBottom: 28, letterSpacing: '-0.02em' }}>{d.story_heading}</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {[d.story_p1, d.story_p2, d.story_p3].map((p, i) => (
@@ -178,7 +178,7 @@ export default function About() {
                       const suffix = s.value.replace(/[0-9]/g, '')
                       return (
                         <div key={i} style={{ background: 'rgba(255,255,255,0.04)', padding: '20px 16px', borderRadius: i === 0 ? '12px 0 0 0' : i === 1 ? '0 12px 0 0' : i === 2 ? '0 0 0 12px' : '0 0 12px 0' }}>
-                          <div style={{ color: '#F4A100', fontWeight: 900, fontSize: 28, lineHeight: 1 }}>
+                          <div style={{ color: '#c8892a', fontWeight: 900, fontSize: 28, lineHeight: 1 }}>
                             <AnimatedCounter target={numPart} suffix={suffix} />
                           </div>
                           <div style={{ color: '#64748b', fontSize: 12, marginTop: 4, fontWeight: 600, letterSpacing: '0.05em' }}>{s.label}</div>
@@ -199,14 +199,14 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
-              <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Purpose</span>
+              <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Purpose</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em' }}>Vision & Mission</h2>
             </div>
           </FadeIn>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
             {[
-              { label: 'Our Vision', text: d.vision_text, icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>, accent: '#6366f1' },
-              { label: 'Our Mission', text: d.mission_text, icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>, accent: '#F4A100' },
+              { label: 'Our Vision', text: d.vision_text, icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>, accent: '#6366f1' },
+              { label: 'Our Mission', text: d.mission_text, icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>, accent: '#c8892a' },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 150}>
                 <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '40px 36px', position: 'relative', overflow: 'hidden', height: '100%' }}>
@@ -229,9 +229,9 @@ export default function About() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ textAlign: 'center', marginBottom: 64 }}>
-              <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Approach</span>
+              <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>Our Approach</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-                How We Build<br /><span style={{ color: '#F4A100' }}>Trust With You</span>
+                How We Build<br /><span style={{ color: '#c8892a' }}>Trust With You</span>
               </h2>
             </div>
           </FadeIn>
@@ -311,7 +311,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div style={{ marginBottom: 56 }}>
-              <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>What Drives Us</span>
+              <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>What Drives Us</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#0f172a', letterSpacing: '-0.02em' }}>Our Core Values</h2>
             </div>
           </FadeIn>
@@ -321,7 +321,7 @@ export default function About() {
                 <div style={{ border: '1px solid #e2e8f0', borderRadius: 14, padding: '32px 28px', background: '#fff', transition: 'box-shadow 0.2s, transform 0.2s', cursor: 'default' }}
                   onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 16px 48px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
                   onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}>
-                  <div style={{ width: 48, height: 48, background: '#0f172a', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: '#F4A100' }}>
+                  <div style={{ width: 48, height: 48, background: '#0f172a', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, color: '#c8892a' }}>
                     {v.icon}
                   </div>
                   <h3 style={{ color: '#0f172a', fontWeight: 800, fontSize: 17, marginBottom: 10 }}>{v.title}</h3>
@@ -339,7 +339,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ marginBottom: 56 }}>
-              <span style={{ display: 'inline-block', color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>The People</span>
+              <span style={{ display: 'inline-block', color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 14 }}>The People</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', marginBottom: 12 }}>{d.team_heading}</h2>
               <p style={{ color: '#64748b', fontSize: 15, maxWidth: 500 }}>{d.team_subheading}</p>
             </div>
@@ -354,7 +354,7 @@ export default function About() {
                     <span style={{ color: '#fff', fontSize: 26, fontWeight: 900 }}>{(member.name || '?')[0]}</span>
                   </div>
                   <h3 style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 6 }}>{member.name}</h3>
-                  <p style={{ color: '#F4A100', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>{member.role}</p>
+                  <p style={{ color: '#c8892a', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>{member.role}</p>
                   <p style={{ color: '#64748b', fontSize: 12 }}>{member.exp}</p>
                 </div>
               </FadeIn>
@@ -369,11 +369,11 @@ export default function About() {
         <div className="max-w-3xl mx-auto px-6 text-center" style={{ position: 'relative' }}>
           <FadeIn>
             <div style={{ width: 64, height: 64, background: 'rgba(244,161,0,0.15)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 28px' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
             <h2 style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 900, color: '#fff', marginBottom: 16, letterSpacing: '-0.02em' }}>{d.cta_heading}</h2>
             <p style={{ color: '#94a3b8', fontSize: 17, marginBottom: 36, lineHeight: 1.6 }}>{d.cta_subtext}</p>
-            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F4A100', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, transition: 'opacity 0.2s' }}>
+            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, transition: 'opacity 0.2s' }}>
               Get Your Free Audit <FaArrowRight size={12} />
             </Link>
           </FadeIn>

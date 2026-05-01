@@ -81,7 +81,7 @@ export default function AdminLayout({ children }) {
       <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <img src="/logo.png" alt="Clicksemurs" style={{ height: 28, width: 'auto' }} />
-          <div style={{ color: '#60a5fa', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 5, fontWeight: 700 }}>Admin Panel</div>
+          <div style={{ color: '#c8892a', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', marginTop: 5, fontWeight: 700 }}>Admin Panel</div>
         </div>
         <button onClick={() => setMobileSidebarOpen(false)} style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: 4, display: 'none' }} className="sidebar-close-btn">
           {Icons.close}
@@ -96,13 +96,13 @@ export default function AdminLayout({ children }) {
             return (
               <Link key={item.path} to={item.path} onClick={() => setMobileSidebarOpen(false)} style={{
                 display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px 10px 20px',
-                color: active ? '#ffffff' : '#cbd5e1',
-                background: active ? 'rgba(59,130,246,0.18)' : 'transparent',
+                color: active ? '#fefaef' : '#aaaaaa',
+                background: active ? 'rgba(200,137,42,0.15)' : 'transparent',
                 textDecoration: 'none', fontSize: 13.5, fontWeight: active ? 700 : 500,
-                borderLeft: active ? '3px solid #60a5fa' : '3px solid transparent',
+                borderLeft: active ? '3px solid #c8892a' : '3px solid transparent',
                 transition: 'all 0.15s', margin: '1px 0'
               }}>
-                <span style={{ color: active ? '#60a5fa' : '#94a3b8', flexShrink: 0 }}>{Icons[item.icon]}</span>
+                <span style={{ color: active ? '#c8892a' : '#666666', flexShrink: 0 }}>{Icons[item.icon]}</span>
                 {item.label}
               </Link>
             )
@@ -114,19 +114,19 @@ export default function AdminLayout({ children }) {
               <button onClick={() => toggle(item.label)} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 width: '100%', padding: '10px 16px 10px 20px',
-                background: anyActive ? 'rgba(59,130,246,0.1)' : 'transparent',
-                border: 'none', borderLeft: anyActive ? '3px solid #60a5fa' : '3px solid transparent',
-                color: anyActive ? '#ffffff' : '#cbd5e1', fontSize: 13.5,
+                background: anyActive ? 'rgba(200,137,42,0.1)' : 'transparent',
+                border: 'none', borderLeft: anyActive ? '3px solid #c8892a' : '3px solid transparent',
+                color: anyActive ? '#fefaef' : '#aaaaaa', fontSize: 13.5,
                 fontWeight: anyActive ? 700 : 500, cursor: 'pointer', textAlign: 'left', margin: '1px 0'
               }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ color: anyActive ? '#60a5fa' : '#94a3b8', flexShrink: 0 }}>{Icons[item.icon]}</span>
+                  <span style={{ color: anyActive ? '#c8892a' : '#666666', flexShrink: 0 }}>{Icons[item.icon]}</span>
                   {item.label}
                   {item.badge && (
-                    <span style={{ background: '#F4A100', color: '#111', fontSize: 8.5, fontWeight: 800, padding: '2px 6px', borderRadius: 4, letterSpacing: '0.06em' }}>{item.badge}</span>
+                    <span style={{ background: '#c8892a', color: '#111', fontSize: 8.5, fontWeight: 800, padding: '2px 6px', borderRadius: 4, letterSpacing: '0.06em' }}>{item.badge}</span>
                   )}
                 </span>
-                <span style={{ color: '#64748b', transition: 'transform 0.2s', transform: open ? 'rotate(90deg)' : 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>{Icons.chevron}</span>
+                <span style={{ color: '#888888', transition: 'transform 0.2s', transform: open ? 'rotate(90deg)' : 'none', display: 'flex', alignItems: 'center', flexShrink: 0 }}>{Icons.chevron}</span>
               </button>
               {open && (
                 <div style={{ paddingBottom: 4 }}>
@@ -136,14 +136,14 @@ export default function AdminLayout({ children }) {
                       <Link key={child.path} to={child.path} onClick={() => setMobileSidebarOpen(false)} style={{
                         display: 'flex', alignItems: 'center', gap: 8,
                         padding: '8px 16px 8px 46px',
-                        color: active ? '#60a5fa' : '#94a3b8',
+                        color: active ? '#c8892a' : '#888888',
                         textDecoration: 'none', fontSize: 13,
                         fontWeight: active ? 700 : 400,
-                        background: active ? 'rgba(59,130,246,0.12)' : 'transparent',
-                        borderLeft: active ? '3px solid #60a5fa' : '3px solid transparent',
+                        background: active ? 'rgba(200,137,42,0.1)' : 'transparent',
+                        borderLeft: active ? '3px solid #c8892a' : '3px solid transparent',
                         transition: 'all 0.1s'
                       }}>
-                        <span style={{ color: active ? '#60a5fa' : '#475569', flexShrink: 0 }}>{Icons.dot}</span>
+                        <span style={{ color: active ? '#c8892a' : '#555555', flexShrink: 0 }}>{Icons.dot}</span>
                         {child.label}
                       </Link>
                     )
@@ -159,9 +159,9 @@ export default function AdminLayout({ children }) {
       <button onClick={handleLogout} style={{
         display: 'flex', alignItems: 'center', gap: 10, padding: '14px 20px',
         background: 'none', border: 'none', borderTop: '1px solid rgba(255,255,255,0.08)',
-        color: '#94a3b8', cursor: 'pointer', fontSize: 13, width: '100%', textAlign: 'left'
+        color: '#888888', cursor: 'pointer', fontSize: 13, width: '100%', textAlign: 'left'
       }}>
-        <span style={{ color: '#94a3b8' }}>{Icons.logout}</span>
+        <span style={{ color: '#888888' }}>{Icons.logout}</span>
         Logout
       </button>
     </>
@@ -172,7 +172,7 @@ export default function AdminLayout({ children }) {
 
       {/* Desktop Sidebar */}
       <aside style={{
-        width: SIDEBAR_W, background: '#0f172a', display: 'flex', flexDirection: 'column',
+        width: SIDEBAR_W, background: '#1a1a1a', display: 'flex', flexDirection: 'column',
         position: 'fixed', top: 0, left: 0, height: '100vh', overflowY: 'auto', zIndex: 100
       }} className="admin-sidebar-desktop">
         <SidebarContent />
@@ -182,21 +182,21 @@ export default function AdminLayout({ children }) {
       {mobileSidebarOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 200, display: 'flex' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)' }} onClick={() => setMobileSidebarOpen(false)} />
-          <aside style={{ width: SIDEBAR_W, background: '#0f172a', display: 'flex', flexDirection: 'column', height: '100vh', overflowY: 'auto', position: 'relative', zIndex: 1 }}>
+          <aside style={{ width: SIDEBAR_W, background: '#1a1a1a', display: 'flex', flexDirection: 'column', height: '100vh', overflowY: 'auto', position: 'relative', zIndex: 1 }}>
             <SidebarContent />
           </aside>
         </div>
       )}
 
       {/* Main */}
-      <main style={{ marginLeft: SIDEBAR_W, flex: 1, minHeight: '100vh', background: '#f1f5f9' }} className="admin-main-content">
+      <main style={{ marginLeft: SIDEBAR_W, flex: 1, minHeight: '100vh', background: '#fefaef' }} className="admin-main-content">
         {/* Mobile topbar */}
-        <div style={{ display: 'none', alignItems: 'center', gap: 12, padding: '12px 16px', background: '#0f172a', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 50 }} className="admin-mobile-topbar">
+        <div style={{ display: 'none', alignItems: 'center', gap: 12, padding: '12px 16px', background: '#1a1a1a', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 50 }} className="admin-mobile-topbar">
           <button onClick={() => setMobileSidebarOpen(true)} style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: 4 }}>
             {Icons.menu}
           </button>
           <img src="/logo.png" alt="Clicksemurs" style={{ height: 24, width: 'auto' }} />
-          <span style={{ color: '#60a5fa', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Admin</span>
+          <span style={{ color: '#c8892a', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Admin</span>
         </div>
 
         <div style={{ padding: 'clamp(16px, 3vw, 32px)' }}>

@@ -96,15 +96,15 @@ export default function Blog() {
                       className="relative z-10 rounded-xl shadow-xl"
                       style={{ background: '#111111', marginTop: -24, marginLeft: 0, marginRight: 32, padding: '16px 20px' }}
                     >
-                      <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+                      <span style={{ color: '#c8892a', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
                         {blog.category}
                       </span>
-                      <h3 className="text-white font-black text-sm leading-snug mt-1 mb-3 line-clamp-2 group-hover:text-[#F4A100] transition-colors duration-200">
+                      <h3 className="text-white font-black text-sm leading-snug mt-1 mb-3 line-clamp-2 group-hover:text-[#c8892a] transition-colors duration-200">
                         {blog.title}
                       </h3>
                       <div className="flex items-center justify-between">
                         <span style={{ color: '#777', fontSize: 11 }}>{date}</span>
-                        <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700 }}>Read More →</span>
+                        <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700 }}>Read More →</span>
                       </div>
                     </div>
                   </Link>

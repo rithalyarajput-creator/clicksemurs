@@ -110,7 +110,7 @@ function HeroPhone() {
         <div style={{fontSize:18,color:'#111',fontWeight:700,lineHeight:1}}>···</div>
       </div>
       {/* Post image */}
-      <div style={{width:'100%',aspectRatio:'1',background:'linear-gradient(135deg,#667eea 0%,#764ba2 50%,#F4A100 100%)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:6,padding:16,boxSizing:'border-box'}}>
+      <div style={{width:'100%',aspectRatio:'1',background:'linear-gradient(135deg,#667eea 0%,#764ba2 50%,#c8892a 100%)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:6,padding:16,boxSizing:'border-box'}}>
         <div style={{color:'#fff',fontSize:9,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',opacity:0.8}}>Social Media Growth</div>
         <div style={{color:'#FFD700',fontSize:22,fontWeight:900,textAlign:'center',lineHeight:1.2}}>500%<br/><span style={{fontSize:12,color:'#fff',fontWeight:600}}>More Reach</span></div>
         <div style={{display:'flex',gap:4,marginTop:4}}>
@@ -183,14 +183,14 @@ function HeroPhone() {
             <div key={rep}>
               {/* Hero */}
               <div style={{background:'linear-gradient(135deg,#0a0a0a,#1a1a2e)',padding:'14px 12px'}}>
-                <div style={{fontSize:14,fontWeight:900,color:'#fff',lineHeight:1.2}}>We Don't<br/>Just Market.<br/><span style={{color:'#F4A100'}}>We Dominate.</span></div>
-                <div style={{marginTop:8,background:'#F4A100',color:'#111',fontSize:8,fontWeight:800,padding:'4px 10px',borderRadius:4,display:'inline-block'}}>Get Free Audit →</div>
+                <div style={{fontSize:14,fontWeight:900,color:'#fff',lineHeight:1.2}}>We Don't<br/>Just Market.<br/><span style={{color:'#c8892a'}}>We Dominate.</span></div>
+                <div style={{marginTop:8,background:'#c8892a',color:'#fff',fontSize:8,fontWeight:800,padding:'4px 10px',borderRadius:4,display:'inline-block'}}>Get Free Audit →</div>
               </div>
               {/* Stats */}
               <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',background:'#111',borderTop:'1px solid #222'}}>
                 {[{v:'500+',l:'Projects'},{v:'50+',l:'Industries'},{v:'98%',l:'Retention'},{v:'5X',l:'ROI'}].map(s=>(
                   <div key={s.l} style={{padding:'8px 4px',textAlign:'center',borderRight:'1px solid #222'}}>
-                    <div style={{color:'#F4A100',fontSize:11,fontWeight:900}}>{s.v}</div>
+                    <div style={{color:'#c8892a',fontSize:11,fontWeight:900}}>{s.v}</div>
                     <div style={{color:'#666',fontSize:6}}>{s.l}</div>
                   </div>
                 ))}
@@ -231,7 +231,7 @@ function HeroPhone() {
           {kw:'social media marketing',pos:3,chg:'+2'},
         ].map(k=>(
           <div key={k.kw} style={{background:'#1e293b',borderRadius:8,padding:'7px 9px',display:'flex',alignItems:'center',gap:8}}>
-            <div style={{width:22,height:22,borderRadius:6,background:k.pos===1?'linear-gradient(135deg,#F4A100,#d48e00)':k.pos<=3?'#1e40af':'#374151',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+            <div style={{width:22,height:22,borderRadius:6,background:k.pos===1?'linear-gradient(135deg,#c8892a,#b07520)':k.pos<=3?'#1e40af':'#374151',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
               <span style={{fontSize:10,fontWeight:900,color:'#fff'}}>#{k.pos}</span>
             </div>
             <div style={{flex:1,minWidth:0}}>
@@ -255,7 +255,7 @@ function HeroPhone() {
   ]
 
   const labels = ['Instagram', 'Google Ads', 'Website', 'SEO']
-  const labelColors = ['#E1306C','#4285F4','#F4A100','#10b981']
+  const labelColors = ['#E1306C','#4285F4','#c8892a','#4a9e85']
 
   return (
     <div className="hero-phone-col" style={{ position:'relative', flexShrink:0 }}>
@@ -296,7 +296,7 @@ function HeroPhone() {
       )}
 
       {/* Floating badge */}
-      <div style={{position:'absolute',top:'50%',left:-28,transform:'translateY(-50%)',zIndex:20,background:'linear-gradient(135deg,#F4A100,#d48e00)',borderRadius:12,padding:'8px 10px',boxShadow:'0 6px 20px rgba(244,161,0,0.4)',animation:'badgePop 0.5s ease both',textAlign:'center',minWidth:56}}>
+      <div style={{position:'absolute',top:'50%',left:-28,transform:'translateY(-50%)',zIndex:20,background:'linear-gradient(135deg,#c8892a,#b07520)',borderRadius:12,padding:'8px 10px',boxShadow:'0 6px 20px rgba(200,137,42,0.4)',animation:'badgePop 0.5s ease both',textAlign:'center',minWidth:56}}>
         <div style={{fontSize:16,fontWeight:900,color:'#111',lineHeight:1}}>5X</div>
         <div style={{fontSize:7,fontWeight:700,color:'#111',opacity:0.8}}>ROI</div>
       </div>
@@ -364,30 +364,29 @@ export default function Home() {
     <div style={{ overflowX: 'hidden' }}>
 
       {/* ── Hero ── */}
-      <section style={{ minHeight: '100vh', background: '#0A0A0A', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        {/* Glow blobs */}
-        <div style={{ position: 'absolute', top: '15%', right: '30%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.07) 0%, transparent 70%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <section style={{ minHeight: '100vh', background: '#1a1a1a', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.04, backgroundImage: 'linear-gradient(#c8892a 1px, transparent 1px), linear-gradient(90deg, #c8892a 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div style={{ position: 'absolute', top: '15%', right: '30%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,137,42,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(74,158,133,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ paddingTop: 112, paddingBottom: 80, width: '100%', position: 'relative' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'center' }}>
 
             {/* Left — text */}
             <div style={{ maxWidth: 620 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 28 }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block', flexShrink: 0 }} />
-                <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>360° Digital Marketing Agency</span>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(200,137,42,0.12)', border: '1px solid rgba(200,137,42,0.3)', borderRadius: 100, padding: '5px 16px', marginBottom: 28 }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block', flexShrink: 0 }} />
+                <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>360° Digital Marketing Agency</span>
               </div>
-              <h1 style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.02em' }}>
+              <h1 style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)', fontWeight: 900, color: '#fefaef', lineHeight: 1.05, marginBottom: 24, letterSpacing: '-0.02em' }}>
                 We Don't Just<br />
-                <span style={{ color: '#fff' }}>Market. </span>
+                <span style={{ color: '#fefaef' }}>Market. </span>
                 <span style={{ position: 'relative', display: 'inline-block' }}>
                   We Dominate.
-                  <span style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 3, background: '#F4A100' }} />
+                  <span style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 3, background: '#c8892a' }} />
                 </span>
               </h1>
-              <p style={{ color: '#AAAAAA', fontSize: 'clamp(15px, 2.5vw, 18px)', marginBottom: 36, maxWidth: 540, lineHeight: 1.7 }}>
+              <p style={{ color: '#aaaaaa', fontSize: 'clamp(15px, 2.5vw, 18px)', marginBottom: 36, maxWidth: 540, lineHeight: 1.7 }}>
                 Full 360° digital marketing for brands that mean business. From SEO and paid ads to website development and social media — we handle everything.
               </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
@@ -407,7 +406,7 @@ export default function Home() {
       </section>
 
       {/* ── Logo Marquee ── */}
-      <div style={{ background: '#0A0A0A', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 0', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ background: '#1a1a1a', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '14px 0', overflow: 'hidden', position: 'relative' }}>
         <style>{`
           @keyframes marqueeScroll {
             0%   { transform: translateX(0) }
@@ -431,9 +430,9 @@ export default function Home() {
           }
         `}</style>
         {/* Left fade */}
-        <div style={{ position:'absolute', left:0, top:0, bottom:0, width:80, background:'linear-gradient(90deg,#0A0A0A,transparent)', zIndex:2, pointerEvents:'none' }}/>
+        <div style={{ position:'absolute', left:0, top:0, bottom:0, width:80, background:'linear-gradient(90deg,#1a1a1a,transparent)', zIndex:2, pointerEvents:'none' }}/>
         {/* Right fade */}
-        <div style={{ position:'absolute', right:0, top:0, bottom:0, width:80, background:'linear-gradient(270deg,#0A0A0A,transparent)', zIndex:2, pointerEvents:'none' }}/>
+        <div style={{ position:'absolute', right:0, top:0, bottom:0, width:80, background:'linear-gradient(270deg,#1a1a1a,transparent)', zIndex:2, pointerEvents:'none' }}/>
 
         <div className="marquee-track">
           {/* First copy */}
@@ -514,7 +513,7 @@ export default function Home() {
       </div>
 
       {/* ── Stats Bar ── */}
-      <section style={{ background: '#0A0A0A', borderTop: '1px solid #1a1a1a', borderBottom: '1px solid #1a1a1a' }}>
+      <section style={{ background: '#1a1a1a', borderTop: '1px solid #2a2a2a', borderBottom: '1px solid #2a2a2a' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }} className="stats-grid-resp">
             {stats.map(s => <StatCard key={s.label} value={s.value} label={s.label} />)}
@@ -523,7 +522,7 @@ export default function Home() {
       </section>
 
       {/* ── Services — light grey bg, horizontal scroll cards with left big text ── */}
-      <section style={{ background: '#F2F2F2', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+      <section style={{ background: '#f5e6c8', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 56, alignItems: 'start' }} className="services-two-col">
             <style>{`.services-two-col { grid-template-columns: 1fr 2fr !important; } @media(max-width:860px){.services-two-col{grid-template-columns:1fr !important;}}`}</style>
@@ -543,7 +542,7 @@ export default function Home() {
                 const Icon = svc.icon
                 return (
                   <Link key={svc.id} to={`/services/${svc.slug}`} style={{ background: '#fff', padding: '22px 28px', display: 'flex', alignItems: 'center', gap: 20, textDecoration: 'none', borderLeft: '3px solid transparent', transition: 'border-color 0.2s, background 0.2s' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderLeftColor = '#F4A100'; e.currentTarget.style.background = '#fafafa' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderLeftColor = '#c8892a'; e.currentTarget.style.background = '#fdf4e3' }}
                     onMouseLeave={e => { e.currentTarget.style.borderLeftColor = 'transparent'; e.currentTarget.style.background = '#fff' }}>
                     <div style={{ width: 40, height: 40, background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6, flexShrink: 0 }}>
                       <Icon size={17} color="white"/>
@@ -562,23 +561,23 @@ export default function Home() {
       </section>
 
       {/* ── Why Us — pure black, numbered list layout ── */}
-      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+      <section style={{ background: '#1a1a1a', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 56, flexWrap: 'wrap', gap: 16 }}>
             <div>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Why Clicksemurs</span>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8892a', display: 'block', marginBottom: 14 }}>Why Clicksemurs</span>
               <h2 style={{ color: '#fff', fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, lineHeight: 1.1 }}>
                 7 Reasons Brands<br/>Never Leave Us
               </h2>
             </div>
             <p style={{ color: '#555', fontSize: 14, maxWidth: 280, lineHeight: 1.65 }}>98% client retention. Not a coincidence — it's a system.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 1, background: '#1a1a1a' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 1, background: '#2a2a2a' }}>
             {whyUs.map((item, i) => (
-              <div key={i} style={{ background: '#0A0A0A', padding: 'clamp(24px,3vw,36px)', display: 'flex', gap: 20, transition: 'background 0.2s', cursor: 'default' }}
-                onMouseEnter={e => e.currentTarget.style.background = '#111'}
-                onMouseLeave={e => e.currentTarget.style.background = '#0A0A0A'}>
-                <div style={{ fontSize: 11, fontWeight: 900, color: '#F4A100', letterSpacing: '0.05em', flexShrink: 0, paddingTop: 2, minWidth: 28 }}>
+              <div key={i} style={{ background: '#1a1a1a', padding: 'clamp(24px,3vw,36px)', display: 'flex', gap: 20, transition: 'background 0.2s', cursor: 'default' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#222'}
+                onMouseLeave={e => e.currentTarget.style.background = '#1a1a1a'}>
+                <div style={{ fontSize: 11, fontWeight: 900, color: '#c8892a', letterSpacing: '0.05em', flexShrink: 0, paddingTop: 2, minWidth: 28 }}>
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 <div>
@@ -593,11 +592,11 @@ export default function Home() {
 
       {/* ── Orbit / Integrations — white bg, centered ── */}
       <section style={{ background: '#fff', padding: 'clamp(56px,8vw,96px) 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 40%, rgba(244,161,0,0.05) 0%, transparent 55%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse at 50% 40%, rgba(200,137,42,0.05) 0%, transparent 55%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
           <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#999', display: 'block', marginBottom: 14 }}>Platforms We Work With</span>
           <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.4rem)', fontWeight: 900, color: '#111', textAlign: 'center', marginBottom: 8, letterSpacing: '-0.02em' }}>
-            One Agency. <span style={{ color: '#F4A100' }}>Every Platform.</span>
+            One Agency. <span style={{ color: '#c8892a' }}>Every Platform.</span>
           </h2>
           <p style={{ color: '#888', fontSize: 15, textAlign: 'center', marginBottom: 56, maxWidth: 400 }}>We connect your brand across all major digital platforms — seamlessly.</p>
 
@@ -610,22 +609,22 @@ export default function Home() {
               @keyframes rCW14  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
               @keyframes rCCW20 { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
               @keyframes rCW28  { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
-              @keyframes pulseCtr { 0%,100%{box-shadow:0 0 0 0 rgba(244,161,0,0.35),0 0 40px rgba(244,161,0,0.12)} 50%{box-shadow:0 0 0 18px rgba(244,161,0,0),0 0 60px rgba(244,161,0,0.25)} }
+              @keyframes pulseCtr { 0%,100%{box-shadow:0 0 0 0 rgba(200,137,42,0.35),0 0 40px rgba(200,137,42,0.12)} 50%{box-shadow:0 0 0 18px rgba(200,137,42,0),0 0 60px rgba(200,137,42,0.25)} }
               .orb-ring { position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center; }
               .orb-icon-sq { display:flex;align-items:center;justify-content:center;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,0.13);background:#fff; }
             `}</style>
 
             {/* Static rings */}
             <div className="orb-ring">
-              <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',border:'1.5px dashed rgba(244,161,0,0.4)'}}/>
+              <div style={{position:'absolute',width:200,height:200,borderRadius:'50%',border:'1.5px dashed rgba(200,137,42,0.4)'}}/>
               <div style={{position:'absolute',width:340,height:340,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.25)'}}/>
               <div style={{position:'absolute',width:490,height:490,borderRadius:'50%',border:'1.5px dashed rgba(100,116,139,0.15)'}}/>
             </div>
 
             {/* Center */}
-            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f0f4ff 100%)',border:'2.5px solid rgba(244,161,0,0.45)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#F4A100" strokeWidth="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="#F4A100" strokeWidth="1.5"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#F4A100" strokeWidth="1.5"/></svg>
-              <span style={{color:'#F4A100',fontSize:7.5,fontWeight:900,letterSpacing:'0.08em',textTransform:'uppercase',textAlign:'center',lineHeight:1.45}}>Digital<br/>Marketing</span>
+            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:118,height:118,borderRadius:'50%',background:'linear-gradient(135deg,#fff 0%,#f5e6c8 100%)',border:'2.5px solid rgba(200,137,42,0.45)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:5,animation:'pulseCtr 3s ease-in-out infinite',zIndex:10,boxShadow:'0 8px 40px rgba(0,0,0,0.1)'}}>
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#c8892a" strokeWidth="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="#c8892a" strokeWidth="1.5"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="#c8892a" strokeWidth="1.5"/></svg>
+              <span style={{color:'#c8892a',fontSize:7.5,fontWeight:900,letterSpacing:'0.08em',textTransform:'uppercase',textAlign:'center',lineHeight:1.45}}>Digital<br/>Marketing</span>
             </div>
 
             {/* Inner ring — 5 icons CW 14s */}
@@ -698,7 +697,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 52, flexWrap: 'wrap', gap: 16 }}>
             <div>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Results</span>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8892a', display: 'block', marginBottom: 14 }}>Results</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>Numbers That<br/>Prove It</h2>
             </div>
             <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#fff', fontWeight: 700, fontSize: 12, textDecoration: 'none', border: '1px solid #333', padding: '10px 20px', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
@@ -714,7 +713,7 @@ export default function Home() {
               <div key={i} style={{ background: '#161616', padding: 'clamp(28px,4vw,44px)', display: 'flex', flexDirection: 'column', gap: 16, transition: 'background 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.background = '#1e1e1e'}
                 onMouseLeave={e => e.currentTarget.style.background = '#161616'}>
-                <div style={{ fontSize: 'clamp(3rem,8vw,5rem)', fontWeight: 900, color: '#F4A100', lineHeight: 1, letterSpacing: '-0.03em' }}>{cs.metric}</div>
+                <div style={{ fontSize: 'clamp(3rem,8vw,5rem)', fontWeight: 900, color: '#c8892a', lineHeight: 1, letterSpacing: '-0.03em' }}>{cs.metric}</div>
                 <div style={{ color: '#fff', fontWeight: 700, fontSize: 15 }}>{cs.metricLabel}</div>
                 <div style={{ width: 32, height: 2, background: '#333' }}/>
                 <div>
@@ -728,9 +727,9 @@ export default function Home() {
       </section>
 
       {/* ── Testimonials — black bg, glossy glass cards ── */}
-      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: '#1a1a1a', padding: 'clamp(56px, 8vw, 96px) 0', position: 'relative', overflow: 'hidden' }}>
         {/* Background glow */}
-        <div style={{ position: 'absolute', top: '30%', left: '20%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,161,0,0.06) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', top: '30%', left: '20%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(200,137,42,0.06) 0%, transparent 70%)', pointerEvents: 'none' }}/>
         <div style={{ position: 'absolute', bottom: '10%', right: '15%', width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)', pointerEvents: 'none' }}/>
         <style>{`
           .glass-card {
@@ -744,17 +743,17 @@ export default function Home() {
           }
           .glass-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 0 1px rgba(244,161,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 0 1px rgba(200,137,42,0.2);
           }
         `}</style>
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 52, flexWrap: 'wrap', gap: 16 }}>
             <div>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Client Stories</span>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8892a', display: 'block', marginBottom: 14 }}>Client Stories</span>
               <h2 style={{ fontSize: 'clamp(1.8rem,4vw,3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>What Clients<br/>Say About Us</h2>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              {[...Array(5)].map((_,j) => <FaStar key={j} size={15} color="#F4A100"/>)}
+              {[...Array(5)].map((_,j) => <FaStar key={j} size={15} color="#c8892a"/>)}
               <span style={{ color: '#555', fontSize: 12, marginLeft: 6 }}>5.0 average</span>
             </div>
           </div>
@@ -762,11 +761,11 @@ export default function Home() {
             {tVisible.map((t, i) => (
               <div key={t.id || i} className="glass-card" style={{ padding: 'clamp(24px,3vw,36px)', display: 'flex', flexDirection: 'column', height: '100%', boxSizing: 'border-box' }}>
                 {/* Quote mark */}
-                <div style={{ fontSize: 52, color: '#F4A100', lineHeight: 0.8, marginBottom: 20, fontFamily: 'Georgia, serif', opacity: 0.9 }}>"</div>
+                <div style={{ fontSize: 52, color: '#c8892a', lineHeight: 0.8, marginBottom: 20, fontFamily: 'Georgia, serif', opacity: 0.9 }}>"</div>
                 <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14.5, lineHeight: 1.8, flex: 1, marginBottom: 24 }}>{t.quote || t.review}</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 18, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #F4A100, #d48e00)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #c8892a, #b07520)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <span style={{ color: '#111', fontSize: 13, fontWeight: 900 }}>{(t.client_name || t.name || 'U')[0]}</span>
                     </div>
                     <div>
@@ -775,7 +774,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div style={{ display: 'flex', gap: 2 }}>
-                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={10} color="#F4A100"/>)}
+                    {[...Array(t.rating || 5)].map((_, j) => <FaStar key={j} size={10} color="#c8892a"/>)}
                   </div>
                 </div>
               </div>
@@ -787,7 +786,7 @@ export default function Home() {
                 style={{ width: 38, height: 38, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: tSlide === 0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.08)', color: tSlide === 0 ? '#444' : '#fff', cursor: tSlide === 0 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
               {Array.from({ length: tPages }).map((_, p) => (
                 <button key={p} onClick={() => setTSlide(p)}
-                  style={{ width: 8, height: 8, border: 'none', borderRadius: '50%', background: tSlide === p ? '#F4A100' : 'rgba(255,255,255,0.15)', cursor: 'pointer', padding: 0, transition: 'background 0.2s' }} />
+                  style={{ width: 8, height: 8, border: 'none', borderRadius: '50%', background: tSlide === p ? '#c8892a' : 'rgba(255,255,255,0.15)', cursor: 'pointer', padding: 0, transition: 'background 0.2s' }} />
               ))}
               <button onClick={() => setTSlide(p => Math.min(tPages - 1, p + 1))} disabled={tSlide === tPages - 1}
                 style={{ width: 38, height: 38, borderRadius: 8, border: '1px solid rgba(255,255,255,0.1)', background: tSlide === tPages - 1 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.08)', color: tSlide === tPages - 1 ? '#444' : '#fff', cursor: tSlide === tPages - 1 ? 'default' : 'pointer', fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
@@ -797,12 +796,12 @@ export default function Home() {
       </section>
 
       {/* ── CTA Banner — full black, split layout ── */}
-      <section style={{ background: '#0A0A0A', padding: 'clamp(56px, 8vw, 96px) 0' }}>
+      <section style={{ background: '#1a1a1a', padding: 'clamp(56px, 8vw, 96px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }} className="cta-two-col">
             <style>{`@media(max-width:768px){.cta-two-col{grid-template-columns:1fr !important;}}`}</style>
             <div>
-              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#F4A100', display: 'block', marginBottom: 14 }}>Limited Spots Available</span>
+              <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c8892a', display: 'block', marginBottom: 14 }}>Limited Spots Available</span>
               <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 16 }}>
                 Get Your FREE<br/>Marketing Audit<br/>Today
               </h2>
@@ -813,17 +812,17 @@ export default function Home() {
             <div>
               {emailSent ? (
                 <div style={{ background: '#111', border: '1px solid #222', padding: '32px', borderRadius: 0 }}>
-                  <p style={{ color: '#F4A100', fontWeight: 700, fontSize: 16 }}>✓ We'll be in touch shortly.</p>
+                  <p style={{ color: '#c8892a', fontWeight: 700, fontSize: 16 }}>✓ We'll be in touch shortly.</p>
                   <p style={{ color: '#666', fontSize: 13, marginTop: 8 }}>Check your inbox within 24 hours.</p>
                 </div>
               ) : (
-                <div style={{ background: '#111', padding: 'clamp(24px,4vw,40px)', borderLeft: '3px solid #F4A100' }}>
+                <div style={{ background: '#111', padding: 'clamp(24px,4vw,40px)', borderLeft: '3px solid #c8892a' }}>
                   <div style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 6 }}>Start with a free audit</div>
                   <div style={{ color: '#555', fontSize: 13, marginBottom: 24 }}>No commitment. No cost. Real insights.</div>
                   <form onSubmit={handleAuditSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <input type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required
-                      style={{ background: '#0A0A0A', border: '1px solid #2a2a2a', color: '#fff', padding: '14px 16px', fontSize: 14, outline: 'none', borderRadius: 0, width: '100%', boxSizing: 'border-box' }}/>
-                    <button type="submit" style={{ background: '#F4A100', color: '#111', padding: '14px 24px', fontSize: 13, fontWeight: 800, border: 'none', cursor: 'pointer', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', color: '#fff', padding: '14px 16px', fontSize: 14, outline: 'none', borderRadius: 0, width: '100%', boxSizing: 'border-box' }}/>
+                    <button type="submit" style={{ background: '#c8892a', color: '#fff', padding: '14px 24px', fontSize: 13, fontWeight: 800, border: 'none', cursor: 'pointer', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       Get My Free Audit →
                     </button>
                   </form>

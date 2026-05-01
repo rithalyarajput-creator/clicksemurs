@@ -63,15 +63,15 @@ function RichEditor({ value, onChange }) {
       </div>
       {/* Editable area */}
       <style>{`
-        .rich-editor h1{font-size:26px;font-weight:900;color:#0f172a;margin:20px 0 10px;border-left:4px solid #F4A100;padding-left:12px}
-        .rich-editor h2{font-size:22px;font-weight:800;color:#0f172a;margin:18px 0 8px;border-left:4px solid #F4A100;padding-left:12px}
-        .rich-editor h3{font-size:18px;font-weight:700;color:#0f172a;margin:16px 0 8px;border-left:4px solid #F4A100;padding-left:12px}
+        .rich-editor h1{font-size:26px;font-weight:900;color:#0f172a;margin:20px 0 10px;border-left:4px solid #c8892a;padding-left:12px}
+        .rich-editor h2{font-size:22px;font-weight:800;color:#0f172a;margin:18px 0 8px;border-left:4px solid #c8892a;padding-left:12px}
+        .rich-editor h3{font-size:18px;font-weight:700;color:#0f172a;margin:16px 0 8px;border-left:4px solid #c8892a;padding-left:12px}
         .rich-editor h4{font-size:15px;font-weight:700;color:#0f172a;margin:14px 0 6px}
         .rich-editor p{color:#334155;font-size:14px;line-height:1.75;margin-bottom:10px}
         .rich-editor ul,.rich-editor ol{padding-left:22px;color:#334155;font-size:14px;margin-bottom:10px}
         .rich-editor li{margin-bottom:4px}
         .rich-editor strong,.rich-editor b{font-weight:700;color:#0f172a}
-        .rich-editor blockquote{border-left:3px solid #F4A100;padding-left:12px;color:#64748b;font-style:italic;margin:12px 0}
+        .rich-editor blockquote{border-left:3px solid #c8892a;padding-left:12px;color:#64748b;font-style:italic;margin:12px 0}
       `}</style>
       <div
         ref={ref}
@@ -387,7 +387,7 @@ export default function AdminBlogs({ startNew = false }) {
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
                         {mediaImages.map(m => (
                           <div key={m.id} onClick={() => { f('thumbnail', m.url); setShowMediaPicker(false) }}
-                            style={{ cursor: 'pointer', borderRadius: 8, overflow: 'hidden', border: form.thumbnail === m.url ? '3px solid #F4A100' : '2px solid #e2e8f0' }}>
+                            style={{ cursor: 'pointer', borderRadius: 8, overflow: 'hidden', border: form.thumbnail === m.url ? '3px solid #c8892a' : '2px solid #e2e8f0' }}>
                             <img src={m.url} alt={m.alt_text} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
                             <div style={{ padding: '5px 8px', fontSize: 10, color: '#64748b', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.alt_text || 'No alt'}</div>
                           </div>

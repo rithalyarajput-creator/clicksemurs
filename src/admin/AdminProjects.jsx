@@ -54,7 +54,7 @@ function UploadField({ label, value, onChange, isMain }) {
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: '#374151', marginBottom: 4 }}>
-            {label} {isMain && <span style={{ background: '#F4A100', color: '#111', fontSize: 9, fontWeight: 800, padding: '1px 6px', borderRadius: 3, marginLeft: 4 }}>MAIN</span>}
+            {label} {isMain && <span style={{ background: '#c8892a', color: '#111', fontSize: 9, fontWeight: 800, padding: '1px 6px', borderRadius: 3, marginLeft: 4 }}>MAIN</span>}
           </div>
           <input
             value={value}
@@ -166,7 +166,7 @@ export default function AdminProjects() {
         <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 16, overflow: 'hidden', maxWidth: 680 }}>
           <div style={{ background: '#0f172a', padding: '20px 28px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 36, height: 36, background: '#F4A100', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: 36, height: 36, background: '#c8892a', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </div>
               <div>
@@ -232,7 +232,7 @@ export default function AdminProjects() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: 14, padding: 24 }}>
                 <div style={{ fontWeight: 800, fontSize: 14, color: '#0f172a', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 4, height: 18, background: '#F4A100', borderRadius: 2 }} />
+                  <div style={{ width: 4, height: 18, background: '#c8892a', borderRadius: 2 }} />
                   Project Details
                 </div>
 

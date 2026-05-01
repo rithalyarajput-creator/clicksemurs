@@ -43,11 +43,11 @@ export default function Portfolio() {
         <div style={{ position: 'absolute', top: 0, right: 0, width: '40vw', maxWidth: 400, height: '100%', backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(244,161,0,0.07) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ position: 'relative', textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.1)', border: '1px solid rgba(244,161,0,0.25)', borderRadius: 100, padding: '5px 16px', marginBottom: 24 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
-            <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Work</span>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
+            <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Work</span>
           </div>
           <h1 style={{ fontSize: 'clamp(2rem, 6vw, 3.8rem)', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: 20, letterSpacing: '-0.02em' }}>
-            Results That<br /><span style={{ color: '#F4A100' }}>Speak for Themselves</span>
+            Results That<br /><span style={{ color: '#c8892a' }}>Speak for Themselves</span>
           </h1>
           <p style={{ color: '#94a3b8', fontSize: 'clamp(14px, 2.5vw, 17px)', maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.7 }}>
             Real clients. Real numbers. Zero fluff. Explore our case studies across 50+ industries.
@@ -56,7 +56,7 @@ export default function Portfolio() {
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 0, borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)', marginTop: 40 }}>
             {[['500+','Projects'],['50+','Industries'],['98%','Retention'],['5X','Avg. ROI']].map(([v, l], i) => (
               <div key={i} style={{ padding: 'clamp(16px,3vw,28px) clamp(20px,4vw,48px)', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.08)' : 'none', minWidth: 100 }}>
-                <div style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 900, color: '#F4A100', lineHeight: 1 }}>{v}</div>
+                <div style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 900, color: '#c8892a', lineHeight: 1 }}>{v}</div>
                 <div style={{ color: '#64748b', fontSize: 12, marginTop: 4, letterSpacing: '0.05em' }}>{l}</div>
               </div>
             ))}
@@ -161,7 +161,7 @@ export default function Portfolio() {
       <section style={{ background: '#0f172a', padding: 'clamp(48px,6vw,72px) 0' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', display: 'block', marginBottom: 12 }}>How We Work</span>
+            <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', display: 'block', marginBottom: 12 }}>How We Work</span>
             <h2 style={{ color: '#fff', fontSize: 'clamp(1.5rem, 3.5vw, 2.2rem)', fontWeight: 900, letterSpacing: '-0.02em' }}>Our Proven Process</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 2 }}>
@@ -174,7 +174,7 @@ export default function Portfolio() {
             ].map((p, i) => (
               <div key={i} style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', padding: '28px 24px', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ fontSize: 44, fontWeight: 900, color: 'rgba(255,255,255,0.04)', position: 'absolute', top: 8, right: 12, lineHeight: 1 }}>{p.step}</div>
-                <div style={{ color: '#F4A100', fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{p.step}</div>
+                <div style={{ color: '#c8892a', fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 10 }}>{p.step}</div>
                 <div style={{ color: '#fff', fontWeight: 800, fontSize: 16, marginBottom: 8 }}>{p.label}</div>
                 <div style={{ color: '#64748b', fontSize: 13, lineHeight: 1.6 }}>{p.desc}</div>
               </div>
@@ -193,7 +193,7 @@ export default function Portfolio() {
           <p style={{ color: '#94a3b8', fontSize: 16, marginBottom: 36, lineHeight: 1.7 }}>
             Get a free digital audit and see exactly how we can transform your business metrics.
           </p>
-          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F4A100', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
+          <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#111', padding: '15px 36px', fontWeight: 800, fontSize: 14, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8 }}>
             Get Your Free Audit <FaArrowRight size={12} />
           </Link>
         </div>

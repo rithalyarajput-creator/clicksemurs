@@ -147,7 +147,7 @@ export default function AdminTestimonials() {
 
               {/* Bottom row: stars + actions */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ color: '#F4A100', fontSize: 18 }}>
+                <div style={{ color: '#c8892a', fontSize: 18 }}>
                   {'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}
                 </div>
                 <div style={{ display: 'flex', gap: 6 }}>
@@ -212,7 +212,7 @@ export default function AdminTestimonials() {
                     onClick={() => setForm(f => ({ ...f, rating: r }))}
                     style={{
                       width: 42, height: 42, borderRadius: 8,
-                      border: `2px solid ${form.rating >= r ? '#F4A100' : '#e2e8f0'}`,
+                      border: `2px solid ${form.rating >= r ? '#c8892a' : '#e2e8f0'}`,
                       background: form.rating >= r ? '#FFF9E6' : '#f8fafc',
                       fontSize: 22, cursor: 'pointer'
                     }}>

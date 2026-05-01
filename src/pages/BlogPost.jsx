@@ -148,7 +148,7 @@ function LeadForm() {
 
   return (
     <div style={{ background: '#fff', borderRadius: 12, overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', border: '1px solid #e5e5e5' }}>
-      <div style={{ background: '#F4A100', padding: '16px 20px' }}>
+      <div style={{ background: '#c8892a', padding: '16px 20px' }}>
         <div style={{ color: '#111', fontWeight: 900, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Apply for Instant Consultation</div>
         <div style={{ color: '#111', fontSize: 11, opacity: 0.7, marginTop: 2 }}>Get faster. No paperwork needed.</div>
       </div>
@@ -172,7 +172,7 @@ function LeadForm() {
               />
             ))}
             <button type="submit" disabled={loading} style={{
-              display: 'block', width: '100%', background: '#F4A100', color: '#111',
+              display: 'block', width: '100%', background: '#c8892a', color: '#111',
               padding: '12px', fontWeight: 900, fontSize: 13, border: 'none',
               borderRadius: 6, cursor: 'pointer', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 14
             }}>
@@ -181,8 +181,8 @@ function LeadForm() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {['Instant Approval', 'No Collateral', '100% Digital'].map(t => (
                 <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #F4A100', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100' }} />
+                  <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid #c8892a', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a' }} />
                   </div>
                   <span style={{ color: '#555', fontSize: 12 }}>{t}</span>
                 </div>
@@ -210,7 +210,7 @@ function renderContent(content) {
     }
     // Plain text fallback
     return content.split('\n').map((line, i) => {
-      if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{line.slice(3)}</strong></h3>
+      if (line.startsWith('## ')) return <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #c8892a', paddingLeft: 16 }}><strong>{line.slice(3)}</strong></h3>
       if (line.trim() === '') return <div key={i} style={{ height: 6 }} />
       return <p key={i} style={{ color: '#444', fontSize: 15, lineHeight: 1.85, marginBottom: 12 }}>{line}</p>
     })
@@ -218,13 +218,13 @@ function renderContent(content) {
   // Static array format
   return content.map((block, i) => {
     if (block.type === 'h3') return (
-      <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #F4A100', paddingLeft: 16 }}><strong>{block.text}</strong></h3>
+      <h3 key={i} style={{ color: '#111', fontWeight: 900, fontSize: 22, marginTop: 40, marginBottom: 14, lineHeight: 1.3, borderLeft: '4px solid #c8892a', paddingLeft: 16 }}><strong>{block.text}</strong></h3>
     )
     if (block.type === 'intro') return (
       <p key={i} style={{ color: '#333', fontSize: 16, lineHeight: 1.9, marginBottom: 24, fontWeight: 500, borderLeft: '3px solid #e5e5e5', paddingLeft: 16, fontStyle: 'italic' }}>{block.text}</p>
     )
     if (block.type === 'closing') return (
-      <div key={i} style={{ background: '#F4A100', borderRadius: 8, padding: '20px 24px', marginTop: 40 }}>
+      <div key={i} style={{ background: '#c8892a', borderRadius: 8, padding: '20px 24px', marginTop: 40 }}>
         <p style={{ color: '#111', fontSize: 15, lineHeight: 1.8, margin: 0, fontWeight: 600 }}>{block.text}</p>
       </div>
     )
@@ -249,7 +249,7 @@ function FaqAccordion({ faqs }) {
               style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
             >
               <span style={{ color: '#111', fontWeight: 700, fontSize: 14, lineHeight: 1.4, flex: 1, marginRight: 12 }}>{faq.q}</span>
-              <span style={{ width: 28, height: 28, borderRadius: '50%', background: open === i ? '#F4A100' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: open === i ? '#111' : '#888', flexShrink: 0, fontWeight: 700, transition: 'all 0.2s' }}>
+              <span style={{ width: 28, height: 28, borderRadius: '50%', background: open === i ? '#c8892a' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: open === i ? '#111' : '#888', flexShrink: 0, fontWeight: 700, transition: 'all 0.2s' }}>
                 {open === i ? '−' : '+'}
               </span>
             </button>
@@ -342,16 +342,16 @@ export default function BlogPost() {
             <FaArrowLeft size={11} /> Back to Blog
           </Link>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-            <span style={{ background: '#F4A100', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
+            <span style={{ background: '#c8892a', color: '#111', fontSize: 10, fontWeight: 700, padding: '3px 10px', textTransform: 'uppercase', letterSpacing: '0.1em', borderRadius: 3 }}>{post.category}</span>
             <span style={{ color: '#777', fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}><FaCalendar size={10} /> {date}</span>
           </div>
           <h1 style={{ color: '#111', fontWeight: 900, fontSize: 32, lineHeight: 1.3, maxWidth: 720, marginBottom: 16, fontFamily: 'inherit', letterSpacing: '-0.01em' }}><strong>{post.title}</strong></h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 24 }}>
             {authorData?.avatar ? (
               <img src={authorData.avatar} alt={authorData.name}
-                style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid #F4A100' }} />
+                style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: '2px solid #c8892a' }} />
             ) : (
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#F4A100', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c8892a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111', fontWeight: 900, fontSize: 14, flexShrink: 0 }}>
                 {(post.author || 'C').charAt(0).toUpperCase()}
               </div>
             )}
@@ -386,7 +386,7 @@ export default function BlogPost() {
 
         {similarBlogs.length > 0 && (
           <div style={{ marginTop: 56 }}>
-            <h2 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 24, borderBottom: '3px solid #F4A100', paddingBottom: 10, display: 'inline-block' }}>Similar Articles</h2>
+            <h2 style={{ color: '#111', fontWeight: 900, fontSize: 22, marginBottom: 24, borderBottom: '3px solid #c8892a', paddingBottom: 10, display: 'inline-block' }}>Similar Articles</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginTop: 8 }}>
               {similarBlogs.map((blog, i) => {
                 const img = blog.thumbnail || similarImgs[i % similarImgs.length]
@@ -397,11 +397,11 @@ export default function BlogPost() {
                       <img src={img} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div style={{ background: '#111', borderRadius: 12, marginTop: -20, marginRight: 28, padding: '14px 16px', boxShadow: '0 4px 16px rgba(0,0,0,0.15)', position: 'relative', zIndex: 1 }}>
-                      <div style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 5 }}>{blog.category}</div>
+                      <div style={{ color: '#c8892a', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 5 }}>{blog.category}</div>
                       <div style={{ color: '#fff', fontWeight: 700, fontSize: 13, lineHeight: 1.4, marginBottom: 8, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{blog.title}</div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ color: '#777', fontSize: 11 }}>{bdate}</span>
-                        <span style={{ color: '#F4A100', fontSize: 11, fontWeight: 700 }}>Read More</span>
+                        <span style={{ color: '#c8892a', fontSize: 11, fontWeight: 700 }}>Read More</span>
                       </div>
                     </div>
                   </Link>

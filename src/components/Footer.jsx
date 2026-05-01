@@ -49,10 +49,10 @@ function AccordionSection({ title, children, defaultOpen = false }) {
         padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer', color: '#fff',
       }}>
         <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ width: 16, height: 2, background: '#F4A100', display: 'inline-block', borderRadius: 2 }} />
+          <span style={{ width: 16, height: 2, background: '#c8892a', display: 'inline-block', borderRadius: 2 }} />
           {title}
         </span>
-        <span style={{ color: '#F4A100', fontSize: 18, fontWeight: 300, transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none', lineHeight: 1 }}>+</span>
+        <span style={{ color: '#c8892a', fontSize: 18, fontWeight: 300, transition: 'transform 0.25s', transform: open ? 'rotate(45deg)' : 'none', lineHeight: 1 }}>+</span>
       </button>
       {open && (
         <div style={{ paddingBottom: 16 }}>
@@ -119,14 +119,14 @@ export default function Footer() {
   }
 
   return (
-    <footer style={{ background: '#050505', position: 'relative', overflow: 'hidden' }}>
+    <footer style={{ background: '#1a1a1a', position: 'relative', overflow: 'hidden' }}>
 
       {/* Scroll to top button */}
       {showScrollTop && (
         <button onClick={scrollTop} style={{
           position: 'fixed', bottom: 90, right: 20, zIndex: 999,
           width: 44, height: 44, borderRadius: '50%',
-          background: 'linear-gradient(180deg, #F4A100, #d48e00)',
+          background: 'linear-gradient(180deg, #c8892a, #b07520)',
           border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 4px 16px rgba(244,161,0,0.4), 0 -2px 0 rgba(0,0,0,0.3) inset',
           transition: 'transform 0.2s',
@@ -150,15 +150,15 @@ export default function Footer() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24 }}>
             <div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.2)', borderRadius: 100, padding: '4px 14px', marginBottom: 12 }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F4A100', display: 'inline-block' }} />
-                <span style={{ color: '#F4A100', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Ready to Grow?</span>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#c8892a', display: 'inline-block' }} />
+                <span style={{ color: '#c8892a', fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Ready to Grow?</span>
               </div>
               <h2 style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-                Let's Build Something <span style={{ color: '#F4A100' }}>Remarkable</span>
+                Let's Build Something <span style={{ color: '#c8892a' }}>Remarkable</span>
               </h2>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <button onClick={() => goTo('/contact')} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F4A100', color: '#111', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }}
+              <button onClick={() => goTo('/contact')} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#c8892a', color: '#fff', padding: '13px 28px', fontWeight: 800, fontSize: 13, letterSpacing: '0.06em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: 8, border: 'none', cursor: 'pointer', transition: 'transform 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'none'}>
                 Get Free Audit →
@@ -198,7 +198,7 @@ export default function Footer() {
                 <a href={`mailto:${s.email}`} style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#888', fontSize: 13, textDecoration: 'none' }}
                   onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#888'}>
                   <span style={{ width: 30, height: 30, borderRadius: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                   </span>
                   {s.email}
                 </a>
@@ -206,7 +206,7 @@ export default function Footer() {
                   <a key={i} href={`tel:${num.replace(/\s/g, '')}`} style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#888', fontSize: 13, textDecoration: 'none' }}
                     onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#888'}>
                     <span style={{ width: 30, height: 30, borderRadius: 8, background: 'rgba(244,161,0,0.08)', border: '1px solid rgba(244,161,0,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </span>
                     {num}
                   </a>
@@ -217,14 +217,14 @@ export default function Footer() {
             {/* Quick Links */}
             <div>
               <h4 style={{ color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 20, height: 2, background: '#F4A100', display: 'inline-block', borderRadius: 2 }} />Quick Links
+                <span style={{ width: 20, height: 2, background: '#c8892a', display: 'inline-block', borderRadius: 2 }} />Quick Links
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {quickLinks.map(link => (
                   <li key={link.to}>
                     <button onClick={() => goTo(link.to)} style={{ ...linkStyle, width: '100%', textAlign: 'left' }}
                       onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#666'}>
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                       {link.label}
                     </button>
                   </li>
@@ -235,14 +235,14 @@ export default function Footer() {
             {/* Services */}
             <div>
               <h4 style={{ color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 20, height: 2, background: '#F4A100', display: 'inline-block', borderRadius: 2 }} />Our Services
+                <span style={{ width: 20, height: 2, background: '#c8892a', display: 'inline-block', borderRadius: 2 }} />Our Services
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {services.map(sv => (
                   <li key={sv.to}>
                     <button onClick={() => goTo(sv.to)} style={{ ...linkStyle, width: '100%', textAlign: 'left' }}
                       onMouseEnter={e => e.currentTarget.style.color = '#fff'} onMouseLeave={e => e.currentTarget.style.color = '#666'}>
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                       {sv.label}
                     </button>
                   </li>
@@ -253,14 +253,14 @@ export default function Footer() {
             {/* Newsletter */}
             <div>
               <h4 style={{ color: '#fff', fontSize: 12, fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 20, height: 2, background: '#F4A100', display: 'inline-block', borderRadius: 2 }} />Newsletter
+                <span style={{ width: 20, height: 2, background: '#c8892a', display: 'inline-block', borderRadius: 2 }} />Newsletter
               </h4>
               <p style={{ color: '#666', fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>Get weekly digital marketing tips, trends & case studies — straight to your inbox.</p>
               <form onSubmit={handleNewsletter}>
                 <input type="email" value={nEmail} onChange={e => setNEmail(e.target.value)} placeholder="your@email.com" required
                   style={{ width: '100%', background: '#0d0d0d', border: '1px solid #1e1e1e', color: '#fff', padding: '13px 16px', fontSize: 13, outline: 'none', borderRadius: 10, boxSizing: 'border-box', marginBottom: 8 }}
-                  onFocus={e => e.target.style.borderColor = '#F4A100'} onBlur={e => e.target.style.borderColor = '#1e1e1e'} />
-                <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #F4A100, #e8950a)', color: '#111', border: 'none', padding: '13px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  onFocus={e => e.target.style.borderColor = '#c8892a'} onBlur={e => e.target.style.borderColor = '#1e1e1e'} />
+                <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #c8892a, #b07520)', color: '#fff', border: 'none', padding: '13px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 10, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                   Subscribe →
                 </button>
                 {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>🎉 Subscribed!</p>}
@@ -296,12 +296,12 @@ export default function Footer() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <a href={`mailto:${s.email}`} style={{ color: '#888', fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               {s.email}
             </a>
             {phones.map((num, i) => (
               <a key={i} href={`tel:${num.replace(/\s/g, '')}`} style={{ color: '#888', fontSize: 13, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 {num}
               </a>
             ))}
@@ -313,7 +313,7 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {quickLinks.map(link => (
               <button key={link.to} onClick={() => goTo(link.to)} style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#888', fontSize: 14, padding: '8px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 {link.label}
               </button>
             ))}
@@ -324,7 +324,7 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {services.map(sv => (
               <button key={sv.to} onClick={() => goTo(sv.to)} style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#888', fontSize: 14, padding: '8px 0', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}>
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#F4A100" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c8892a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                 {sv.label}
               </button>
             ))}
@@ -336,7 +336,7 @@ export default function Footer() {
           <form onSubmit={handleNewsletter}>
             <input type="email" value={nEmail} onChange={e => setNEmail(e.target.value)} placeholder="your@email.com" required
               style={{ width: '100%', background: '#0d0d0d', border: '1px solid #1e1e1e', color: '#fff', padding: '12px 14px', fontSize: 13, outline: 'none', borderRadius: 8, boxSizing: 'border-box', marginBottom: 8 }} />
-            <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #F4A100, #e8950a)', color: '#111', border: 'none', padding: '12px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <button type="submit" style={{ width: '100%', background: 'linear-gradient(135deg, #c8892a, #b07520)', color: '#fff', border: 'none', padding: '12px', fontWeight: 800, fontSize: 12, cursor: 'pointer', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               Subscribe →
             </button>
             {nStatus === 'success' && <p style={{ color: '#4ade80', fontSize: 12, marginTop: 8 }}>🎉 Subscribed!</p>}
@@ -350,7 +350,7 @@ export default function Footer() {
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(244,161,0,0.2), transparent)' }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8" style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
           <p style={{ color: '#444', fontSize: 12 }}>
-            {s.copyright_text}{s.tagline ? <span style={{ color: '#F4A100', marginLeft: 8, fontWeight: 700 }}>| {s.tagline}</span> : ''}
+            {s.copyright_text}{s.tagline ? <span style={{ color: '#c8892a', marginLeft: 8, fontWeight: 700 }}>| {s.tagline}</span> : ''}
           </p>
           <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => goTo('/contact')} style={{ color: '#444', fontSize: 12, background: 'none', border: 'none', cursor: 'pointer' }}

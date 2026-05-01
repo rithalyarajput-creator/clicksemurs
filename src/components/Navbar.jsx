@@ -125,9 +125,9 @@ export default function Navbar() {
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
         transition: 'all 0.3s',
-        background: scrolled ? 'rgba(5,5,5,0.97)' : 'transparent',
+        background: scrolled ? 'rgba(26,26,26,0.97)' : '#1a1a1a',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid #1a1a1a' : '1px solid transparent',
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
 
@@ -191,7 +191,7 @@ export default function Navbar() {
                   </div>
                   <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #1e1e1e', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <span style={{ color: '#444', fontSize: 12 }}>360° Digital Marketing Agency</span>
-                    <Link to="/services" style={{ color: '#F4A100', fontSize: 12, fontWeight: 700, textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <Link to="/services" style={{ color: '#c8892a', fontSize: 12, fontWeight: 700, textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       View All Services →
                     </Link>
                   </div>
@@ -248,15 +248,15 @@ export default function Navbar() {
           <div className="navbar-cta-desktop" style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
             <Link to="/contact" style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'linear-gradient(180deg, #F4A100 0%, #d48e00 100%)',
-              color: '#111', padding: '9px 20px', fontWeight: 800, fontSize: 12,
+              background: '#c8892a',
+              color: '#fff', padding: '9px 20px', fontWeight: 800, fontSize: 12,
               letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none',
               borderRadius: 100,
-              boxShadow: '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 6px 16px rgba(244,161,0,0.3)',
+              boxShadow: '0 4px 14px rgba(200,137,42,0.35)',
               transition: 'all 0.18s',
             }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 10px 24px rgba(244,161,0,0.4)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 1px 0 rgba(255,255,255,0.3) inset, 0 -3px 0 rgba(0,0,0,0.3) inset, 0 6px 16px rgba(244,161,0,0.3)' }}>
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.opacity = '0.88' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.opacity = '1' }}>
               Free Audit ✦
             </Link>
           </div>
@@ -278,7 +278,7 @@ export default function Navbar() {
                 <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <span style={{ fontSize: 18 }}>⚡</span> Services
                 </span>
-                <span style={{ color: '#F4A100', fontSize: 12 }}>→</span>
+                <span style={{ color: '#c8892a', fontSize: 12 }}>→</span>
               </Link>
 
               {/* Portfolio group */}
@@ -288,7 +288,7 @@ export default function Navbar() {
                 </div>
                 {portfolioMenu.map(item => (
                   <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)}
-                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#F4A100' : '#ccc', fontSize: 14, padding: '12px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: '1px solid #1a1a1a' })}>
+                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#c8892a' : '#ccc', fontSize: 14, padding: '12px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: '1px solid #1a1a1a' })}>
                     {item.label}
                     {<span style={{ fontSize: 10, opacity: 0.4 }}>›</span>}
                   </NavLink>
@@ -303,7 +303,7 @@ export default function Navbar() {
                   { to: '/contact', label: 'Contact', icon: '📞' },
                 ].map((link, i, arr) => (
                   <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)}
-                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#F4A100' : '#ccc', fontSize: 14, padding: '13px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: i < arr.length - 1 ? '1px solid #1a1a1a' : 'none' })}>
+                    style={({ isActive }) => ({ display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isActive ? '#c8892a' : '#ccc', fontSize: 14, padding: '13px 16px', textDecoration: 'none', fontWeight: isActive ? 700 : 500, borderBottom: i < arr.length - 1 ? '1px solid #1a1a1a' : 'none' })}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <span style={{ fontSize: 16 }}>{link.icon}</span> {link.label}
                     </span>
@@ -314,7 +314,7 @@ export default function Navbar() {
 
               <Link to="/contact" onClick={() => setOpen(false)} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                background: 'linear-gradient(180deg, #F4A100 0%, #d48e00 100%)',
+                background: 'linear-gradient(180deg, #c8892a 0%, #b07520 100%)',
                 color: '#111', padding: '14px 24px', fontWeight: 800, fontSize: 13,
                 letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none',
                 borderRadius: 12, marginTop: 8,
