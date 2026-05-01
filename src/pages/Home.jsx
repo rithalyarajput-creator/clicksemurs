@@ -592,10 +592,10 @@ export default function Home() {
 
           {/* RIGHT — big phone */}
           <div className={`reveal-right${testiInView ? ' in-view' : ''}`} style={{ display: 'flex', justifyContent: 'center' }}>
-            {/* 3D phone wrapper */}
+            {/* ── EXACT iPhone mockup from HTML file ── */}
             <div style={{ perspective: 1200 }}>
               <div style={{
-                width: 340,
+                display: 'inline-block',
                 transform: 'rotateY(-4deg) rotateX(2deg)',
                 transformStyle: 'preserve-3d',
                 transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
@@ -603,135 +603,125 @@ export default function Home() {
                 onMouseEnter={e => e.currentTarget.style.transform = 'rotateY(0deg) rotateX(0deg)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(-4deg) rotateX(2deg)'}
               >
-                {/* ── Black iPhone 14 Pro style frame ── */}
-                <div style={{
-                  background: 'linear-gradient(160deg,#2c2c2e,#1c1c1e)',
-                  borderRadius: 56,
-                  padding: '0 5px',
-                  border: '1px solid #3a3a3c',
-                  boxShadow: '0 60px 100px rgba(0,0,0,0.45), 0 20px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)',
-                  position: 'relative',
-                }}>
-                  {/* left buttons */}
-                  <div style={{ position: 'absolute', left: -4, top: 100, width: 4, height: 32, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
-                  <div style={{ position: 'absolute', left: -4, top: 148, width: 4, height: 62, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
-                  <div style={{ position: 'absolute', left: -4, top: 220, width: 4, height: 62, background: '#3a3a3c', borderRadius: '3px 0 0 3px' }} />
-                  {/* right button */}
-                  <div style={{ position: 'absolute', right: -4, top: 170, width: 4, height: 88, background: '#3a3a3c', borderRadius: '0 3px 3px 0' }} />
+                <div style={{ position:'relative', width:320, height:680, borderRadius:50, background:'#1a1a1a', boxShadow:'0 0 0 2px #3a3a3a, 0 0 0 5px #222, 0 20px 60px rgba(0,0,0,0.4)', overflow:'hidden' }}>
 
-                  {/* inner bezel */}
-                  <div style={{ background: '#000', borderRadius: 50, padding: '14px 4px 10px', margin: '6px 0' }}>
-                    {/* dynamic island */}
-                    <div style={{ width: 110, height: 30, background: '#000', borderRadius: 20, margin: '0 auto 2px', border: '1px solid #1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#111' }} />
-                      <div style={{ width: 28, height: 10, borderRadius: 5, background: '#111' }} />
-                    </div>
+                  {/* white screen bg */}
+                  <div style={{ position:'absolute', inset:0, background:'#fff' }} />
 
-                  {/* ── SCREEN: Credit Score Dashboard ── */}
-                  <div style={{ background: '#fff', borderRadius: 38, overflow: 'hidden', fontFamily: "'DM Sans',sans-serif" }}>
+                  {/* Dynamic Island */}
+                  <div style={{ position:'absolute', top:12, left:'50%', transform:'translateX(-50%)', width:110, height:33, background:'#000', borderRadius:20, zIndex:20 }} />
 
-                    {/* status bar */}
-                    <div style={{ background: '#fff', padding: '6px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: '#000' }}>9:41</span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                        {/* signal bars */}
-                        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 1.5, height: 9 }}>
-                          {[3,5,7,9].map((h,i) => <div key={i} style={{ width: 2.5, height: h, background: '#000', borderRadius: 1 }} />)}
+                  {/* Status bar */}
+                  <div style={{ position:'absolute', top:18, left:0, right:0, display:'flex', justifyContent:'space-between', padding:'0 28px', zIndex:21, alignItems:'center' }}>
+                    <span style={{ color:'#111', fontSize:12, fontWeight:600, fontFamily:'-apple-system,sans-serif' }}>9:41</span>
+                    <div style={{ display:'flex', alignItems:'center', gap:4 }}>
+                      <svg width="14" height="10" viewBox="0 0 16 12"><rect x="0" y="8" width="3" height="4" fill="#111" rx="1"/><rect x="4.5" y="5" width="3" height="7" fill="#111" rx="1"/><rect x="9" y="2" width="3" height="10" fill="#111" rx="1"/><rect x="13.5" y="0" width="2.5" height="12" fill="#111" rx="1" opacity="0.3"/></svg>
+                      <svg width="13" height="10" viewBox="0 0 14 12"><path d="M7 9.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z" fill="#111"/><path d="M2.5 6C4 4.5 5.8 3.7 7 3.7s3 .8 4.5 2.3" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round"/><path d="M0 3.5C1.8 1.5 4.3 0 7 0s5.2 1.5 7 3.5" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.4"/></svg>
+                      <div style={{ display:'flex', alignItems:'center', gap:1 }}>
+                        <div style={{ width:20, height:10, border:'1.5px solid #111', borderRadius:3, padding:1, display:'flex', alignItems:'center' }}>
+                          <div style={{ width:'75%', height:'100%', background:'#111', borderRadius:1 }} />
                         </div>
-                        {/* wifi */}
-                        <svg width="12" height="9" viewBox="0 0 24 18"><path d="M12 14l-3-3a4.2 4.2 0 016 0l-3 3z" fill="#000"/><path d="M12 10L6 4a8.5 8.5 0 0112 0L12 10z" fill="#000" opacity=".5"/><path d="M12 6L3 0A14 14 0 0121 0L12 6z" fill="#000" opacity=".25"/></svg>
-                        {/* battery */}
-                        <div style={{ width: 20, height: 10, border: '1.5px solid #000', borderRadius: 3, position: 'relative' }}>
-                          <div style={{ position: 'absolute', left: 1, top: 1, bottom: 1, width: '80%', background: '#000', borderRadius: 1.5 }} />
-                          <div style={{ position: 'absolute', right: -4, top: '50%', transform: 'translateY(-50%)', width: 3, height: 5, background: '#555', borderRadius: 1 }} />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* app header */}
-                    <div style={{ padding: '8px 16px 4px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                      <div>
-                        <div style={{ fontSize: 15, fontWeight: 700, color: '#000', lineHeight: 1.2 }}>Credit Score</div>
-                        <div style={{ fontSize: 10, color: '#aaa', marginTop: 2 }}>Updated just now</div>
-                      </div>
-                      {/* refresh icon */}
-                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#f0f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2C6275" strokeWidth="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
-                      </div>
-                    </div>
-
-                    {/* gauge */}
-                    <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '4px 0 0' }}>
-                      <svg viewBox="0 0 200 120" width="220" height="132">
-                        <defs>
-                          <linearGradient id="scoreGrad2" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stopColor="#e53935"/>
-                            <stop offset="25%" stopColor="#ff9800"/>
-                            <stop offset="50%" stopColor="#fdd835"/>
-                            <stop offset="75%" stopColor="#66bb6a"/>
-                            <stop offset="100%" stopColor="#3a7d8f"/>
-                          </linearGradient>
-                        </defs>
-                        {/* track */}
-                        <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="#f0f0f0" strokeWidth="13" strokeLinecap="round"/>
-                        {/* colored arc */}
-                        <path d="M25,110 A75,75 0 0,1 175,110" fill="none" stroke="url(#scoreGrad2)" strokeWidth="13" strokeLinecap="round"
-                          strokeDasharray="235" strokeDashoffset="0"/>
-                        {/* needle — 742 maps to ~73% → angle from -90 to 90 = 56deg */}
-                        <line x1="100" y1="110" x2="142" y2="47" stroke="#2C6275" strokeWidth="2.5" strokeLinecap="round"/>
-                        <circle cx="100" cy="110" r="5" fill="#2C6275"/>
-                        <text x="26" y="125" fontSize="9" fill="#999">300</text>
-                        <text x="163" y="125" fontSize="9" fill="#999">900</text>
-                      </svg>
-                      {/* score number */}
-                      <div style={{ position: 'absolute', bottom: 22, left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
-                        <div style={{ fontSize: 28, fontWeight: 800, color: '#1a1a1a', lineHeight: 1, fontFamily: "'Poppins',sans-serif" }}>742</div>
-                      </div>
-                    </div>
-
-                    {/* good score badge */}
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-                      <div style={{ background: '#e8f4f6', color: '#2C6275', fontSize: 11, fontWeight: 600, padding: '4px 12px', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 5 }}>
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="#2C6275"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5l-4.5-4.5 1.41-1.41L10 13.67l7.09-7.09 1.41 1.41L10 16.5z"/></svg>
-                        Good Score
-                      </div>
-                    </div>
-
-                    {/* score breakdown */}
-                    <div style={{ padding: '0 14px 6px' }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: '#1a1a1a', marginBottom: 8 }}>Score Breakdown</div>
-                      {[
-                        { label: 'Payment History',    pct: 95, color: '#4a9aaa' },
-                        { label: 'Credit Utilization', pct: 28, color: '#1565C0' },
-                        { label: 'Account Age',        pct: 72, color: '#FF9800' },
-                        { label: 'Total Accounts',     pct: 88, color: '#6A1B9A' },
-                        { label: 'Hard Inquiries',     pct: 90, color: '#00695C' },
-                      ].map((f, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 7 }}>
-                          <div style={{ width: 22, height: 22, borderRadius: 6, background: f.color+'15', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                            <div style={{ width: 8, height: 8, borderRadius: 2, background: f.color }} />
-                          </div>
-                          <span style={{ fontSize: 10, color: '#555', flex: 1, whiteSpace: 'nowrap' }}>{f.label}</span>
-                          <div style={{ flex: 2, height: 5, background: '#f0f0f0', borderRadius: 3, overflow: 'hidden' }}>
-                            <div style={{ width: `${f.pct}%`, height: '100%', background: f.color, borderRadius: 3 }} />
-                          </div>
-                          <span style={{ fontSize: 10, fontWeight: 700, color: f.color, minWidth: 26, textAlign: 'right' }}>{f.pct}%</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* CTA button */}
-                    <div style={{ padding: '6px 14px 16px' }}>
-                      <div style={{ background: '#2C6275', borderRadius: 10, padding: '11px 0', textAlign: 'center', color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                        Check Your Score
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        <div style={{ width:2, height:4, background:'#111', borderRadius:'0 1px 1px 0', opacity:0.5 }} />
                       </div>
                     </div>
                   </div>
-                  </div>{/* end inner bezel */}
-                </div>{/* end black frame */}
-              </div>{/* end 3D tilt */}
-            </div>{/* end perspective */}
+
+                  {/* Instagram header */}
+                  <div style={{ position:'absolute', top:50, left:0, right:0, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'8px 14px', borderBottom:'0.5px solid #eee', zIndex:10, background:'#fff' }}>
+                    <span style={{ fontSize:22, fontFamily:"'Billabong',cursive,serif", fontWeight:400, color:'#000', letterSpacing:'0.5px', fontStyle:'italic' }}>Instagram</span>
+                    <div style={{ display:'flex', gap:14, alignItems:'center' }}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M16 12h-4m0 0H8m4 0V8m0 4v4"/></svg>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+                    </div>
+                  </div>
+
+                  {/* Stories row — clickable testimonials */}
+                  <div style={{ position:'absolute', top:103, left:0, right:0, display:'flex', gap:10, padding:'10px 12px', overflow:'hidden', borderBottom:'0.5px solid #eee', background:'#fff', zIndex:9 }}>
+                    {/* Your story */}
+                    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4, flexShrink:0 }}>
+                      <div style={{ position:'relative', width:56, height:56 }}>
+                        <div style={{ width:56, height:56, borderRadius:'50%', background:'linear-gradient(135deg,#e0e0e0,#bbb)', display:'flex', alignItems:'center', justifyContent:'center', border:'2px solid #fff' }}>
+                          <svg width="32" height="32" viewBox="0 0 40 40" fill="#888"><circle cx="20" cy="14" r="8"/><path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16"/></svg>
+                        </div>
+                        <div style={{ position:'absolute', bottom:0, right:0, width:18, height:18, borderRadius:'50%', background:'#0095f6', border:'2px solid #fff', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                          <span style={{ color:'#fff', fontSize:13, fontWeight:700, lineHeight:1 }}>+</span>
+                        </div>
+                      </div>
+                      <span style={{ fontSize:10, color:'#333', fontFamily:'-apple-system,sans-serif', textAlign:'center', maxWidth:56, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>Your story</span>
+                    </div>
+                    {/* Testimonial story circles */}
+                    {testimonials.map((item, i) => (
+                      <div key={i} onClick={() => setActiveT(i)} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4, flexShrink:0, cursor:'pointer' }}>
+                        <div style={{ width:60, height:60, borderRadius:'50%', background: activeT===i ? item.color : 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)', padding:'2.5px', display:'flex', alignItems:'center', justifyContent:'center', boxShadow: activeT===i ? `0 0 0 2px #fff, 0 0 0 3.5px ${item.color}` : 'none' }}>
+                          <div style={{ width:'100%', height:'100%', borderRadius:'50%', background: item.color, border:'2px solid #fff', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'Poppins',sans-serif", fontWeight:700, fontSize:13, color:'#fff' }}>{item.initials}</div>
+                        </div>
+                        <span style={{ fontSize:10, color: activeT===i ? item.color : '#333', fontFamily:'-apple-system,sans-serif', fontWeight: activeT===i ? 600 : 400, textAlign:'center', maxWidth:56, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{item.name?.split(' ')[0].toLowerCase()}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Post header */}
+                  <div style={{ position:'absolute', top:233, left:0, right:0, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'8px 12px', background:'#fff', zIndex:8 }}>
+                    <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+                      <div style={{ width:32, height:32, borderRadius:'50%', background: t.color, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'Poppins',sans-serif", fontWeight:700, fontSize:12, color:'#fff', border:'1.5px solid #eee' }}>{t.initials}</div>
+                      <div>
+                        <span style={{ fontSize:12, fontWeight:600, color:'#111', fontFamily:'-apple-system,sans-serif' }}>{t.name}</span>
+                      </div>
+                    </div>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#111"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+                  </div>
+
+                  {/* Review card area */}
+                  <div key={activeT} style={{ position:'absolute', top:275, left:0, right:0, height:230, background:'linear-gradient(160deg,#fefaef,#f5e6c8)', zIndex:7, display:'flex', flexDirection:'column', justifyContent:'center', padding:'0 20px', animation:'igSlideIn 0.3s ease' }}>
+                    <div style={{ fontSize:18, color:'#c8892a', marginBottom:10 }}>{'★'.repeat(t.rating || 5)}</div>
+                    <div style={{ fontSize:13, color:'#444', lineHeight:1.65, fontStyle:'italic', marginBottom:14 }}>
+                      "{t.quote?.slice(0,140)}{t.quote?.length > 140 ? '...' : ''}"
+                    </div>
+                    <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                      <div style={{ width:36, height:36, borderRadius:'50%', background: t.color, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'Poppins',sans-serif", fontWeight:700, fontSize:13, color:'#fff', flexShrink:0 }}>{t.initials}</div>
+                      <div>
+                        <div style={{ fontSize:13, fontWeight:700, color:'#1a1a1a' }}>{t.name}</div>
+                        <div style={{ fontSize:11, color:'#aaa' }}>{t.handle}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Post actions */}
+                  <div style={{ position:'absolute', top:505, left:0, right:0, background:'#fff', padding:'8px 14px', zIndex:8 }}>
+                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:6 }}>
+                      <div style={{ display:'flex', gap:14, alignItems:'center' }}>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                      </div>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+                    </div>
+                    <div style={{ fontSize:12, fontWeight:600, color:'#111', fontFamily:'-apple-system,sans-serif', marginBottom:3 }}>{(12000 + activeT * 453).toLocaleString()} likes</div>
+                    <div style={{ fontSize:12, color:'#111', fontFamily:'-apple-system,sans-serif' }}><span style={{ fontWeight:600 }}>clicksemurs</span> ⭐ Verified Client Review</div>
+                  </div>
+
+                  {/* Bottom nav */}
+                  <div style={{ position:'absolute', bottom:0, left:0, right:0, height:70, background:'#fff', borderTop:'0.5px solid #eee', display:'flex', alignItems:'center', justifyContent:'space-around', padding:'0 10px 12px', zIndex:20 }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#111"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M10 8l6 4-6 4V8z"/></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" strokeWidth="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <div style={{ width:26, height:26, borderRadius:'50%', background:'linear-gradient(45deg,#f09433,#dc2743,#bc1888)', padding:2 }}>
+                      <div style={{ width:'100%', height:'100%', borderRadius:'50%', background:'#c8892a', border:'1.5px solid #fff', display:'flex', alignItems:'center', justifyContent:'center', fontSize:10, fontWeight:700, color:'#fff' }}>C</div>
+                    </div>
+                  </div>
+
+                  {/* Side buttons */}
+                  <div style={{ position:'absolute', top:120, right:-4, width:4, height:60, background:'#555', borderRadius:'0 3px 3px 0' }} />
+                  <div style={{ position:'absolute', top:100, left:-4, width:4, height:40, background:'#555', borderRadius:'3px 0 0 3px' }} />
+                  <div style={{ position:'absolute', top:155, left:-4, width:4, height:60, background:'#555', borderRadius:'3px 0 0 3px' }} />
+                  <div style={{ position:'absolute', top:228, left:-4, width:4, height:60, background:'#555', borderRadius:'3px 0 0 3px' }} />
+
+                  {/* Home indicator */}
+                  <div style={{ position:'absolute', bottom:6, left:'50%', transform:'translateX(-50%)', width:100, height:3, background:'#bbb', borderRadius:2, zIndex:30 }} />
+                </div>
+              </div>
+            </div>
           </div>{/* end right col */}
           </div>{/* end grid */}
         </div>
